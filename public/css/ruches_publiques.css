@@ -1,0 +1,51 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	list-style; none;	
+}
+
+.wrapper
+{
+	display: flex;
+	position: relative;
+}
+
+.wrapper .sidebar{
+	position: fixed;
+	width: 18%;
+	height: 100%;
+	background: #ddd;
+	text-align: center;
+	z-index: 1;
+	border: solid 1px; 
+}
+
+.wrapper .sidebar .form{
+	padding-right: 15%;
+	text-align: right;
+}
+
+.wrapper .fluid{
+	float: right;
+	width: 100%;
+	margin-right: -200px;
+}
+
+
+.wrapper .fluid .content{
+	margin-right: 210px;
+	min-height:100px;
+	display: inline-block;
+}
+
+.wrapper .fluid .content .pRuche{
+	margin-left: 400px;
+	width: 40%;
+	border: solid gray 1px;
+}
+
+.wrapper .fluid .content .pRuche .rucheBar{
+	padding-top: 10px;
+	border-top: solid gray 1px;
+}

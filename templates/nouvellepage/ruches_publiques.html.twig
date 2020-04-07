@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Thales Apiculture{% endblock %}
+
+{% block body %}
+
+<meta charset="UTF-8">
+
+<link rel="stylesheet" href="css/ruches_publiques.css" type="text/css" />
+
+
+<div class="wrapper">
+
+    <div class="sidebar">
+    	<h3>Filtrer ma recherche</h3>
+    	<br><br>
+    	
+    	<div class="form">
+        	<label for="Owner">Propriétaire</label>
+        	<input type="text" id="OwnerSearch" name="OwnerSearch">
+        	<br>
+        	
+        	<label for="Name">Nom</label>
+        	<input type="text" id="NameSearch" name="NameSearch">
+        	<br>
+        	
+        	<label for="Type">Type de Ruche</label>
+        	<select id="Type">
+        		<option value="default">...</option>
+        		<option value="Simple">Simple</option>
+        		<option value="Upgraded">Améliorée</option>
+        		<option value="Premium">Premium</option>
+        	</select>
+        	<br>
+        	
+        	<label for="Rucher">Rucher</label>
+        	<select id="Rucher">
+        		<option value="default">...</option>
+        		<option value="Montauban">Montauban</option>
+        		<option value="Toulouse">Toulouse</option>
+        		<option value="StMartinLesPres">St Martin-les-Prés</option>
+        	</select>
+        	<br>
+    	</div>
+    </div>
+ 
+    
+    <div class="content">
+    	
+    	<h1>Ruches Publiques</h1>
+    		
+    	<div class="pRuche">
+    		<img alt="ruche" src="ruche.jpg">    			
+    		<div class="rucheBar"><center>Ruche 1</center></div>
+    	</div>
+    		
+    	<div class="pRuche">
+    		<img alt="ruche" src="ruche.jpg">
+    		<div class="rucheBar"><center>Ruche 1</center></div>
+    	</div>
+    		
+    	<div class="pRuche">  
+    		<img alt="ruche" src="ruche.jpg">
+    		<div class="rucheBar"><center>Ruche 1</center></div>
+    	</div>
+    		
+    	<div class="pRuche">
+    		<img alt="ruche" src="ruche.jpg">
+    		<div class="rucheBar"><center>Ruche 1</center></div>
+    	</div>
+    	
+    </div>  
+    
+</div>
+
+
+{% endblock %}

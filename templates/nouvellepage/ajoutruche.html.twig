@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AjoutRuche{% endblock %}
+
+{% block body %}
+
+<meta charset="UTF-8">
+
+<head><link rel="stylesheet" href="css/ajoutruche.css" type="text/css"/></head>
+
+<style>
+em{
+color:red
+}
+
+.emplacement{
+margin-left:100x;
+}
+</style>
+
+<center><H1>Ajout d'une ruche</H1></center>
+<br>
+
+<form action="/index">
+
+<center><p><i>Complétez le formulaire. Les champs marqués par </i><em>*</em> sont <em>obligatoires</em>.</p></center>
+<br>
+
+<center><div class="nomRuche">
+<label for="nomRuche">Nom de la ruche </label>
+<input type="text" id="nomRuche" name="nomRuche" autofocus=""><br><br></div></center>
+
+<center><div class="emplacement">
+<label for="emplacement">Emplacement <em>*</em></label>
+<input type="text" id="emplacement" name="emplacement" required=""><br><br></div></center>
+
+<center><div class="dateInstall">
+<label for="dateInstall">Date d'installation <em>*</em></label>
+<input type="date" id="dateInstall" name="dateInstall" required=""><br><br></div></center>
+
+<center><div class="type">
+<label for="type">Type de ruche </label>
+<input type="text" id="type" name="type"><br><br></div></center>
+
+<center><div class="visibilite">
+<label for="visibilite">Visibilité <em>*</em></label> 
+<input type="radio" id="visibilite" name="visibilite" value="publique" required="">
+<label for="publique">Publique</label>
+<input type="radio" id="visibilite" name="visibilite" value="prive" required="">
+<label for="prive">Privée</label><br><br></div></center>
+
+<center><input type="submit" value="Valider">
+<a href="index"><button>Retour</button></a></center>
+
+</form>
+
+{% endblock %}

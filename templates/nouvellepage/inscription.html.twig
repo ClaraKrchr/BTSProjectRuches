@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+
+<meta charset="UTF-8">
+ 
+<link rel="stylesheet" href="css/inscription.css" type="text/css" />
+
+<center><H1>Inscription</H1></center>
+<br>
+<form action="welcome.php" method="post">
+<br>
+
+<center><p><i>Complétez le formulaire. Tous les champs sont obligatoires</i></p></center>
+<br>
+<div>
+<center><div class = " nom " >
+<label for = " nom " > Nom </label>
+<input type = "text" id = "nom" name = "nom" autofocus = ""><br><br></div></center>
+
+<center><div class="prenom">
+<label for="prenom">Prénom</label>
+<input type="text" id="prenom" name="prenom" required=""><br><br></div></center>
+
+<center><div class="mail">
+<label for="prenom">Adresse mail</label>
+<input type="text" id="Adresse mail" name="Adresse mail" required=""><br><br></div></center>
+
+<center><div class="mdp">
+<label for="prenom">Mot de passe</label>
+<input type="text" id="Mot de passe" name="Mot de passe" required=""><br><br></div></center>
+
+<center><div class="telephone">
+<label for="prenom">Téléphone</label>
+<input type="text" id="telephone" name="telephone" required=""><br><br></div></center>
+
+<center><div class="postal">
+<label for="prenom">Code postal</label>
+<input type="text" id="postal" name="postal" required=""><br><br></div></center>
+
+<center><div class="ville">
+<label for="prenom">Ville</label>
+<input type="text" id="ville" name="ville" required=""><br><br></div></center>
+
+<center><div class="adresse postale">
+<label for="prenom">Adresse postale</label>
+<input type="text" id="Adresse postale" name="Adresse postale" required=""><br><br></div></center>
+</div>
+<center><input type="submit" value="Valider">
+<a href="index"><button>Retour</button></a></center>
+
+
+</form>
+
+{% endblock %}
