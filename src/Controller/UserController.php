@@ -21,14 +21,14 @@ class UserController extends NouvellepageController
         $entityManager = $this->getDoctrine()->getManager();
 
         $user = new CApiculteur();
-        $user->setName('Admin');
-        $user->setPrenom('Admin');
-        $user->setMail('projetruchethales@gmail.com');
-        $user->setMdp('Projetruche2020');
-        $user->setTel('0695096223');
+        $user->setName('Mauquie');
+        $user->setPrenom('Joel');
+        $user->setMail('joel.mauquie@ac-toulouse.fr');
+        $user->setMdp('jomau');
+        $user->setTel('0699989796');
         $user->setCodePostal('82000');
-        $user->setVille('Montauban');
-        $user->setPostAddr('rue Voltaire');
+        $user->setVille('');
+        $user->setPostAddr('');
         $user->setTypeUser(0);
 
         // tell Doctrine you want to (eventually) save the Product (no queries yet)

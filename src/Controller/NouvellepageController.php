@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\CApiculteur;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -54,7 +55,9 @@ class NouvellepageController extends AbstractController
      */
     public function gestionnaire_apiculteurs()
     {
-        return $this->render('nouvellepage/gestionnaire_apiculteurs.html.twig');
+        $apiculteurs = $this->getDoctrine()->getRepository(CApiculteur::class)->findAll();
+        
+        return $this->render('nouvellepage/gestionnaire_apiculteurs.html.twig', ['apiculteurs' => $apiculteurs,]);
     }
     /**
      * @Route("/ajoutruche", name="ajoutruche")

@@ -13,6 +13,13 @@
 <br>
 <center><label for="nom">Nom</label> <input type="text" name="nom" id="name"><button>Rechercher</button></center>
 
+<br>
+<a href = "/user"><button>Ajouter apiculteur</button></a>
 
+<br><br>
+<h1>Liste des apiculteurs</h1>
+{% for apiculteur in apiculteurs %}
+<div>{{ apiculteur.id }} {{ apiculteur.nom }} {{ apiculteur.prenom }} {{ apiculteur.mail }} {{ apiculteur.mdp }} {{ apiculteur.tel }} {{apiculteur.code_postal }} {{ apiculteur.ville }} {{ apiculteur.post_addr }} {{ apiculteur.type_user }}</div>
+{% endfor %}
 
 {% endblock %}
