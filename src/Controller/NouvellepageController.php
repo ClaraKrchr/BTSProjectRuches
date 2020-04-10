@@ -20,6 +20,14 @@ class NouvellepageController extends AbstractController
     }
     
     /**
+     * @Route("/", name="home")
+     */
+    public function home()
+    {
+        return $this->render('nouvellepage/index.html.twig');
+    }
+    
+    /**
      * @Route("/connexion", name="connexion")
      */
     public function connexion(Request $request, AuthenticationUtils $authUtils)
