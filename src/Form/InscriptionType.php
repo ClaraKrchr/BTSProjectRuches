@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Form;
+
+use App\Entity\CApiculteur;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
+class InscriptionType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('nom')
+            ->add('prenom')
+            ->add('mail')
+            ->add('mdp')
+            ->add('tel')
+            ->add('code_postal')
+            ->add('ville')
+            ->add('post_addr')
+            ->add('type_user')
+        ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => CApiculteur::class,
+        ]);
+    }
+}
