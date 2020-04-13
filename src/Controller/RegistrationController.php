@@ -12,7 +12,7 @@ use App\Form\RegistrationFormType;
 class RegistrationController extends AbstractController
 {
     /**
-     * @Route("/new", name="registration")
+     * @Route("/registration", name="registration")
      */
     public function new(EntityManagerInterface $em) {
         $form = $this->createForm(RegistrationFormType::class);

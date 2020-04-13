@@ -11,11 +11,11 @@ class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-            ->add('Nom')
-            ->add('Prenom')
-            ->add('Adresse_mail')
+            ->add('Nom')      
+            ->add('Prenom')            
+            ->add('Adresse_mail')            
             ->add('Mot_de_passe')
-            ->add('Telephone')
+            ->add('Telephone')        
             ->add('Code_postal')
             ->add('Ville')
             ->add('Adresse_postale')
