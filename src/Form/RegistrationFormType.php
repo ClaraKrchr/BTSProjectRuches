@@ -18,7 +18,7 @@ class RegistrationFormType extends AbstractType
             ->add('Telephone')
             ->add('Code_postal')
             ->add('Ville')
-            ->add('Adresse_postale')
+            //->add('Adresse_postale')
             ;
     }
 }
