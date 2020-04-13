@@ -14,7 +14,7 @@ class CApiculteur
      * @ORM\GeneratedValue()
      * @ORM\Column(type="smallint")
      */
-    private $idApi;
+    private $id;
 
     /**
     * @ORM\Column(type="string", length = 20)
@@ -64,7 +64,7 @@ class CApiculteur
 #=====================GETTERS==========================#
     public function getId(): ?int
     {
-        return $this->idApi;
+        return $this->id;
     }
 
     public function getNom(): ?string
