@@ -43,14 +43,6 @@ class NouvellepageController extends AbstractController
             'error'         => $error,
         ));
     }
-    
-    /**
-     * @Route("/inscription", name="inscription")
-     */
-    public function inscription()
-    {
-        return $this->render('nouvellepage/inscription.html.twig');
-    }
     /**
      * @Route("/ruches_privees", name="ruches_privees")
      */
@@ -66,13 +58,6 @@ class NouvellepageController extends AbstractController
         $apiculteurs = $this->getDoctrine()->getRepository(CApiculteur::class)->findAll();
         
         return $this->render('nouvellepage/gestionnaire_apiculteurs.html.twig', ['apiculteurs' => $apiculteurs,]);
-    }
-    /**
-     * @Route("/ajoutruche", name="ajoutruche")
-     */
-    public function ajoutruche()
-    {
-        return $this->render('nouvellepage/ajoutruche.html.twig');
     }
     /**
      * @Route("/carte", name="carte")
