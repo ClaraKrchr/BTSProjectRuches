@@ -160,6 +160,11 @@ class CPeseRuche
         return $this->rucher;
     }
 
+    public function getVisibilite(): ?bool
+    {
+        return $this->visibilite;
+    }
+
 #=========================SETTERS==========================#
 
     public function setPoids(?int $poids): self
@@ -251,11 +256,6 @@ class CPeseRuche
         $this->rucher = $rucher;
 
         return $this;
-    }
-
-    public function getVisibilite(): ?bool
-    {
-        return $this->visibilite;
     }
 
     public function setVisibilite(bool $visibilite): self
