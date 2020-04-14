@@ -40,4 +40,44 @@ class UserController extends NouvellepageController
         return new Response('Saved new user with id '.$user->getId());
     }
  
+    /**
+     * @Route("/user/edit/{id]")
+     */
+    public function update($id)
+    {
+        $entityManager = $this->getDoctrine->getManager();
+        $product = $entityManager->getRepository(CApiculteur::class)->find($id);
+        
+        if (!$product) {
+            throw $this->createNotFoundException(
+                'No user found for id '.$id
+                );
+        }
+        
+        $product->setName('New user name!');
+        $entityManager->flush();
+        
+        return $this->redirectToRoute('gestionnaire_apiculteurs');
+    }
+    
+    /**
+     * @Route("/user/delete/{id]")
+     */
+    public function delete($id)
+    {
+        $entityManager = $this->getDoctrine->getManager();
+        $apiculteur = $entityManager->getRepository(CApiculteur::class)->find($id);
+        
+        if (!$apiculteur) {
+            throw $this->createNotFoundException(
+                'No user found for id '.$id
+                );
+        }
+        
+        $apiculteur->remove($apiculteur);
+        $entityManager->flush();
+        
+        return $this->redirectToRoute('gestionnaire_apiculteurs');
+    }
+    
 }
