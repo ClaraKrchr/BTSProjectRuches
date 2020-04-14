@@ -11,8 +11,7 @@ class AddRucheFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
         ->add('Nom_ruche')
-        ->add('Emplacement')
-        ->add('Date_installation')
+        //->add('Date_installation')
         ->add('Type')
         ->add('Visibilite')
         ;
