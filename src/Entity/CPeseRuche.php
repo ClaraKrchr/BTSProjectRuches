@@ -83,6 +83,13 @@ class CPeseRuche
      */
     private $rucher;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $visibilite;
+
+#============================GETTERS=========================#
+
     public function getId(): ?int
     {
         return $this->id;
@@ -93,17 +100,67 @@ class CPeseRuche
         return $this->nom_peseRuche;
     }
 
-    public function setNomPeseRuche(string $nom_peseRuche): self
-    {
-        $this->nom_peseRuche = $nom_peseRuche;
-
-        return $this;
-    }
-
     public function getPoids(): ?int
     {
         return $this->poids;
     }
+
+    public function getHumiditeInter(): ?int
+    {
+        return $this->humidite_inter;
+    }
+
+    public function getHumiditeExter(): ?int
+    {
+        return $this->humidite_exter;
+    }
+
+    public function getTempInter(): ?int
+    {
+        return $this->temp_inter;
+    }
+
+    public function getTempExter(): ?int
+    {
+        return $this->temp_exter;
+    }
+
+    public function getLuminosite(): ?int
+    {
+        return $this->luminosite;
+    }
+
+    public function getNivEau(): ?int
+    {
+        return $this->niv_eau;
+    }
+
+    public function getDateInstall(): ?\DateTimeInterface
+    {
+        return $this->date_install;
+    }
+
+    public function getDateReleve(): ?\DateTimeInterface
+    {
+        return $this->date_releve;
+    }
+
+    public function getTypeRuche(): ?string
+    {
+        return $this->type_ruche;
+    }
+
+    public function getProprietaire(): ?CApiculteur
+    {
+        return $this->proprietaire;
+    }
+
+    public function getRucher(): ?CRucher
+    {
+        return $this->rucher;
+    }
+
+#=========================SETTERS==========================#
 
     public function setPoids(?int $poids): self
     {
@@ -112,9 +169,11 @@ class CPeseRuche
         return $this;
     }
 
-    public function getHumiditeInter(): ?int
+    public function setNomPeseRuche(string $nom_peseRuche): self
     {
-        return $this->humidite_inter;
+        $this->nom_peseRuche = $nom_peseRuche;
+
+        return $this;
     }
 
     public function setHumiditeInter(?int $humidite_inter): self
@@ -124,21 +183,11 @@ class CPeseRuche
         return $this;
     }
 
-    public function getHumiditeExter(): ?int
-    {
-        return $this->humidite_exter;
-    }
-
     public function setHumiditeExter(?int $humidite_exter): self
     {
         $this->humidite_exter = $humidite_exter;
 
         return $this;
-    }
-
-    public function getTempInter(): ?int
-    {
-        return $this->temp_inter;
     }
 
     public function setTempInter(?int $temp_inter): self
@@ -148,21 +197,11 @@ class CPeseRuche
         return $this;
     }
 
-    public function getTempExter(): ?int
-    {
-        return $this->temp_exter;
-    }
-
     public function setTempExter(?int $temp_exter): self
     {
         $this->temp_exter = $temp_exter;
 
         return $this;
-    }
-
-    public function getLuminosite(): ?int
-    {
-        return $this->luminosite;
     }
 
     public function setLuminosite(?int $luminosite): self
@@ -172,21 +211,11 @@ class CPeseRuche
         return $this;
     }
 
-    public function getNivEau(): ?int
-    {
-        return $this->niv_eau;
-    }
-
     public function setNivEau(?int $niv_eau): self
     {
         $this->niv_eau = $niv_eau;
 
         return $this;
-    }
-
-    public function getDateInstall(): ?\DateTimeInterface
-    {
-        return $this->date_install;
     }
 
     public function setDateInstall(?\DateTimeInterface $date_install): self
@@ -196,21 +225,11 @@ class CPeseRuche
         return $this;
     }
 
-    public function getDateReleve(): ?\DateTimeInterface
-    {
-        return $this->date_releve;
-    }
-
     public function setDateReleve(?\DateTimeInterface $date_releve): self
     {
         $this->date_releve = $date_releve;
 
         return $this;
-    }
-
-    public function getTypeRuche(): ?string
-    {
-        return $this->type_ruche;
     }
 
     public function setTypeRuche(?string $type_ruche): self
@@ -220,11 +239,6 @@ class CPeseRuche
         return $this;
     }
 
-    public function getProprietaire(): ?CApiculteur
-    {
-        return $this->proprietaire;
-    }
-
     public function setProprietaire(?CApiculteur $proprietaire): self
     {
         $this->proprietaire = $proprietaire;
@@ -232,14 +246,21 @@ class CPeseRuche
         return $this;
     }
 
-    public function getRucher(): ?CRucher
-    {
-        return $this->rucher;
-    }
-
     public function setRucher(?CRucher $rucher): self
     {
         $this->rucher = $rucher;
+
+        return $this;
+    }
+
+    public function getVisibilite(): ?bool
+    {
+        return $this->visibilite;
+    }
+
+    public function setVisibilite(bool $visibilite): self
+    {
+        $this->visibilite = $visibilite;
 
         return $this;
     }

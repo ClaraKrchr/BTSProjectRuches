@@ -26,6 +26,8 @@ class CRucher
      */
     private $nb_ruches;
 
+#=======================GETTERS========================#
+
     public function getId(): ?int
     {
         return $this->id;
@@ -36,16 +38,18 @@ class CRucher
         return $this->localisation;
     }
 
+    public function getNbRuches(): ?int
+    {
+        return $this->nb_ruches;
+    }
+
+#========================SETTERS=======================#
+
     public function setLocalisation(string $localisation): self
     {
         $this->localisation = $localisation;
 
         return $this;
-    }
-
-    public function getNbRuches(): ?int
-    {
-        return $this->nb_ruches;
     }
 
     public function setNbRuches(?int $nb_ruches): self
