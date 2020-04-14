@@ -79,7 +79,7 @@ class NouvellepageController extends AbstractController
      */
     public function carte()
     {
-        return $this->render('nouvellepage/map.html.twig');
+        return $this->render('map/map.html.twig');
     }
     
     /**

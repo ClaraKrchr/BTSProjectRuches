@@ -18,8 +18,23 @@
 
 <br><br>
 <h1>Liste des apiculteurs</h1>
+<table border bgcolor="white" cellpadding="5">
+	<tr bgcolor="gray"> 
+		<td>id</td>
+		<td>nom</td>
+		<td>prenom</td>
+		<td>mail</td>
+		<td>mdp</td>
+		<td>tel</td>
+		<td>code postal</td>
+		<td>ville</td>
+		<td>adresse postale</td>
+		<td>type d'utilisateur</td>
+	</tr>
 {% for apiculteur in apiculteurs %}
-<div>{{ apiculteur.id }} {{ apiculteur.nom }} {{ apiculteur.prenom }} {{ apiculteur.mail }} {{ apiculteur.mdp }} {{ apiculteur.tel }} {{apiculteur.code_postal }} {{ apiculteur.ville }} {{ apiculteur.post_addr }} {{ apiculteur.type_user }}</div>
+<tr><td>{{ apiculteur.id }}</td><td> {{ apiculteur.nom }}</td><td> {{ apiculteur.prenom }}</td><td> {{ apiculteur.mail }}</td><td> {{ apiculteur.mdp }}</td><td> {{ apiculteur.tel }}</td><td> {{apiculteur.code_postal }}</td><td> {{ apiculteur.ville }}</td><td> {{ apiculteur.post_addr }}</td><td> {{ apiculteur.type_user }}</td></tr>
 {% endfor %}
+</table>
+
 
 {% endblock %}

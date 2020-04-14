@@ -39,4 +39,5 @@ class UserController extends NouvellepageController
 
         return new Response('Saved new user with id '.$user->getId());
     }
+ 
 }
