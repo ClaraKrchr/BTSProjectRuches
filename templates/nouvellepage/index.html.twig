@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+²{% extends 'base.html.twig' %}
 
 {% block title %}Thales Apiculture{% endblock %}
 
@@ -7,10 +7,10 @@
 <br>
 
 <br>
-<img src="ruche.jpg">
+<img src="{{ asset('ruche.jpg') }}">
 <br>
 
-<a class="link" href="carte">Voir la carte</a>
+<a class="link" href="{{ path('carte') }}">Voir la carte</a>
 
 
 

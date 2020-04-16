@@ -12,11 +12,11 @@ use Symfony\Component\HttpFoundation\Request;
 class NouvellepageController extends AbstractController
 {
     /**
-     * @Route("/index", name="index")
+     * @Route("/", name="index")
      */
     public function index()
     {
-        return $this->render('nouvellepage/index.html.twig');
+        return $this->render('base.html.twig');
     }
     
     /**
@@ -24,7 +24,7 @@ class NouvellepageController extends AbstractController
      */
     public function home()
     {
-        return $this->render('nouvellepage/index.html.twig');
+        return $this->render('base.html.twig');
     }
     
     /**
