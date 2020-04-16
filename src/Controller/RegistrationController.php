@@ -38,7 +38,7 @@ class RegistrationController extends AbstractController
             $em->persist($CApiculteur);
             $em->flush();
             
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('home');
         }
         
         return $this->render('registration/new.html.twig', [

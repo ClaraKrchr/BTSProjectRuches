@@ -42,7 +42,7 @@ class AddRucheController extends AbstractController
             $em->persist($CPeseRuche);
             $em->flush();
             
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('home');
         }
         
         return $this->render('add_ruche/new_ruche.html.twig', [
