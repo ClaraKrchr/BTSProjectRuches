@@ -12,14 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
 class NouvellepageController extends AbstractController
 {
     /**
-     * @Route("/", name="index")
-     */
-    public function index()
-    {
-        return $this->render('base.html.twig');
-    }
-    
-    /**
      * @Route("/", name="home")
      */
     public function home()
