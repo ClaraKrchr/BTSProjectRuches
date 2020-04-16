@@ -3,11 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CApiculteurRepository")
  */
-class CApiculteur
+class CApiculteur implements UserInterface
 {
     /**
      * @ORM\Id()
