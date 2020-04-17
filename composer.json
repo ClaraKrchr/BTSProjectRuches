@@ -16,6 +16,7 @@
         "symfony/http-client": "5.0.*",
         "symfony/intl": "5.0.*",
         "symfony/mailer": "5.0.*",
+        "symfony/maker-bundle": "^1.15",
         "symfony/monolog-bundle": "^3.1",
         "symfony/notifier": "5.0.*",
         "symfony/orm-pack": "*",
@@ -31,7 +32,6 @@
     },
     "require-dev": {
         "symfony/debug-pack": "*",
-        "symfony/maker-bundle": "^1.0",
         "symfony/profiler-pack": "*",
         "symfony/test-pack": "*"
     },
