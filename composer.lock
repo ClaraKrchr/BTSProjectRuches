@@ -4,11 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "content-hash": "7485e31521a2d077913a4a8a91f35f5c",
-=======
     "content-hash": "fae3a0875457a876d117d1c2e6812b7a",
->>>>>>> branch 'master' of https://github.com/ClaraKrchr/BTSProjectRuches
     "packages": [
         {
             "name": "doctrine/annotations",
