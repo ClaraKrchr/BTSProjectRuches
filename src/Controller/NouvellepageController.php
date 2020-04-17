@@ -43,7 +43,7 @@ class NouvellepageController extends AbstractController
         return $this->render('nouvellepage/ruches_privees.html.twig');
     }
     /**
-     * @Route("/gestionnaire_apiculteurs", name="gestionnaire_apiculteurs")
+     * @Route("/gestionnaire_apiculteurs", name="gestionnaire_apiculteurs")   
      */
     public function gestionnaire_apiculteurs()
     {
@@ -65,6 +65,13 @@ class NouvellepageController extends AbstractController
     public function ruches_publiques()
     {
         return $this->render('nouvellepage/ruches_publiques.html.twig');
+    }
+    /**
+     * @Route("/bretagne", name="bretagne")
+     */
+    public function bretagne()
+    {
+        return $this->render('map/bretagne.html.twig');
     }
     
 }
