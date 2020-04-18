@@ -1,0 +1,26 @@
+{% extends 'map/map.html.twig' %}
+{% block title %}Ile de France{% endblock %}
+{% block tableau_donnees %}
+<div id ="block2" class="col-lg-6">
+    <center>
+        <h1>Les ruches pr&eacute;sentes en Ile de France</h1>
+        <br></br>
+        <table border bgcolor="white" cellpadding="5px">
+        	<tr bgcolor="gray">
+        		<td>Nom de la ruche</td>
+        		<td>Propri&eacute;taire</td>
+        		<td>Email</td>
+        		<td>Ville</td>
+        		<td>Autre</td>
+        	</tr>
+        	<tr>
+        		<td>RucheIleDeFrance</td>
+        		<td>Jean-Pierre</td>
+        		<td>jean-pierre@gmail.com</td>
+        		<td>Ile de France</td>
+        	</tr>   
+        </table>
+        <br></br>
+    </center>
+</div>
+{% endblock %}
