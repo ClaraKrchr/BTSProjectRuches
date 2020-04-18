@@ -21,6 +21,10 @@ class MapController extends NouvellepageController{
         return $this->render('map/map.html.twig');
     }
     
+    
+    /*Les routes des régions*/
+    
+    
     /**
      * @Route("/bretagne", name="bretagne")
      */
@@ -126,10 +130,7 @@ class MapController extends NouvellepageController{
     }
     
     
-    
-    
-    
-    
+    /*Les fonctions*/
     
     
     /**
