@@ -10,10 +10,10 @@ class AddRucheFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-        ->add('Nom_ruche')
-        //->add('Date_installation')
-        ->add('Type')
-        ->add('Visibilite')
+            ->add('Nom_ruche')
+            //->add('Date_installation')
+            ->add('Type')
+            ->add('Visibilite')
         ;
     }
 }

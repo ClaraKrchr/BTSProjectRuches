@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class NouvellepageController extends AbstractController
 {
+    
     /**
      * @Route("/", name="home")
      */
@@ -35,6 +36,7 @@ class NouvellepageController extends AbstractController
             'error'         => $error,
         ));
     }
+    
     /**
      * @Route("/ruches_privees", name="ruches_privees")
      */
@@ -42,6 +44,7 @@ class NouvellepageController extends AbstractController
     {
         return $this->render('nouvellepage/ruches_privees.html.twig');
     }
+    
     /**
      * @Route("/gestionnaire_apiculteurs", name="gestionnaire_apiculteurs")   
      */
@@ -51,14 +54,7 @@ class NouvellepageController extends AbstractController
         
         return $this->render('nouvellepage/gestionnaire_apiculteurs.html.twig', ['apiculteurs' => $apiculteurs,]);
     }
-    /**
-     * @Route("/carte", name="carte")
-     */
-    public function carte()
-    {
-        return $this->render('map/map.html.twig');
-    }
-    
+   
     /**
      * @Route("/ruches_publiques", name="ruches_publiques")
      */
@@ -66,12 +62,6 @@ class NouvellepageController extends AbstractController
     {
         return $this->render('nouvellepage/ruches_publiques.html.twig');
     }
-    /**
-     * @Route("/bretagne", name="bretagne")
-     */
-    public function bretagne()
-    {
-        return $this->render('map/bretagne.html.twig');
-    }
+   
     
 }
