@@ -1,0 +1,50 @@
+{% extends 'map/map.html.twig' %}
+{% block tableau_donnees %}
+<div id ="block2" class="col-lg-6">
+    <center>
+        <h1>Les ruches pr&eacute;sentes en Auvergne Rh&ocirc;nes Alpes</h1>
+        <br></br>
+        <table border bgcolor="white" cellpadding="5px">
+        <tr>
+        	<td>Id</td>
+        	<td>Nom p&eagrave;se ruche</td>
+        	<td>Poids</td>
+        	<td>Id Propri&eacute;taire</td>
+        	<td>Id Rucher</td>
+        	<td>Humidit&eacute; int&eacute;rieur</td>
+        	<td>Humidit&eacute; ext&eacute;rieur</td>
+        	<td>Temp&eacute;rature int&eacute;rieur</td>
+        	<td>Temp&eacute;rature ext&eacute;rieur</td>
+        	<td>Luminosit&eacute;</td>
+        	<td>Niveau Eau</td>
+        	<td>Date d'installation</td>
+        	<td>Date du relev&eacute;</td>
+        	<td>Type de ruche</td>
+        	<td>Visibilit&eacute;</td>
+        	<td>R&eacute;gion</td>
+        </tr>
+        {% for peseruche in peseruches %}
+		<tr>
+			<td> {{ peseruche.id }}						</td>
+			<td> {{ peseruche.nom_pses_ruche }}			</td>
+			<td> {{ peseruche.poids }}					</td>
+			<td> {{ peseruche.propriétaire_id }}		</td>
+			<td> {{ peseruche.rucher.id }}				</td>
+			<td> {{ peseruche.humidite_inter }}			</td>
+			<td> {{ peseruche.humidite_exter }}			</td>
+			<td> {{ peseruche.temp_inter }}				</td>
+			<td> {{ peseruche.temp_exter }}				</td>
+			<td> {{ peseruche.luminosite }}				</td>
+			<td> {{ peseruche.niv_eau }}				</td>
+			<td> {{ peseruche.date_install }}			</td>
+			<td> {{ peseruche.date_releve }}			</td>
+			<td> {{ peseruche.type_ruche }}				</td>
+			<td> {{ peseruche.visibilite }}				</td>
+			<td></td>
+		</tr>
+        {% endfor %}
+        </table>
+        <br></br>
+    </center>
+</div>
+{% endblock %}
