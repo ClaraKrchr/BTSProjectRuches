@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\CPeseRuche;
+use App\Entity\CApiculteur;
+use App\Entity\CRucher;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,7 +31,8 @@ class MapController extends NouvellepageController{
     public function tableau_donnees(/*$regions*/)
     {
         $peseruches = $this->getDoctrine()->getRepository(CPeseRuche::class)->findAll();
-        return $this->render('map/tableau_donnees.html.twig', ['peseruches' => $peseruches,]);
+        $ruchers = $this->getDoctrine()->getRepository(CRucher::class)->findAll();
+        return $this->render('map/tableau_donnees.html.twig', ['peseruches' => $peseruches,'ruchers'=>$ruchers,]);
     }
     
     /*Les fonctions*/
@@ -70,4 +73,27 @@ class MapController extends NouvellepageController{
         
         return new Response('Saved new pese ruche with id '.$PeseRuche->getId());
     }
+    
+    /**
+     * @Route("/rucher", name="create_rucher")
+     */
+    public function createRucher(): Response
+    {
+        // you can fetch the EntityManager via $this->getDoctrine()
+        // or you can add an argument to the action: createProduct(EntityManagerInterface $entityManager)
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $rucher = new CRucher();
+        $rucher->setLocalisation('Bretagne');
+        $rucher->setNbRuches('2');
+        
+        // tell Doctrine you want to (eventually) save the Product (no queries yet)
+        $entityManager->persist($rucher);
+        
+        // actually executes the queries (i.e. the INSERT query)
+        $entityManager->flush();
+        
+        return new Response('Saved new pese ruche with id '.$rucher->getId());
+    }
+    
 }
