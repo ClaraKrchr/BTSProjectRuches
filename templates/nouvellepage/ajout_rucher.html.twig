@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block title %} Ajouter un Rucher{% endblock %}
+{% block body %}
+	<center><h1>Ajouter un rucher</h1></center>
+	<div class="container-fluid">
+		<div class="row">
+			<div id="block1" class="col-lg-4"></div>
+			<div id="block2" class="col-lg-3">
+				<center>{{ form_start(addrucherform) }}
+   						{{ form_widget(addrucherform) }}	
+   						<button type="submit" class="btn btn-primary">Valider</button></center>
+                        {{ form_end(addrucherform) }}
+			</div>
+			<div id="block3" class="col-lg-5"></div>
+		</div>
+	</div>
+{% endblock %}

@@ -62,6 +62,5 @@ class NouvellepageController extends AbstractController
     {
         return $this->render('nouvellepage/ruches_publiques.html.twig');
     }
-   
-    
+       
 }
