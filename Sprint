@@ -1,0 +1,29 @@
+Déjà fait et acquis :
+- Auto responsive barre de navigation
+- Table apiculteur bdd
+- Inscription apiculteur 
+
+
+À terminer : 
+- Carte map affichage des ruches et ruchers 
+- Bootstrap formulaires + autres pages (centrer etc)
+- Liaisons clé étrangères bdd 
+- Tables bdd (rucher et pese ruche)
+- Connexion + déconnexion
+- Mdp à crypter inscription
+- cache css
+
+
+À commencer : 
+- Page ruche publiques
+- Auto responsive objets dans la page 
+- Page ajout rucher
+- Ajout carte google 
+
+
+Sprint 20/04/2020 jusqu'au 03/05/2020 :
+Clément : formulaire ajout rucher
+Sylvain : Liaisons clé étrangère + carte google
+Antoine : Bootstrap formulaire + cache css 
+ELyott : formulaire ruche publique filtre de recherche + page complète si possible
+Clara : Connexion + deconnexion, cryptage mdp d'inscription 
