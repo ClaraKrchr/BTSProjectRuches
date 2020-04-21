@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CApiculteurRepository")
@@ -34,8 +35,13 @@ class CApiculteur implements UserInterface
 
     /**
     * @ORM\Column(type="string", length = 30)
+    * @Assert\Length(
+    *       min = 6,
+    *       minMessage="Votre mot de passe doit contenir au moins {{ limit }} caractères")
     */
     private $mdp;
+    
+    private $confirm_password;
 
     /**
     * @ORM\Column(type="string", length = 10)
@@ -86,6 +92,11 @@ class CApiculteur implements UserInterface
     public function getMdp(): ?string
     {
       return $this->mdp;
+    }
+    
+    public function getConfirmPassword()
+    {
+        return $this->confirm_password;
     }
 
     public function getTel(): ?string
@@ -140,6 +151,12 @@ class CApiculteur implements UserInterface
     {
         $this->mdp = $mdp;
 
+        return $this;
+    }
+    
+    public function setConfirmPassword($confirm_password) 
+    {
+        $this->confirm_password = $confirm_password;
         return $this;
     }
 
@@ -232,6 +249,7 @@ class CApiculteur implements UserInterface
     public function getPassword()
     {
         // not needed for apps that do not check user passwords
+        //return $this->mdp;
     }
     /**
     * @see UserInterface

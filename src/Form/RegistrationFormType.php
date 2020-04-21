@@ -16,6 +16,7 @@ class RegistrationFormType extends AbstractType
             ->add('Prenom')            
             ->add('Adresse_mail')            
             ->add('Mot_de_passe',PasswordType::class)
+            ->add('Confirmer_le_mdp',PasswordType::class)
             ->add('Telephone')        
             ->add('Code_postal')
             ->add('Ville')
