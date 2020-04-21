@@ -5,6 +5,7 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 
 class RegistrationFormType extends AbstractType 
@@ -14,7 +15,7 @@ class RegistrationFormType extends AbstractType
             ->add('Nom')      
             ->add('Prenom')            
             ->add('Adresse_mail')            
-            ->add('Mot_de_passe')
+            ->add('Mot_de_passe',PasswordType::class)
             ->add('Telephone')        
             ->add('Code_postal')
             ->add('Ville')
