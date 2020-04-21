@@ -32,9 +32,9 @@ class AddRucherController extends AbstractController
             
             return $this->redirectToRoute('home');
         }
-        
+        $ruchers = $this->getDoctrine()->getRepository(CRucher::class)->findAll();
         return $this->render('nouvellepage/ajout_rucher.html.twig', [
-            'addrucherform' => $form->createView(),
+            'addrucherform' => $form->createView(),'ruchers' =>$ruchers,
         ]);
     }
 }
