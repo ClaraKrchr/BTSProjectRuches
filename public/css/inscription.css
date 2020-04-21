@@ -1,27 +1,3 @@
-div {
-  margin-right: 130px;
-}
-.nom{
-  text-align: right;
-}
-.prenom{
-  text-align: right;
-}
-.mail{
-  text-align: right;
-}
-.mdp{
-  text-align: right;
-}
-.telephone{
-  text-align: right;
-}
-.postal{
-  text-align: right;
-}
-.ville{
-  text-align: right;
-}
-.adresse_postale{
+.droite {
   text-align: right;
 }
