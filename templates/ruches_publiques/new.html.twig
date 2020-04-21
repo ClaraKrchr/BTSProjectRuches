@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %} 
+
+{% block title %}Filter New Form{% endblock %}
+
+{% block body %}
+
+	<h1>Filtrer ma recherche!</h1>
+	
+	{{ form_start(filterForm) }}
+		{{ form_widget(filterForm) }}
+		
+		<button type="submit" class="btn btn-primary">Filtrer</button>
+	{{ form_end(filterForm) }}
+
+{% endblock %}
