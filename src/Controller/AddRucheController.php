@@ -8,7 +8,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
+use App\Entity\CApiculteur;
 use App\Entity\CPeseRuche;
+use App\Entity\CRucher;
 use App\Form\AddRucheFormType;
 
 class AddRucheController extends AbstractController
@@ -25,6 +27,9 @@ class AddRucheController extends AbstractController
             $data = $form->getData();
             $CPeseRuche = new CPeseRuche();
             
+            $apiculteur = $em->getRepository(CApiculteur::class)->find(1);
+            $rucher = $em->getRepository(CRucher::class)->find(1);
+            
             $CPeseRuche->setNomPeseRuche($data['Nom_ruche']);
             $CPeseRuche->setPoids(NULL);
             $CPeseRuche->setHumiditeInter(NULL);
@@ -36,9 +41,9 @@ class AddRucheController extends AbstractController
             $CPeseRuche->setDateInstall(NULL);
             $CPeseRuche->setDateReleve(NULL);
             $CPeseRuche->setTypeRuche($data['Type']);
-            $CPeseRuche->setProprietaire(NULL);
-            $CPeseRuche->setRucher(NULL);
+            $CPeseRuche->setProprietaire($apiculteur);
             $CPeseRuche->setVisibilite($data['Visibilite']);
+            $CPeseRuche->setRucher($rucher);
             
             $em->persist($CPeseRuche);
             $em->flush();

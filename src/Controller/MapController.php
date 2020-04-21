@@ -32,7 +32,7 @@ class MapController extends NouvellepageController{
     {
         $peseruches = $this->getDoctrine()->getRepository(CPeseRuche::class)->findAll();
      
-        return $this->render('map/tableau_donnees.html.twig', ['peseruches' => $peseruches,'ruchers'=>$ruchers,]);
+        return $this->render('map/tableau_donnees.html.twig', ['peseruches' => $peseruches,]);
     }
     
     /*Les fonctions*/

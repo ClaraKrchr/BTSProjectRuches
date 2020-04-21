@@ -8,8 +8,9 @@ use App\Entity\CApiculteur;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class UserController extends NouvellepageController
+class UserController extends AbstractController
 {
     /**
      * @Route("/user", name="create_user")
@@ -45,7 +46,7 @@ class UserController extends NouvellepageController
      */
     public function update($id)
     {
-        $entityManager = $this->getDoctrine->getManager();
+        $entityManager = $this->getDoctrine()->getManager();
         $product = $entityManager->getRepository(CApiculteur::class)->find($id);
         
         if (!$product) {
@@ -79,5 +80,7 @@ class UserController extends NouvellepageController
         
         return $this->redirectToRoute('gestionnaire_apiculteurs');
     }
+    
+    public function returnSelf(){ return $this; }
     
 }
