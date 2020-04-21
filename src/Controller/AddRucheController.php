@@ -37,6 +37,7 @@ class AddRucheController extends AbstractController
             $CPeseRuche->setDateReleve(NULL);
             $CPeseRuche->setTypeRuche($data['Type']);
             $CPeseRuche->setProprietaire(NULL);
+            $CPeseRuche->setRucher(NULL);
             $CPeseRuche->setVisibilite($data['Visibilite']);
             
             $em->persist($CPeseRuche);
