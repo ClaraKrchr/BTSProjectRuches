@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple Markers</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+  {% block body %}
+    <div id="map"></div>
+    <script>
+
+      function initMap() {
+        var thalesLatLng = {lat: 43.564693450927734, lng: 1.3840949535369873};
+        var bourdelleLatLng = {lat: 44.01426696777344, lng: 1.3693320751190186};
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 9,
+          center: thalesLatLng
+        });
+
+        var marker = new google.maps.Marker({
+          position: thalesLatLng,
+          map: map,
+          title: 'Thales'
+        });
+        
+        var marker = new google.maps.Marker({
+          position: bourdelleLatLng,
+          map: map,
+          title: 'Bourdelle'
+        });
+        
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5XVy1MyiVkAVOX_DbdOEuTWobpiQzgM8&callback=initMap">
+    </script>
+    {% endblock %}
+  </body>
+</html>

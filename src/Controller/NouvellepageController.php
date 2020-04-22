@@ -62,5 +62,12 @@ class NouvellepageController extends AbstractController
     {
         return $this->render('nouvellepage/ruches_publiques.html.twig');
     }
+    
+    /**
+     * @Route("/googleMap", name="googleMap")
+     */
+    public function googleMap(){
+        return $this->render('map/googleMap.html.twig');
+    }
        
 }
