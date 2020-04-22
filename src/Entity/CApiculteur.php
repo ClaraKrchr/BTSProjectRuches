@@ -34,13 +34,9 @@ class CApiculteur implements UserInterface
     private $mail;
 
     /**
-    * @ORM\Column(type="string", length = 30)
-    * @Assert\Length(
-    *       min = 6,
-    *       minMessage="Votre mot de passe doit contenir au moins {{ limit }} caractères")
+    * @ORM\Column(type="string", length = 255)
     */
     private $mdp;
-    
     private $confirm_password;
 
     /**
