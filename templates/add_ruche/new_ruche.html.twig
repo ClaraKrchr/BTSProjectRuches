@@ -5,15 +5,19 @@
 {% block body %}
 
 <meta charset="UTF-8">
+<link rel="stylesheet" href="{{ asset('css/inscription.css') }}">
 
 <center><h1>Ajout d'une ruche</h1></center>
+<br>
+	<div class="d-flex justify-content-around">
+		<div class="droite">
+            {{ form_start(addRucheForm) }}
+            {{ form_widget(addRucheForm) }}
 
-<center>{{ form_start(addRucheForm) }}
-    {{ form_widget(addRucheForm) }}
-    
     <button type="submit" class="btn btn-primary">Valider</button></center>
     
 {{ form_end(addRucheForm) }}
-
+		</div>
+	</div>
 
 {%  endblock %}
