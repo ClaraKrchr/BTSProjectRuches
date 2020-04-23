@@ -11,6 +11,9 @@ class AddRucherFormType extends AbstractType
         $builder
         ->add('Localisation')
         ->add('Nb_Ruche')
+        ->add('Latitude')
+        ->add('Longitude')
+        ->add('Nom')
         ;
     }
 }
