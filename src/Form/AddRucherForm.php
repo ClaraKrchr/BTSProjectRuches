@@ -9,7 +9,7 @@ class AddRucherFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-        ->add('Localisation')
+        ->add('Region')
         ->add('Nb_Ruche')
         ->add('Latitude')
         ->add('Longitude')
