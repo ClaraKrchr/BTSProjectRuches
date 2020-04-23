@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\CApiculteur;
+use App\Entity\CRucher;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -67,7 +68,9 @@ class NouvellepageController extends AbstractController
      * @Route("/googleMap", name="googleMap")
      */
     public function googleMap(){
-        return $this->render('map/googleMap.html.twig');
+        $ruchers = $this->getDoctrine()->getRepository(CRucher::class)->findAll();
+        
+        return $this->render('map/googleMap.html.twig', ['ruchers' => $ruchers,]);
     }
        
 }

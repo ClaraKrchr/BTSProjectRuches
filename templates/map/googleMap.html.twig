@@ -25,25 +25,21 @@
 
       function initMap() {
         var thalesLatLng = {lat: 43.564693450927734, lng: 1.3840949535369873};
-        var bourdelleLatLng = {lat: 44.01426696777344, lng: 1.3693320751190186};
-
+        
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 9,
           center: thalesLatLng
         });
-
-        var marker = new google.maps.Marker({
-          position: thalesLatLng,
-          map: map,
-          title: 'Thales'
-        });
         
-        var marker = new google.maps.Marker({
-          position: bourdelleLatLng,
-          map: map,
-          title: 'Bourdelle'
-        });
-        
+      	{% for rucher in ruchers %}
+	        var rucherLatLng = {lat: 44.01426696777344, lng: 1.3693320751190186};
+	
+	        var marker = new google.maps.Marker({
+	          position: rucherLatLng,
+	          map: map,
+	          title: '{{ rucher.localisation }}'
+	        });
+        {% endfor %}
       }
     </script>
     <script async defer
