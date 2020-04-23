@@ -19,7 +19,7 @@ class CRucher
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $localisation;
+    private $region;
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
@@ -48,9 +48,9 @@ class CRucher
         return $this->id;
     }
 
-    public function getLocalisation(): ?string
+    public function getRegion(): ?string
     {
-        return $this->localisation;
+        return $this->region;
     }
 
     public function getNbRuches(): ?int
@@ -75,9 +75,9 @@ class CRucher
 
 #========================SETTERS=======================#
 
-    public function setLocalisation(string $localisation): self
+    public function setRegion(string $region): self
     {
-        $this->localisation = $localisation;
+        $this->region = $region;
 
         return $this;
     }
