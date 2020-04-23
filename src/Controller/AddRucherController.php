@@ -26,9 +26,9 @@ class AddRucherController extends AbstractController
             
             $CRucher->setLocalisation($data['Localisation']);
             $CRucher->setNbRuches($data['Nb_Ruche']);
-            $CRucher->setLatitude($data['Nb_Ruche']);
-            $CRucher->setLongitude($data['Nb_Ruche']);
-            $CRucher->setNom($data['Nb_Ruche']);
+            $CRucher->setLatitude($data['Latitude']);
+            $CRucher->setLongitude($data['Longitude']);
+            $CRucher->setNom($data['Nom']);
                     
             $em->persist($CRucher);
             $em->flush();
