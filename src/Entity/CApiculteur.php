@@ -35,8 +35,14 @@ class CApiculteur implements UserInterface
 
     /**
     * @ORM\Column(type="string", length = 255)
+    * @Assert\Length(min="8", minMessage="Votre mdp doit contenir au moins 8 caracteres")
+    * @Assert\EqualTo(propertyPath="confirm_password", message="Vous n'avez pas entre le meme mdp") 
     */
     private $mdp;
+    
+    /**
+     * @Assert\EqualTo(propertyPath="mdp", message="Vous n'avez pas entre le meme mdp")
+     */
     private $confirm_password;
 
     /**
