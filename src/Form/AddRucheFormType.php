@@ -16,7 +16,7 @@ class AddRucheFormType extends AbstractType
             ->add('Proprietaire')
             ->add('Rucher')
             ->add('Date_installation',DateType::class, [
-                'widget' => 'choice',
+                'widget' => 'single_text',
             ])
             ->add('Type')
             ->add('Visibilite')
