@@ -22,7 +22,6 @@
   {% block body %}
     <div id="map"></div>
     <script>
-
       function initMap() {
         var thalesLatLng = {lat: 43.564693450927734, lng: 1.3840949535369873};
         var centreLatLng = {lat: 47.081939697265625, lng: 2.395517110824585};
@@ -32,6 +31,9 @@
           center: centreLatLng
         });
         
+        var markers = [];
+        var i = 0;
+        
       	{% for rucher in ruchers %}
 	        var rucherLatLng = {lat: {{ rucher.latitude }}, lng: {{ rucher.longitude }}};
 	
@@ -40,6 +42,16 @@
 	          map: map,
 	          title: '{{ rucher.nom }}'
 	        });
+	        
+	        markers[i] = marker;
+	        
+	        markers[i++].addListener('click', function() {
+	          map.setZoom(8);
+	          map.setCenter(this.getPosition());
+	        });
+	        
+	        
+
         {% endfor %}
       }
     </script>

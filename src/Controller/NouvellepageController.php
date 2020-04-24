@@ -72,5 +72,5 @@ class NouvellepageController extends AbstractController
         
         return $this->render('map/googleMap.html.twig', ['ruchers' => $ruchers,]);
     }
-       
+    
 }
