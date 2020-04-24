@@ -9,9 +9,12 @@
 		<div class="droite">
     		{{ form_start(addrucherform) }}
        		{{ form_widget(addrucherform) }}	
-       		<button type="submit" class="btn btn-primary">Valider</button></center>
+       		<button type="submit" class="btn btn-primary">Valider</button>
+       		<a href="{{ path ('googleMap') }}"><button class="btn btn-primary">Afficher la carte </button></a>
             {{ form_end(addrucherform) }}
+            
     	</div>
+    	
 	</div>
 	<br>
 	<div class="container-fluid">
@@ -43,7 +46,7 @@
             </center>
 			</div>
 			<div id="block3" class="col-lg-4">
-				<a href="{{ path ('googleMap') }}"><button class="btn btn-primary">Afficher la carte </button></a>
+				
 			</div>
 		</div></div>
 {% endblock %}
