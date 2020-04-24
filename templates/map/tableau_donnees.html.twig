@@ -9,8 +9,8 @@
         	<td>Id</td>
         	<td>Nom p&egrave;se ruche</td>
         	<td>Poids</td>
-        	<td>Id Propri&eacute;taire</td>
-        	<td>Id Rucher</td>
+        	<td>Nom Propri&eacute;taire</td>
+        	<td>Nom Rucher</td>
         	<td>Humidit&eacute; int&eacute;rieur</td>
         	<td>Humidit&eacute; ext&eacute;rieur</td>
         	<td>Temp&eacute;rature int&eacute;rieur</td>
@@ -26,21 +26,21 @@
         {% for peseruche in peseruches %}
 		<tr>
 			<td> {{ peseruche.id }}						</td>
-			<td> {{ peseruche.nom_peses_ruche }}			</td>
+			<td> {{ peseruche.NomPeseRuche }}			</td>
 			<td> {{ peseruche.poids }}					</td>
-			<td> {{ peseruche.propriétaire_id }}		</td>
-			<td> {{ peseruche.rucher.id }}				</td>
-			<td> {{ peseruche.humidite_inter }}			</td>
-			<td> {{ peseruche.humidite_exter }}			</td>
-			<td> {{ peseruche.temp_inter }}				</td>
-			<td> {{ peseruche.temp_exter }}				</td>
-			<td> {{ peseruche.luminosite }}				</td>
-			<td> {{ peseruche.niv_eau }}				</td>
-			<td> {{ peseruche.date_install }}			</td>
-			<td> {{ peseruche.date_releve }}			</td>
-			<td> {{ peseruche.type_ruche }}				</td>
-			<td> {{ peseruche.visibilite }}				</td>
-			<td></td>
+			<td> {{ peseruche.Proprietaire.Nom }}		</td>
+			<td> {{ peseruche.Rucher.Nom }}				</td>
+			<td> {{ peseruche.HumiditeInter }}			</td>
+			<td> {{ peseruche.HumiditeExter }}			</td>
+			<td> {{ peseruche.TempInter }}				</td>
+			<td> {{ peseruche.TempExter }}				</td>
+			<td> {{ peseruche.Luminosite }}				</td>
+			<td> {{ peseruche.NivEau }}					</td>
+			<td> {{ peseruche.DateInstall }}			</td>
+			<td> {{ peseruche.DateReleve }}				</td>
+			<td> {{ peseruche.TypeRuche }}				</td>
+			<td> {{ peseruche.Visibilite }}				</td>
+			<td> {{ peseruche.Rucher.Region }}			</td>
 		</tr>
         {% endfor %}
         </table>

@@ -49,7 +49,7 @@ class MapController extends NouvellepageController{
         
 
         $proprietaire = $entityManager->getRepository(CApiculteur::class)->find(18);
-        $rucher = $entityManager->getRepository(CRucher::class)->find(1);
+        $rucher = $entityManager->getRepository(CRucher::class)->find(5);
         
         $PeseRuche = new CPeseRuche();
         $PeseRuche->setNomPeseRuche('RucheTest1');
