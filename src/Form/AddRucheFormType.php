@@ -5,6 +5,7 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class AddRucheFormType extends AbstractType
 {
@@ -14,7 +15,9 @@ class AddRucheFormType extends AbstractType
             ->add('Poids')
             ->add('Proprietaire')
             ->add('Rucher')
-            //->add('Date_installation')
+            ->add('Date_installation',DateType::class, [
+                'widget' => 'choice',
+            ])
             ->add('Type')
             ->add('Visibilite')
         ;
