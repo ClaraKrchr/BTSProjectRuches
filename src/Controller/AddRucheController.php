@@ -27,11 +27,11 @@ class AddRucheController extends AbstractController
             $data = $form->getData();
             $CPeseRuche = new CPeseRuche();
             
-            $apiculteur = $em->getRepository(CApiculteur::class)->find(1);
-            $rucher = $em->getRepository(CRucher::class)->find(1);
+            $apiculteur = $em->getRepository(CApiculteur::class)->find(26);
+            $rucher = $em->getRepository(CRucher::class)->find(11);
             
             $CPeseRuche->setNomPeseRuche($data['Nom_ruche']);
-            $CPeseRuche->setPoids(NULL);
+            $CPeseRuche->setPoids($data['Poids']);
             $CPeseRuche->setHumiditeInter(NULL);
             $CPeseRuche->setHumiditeExter(NULL);
             $CPeseRuche->setTempInter(NULL);
