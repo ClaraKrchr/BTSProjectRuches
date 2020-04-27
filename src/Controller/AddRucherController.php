@@ -39,7 +39,7 @@ class AddRucherController extends AbstractController
         }
         
         $ruchers = $this->getDoctrine()->getRepository(CRucher::class)->findAll();
-        return $this->render('nouvellepage/ajout_rucher.html.twig', [
+        return $this->render('Add/ajout_rucher.html.twig', [
             'addrucherform' => $form->createView(),'ruchers' =>$ruchers,
         ]);
     }

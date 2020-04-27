@@ -53,7 +53,7 @@ class AddRucheController extends AbstractController
             return $this->redirectToRoute('add');
         }
         
-        return $this->render('add_ruche/new_ruche.html.twig', [
+        return $this->render('Add/new_ruche.html.twig', [
             'addRucheForm' => $form->createView(),
         ]);
     }

@@ -26,11 +26,11 @@ class MapController extends NouvellepageController{
     
     
     /**
-     * @Route("/tableau_donnees/{region}",name="tableau_donnees")
+     * @Route("/tableau_donnees/{region}",name="tableau_donnees", defaults={"region=Bretagne"})
      */
-    public function tableau_donnees($regions)
+    public function tableau_donnees($region)
     {
-        $peseruches = $this->getDoctrine()->getRepository(CPeseRuche::class)->find($regions);
+        $peseruches = $this->getDoctrine()->getRepository(CPeseRuche::class)->find($region);
      
         return $this->render('map/tableau_donnees.html.twig', ['peseruches' => $peseruches,]);
     }
