@@ -1,6 +1,13 @@
 {% extends 'base.html.twig' %}
 {% block title %} Ajouter un Rucher{% endblock %}
 {% block body %}
+
+ {% for message in app.flashes('success') %}
+      		 <center><div class="alert alert-success">
+        	    {{ message }}
+			 </div></center>
+     	  {% endfor %}
+
 <meta charset="UTF-8">
 <link rel="stylesheet" href="{{ asset('css/inscription.css') }}">
 	<center><h1>Ajouter un rucher</h1></center>
@@ -9,10 +16,16 @@
 		<div class="droite">
     		{{ form_start(addrucherform) }}
        		{{ form_widget(addrucherform) }}	
-       		<button type="submit" class="btn btn-primary">Valider</button>
-       		<a href="{{ path ('googleMap') }}"><button class="btn btn-primary">Afficher la carte </button></a>
+           		
+       			<button type="submit" class="btn btn-primary">Valider</button>
+       		
             {{ form_end(addrucherform) }}
-            
+            {% for message in app.flashes('notice') %}
+              	<div class="flash-notice">
+                	Chargement effectué
+  	    		</div>
+  	    	{% endfor %}
+            <a href="{{ path ('googleMap') }}"><button class="btn btn-primary">Afficher la carte </button></a>
     	</div>
     	
 	</div>

@@ -33,8 +33,11 @@ class AddRucherController extends AbstractController
             $em->persist($CRucher);
             $em->flush();
             
-            return $this->redirectToRoute('home');
+            $this->addFlash('success','Le rucher a ete ajoute');
+            
+            return ($this->redirectToRoute('ajout_rucher'));( $this->addFlash('Notification','Changement effectué'));
         }
+        
         $ruchers = $this->getDoctrine()->getRepository(CRucher::class)->findAll();
         return $this->render('nouvellepage/ajout_rucher.html.twig', [
             'addrucherform' => $form->createView(),'ruchers' =>$ruchers,

@@ -28,9 +28,9 @@ class MapController extends NouvellepageController{
     /**
      * @Route("/tableau_donnees/{region}",name="tableau_donnees")
      */
-    public function tableau_donnees(/*$regions*/)
+    public function tableau_donnees($regions)
     {
-        $peseruches = $this->getDoctrine()->getRepository(CPeseRuche::class)->findAll();
+        $peseruches = $this->getDoctrine()->getRepository(CPeseRuche::class)->find($regions);
      
         return $this->render('map/tableau_donnees.html.twig', ['peseruches' => $peseruches,]);
     }

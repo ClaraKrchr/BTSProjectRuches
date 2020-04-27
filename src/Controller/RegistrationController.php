@@ -42,7 +42,9 @@ class RegistrationController extends AbstractController
             $em->persist($CApiculteur);
             $em->flush();
             
-            return $this->redirectToRoute('home');
+            $this->addFlash('creationCompte','Le compte a ete cree');
+            
+            return $this->redirectToRoute('registration');
         }
         
         return $this->render('registration/new.html.twig', [

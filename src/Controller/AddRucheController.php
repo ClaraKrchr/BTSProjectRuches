@@ -48,7 +48,9 @@ class AddRucheController extends AbstractController
             $em->persist($CPeseRuche);
             $em->flush();
             
-            return $this->redirectToRoute('home');
+            $this->addFlash('message','La ruche a ete ajoutee');
+            
+            return $this->redirectToRoute('add');
         }
         
         return $this->render('add_ruche/new_ruche.html.twig', [

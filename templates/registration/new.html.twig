@@ -4,6 +4,12 @@
 
 {% block body %}
 
+{% for message in app.flashes('creationCompte') %}
+      		 <center><div class="alert alert-success">
+        	    {{ message }}
+			 </div></center>
+     	  {% endfor %}
+
 <meta charset="UTF-8">
 <link rel="stylesheet" href="{{ asset('css/inscription.css') }}">
 <center><h1>Inscription</h1></center>

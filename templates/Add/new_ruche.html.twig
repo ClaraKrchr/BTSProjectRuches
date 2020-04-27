@@ -3,7 +3,11 @@
 {% block title %}AddRuche{% endblock %}
 
 {% block body %}
-
+ {% for message in app.flashes('message') %}
+      		 <center><div class="alert alert-success">
+        	    {{ message }}
+			 </div></center>
+     	  {% endfor %}
 <meta charset="UTF-8">
 <link rel="stylesheet" href="{{ asset('css/inscription.css') }}">
 
