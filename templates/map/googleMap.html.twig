@@ -50,7 +50,16 @@
 	          map.setCenter(this.getPosition());
 	        });
 	        
+	        var infoWindow = new google.maps.InfoWindow({content: '', position: centreLatLng});
 	        
+	        map.addListener('click', function(mapsMouseEvent) {
+	        infoWindow.close();
+	        	infoWindow = new google.maps.InfoWindow({position: mapsMouseEvent.latLng});
+	        	infoWindow.setContent(mapsMouseEvent.latLng.toString());
+	        	infoWindow.open(map);
+	        	map.setCenter(mapsMouseEvent.latLng);
+	        	if(map.zoom < 7) map.setZoom(7);
+	        });
 
         {% endfor %}
       }
