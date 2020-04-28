@@ -26,7 +26,7 @@ class MapController extends NouvellepageController{
     
     
     /**
-     * @Route("/tableau_donnees/{region}",name="tableau_donnees", defaults={"region=Bretagne"})
+     * @Route("/tableau_donnees/{region]",name="tableau_donnees", defaults={"region=Bretagne"})
      */
     public function tableau_donnees($region)
     {
