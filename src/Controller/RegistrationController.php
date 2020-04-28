@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 use App\Entity\CApiculteur;
 use App\Form\RegistrationFormType;
@@ -51,4 +52,21 @@ class RegistrationController extends AbstractController
             'registrationForm' => $form->createView(),
         ]);
     }
+    
+    /**
+     * @Route("/connexion", name="connexion")
+     */
+    public function login(AuthenticationUtils $utils) 
+    {
+        //get the login error if there is one 
+        $error = $utils->getLastAuthenticationError();
+        
+        //last username entered by the user
+        $lastUsername = $utils->getLastUsername();
+        
+        return $this->render('security/login.html.twig', [
+                                'lastUsername'=>$lastUsername,
+                                'error'=>$error]);
+    }
+    
 }

@@ -5,13 +5,20 @@ security:
         algorithm: auto
     providers:
         users_in_memory: { memory: null }
+        in_database:
+          entity:
+            class: App\Entity\CApiculteur
+            property: mail
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            anonymous: lazy
-            provider: users_in_memory
+            anonymous: true
+            provider: in_database
+            form_login: 
+              login_path : connexion
+              check_path: connexion
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
