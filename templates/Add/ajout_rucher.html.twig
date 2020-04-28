@@ -25,17 +25,13 @@
                 	Chargement effectué
   	    		</div>
   	    	{% endfor %}
-            <a href="{{ path ('googleMap') }}"><button class="btn btn-primary">Afficher la carte </button></a>
     	</div>
     	
-	</div>
 	<br>
-	<div class="container-fluid">
 	<div classs="row">
-			<div id="block1" class="col-lg-4"></div>
 			<div id="block2" class="col-lg-4">
 			<center>
-				<table border bgcolor="white" cellpadding="5px">
+				<table class="table table-bordered" >
                 	<tr>
                 		<td>Id</td>
                 		<td>Region</td>
@@ -58,8 +54,7 @@
                 <br></br>
             </center>
 			</div>
-			<div id="block3" class="col-lg-4">
-				
-			</div>
-		</div></div>
+		</div>
+		<a href="{{ path ('googleMap') }}"><button class="btn btn-primary">Afficher la carte </button></a>
+	</div>
 {% endblock %}
