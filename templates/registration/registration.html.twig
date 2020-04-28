@@ -15,7 +15,7 @@
 <center><h1>Inscription</h1></center>
 <br>
 	<div class="d-flex justify-content-around">
-		<div class="droite">
+		
 		{{ form_start(registrationForm) }}       
         
         {{ form_row(registrationForm.Nom, { 'attr' : { 'placeholder':'Nom'}}) }}
@@ -29,7 +29,7 @@
         {{ form_row(registrationForm.Adresse_postale, { 'attr' : { 'placeholder':'Adresse postale'}}) }}
         
         <button type="submit" class="btn btn-primary">Inscription</button>
-        </div>
+        
    </div>
 {{ form_end(registrationForm) }}
 
