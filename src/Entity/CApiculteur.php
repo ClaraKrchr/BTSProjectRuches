@@ -38,10 +38,10 @@ class CApiculteur implements UserInterface
     * @Assert\Length(min="8", minMessage="Votre mdp doit contenir au moins 8 caracteres")
     * @Assert\EqualTo(propertyPath="confirm_password", message="Vous n'avez pas entre le meme mdp") 
     */
-    private $mdp;
+    private $password;
     
     /**
-     * @Assert\EqualTo(propertyPath="mdp", message="Vous n'avez pas entre le meme mdp")
+     * @Assert\EqualTo(propertyPath="password", message="Vous n'avez pas entre le meme mdp")
      */
     private $confirm_password;
 
@@ -69,6 +69,7 @@ class CApiculteur implements UserInterface
      * @ORM\Column(type="boolean")
      */
     private $type_user;
+    
 
 #=====================GETTERS==========================#
     public function getId(): ?int
@@ -90,11 +91,6 @@ class CApiculteur implements UserInterface
     {
       return $this->mail;
     }
-
-    public function getMdp(): ?string
-    {
-      return $this->mdp;
-    }
     
     public function getConfirmPassword()
     {
@@ -106,7 +102,7 @@ class CApiculteur implements UserInterface
       return $this->tel;
     }
 
-    public function getCode_postal(): ?string
+    public function getCodePostal(): ?string
     {
       return $this->code_postal;
     }
@@ -116,19 +112,19 @@ class CApiculteur implements UserInterface
       return $this->ville;
     }
 
-    public function getPost_addr(): ?string
+    public function getPostAddr(): ?string
     {
       return $this->post_addr;
     }
 
-    public function getType_user(): ?int
+    public function getTypeUser(): ?int
     {
         return $this->type_user;
     }
 
 #==============================SETTERS=========================#
 
-    public function setName(string $nom): self
+    public function setNom(string $nom): self
     {
         $this->nom = $nom;
 
@@ -149,9 +145,9 @@ class CApiculteur implements UserInterface
         return $this;
     }
 
-    public function setMdp(string $mdp): self
+    public function setPassword(string $password): self
     {
-        $this->mdp = $mdp;
+        $this->password = $password;
 
         return $this;
     }
@@ -199,74 +195,33 @@ class CApiculteur implements UserInterface
 
 #==================================OTHER FUNCTIONS================================#
 
-    public function EditApi(string $newName, string $newPrenom, string $newMail, string $newMdp, string $newTel, string $newCodePostal, string $newVille, string $newAddr): ?int{
-      try{
-        if ($newNom != "") $nom = $newNom;
-        if ($newPrenom != "") $prenom = $newPrenom;
-        if ($newMail != "") $mail = $newMail;
-        if ($newMdp != "") $mdp = $newMdp;
-        if ($newTel != "") $tel = $newTel;
-        if ($newCodePostal != "") $code_postal = $newCodePostal;
-        if ($newVille != "") $ville = $newVille;
-        if ($newAddr != "") $post_addr = $newAddr;
-        return 1;
-      } catch (Exception $e){ return 0; }
-    }
+ 
 
-    public function Connexion(): ?int{
 
-    }
-
-    public function Deconnexion(): ?int{
-
-    }
-    
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
-    public function getUsername(): string
-    {
-        return (string) $this->email;
-    }
-    /**
-     * @see UserInterface
-     */
-    public function getRoles(): array
-    {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-        return array_unique($roles);
-    }
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
-        return $this;
-    }
-    /**
-    * @see UserInterface
-    */
-    public function getPassword()
-    {
-        // not needed for apps that do not check user passwords
-        //return $this->mdp;
-    }
-    /**
-    * @see UserInterface
-    */
-    public function getSalt()
-    {
-        // not needed for apps that do not check user passwords
-    }
-    /**
-     * @see UserInterface
-     */
     public function eraseCredentials()
     {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+        
+    }
+    
+    public function getsalt()
+    {
+        
+    }
+    
+    public function getPassword()
+    {
+        return $this->password;
+        
+    }
+    
+    public function getUsername()
+    {
+        return $this->mail;
+    }
+    
+    public function getRoles()
+    {
+        return ['ROLE_USER'];
     }
 
 }
