@@ -21,22 +21,6 @@ class NouvellepageController extends AbstractController
         return $this->render('base.html.twig');
     }
     
-    /**
-     * @Route("/connexion", name="connexion")
-     */
-    public function connexion(Request $request, AuthenticationUtils $authUtils)
-    {
-        // get the login error if there is one
-        $error = $authUtils->getLastAuthenticationError();
-        
-        // last username entered by the user
-        $lastUsername = $authUtils->getLastUsername();
-        
-        return $this->render('nouvellepage/connexion.html.twig', array(
-            'last_username' => $lastUsername,
-            'error'         => $error,
-        ));
-    }
     
     /**
      * @Route("/ruches_privees", name="ruches_privees")

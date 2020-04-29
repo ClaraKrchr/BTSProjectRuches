@@ -1,24 +1,28 @@
 security:
-    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers    
     encoders:
-      App\Entity\CApiculteur:
-        algorithm: auto
+        App\Entity\CApiculteur:
+            algorithm: auto
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        users_in_memory: { memory: null }
+        users_in_memory: { memory: ~ }
         in_database:
-          entity:
-            class: App\Entity\CApiculteur
-            property: mail
+            entity:
+               class: App\Entity\CApiculteur
+               property: mail
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
+
         main:
-            anonymous: true
+            anonymous: lazy
             provider: in_database
-            form_login: 
-              login_path : connexion
-              check_path: connexion
+            
+            form_login:
+                login_path: security_login
+                check_path: security_login
+            
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication

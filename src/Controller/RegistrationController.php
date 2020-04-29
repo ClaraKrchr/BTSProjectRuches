@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Doctrine\Persistence\ObjectManager; //ajout du manager
 
 use App\Entity\CApiculteur;
 use App\Form\RegistrationFormType;
@@ -18,33 +19,22 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/registration", name="registration")
      */
-    public function new(EntityManagerInterface $em, Request $request, UserPasswordEncoderInterface $encoder) {
-        $form = $this->createForm(RegistrationFormType::class);
-        
+    public function new(Request $request, UserPasswordEncoderInterface $encoder, ObjectManager $manager) {
+        $CApiculteur = new CApiculteur();
+        $form = $this->createForm(RegistrationFormType::class, $CApiculteur);
         $form->handleRequest($request);
         
+        
         if($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-            $CApiculteur = new CApiculteur();
             
-            $hash = $encoder->encodePassword($CApiculteur, $data['Mot_de_passe']);
+            $hash = $encoder->encodePassword($CApiculteur, $CApiculteur->getPassword());
+            $CApiculteur->SetPassword($hash);
+            $CApiculteur->setTypeUser("0");
             
-            $CApiculteur->setName($data['Nom']);
-            $CApiculteur->setPrenom($data['Prenom']);
-            $CApiculteur->setMail($data['Adresse_mail']);
-            $CApiculteur->setMdp($hash);
-            //$CApiculteur->setMdp($data['Mot_de_passe']);
-            $CApiculteur->setTel($data['Telephone']);
-            $CApiculteur->setCodePostal($data['Code_postal']);
-            $CApiculteur->setVille($data['Ville']);
-            $CApiculteur->setPostAddr($data['Adresse_postale']);
-            $CApiculteur->setTypeUser(0);
-            
-            $em->persist($CApiculteur);
-            $em->flush();
+            $manager->persist($CApiculteur); //persiste l’info dans le temps
+            $manager->flush(); //envoie les info à la BDD
             
             $this->addFlash('creationCompte','Le compte a ete cree');
-            
             return $this->redirectToRoute('registration');
         }
         
@@ -54,19 +44,19 @@ class RegistrationController extends AbstractController
     }
     
     /**
-     * @Route("/connexion", name="connexion")
+     * @Route("/connexion", name="security_login")
      */
-    public function login(AuthenticationUtils $utils) 
+    public function login()
     {
-        //get the login error if there is one 
-        $error = $utils->getLastAuthenticationError();
+        return $this->render('security/login.html.twig');
+    }
+    
+    /**
+     * @Route("/deconnexion", name="security_logout")
+     */
+    public function logout()
+    {
         
-        //last username entered by the user
-        $lastUsername = $utils->getLastUsername();
-        
-        return $this->render('security/login.html.twig', [
-                                'lastUsername'=>$lastUsername,
-                                'error'=>$error]);
     }
     
 }
