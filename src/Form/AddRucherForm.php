@@ -16,7 +16,7 @@ class AddRucherFormType extends AbstractType
                 'choices'=>array(
                     ''=>'',
                     'Auvergne-Rhones-Alpes'=>'Auvergne-Rhones-Alpes',
-                    'Bourgogne-Franche-Comte'=>'Bourgogn-Franche-Comte',
+                    'Bourgogne-Franche-Comte'=>'Bourgogne-Franche-Comte',
                     'Bretagne' =>'Bretagne',
                     'Centre-Val-de-Loire'=>'Centre-Val-de-Loire',
                     'Corse'=>'Corse',
