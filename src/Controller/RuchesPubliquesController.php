@@ -17,7 +17,7 @@ class RuchesPubliquesController extends AbstractController
      */
     public function new(EntityManagerInterface $em)   {
         
-        $pubPeseRuches = $this->getDoctrine()->getRepository(CPeseRuche::class)->findBy(array('visibilite'=>1));
+        $pubPeseRuches = $this->getDoctrine()->getRepository(CPeseRuche::class)->findBy(array('visibilite'=>0));
         
         $form = $this->createForm(\App\Form\RuchesPubliquesFormType::class);
         return $this->render('ruches_publiques/new.html.twig',
