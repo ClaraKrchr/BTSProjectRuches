@@ -4,12 +4,27 @@
 
 {% block body %}
 
-	<h1>Filtrer ma recherche!</h1>
+	<div>
+    	<h1>Filtrer ma recherche!</h1>
+    	
+    	{{ form_start(filterForm) }}
+    		{{ form_widget(filterForm) }}
+    		
+    		<button type="submit" class="btn btn-primary">Filtrer</button>
+    	{{ form_end(filterForm) }}
+	</div>
+	<div>
 	
-	{{ form_start(filterForm) }}
-		{{ form_widget(filterForm) }}
+		{% for pubPeseRuche in pubPeseRuches %}
 		
-		<button type="submit" class="btn btn-primary">Filtrer</button>
-	{{ form_end(filterForm) }}
-
+			<div class="pRuche">
+				{{ pubPeseRuche.NomPeseRuche }}				
+				{{ pubPeseRuche.Rucher.Nom }}
+				{{ pubPeseRuche.Rucher.Region }}
+				{{ pubPeseRuche.Proprietaire.Nom }}
+			</div>
+		
+		{% endfor %}
+	
+	</div>
 {% endblock %}
