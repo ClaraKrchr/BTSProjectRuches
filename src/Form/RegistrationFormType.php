@@ -20,9 +20,9 @@ class RegistrationFormType extends AbstractType
             ->add('password',PasswordType::class)
             ->add('confirm_password',PasswordType::class)
             ->add('tel')        
-            ->add('codePostal')
+            ->add('codepostal')
             ->add('ville')
-            ->add('post_addr')
+            ->add('postaddr')
             ;
     }
 }

@@ -104,7 +104,7 @@ class CApiculteur implements UserInterface
 
     public function getCodepostal(): ?string
     {
-        return $this->$codepostal;
+        return $this->codepostal;
     }
 
     public function getVille(): ?string
@@ -167,7 +167,7 @@ class CApiculteur implements UserInterface
 
     public function setCodepostal(string $codepostal): self
     {
-        $this->$codepostal = $codepostal;
+        $this->codepostal = $codepostal;
 
         return $this;
     }
@@ -181,7 +181,7 @@ class CApiculteur implements UserInterface
 
     public function setPostaddr(string $postaddr): self
     {
-        $this->$postaddr = $postaddr;
+        $this->postaddr = $postaddr;
 
         return $this;
     }
