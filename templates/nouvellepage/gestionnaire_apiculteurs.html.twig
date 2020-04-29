@@ -21,15 +21,15 @@
 		<td>Nom</td>
 		<td>Prenom</td>
 		<td>Mail</td>
-		<td>Mdp</td>
+		<td>Password</td>
 		<td>Tel</td>
-		<td>Code postal</td>
+		<td>Code_postal</td>
 		<td>Ville</td>
-		<td>Adresse postale</td>
-		<td>Type d'utilisateur</td>
+		<td>post_addr</td>
+		<td>type_user</td>
 	</tr>
 {% for apiculteur in apiculteurs %}
-<tr><td>{{ apiculteur.id }}</td><td> {{ apiculteur.nom }}</td><td> {{ apiculteur.prenom }}</td><td> {{ apiculteur.mail }}</td><td> {{ apiculteur.password }}</td><td> {{ apiculteur.tel }}</td><td> {{apiculteur.code_postal }}</td><td> {{ apiculteur.ville }}</td><td> {{ apiculteur.post_addr }}</td><td> {{ apiculteur.type_user }}</td></tr>
+<tr><td>{{ apiculteur.id }}</td><td> {{ apiculteur.nom }}</td><td> {{ apiculteur.prenom }}</td><td> {{ apiculteur.mail }}</td><td> {{ apiculteur.password }}</td><td> {{ apiculteur.tel }}</td><td> {{ apiculteur.codePostal }}</td><td> {{ apiculteur.ville }}</td><td> {{ apiculteur.post_addr }}</td><td> {{ apiculteur.type_user }}</td></tr>
 {% endfor %}
 </table>
 

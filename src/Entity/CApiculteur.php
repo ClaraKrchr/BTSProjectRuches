@@ -53,7 +53,7 @@ class CApiculteur implements UserInterface
     /**
     * @ORM\Column(type="string", length = 6)
     */
-    private $code_postal;
+    private $codePostal;
 
     /**
     * @ORM\Column(type="string")
@@ -63,12 +63,12 @@ class CApiculteur implements UserInterface
     /**
     * @ORM\Column(type="string")
     */
-    private $post_addr;
+    private $postAddr;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $type_user;
+    private $typeUser;
     
 
 #=====================GETTERS==========================#
@@ -104,7 +104,7 @@ class CApiculteur implements UserInterface
 
     public function getCodePostal(): ?string
     {
-      return $this->code_postal;
+        return $this->$codePostal;
     }
 
     public function getVille(): ?string
@@ -114,12 +114,12 @@ class CApiculteur implements UserInterface
 
     public function getPostAddr(): ?string
     {
-      return $this->post_addr;
+      return $this->postAddr;
     }
 
     public function getTypeUser(): ?int
     {
-        return $this->type_user;
+        return $this->typeUser;
     }
 
 #==============================SETTERS=========================#
@@ -165,9 +165,9 @@ class CApiculteur implements UserInterface
         return $this;
     }
 
-    public function setCodePostal(string $code_postal): self
+    public function setCodePostal(string $codePostal): self
     {
-        $this->code_postal = $code_postal;
+        $this->$codePostal = $codePostal;
 
         return $this;
     }
@@ -179,16 +179,16 @@ class CApiculteur implements UserInterface
         return $this;
     }
 
-    public function setPostAddr(string $post_addr): self
+    public function setPostAddr(string $postAddr): self
     {
-        $this->post_addr = $post_addr;
+        $this->postAddr = $postAddr;
 
         return $this;
     }
 
-    public function setTypeUser(int $type_user): self
+    public function setTypeUser(int $typeUser): self
     {
-        $this->type_user = $type_user;
+        $this->typeUser = $typeUser;
 
         return $this;
     }
