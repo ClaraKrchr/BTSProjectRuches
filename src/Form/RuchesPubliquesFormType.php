@@ -14,6 +14,5 @@ class RuchesPubliquesFormType extends AbstractType {
         ->add('nomPropio')
         ->add('nomRuche')
         ;
-    }
-    
+    }   
 }
