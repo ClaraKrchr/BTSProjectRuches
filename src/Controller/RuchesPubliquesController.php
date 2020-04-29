@@ -10,8 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Form\RuchesPubliquesFormType;
 use App\Repository\CPeseRucheRepository;
 
-class RuchesPubliquesController extends AbstractController
-{
+class RuchesPubliquesController extends AbstractController{
     /**
      * @Route("/ruches/publiques", name="ruches_publiques")
      */
@@ -20,7 +19,7 @@ class RuchesPubliquesController extends AbstractController
         $pubPeseRuches = $this->getDoctrine()->getRepository(CPeseRuche::class)->findBy(array('visibilite'=>0));
         
         $form = $this->createForm(\App\Form\RuchesPubliquesFormType::class);
-        return $this->render('ruches_publiques/new.html.twig',
+        return $this->render('ruches_publiques/ruches_publiques.html.twig',
             ['filterForm' => $form->createView(),'pubPeseRuches' =>$pubPeseRuches,
             ]);
     }
