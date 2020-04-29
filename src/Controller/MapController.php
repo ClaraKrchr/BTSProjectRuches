@@ -34,7 +34,7 @@ class MapController extends NouvellepageController{
         $ruchers = $this->getDoctrine()->getRepository(CRucher::class)->findBy(array('region'=>$regions));
         $peseruches = $this->getDoctrine()->getRepository(CPeseRuche::class)->findBy(array('rucher'=>$ruchers));
                
-        //$peseruches=$this->getDoctrine()->getRepository(CPeseRuche::class)->findAll();
+        
          return $this->render('map/tableau_donnees.html.twig', ['peseruches' => $peseruches,]);
     }
     
