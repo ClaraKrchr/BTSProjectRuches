@@ -26,13 +26,16 @@ class MapController extends NouvellepageController{
     
     
     /**
-     * @Route("/tableau_donnees/{region]",name="tableau_donnees", defaults={"region=Bretagne"})
+     * @Route("/tableau_donnees/{regions}",name="tableau_donnees")
      */
-    public function tableau_donnees($region)
+    public function tableau_donnees($regions)
     {
-        $peseruches = $this->getDoctrine()->getRepository(CPeseRuche::class)->find($region);
-     
-        return $this->render('map/tableau_donnees.html.twig', ['peseruches' => $peseruches,]);
+        
+        $ruchers = $this->getDoctrine()->getRepository(CRucher::class)->findBy(array('region'=>$regions));
+        $peseruches = $this->getDoctrine()->getRepository(CPeseRuche::class)->findBy(array('rucher'=>$ruchers));
+               
+        //$peseruches=$this->getDoctrine()->getRepository(CPeseRuche::class)->findAll();
+         return $this->render('map/tableau_donnees.html.twig', ['peseruches' => $peseruches,]);
     }
     
     /*Les fonctions*/
