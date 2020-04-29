@@ -36,10 +36,10 @@ class CApiculteur implements UserInterface
     /**
     * @ORM\Column(type="string", length = 255)
     * @Assert\Length(min="8", minMessage="Votre mdp doit contenir au moins 8 caracteres")
-    * @Assert\EqualTo(propertyPath="confirm_password", message="Vous n'avez pas entre le meme mdp") 
+    * @Assert\EqualTo(propertyPath="confirm_password", message="Vous n'avez pas entre le meme mdp")
     */
     private $password;
-    
+
     /**
      * @Assert\EqualTo(propertyPath="password", message="Vous n'avez pas entre le meme mdp")
      */
@@ -53,7 +53,7 @@ class CApiculteur implements UserInterface
     /**
     * @ORM\Column(type="string", length = 6)
     */
-    private $codePostal;
+    private $codepostal;
 
     /**
     * @ORM\Column(type="string")
@@ -63,13 +63,13 @@ class CApiculteur implements UserInterface
     /**
     * @ORM\Column(type="string")
     */
-    private $postAddr;
+    private $postaddr;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $typeUser;
-    
+    private $typeuser;
+
 
 #=====================GETTERS==========================#
     public function getId(): ?int
@@ -91,7 +91,7 @@ class CApiculteur implements UserInterface
     {
       return $this->mail;
     }
-    
+
     public function getConfirmPassword()
     {
         return $this->confirm_password;
@@ -102,9 +102,9 @@ class CApiculteur implements UserInterface
       return $this->tel;
     }
 
-    public function getCodePostal(): ?string
+    public function getCodepostal(): ?string
     {
-        return $this->$codePostal;
+        return $this->$codepostal;
     }
 
     public function getVille(): ?string
@@ -112,14 +112,14 @@ class CApiculteur implements UserInterface
       return $this->ville;
     }
 
-    public function getPostAddr(): ?string
+    public function getPostaddr(): ?string
     {
-      return $this->postAddr;
+      return $this->postaddr;
     }
 
-    public function getTypeUser(): ?int
+    public function getTypeuser(): ?int
     {
-        return $this->typeUser;
+        return $this->typeuser;
     }
 
 #==============================SETTERS=========================#
@@ -151,8 +151,8 @@ class CApiculteur implements UserInterface
 
         return $this;
     }
-    
-    public function setConfirmPassword($confirm_password) 
+
+    public function setConfirmPassword($confirm_password)
     {
         $this->confirm_password = $confirm_password;
         return $this;
@@ -165,9 +165,9 @@ class CApiculteur implements UserInterface
         return $this;
     }
 
-    public function setCodePostal(string $codePostal): self
+    public function setCodepostal(string $codepostal): self
     {
-        $this->$codePostal = $codePostal;
+        $this->$codepostal = $codepostal;
 
         return $this;
     }
@@ -179,46 +179,46 @@ class CApiculteur implements UserInterface
         return $this;
     }
 
-    public function setPostAddr(string $postAddr): self
+    public function setPostaddr(string $postaddr): self
     {
-        $this->postAddr = $postAddr;
+        $this->$postaddr = $postaddr;
 
         return $this;
     }
 
-    public function setTypeUser(int $typeUser): self
+    public function setTypeuser(int $typeuser): self
     {
-        $this->typeUser = $typeUser;
+        $this->$typeuser = $typeuser;
 
         return $this;
     }
 
 #==================================OTHER FUNCTIONS================================#
 
- 
+
 
 
     public function eraseCredentials()
     {
-        
+
     }
-    
+
     public function getsalt()
     {
-        
+
     }
-    
+
     public function getPassword()
     {
         return $this->password;
-        
+
     }
-    
+
     public function getUsername()
     {
         return $this->mail;
     }
-    
+
     public function getRoles()
     {
         return ['ROLE_USER'];
