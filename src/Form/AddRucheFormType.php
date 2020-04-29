@@ -24,8 +24,8 @@ class AddRucheFormType extends AbstractType
             ->add('Visibilite',ChoiceType::class,
                 array(
                     'choices'=>array(
-                        'Public'=>'0',
-                        'Privee'=>'1',
+                        'Public'=>'1',
+                        'Privee'=>'0',
                         )))
         ;
     }
