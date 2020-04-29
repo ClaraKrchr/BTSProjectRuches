@@ -26,20 +26,20 @@
         {% for peseruche in peseruches %}
 		<tr>
 			<td> {{ peseruche.id }}						</td>
-			<td> {{ peseruche.NomPeseRuche }}			</td>
+			<td> {{ peseruche.nompeseruche }}			</td>
 			<td> {{ peseruche.poids }}					</td>
 			<td> {{ peseruche.Proprietaire.Nom }}		</td>
-			<td> {{ peseruche.Rucher.Nom }}				</td>
-			<td> {{ peseruche.HumiditeInter }}			</td>
-			<td> {{ peseruche.HumiditeExter }}			</td>
-			<td> {{ peseruche.TempInter }}				</td>
-			<td> {{ peseruche.TempExter }}				</td>
-			<td> {{ peseruche.Luminosite }}				</td>
-			<td> {{ peseruche.NivEau }}					</td>
-			<td> {{ peseruche.DateInstall|date("m/d/Y") }}			</td>
-			<td> {{ peseruche.DateReleve |date("m/d/Y") }}				</td>
-			<td> {{ peseruche.TypeRuche }}				</td>
-			<td> {{ peseruche.Visibilite }}				</td>
+			<td> {{ peseruche.rucher.Nom }}				</td>
+			<td> {{ peseruche.humiditeinter }}			</td>
+			<td> {{ peseruche.humiditeexter }}			</td>
+			<td> {{ peseruche.tempinter }}				</td>
+			<td> {{ peseruche.tempexter }}				</td>
+			<td> {{ peseruche.luminosite }}				</td>
+			<td> {{ peseruche.niveau }}					</td>
+			<td> {{ peseruche.dateinstall|date("m/d/Y") }}			</td>
+			<td> {{ peseruche.datereleve |date("m/d/Y") }}				</td>
+			<td> {{ peseruche.typeruche }}				</td>
+			<td> {{ peseruche.visibilite }}				</td>
 			<td> {{ peseruche.Rucher.Region }}			</td>
 		</tr>
         {% endfor %}

@@ -24,7 +24,7 @@ class CRucher
     /**
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $nb_ruches;
+    private $nbruches;
 
     /**
      * @ORM\Column(type="float")
@@ -55,7 +55,7 @@ class CRucher
 
     public function getNbRuches(): ?int
     {
-        return $this->nb_ruches;
+        return $this->nbruches;
     }
 
     public function getLatitude(): ?float
@@ -82,9 +82,9 @@ class CRucher
         return $this;
     }
 
-    public function setNbRuches(?int $nb_ruches): self
+    public function setNbRuches(?int $nbruches): self
     {
-        $this->nb_ruches = $nb_ruches;
+        $this->nbruches = $nbruches;
 
         return $this;
     }

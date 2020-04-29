@@ -35,7 +35,7 @@ class AddRucheController extends AbstractController
             $rucher = $em->getRepository(CRucher::class)->findOneBy(array('nom'=>$NomRucher));
             
             $CPeseRuche->setNomPeseRuche($data['Nom_ruche']);
-            $CPeseRuche->setPoids($data['Poids']);
+            $CPeseRuche->setPoids(NULL);
             $CPeseRuche->setHumiditeInter(NULL);
             $CPeseRuche->setHumiditeExter(NULL);
             $CPeseRuche->setTempInter(NULL);

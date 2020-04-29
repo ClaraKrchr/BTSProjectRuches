@@ -13,7 +13,6 @@ class AddRucheFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
             ->add('Nom_ruche')
-            ->add('Poids')
             ->add('Proprietaire')
             ->add('Rucher')
             ->add('Date_installation',DateType::class, [

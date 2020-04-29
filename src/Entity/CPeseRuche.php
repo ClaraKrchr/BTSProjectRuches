@@ -19,7 +19,7 @@ class CPeseRuche
     /**
      * @ORM\Column(type="string", length=30)
      */
-    private $nom_peseRuche;
+    private $nompeseruche;
 
     /**
      * @ORM\Column(type="smallint", nullable=true, options={"unsigned"=true})
@@ -29,22 +29,22 @@ class CPeseRuche
     /**
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $humidite_inter;
+    private $humiditeinter;
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $humidite_exter;
+    private $humiditeexter;
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $temp_inter;
+    private $tempinter;
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $temp_exter;
+    private $tempexter;
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
@@ -54,22 +54,22 @@ class CPeseRuche
     /**
      * @ORM\Column(type="smallint", nullable=true)
      */
-    private $niv_eau;
+    private $niveau;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    private $date_install;
+    private $dateinstall;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $date_releve;
+    private $datereleve;
 
     /**
      * @ORM\Column(type="string", length=15, nullable=true)
      */
-    private $type_ruche;
+    private $typeruche;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\CApiculteur")
@@ -97,7 +97,7 @@ class CPeseRuche
 
     public function getNomPeseRuche(): ?string
     {
-        return $this->nom_peseRuche;
+        return $this->nompeseruche;
     }
 
     public function getPoids(): ?int
@@ -107,22 +107,22 @@ class CPeseRuche
 
     public function getHumiditeInter(): ?int
     {
-        return $this->humidite_inter;
+        return $this->humiditeinter;
     }
 
     public function getHumiditeExter(): ?int
     {
-        return $this->humidite_exter;
+        return $this->humiditeexter;
     }
 
     public function getTempInter(): ?int
     {
-        return $this->temp_inter;
+        return $this->tempinter;
     }
 
     public function getTempExter(): ?int
     {
-        return $this->temp_exter;
+        return $this->tempexter;
     }
 
     public function getLuminosite(): ?int
@@ -132,22 +132,22 @@ class CPeseRuche
 
     public function getNivEau(): ?int
     {
-        return $this->niv_eau;
+        return $this->niveau;
     }
 
     public function getDateInstall(): ?\DateTimeInterface
     {
-        return $this->date_install;
+        return $this->dateinstall;
     }
 
     public function getDateReleve(): ?\DateTimeInterface
     {
-        return $this->date_releve;
+        return $this->datereleve;
     }
 
     public function getTypeRuche(): ?string
     {
-        return $this->type_ruche;
+        return $this->typeruche;
     }
 
     public function getProprietaire(): ?CApiculteur
@@ -174,37 +174,37 @@ class CPeseRuche
         return $this;
     }
 
-    public function setNomPeseRuche(string $nom_peseRuche): self
+    public function setNomPeseRuche(string $nompeseruche): self
     {
-        $this->nom_peseRuche = $nom_peseRuche;
+        $this->nompeseruche = $nompeseruche;
 
         return $this;
     }
 
-    public function setHumiditeInter(?int $humidite_inter): self
+    public function setHumiditeInter(?int $humiditeinter): self
     {
-        $this->humidite_inter = $humidite_inter;
+        $this->humiditeinter = $humiditeinter;
 
         return $this;
     }
 
-    public function setHumiditeExter(?int $humidite_exter): self
+    public function setHumiditeExter(?int $humiditeexter): self
     {
-        $this->humidite_exter = $humidite_exter;
+        $this->humiditeexter = $humiditeexter;
 
         return $this;
     }
 
-    public function setTempInter(?int $temp_inter): self
+    public function setTempInter(?int $tempinter): self
     {
-        $this->temp_inter = $temp_inter;
+        $this->tempinter = $tempinter;
 
         return $this;
     }
 
-    public function setTempExter(?int $temp_exter): self
+    public function setTempExter(?int $tempexter): self
     {
-        $this->temp_exter = $temp_exter;
+        $this->tempexter = $tempexter;
 
         return $this;
     }
@@ -216,30 +216,30 @@ class CPeseRuche
         return $this;
     }
 
-    public function setNivEau(?int $niv_eau): self
+    public function setNivEau(?int $niveau): self
     {
-        $this->niv_eau = $niv_eau;
+        $this->niveau = $niveau;
 
         return $this;
     }
 
-    public function setDateInstall(?\DateTimeInterface $date_install): self
+    public function setDateInstall(?\DateTimeInterface $dateinstall): self
     {
-        $this->date_install = $date_install;
+        $this->dateinstall = $dateinstall;
 
         return $this;
     }
 
-    public function setDateReleve(?\DateTimeInterface $date_releve): self
+    public function setDateReleve(?\DateTimeInterface $datereleve): self
     {
-        $this->date_releve = $date_releve;
+        $this->datereleve = $datereleve;
 
         return $this;
     }
 
-    public function setTypeRuche(?string $type_ruche): self
+    public function setTypeRuche(?string $typeruche): self
     {
-        $this->type_ruche = $type_ruche;
+        $this->typeruche = $typeruche;
 
         return $this;
     }
