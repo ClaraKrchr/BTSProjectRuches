@@ -45,8 +45,10 @@ class AddRucheController extends AbstractController
             $CPeseRuche->setProprietaire($apiculteur);
             $CPeseRuche->setVisibilite($data['Visibilite']);
             $CPeseRuche->setRucher($data['Rucher']);
+            ($data['Rucher'])->setNbRuches(($data['Rucher'])->getNbRuches() + 1);
             
             $em->persist($CPeseRuche);
+            $em->persist($data['Rucher']);
             $em->flush();
             
             $this->addFlash('message','La ruche a ete ajoutee');
