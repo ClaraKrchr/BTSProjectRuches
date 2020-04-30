@@ -109,4 +109,9 @@ class CRucher
 
         return $this;
     }
+    
+#=================OTHER========================#
+    public function __toString(){
+        return $this->getNom();
+    }
 }

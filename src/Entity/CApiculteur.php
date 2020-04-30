@@ -196,7 +196,9 @@ class CApiculteur implements UserInterface
 #==================================OTHER FUNCTIONS================================#
 
 
-
+    public function __toString(){
+        return $this->getNom();
+    }
 
     public function eraseCredentials()
     {
