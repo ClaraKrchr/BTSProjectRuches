@@ -19,23 +19,24 @@ class CApiculteur implements UserInterface
     private $id;
 
     /**
-    * @ORM\Column(type="string", length = 20)
+    * @ORM\Column(type="string")
     */
     private $nom;
 
     /**
-    * @ORM\Column(type="string", length = 20)
+    * @ORM\Column(type="string")
     */
     private $prenom;
 
     /**
     * @ORM\Column(type="string")
+    * @Assert\Email(message="Vous n'avez pas entré un mail valide")
     */
     private $mail;
 
     /**
-    * @ORM\Column(type="string", length = 255)
-    * @Assert\Length(min="8", minMessage="Votre mdp doit contenir au moins 8 caracteres")
+    * @ORM\Column(type="string")
+    * @Assert\Length(min="6", minMessage="Votre mdp doit contenir au moins 6 caracteres")
     * @Assert\EqualTo(propertyPath="confirm_password", message="Vous n'avez pas entre le meme mdp")
     */
     private $password;
@@ -46,12 +47,14 @@ class CApiculteur implements UserInterface
     private $confirm_password;
 
     /**
-    * @ORM\Column(type="string", length = 10)
+    * @ORM\Column(type="string")
+    * @Assert\Length(max="10", maxMessage="Vous n'avez pas entré un numéro valide")
     */
     private $tel;
 
     /**
-    * @ORM\Column(type="string", length = 6)
+    * @ORM\Column(type="string")
+    * @Assert\Length(max="6", maxMessage="Vous n'avez pas entré un code postal valide")
     */
     private $codepostal;
 
@@ -188,7 +191,7 @@ class CApiculteur implements UserInterface
 
     public function setTypeuser(int $typeuser): self
     {
-        $this->$typeuser = $typeuser;
+        $this->typeuser = $typeuser;
 
         return $this;
     }
