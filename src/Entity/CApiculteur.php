@@ -30,7 +30,7 @@ class CApiculteur implements UserInterface
 
     /**
     * @ORM\Column(type="string")
-    * @Assert\Email(message="Vous n'avez pas entré un mail valide")
+    * @Assert\Email(message="Veuillez saisir un mail valide")
     */
     private $mail;
 
@@ -48,13 +48,13 @@ class CApiculteur implements UserInterface
 
     /**
     * @ORM\Column(type="string")
-    * @Assert\Length(max="10", maxMessage="Vous n'avez pas entré un numéro valide")
+    * @Assert\Length(min="10", minMessage="Mauvais format", max="10", maxMessage="Mauvais format")
     */
     private $tel;
 
     /**
     * @ORM\Column(type="string")
-    * @Assert\Length(max="6", maxMessage="Vous n'avez pas entré un code postal valide")
+    * @Assert\Length(min="5", minMessage="Mauvais format", max="5", maxMessage="Mauvais format")
     */
     private $codepostal;
 
