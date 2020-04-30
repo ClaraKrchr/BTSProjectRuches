@@ -3,28 +3,58 @@
 {% block title %}Filter New Form{% endblock %}
 
 {% block body %}
-
-	<div>
-    	<h1>Filtrer ma recherche!</h1>
+<!-- for HTML5 -->
+<meta charset="UTF-8">
+	<div class="d-flex">
+	<!--  justify-content-around -->
+		<div>
+    		<h1>Filtrer ma recherche!</h1>
     	
-    	{{ form_start(filterForm) }}
-    		{{ form_widget(filterForm) }}
+    	    {{ form_start(filterForm) }}
+    			{{ form_widget(filterForm) }}
     		
-    		<button type="submit" class="btn btn-primary">Filtrer</button>
-    	{{ form_end(filterForm) }}
-	</div>
-	<div>
+    			<button type="submit" class="btn btn-primary shadow">Filtrer</button>
+    	    {{ form_end(filterForm) }}
+		</div>
+		<div>
 	
-		{% for pubPeseRuche in pubPeseRuches %}
+{% for pubPeseRuche in pubPeseRuches %}
 		
-			<div class="pRuche">
-				{{ pubPeseRuche.nompeseruche }}				
-				{{ pubPeseRuche.Rucher.Nom }}
-				{{ pubPeseRuche.Rucher.Region }}
-				{{ pubPeseRuche.Proprietaire.Nom }}
+		<div class="col-xl-10 col-md-10 mb-3">
+			<div class="card shadow mb-4">
+				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+					<h6 class="m-o font-weight-bold text-primary">{{ pubPeseRuche.nompeseruche }}</h6>
+				</div>
+				<div class="card-body">
+				
+				</div>
+				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+					<h6 class="m-o font-weight-bold text-secondary">Localisation: {{ pubPeseRuche.Rucher.Region }} - {{ pubPeseRuche.Rucher.Nom }}</h6>
+				</div>
+				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+					<h6 class="m-o font-weight-bold text-secondary">Propriétaire: {{ pubPeseRuche.Proprietaire.Nom }}</h6>
+				</div>
 			</div>
+		</div>
+		{#
+				<div class="col-xl-3 col-md-6 mb-4">
+					<figure>
+						<div>
+							
+						</div>
+						<div>
+							<li>
+								<ul>{{ pubPeseRuche.nompeseruche }}</ul>				     	    
+				     	    	<ul>Localisation: {{ pubPeseRuche.Rucher.Region }} - {{ pubPeseRuche.Rucher.Nom }}</ul>
+				       	    	<ul>Propriétaire: {{ pubPeseRuche.Proprietaire.Nom }}</ul>
+				       	    </li>
+				    	</div>
+					</figure>
+				</div>
+		#}
 		
-		{% endfor %}
+		    {% endfor %}
 	
+		</div>
 	</div>
 {% endblock %}
