@@ -4,22 +4,36 @@
 
 {% block body %}
 
-    <H1>Connexion !</H1>
+<link rel="stylesheet" href="{{ asset('css/connexion.css') }}">
 
-    <form  action="{{ path('security_login')}}" method="post">
+<div class="modal-dialog text-center">
+	<div class="col-sm-9 main-section">
+		<div class="modal-content">
+		
+			<div class="col-12 bee-img">
+				<img src="{{ asset('bee2.png') }}">
+			</div>
 
-        <div class="form-group">
-            <input placeholder="Mail..." required name="_username" type="text" class="form-control">
-        </div>
+			<div class="col-12 form-input">
+    			<H1><font color=black>Connexion</font></H1>
 
-        <div class="form-group">
-            <input placeholder="Mot de passe..." required name="_password" type="password" class="form-control">
-        </div>
+				<form  action="{{ path('security_login')}}" method="post">
 
-        <div class="form-group">
-            <button type="submit" class="btn btn-success">Log In</button>
-        </div>
+    				<div class="form-group">
+            			<input placeholder="Mail..." required name="_username" type="text" class="form-control">
+       				</div>
 
-    </form>
+        			<div class="form-group">
+            			<input placeholder="Mot de passe..." required name="_password" type="password" class="form-control">
+        			</div>
+
+        			<div class="form-group">
+            			<button type="submit" class="btn btn-success">Connexion</button>
+        			</div>
+    	</form>
+    </div>
+		</div>
+   </div> 
+</div>
 
 {% endblock %}
