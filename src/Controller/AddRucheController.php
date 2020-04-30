@@ -28,12 +28,9 @@ class AddRucheController extends AbstractController
             $CPeseRuche = new CPeseRuche();
             
             $NomApiculteur=$data['Proprietaire'];
-            $NomRucher=$data['Rucher'];
-            
-            
+        
             $apiculteur = $em->getRepository(CApiculteur::class)->findOneBy(array('nom'=>$NomApiculteur));
-            $rucher = $em->getRepository(CRucher::class)->findOneBy(array('nom'=>$NomRucher));
-            
+           
             $CPeseRuche->setNomPeseRuche($data['Nom_ruche']);
             $CPeseRuche->setPoids(NULL);
             $CPeseRuche->setHumiditeInter(NULL);
@@ -47,7 +44,7 @@ class AddRucheController extends AbstractController
             $CPeseRuche->setTypeRuche($data['Type']);
             $CPeseRuche->setProprietaire($apiculteur);
             $CPeseRuche->setVisibilite($data['Visibilite']);
-            $CPeseRuche->setRucher($rucher);
+            $CPeseRuche->setRucher($data['Rucher']);
             
             $em->persist($CPeseRuche);
             $em->flush();
@@ -56,6 +53,8 @@ class AddRucheController extends AbstractController
             
             return $this->redirectToRoute('add');
         }
+        
+        
         
         return $this->render('Add/new_ruche.html.twig', [
             'addRucheForm' => $form->createView(),

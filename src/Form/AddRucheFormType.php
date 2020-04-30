@@ -16,18 +16,23 @@ class AddRucheFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
             ->add('Nom_ruche')
-            ->add('Proprietaire',EntityType::class,[
+            ->add('Proprietaire'/*,EntityType::class,[
                 'class'=>CApiculteur::class,
-                'placeholder'=>'...'
-            ])
+                'choice_label'=>function(CApiculteur $CApiculteur){
+                return sprintf('(%d) %s',$CApiculteur->getId(),$CApiculteur->getNom());
+                }
+                ]*/)
             ->add('Rucher',EntityType::class,[
                 'class'=>CRucher::class,
-                'placeholder'=>'...',
+                'choice_label'=>function(CRucher $CRucher){
+                return sprintf('(%d) %s',$CRucher->getId(),$CRucher->getNom());
+                }
             ])
             ->add('Date_installation',DateType::class, [
                 'widget' => 'single_text', 
                 
             ])
+            ->add('Poids')
             ->add('Type')
             ->add('Visibilite',ChoiceType::class,
                 array(
