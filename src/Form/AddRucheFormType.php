@@ -18,11 +18,11 @@ class AddRucheFormType extends AbstractType
             ->add('Nom_ruche')
             ->add('Proprietaire',EntityType::class,[
                 'class'=>CApiculteur::class,
-                'placeholder'=>''
+                'placeholder'=>'...'
             ])
             ->add('Rucher',EntityType::class,[
                 'class'=>CRucher::class,
-                'placeholder'=>'',
+                'placeholder'=>'...',
             ])
             ->add('Date_installation',DateType::class, [
                 'widget' => 'single_text', 
