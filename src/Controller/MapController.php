@@ -13,15 +13,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class MapController extends NouvellepageController{
     
-    /**
-     * @Route("/carte", name="carte")
-     */
-    public function carte()
-    {
-        return $this->render('map/map.html.twig');
-    }
-    
-    
     /*Les routes des régions*/
     
     
