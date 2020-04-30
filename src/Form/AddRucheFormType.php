@@ -25,7 +25,7 @@ class AddRucheFormType extends AbstractType
             ->add('Rucher',EntityType::class,[
                 'class'=>CRucher::class,
                 'choice_label'=>function(CRucher $CRucher){
-                return sprintf('(%d) %s',$CRucher->getId(),$CRucher->getNom());
+                return sprintf(' %s',$CRucher->getNom());
                 }
             ])
             ->add('Date_installation',DateType::class, [
