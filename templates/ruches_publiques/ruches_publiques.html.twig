@@ -5,9 +5,10 @@
 {% block body %}
 <!-- for HTML5 -->
 <meta charset="UTF-8">
+<link rel="stylesheet" href="{{ asset('css/ruches_publiques.css') }}">
 	<div class="d-flex">
 	<!--  justify-content-around -->
-		<div>
+		<div id="FilterSidebar">
     		<h1>Filtrer ma recherche!</h1>
     	
     	    {{ form_start(filterForm) }}
@@ -16,17 +17,17 @@
     			<button type="submit" class="btn btn-primary shadow">Filtrer</button>
     	    {{ form_end(filterForm) }}
 		</div>
-		<div>
+		<div class="row" id="Content">
 	
 {% for pubPeseRuche in pubPeseRuches %}
 		
-		<div class="col-xl-10 col-md-10 mb-3">
+		<div class="col-xl-4 col-md-6 mb-2">
 			<div class="card shadow mb-4">
 				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 					<h6 class="m-o font-weight-bold text-primary">{{ pubPeseRuche.nompeseruche }}</h6>
 				</div>
-				<div class="card-body">
-				
+				<div class="card-header">
+					<img src="{{ asset('téléchargé.png') }}" width="480"/>
 				</div>
 				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 					<h6 class="m-o font-weight-bold text-secondary">Localisation: {{ pubPeseRuche.Rucher.Region }} - {{ pubPeseRuche.Rucher.Nom }}</h6>
