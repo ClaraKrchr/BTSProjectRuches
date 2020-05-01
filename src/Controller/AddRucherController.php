@@ -33,7 +33,8 @@ class AddRucherController extends AbstractController
             $em->persist($CRucher);
             $em->flush();
             
-            $this->addFlash('success','Le rucher a ete ajoute');
+            $message=utf8_encode('Le rucher a été ajouté');
+            $this->addFlash('success',$message);
             
             return ($this->redirectToRoute('ajout_rucher'));( $this->addFlash('Notification','Changement effectué'));
         }

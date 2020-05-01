@@ -34,7 +34,8 @@ class RegistrationController extends AbstractController
             $manager->persist($CApiculteur); //persiste l’info dans le temps
             $manager->flush(); //envoie les info à la BDD
             
-            $this->addFlash('creationCompte','Le compte a ete cree');
+            $message=utf8_encode('Le compte a été crée');
+            $this->addFlash('creationCompte',$message);
             return $this->redirectToRoute('registration');
         }
         

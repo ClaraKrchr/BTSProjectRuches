@@ -51,7 +51,8 @@ class AddRucheController extends AbstractController
             $em->persist($data['Rucher']);
             $em->flush();
             
-            $this->addFlash('message','La ruche a ete ajoutee');
+            $message=utf8_encode('La ruche a été ajoutée');
+            $this->addFlash('message',$message);
             
             return $this->redirectToRoute('add');
         }
