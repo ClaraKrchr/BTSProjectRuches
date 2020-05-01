@@ -2,8 +2,10 @@
 {% block tableau_donnees %}
 <div id ="block2" class="col-lg-6">
     <center>
+    {% if peseruches %}
         <h1>Les ruches pr&eacute;sentes dans la r&eacute;gion</h1>
         <br></br>
+        
         <table border bgcolor="white" cellpadding="5px">
         <tr>
         	<td>Id</td>
@@ -44,6 +46,10 @@
 		</tr>
         {% endfor %}
         </table>
+        {% else %}
+         <h1>Aucune ruche dans la r&eacute;gion choisie</h1>
+        
+        {% endif %}
         <br></br>
        
     </center>
