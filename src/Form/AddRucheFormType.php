@@ -32,7 +32,6 @@ class AddRucheFormType extends AbstractType
                 'widget' => 'single_text', 
                 
             ])
-            ->add('Poids')
             ->add('Type')
             ->add('Visibilite',ChoiceType::class,
                 array(
