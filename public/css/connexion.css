@@ -6,7 +6,7 @@
 
 .modal-content{
 	background-color: #404040;
-	opacity: .8;
+	opacity: 1;
 	padding: 0 18px;
 	border-radius: 10px;
 }
@@ -44,7 +44,7 @@
 	color: #55e60;
 }
 
-.form-group-login:last-of-type::before {
+.form-group:last-of-type::before {
 	content: "\f023";
 }
 
