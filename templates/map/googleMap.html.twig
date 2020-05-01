@@ -1,9 +1,19 @@
 {% extends 'base.html.twig' %}
-  {% block body %}
+  {% block body %} 
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
+      
+    {% for message in app.flashes('messageGoogleMap') %}
+   			 
+      		 <center><div class="alert alert-success">
+        	    {{ message }}
+			 </div></center>
+     	  {% endfor %}
+     
+        
     <title> Carte des ruchers </title>
     <a href="{{ path('ajout_rucher') }}"><button id="btGoogleAddRucher">Ajouter un rucher</button></a>;
+  
     
   	<link rel="stylesheet" href="{{ asset('css/googleMap.css') }}">
     <div id="map"></div>
