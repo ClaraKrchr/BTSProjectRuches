@@ -52,8 +52,9 @@ class NouvellepageController extends AbstractController
      * @Route("/googleMap", name="googleMap")
      */
     public function googleMap(){
+        $message=utf8_encode('Pour ajouter un rucher, récupérez les coordonnées en cliquant sur la carte puis copiez-les et cliquer sur le bouton "Ajouter un rucher"');
         $ruchers = $this->getDoctrine()->getRepository(CRucher::class)->findAll();
-        $this->addFlash('messageGoogleMap','Pour ajouter un rucher, recuperez les coordonnees en cliquant sur la carte puis copiez-les et cliquer sur le bouton "Ajouter un rucher"');
+        $this->addFlash('messageGoogleMap',$message);
         return $this->render('map/googleMap.html.twig', ['ruchers' => $ruchers,]);
     }
     
