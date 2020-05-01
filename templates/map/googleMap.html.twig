@@ -1,34 +1,22 @@
-<!DOCTYPE html>
-<html>
-  <head>
+{% extends 'base.html.twig' %}
+  {% block body %}
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <title>Simple Markers</title>
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-  </head>
-  <body>
-  {% block body %}
+    <title> Carte des ruchers </title>
+    
+  	<link rel="stylesheet" href="{{ asset('css/googleMap.css') }}">
     <div id="map"></div>
+    {% endblock %}
+    {% block javascripts %}
     <script>
       function initMap() {
         var thalesLatLng = {lat: 43.564693450927734, lng: 1.3840949535369873};
-        var centreLatLng = {lat: 47.081939697265625, lng: 2.395517110824585};
+        var montluconLatLng = {lat: 46.33901824773936, lng: 2.601431095609703};
+        var bourgesLatLng = {lat: 47.081939697265625, lng: 2.395517110824585};
         
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 6,
-          center: centreLatLng
+          center: montluconLatLng
         });
         
         var markers = [];
@@ -50,7 +38,7 @@
 	          map.setCenter(this.getPosition());
 	        });
 	        
-	        var infoWindow = new google.maps.InfoWindow({content: '', position: centreLatLng});
+	        var infoWindow = new google.maps.InfoWindow({content: '', position: montluconLatLng});
 	        
 	        map.addListener('click', function(mapsMouseEvent) {
 	        infoWindow.close();
@@ -68,5 +56,3 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5XVy1MyiVkAVOX_DbdOEuTWobpiQzgM8&callback=initMap">
     </script>
     {% endblock %}
-  </body>
-</html>
