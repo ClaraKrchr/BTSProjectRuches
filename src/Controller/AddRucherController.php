@@ -15,7 +15,7 @@ class AddRucherController extends AbstractController
     /**
      * @Route("/ajout_rucher/{latitude}/{longitude}", name="ajout_rucher")
      */
-    public function new(EntityManagerInterface $em, Request $request,$latitude,$longitude) {
+    public function new($latitude, $longitude, EntityManagerInterface $em, Request $request) {
         $form = $this->createForm(AddRucherFormType::class);
         
         $form->handleRequest($request);
@@ -36,7 +36,7 @@ class AddRucherController extends AbstractController
             $message=utf8_encode('Le rucher a été ajouté');
             $this->addFlash('success',$message);
             
-            return ($this->redirectToRoute('ajout_rucher'));( $this->addFlash('Notification','Changement effectué'));
+            return ($this->redirectToRoute('googleMap'));( $this->addFlash('Notification','Changement effectué'));
         }
         
         $ruchers = $this->getDoctrine()->getRepository(CRucher::class)->findAll();

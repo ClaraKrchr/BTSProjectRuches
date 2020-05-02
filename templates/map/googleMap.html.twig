@@ -12,7 +12,7 @@
      
         
     <title> Carte des ruchers </title>
-    <a href="{{ path('ajout_rucher', {latitude: },{longitude: }) }}"><button id="btGoogleAddRucher">Ajouter un rucher</button></a>;
+    
   
     
   	<link rel="stylesheet" href="{{ asset('css/googleMap.css') }}">
@@ -52,7 +52,8 @@
 	        var infoWindow = new google.maps.InfoWindow({content: '', position: montluconLatLng});
 	        
 	        map.addListener('click', function(mapsMouseEvent) {
-	        infoWindow.close();
+	        	window.location.href = "/ajout_rucher/"+mapsMouseEvent.latLng.lat()+"/"+mapsMouseEvent.latLng.lng();
+	        	infoWindow.close();
 	        	infoWindow = new google.maps.InfoWindow({position: mapsMouseEvent.latLng});
 	        	infoWindow.setContent(mapsMouseEvent.latLng.toString());
 	        	infoWindow.open(map);

@@ -31,8 +31,6 @@ class AddRucherFormType extends AbstractType
                 )
             )
         ->add('Nb_Ruche')
-        ->add('Latitude')
-        ->add('Longitude')
         ->add('Nom')
         ;
     }
