@@ -39,14 +39,7 @@ class NouvellepageController extends AbstractController
         
         return $this->render('nouvellepage/gestionnaire_apiculteurs.html.twig', ['apiculteurs' => $apiculteurs,]);
     }
-   
-    /**
-     * @Route("/ruches_publiques", name="ruches_publiques")
-     */
-    public function ruches_publiques()
-    {
-        return $this->render('nouvellepage/ruches_publiques.html.twig');
-    }
+
     
     /**
      * @Route("/googleMap", name="googleMap")
