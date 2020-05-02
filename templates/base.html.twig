@@ -38,11 +38,10 @@
         <a class="nav-link" href="{{ path('gestionnaire_apiculteurs') }}">Gestionnaire apiculteurs</a>
       </li>
       {% endif %}
-    </ul>
-    <a href="{{ path('registration') }}"><button class="btn btn-outline-secondary">Inscription</button></a> &nbsp;   
+    </ul>      
     
     {% if not app.user %}
- 
+ 			<a href="{{ path('registration') }}"><button class="btn btn-outline-secondary">Inscription</button></a> &nbsp;
     		<a href="{{  path('security_login') }}"><button class="btn btn-secondary"  class="nav-link">Connexion</button></a>
 
 	{% else %}
