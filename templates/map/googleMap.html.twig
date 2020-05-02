@@ -52,13 +52,25 @@
 	        var infoWindow = new google.maps.InfoWindow({content: '', position: montluconLatLng});
 	        
 	        map.addListener('click', function(mapsMouseEvent) {
-	        	window.location.href = "/ajout_rucher/"+mapsMouseEvent.latLng.lat()+"/"+mapsMouseEvent.latLng.lng();
-	        	infoWindow.close();
-	        	infoWindow = new google.maps.InfoWindow({position: mapsMouseEvent.latLng});
-	        	infoWindow.setContent(mapsMouseEvent.latLng.toString());
-	        	infoWindow.open(map);
+	        
+	        	var req = new XMLHttpRequest();
+				req.open('GET', "https://api-adresse.data.gouv.fr/reverse/?lon="+mapsMouseEvent.latLng.lng()+"&lat="+mapsMouseEvent.latLng.lat(), false);
+				req.send(null);
 	        	map.setCenter(mapsMouseEvent.latLng);
 	        	if(map.zoom < 7) map.setZoom(7);
+	        	var region = req.responseText;
+	        	region = region.substring(region.indexOf("context") + 11);
+	        	region = region.substring(region.indexOf(",") + 1);
+	        	region = region.substring(region.indexOf(",") + 1);
+	        	region = region.substring(1, region.indexOf('"'));
+	        	region = region.replace(/\\u00ce/, 'I');
+	        	region = region.replace(/\\u00f4/, 'o');
+	        	region = region.replace(/\\u00e9/, 'e');
+				infoWindow.close();
+				infoWindow = new google.maps.InfoWindow({position: mapsMouseEvent.latLng});
+	        	infoWindow.setContent(region);
+	        	infoWindow.open(map);
+	        	window.location.href = "/ajout_rucher/"+mapsMouseEvent.latLng.lat()+"/"+mapsMouseEvent.latLng.lng()+"/"+region;
 	        });
 
         {% endfor %}

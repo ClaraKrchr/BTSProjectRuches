@@ -13,9 +13,9 @@ use App\Form\AddRucherFormType;
 class AddRucherController extends AbstractController
 {
     /**
-     * @Route("/ajout_rucher/{latitude}/{longitude}", name="ajout_rucher")
+     * @Route("/ajout_rucher/{latitude}/{longitude}/{region}", name="ajout_rucher")
      */
-    public function new($latitude, $longitude, EntityManagerInterface $em, Request $request) {
+    public function new($latitude, $longitude, $region, EntityManagerInterface $em, Request $request) {
         $form = $this->createForm(AddRucherFormType::class);
         
         $form->handleRequest($request);
@@ -24,7 +24,7 @@ class AddRucherController extends AbstractController
             $data = $form->getData();
             $CRucher = new CRucher();
             
-            $CRucher->setRegion($data['Region']);
+            $CRucher->setRegion($region);
             $CRucher->setNbRuches($data['Nb_Ruche']);
             $CRucher->setLatitude($latitude);
             $CRucher->setLongitude($longitude);
