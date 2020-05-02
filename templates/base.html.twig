@@ -24,6 +24,7 @@
 
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
+      {% if app.user %}
       <li class="nav-item">
         <a class="nav-link" href="{{ path('ruches_privees') }}">Mes ruches</a>
       </li>
@@ -36,6 +37,7 @@
   	  <li class="nav-item">
         <a class="nav-link" href="{{ path('gestionnaire_apiculteurs') }}">Gestionnaire apiculteurs</a>
       </li>
+      {% endif %}
     </ul>
     <a href="{{ path('registration') }}"><button class="btn btn-outline-secondary">Inscription</button></a> &nbsp;   
     
