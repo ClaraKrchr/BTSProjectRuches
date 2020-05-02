@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CApiculteurRepository")
@@ -72,6 +73,11 @@ class CApiculteur implements UserInterface
      * @ORM\Column(type="boolean")
      */
     private $typeuser;
+    
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
 
 
 #=====================GETTERS==========================#
@@ -224,9 +230,21 @@ class CApiculteur implements UserInterface
         return $this->mail;
     }
 
-    public function getRoles()
+    public function getRoles(): array
     {
-        return ['ROLE_USER'];
+        $roles = $this->roles;
+        
+        //garantit que chaque utilisateur possède le rose USER
+        $roles[] = 'ROLE_USER';
+        
+        return array_unique($roles);
+    }
+    
+    public function setRoles(array $roles): self 
+    {
+        $this->roles = $roles;
+        
+        return $this;
     }
 
 }
