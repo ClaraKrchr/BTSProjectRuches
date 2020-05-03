@@ -38,7 +38,6 @@ class CApiculteur implements UserInterface
     /**
     * @ORM\Column(type="string")
     * @Assert\Length(min="6", minMessage="Votre mdp doit contenir au moins 6 caracteres")
-    * @Assert\EqualTo(propertyPath="confirm_password", message="Vous n'avez pas entre le meme mdp")
     */
     private $password;
 
@@ -68,11 +67,6 @@ class CApiculteur implements UserInterface
     * @ORM\Column(type="string")
     */
     private $postaddr;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $typeuser;
     
     /**
      * @ORM\Column(type="json")
@@ -124,11 +118,6 @@ class CApiculteur implements UserInterface
     public function getPostaddr(): ?string
     {
       return $this->postaddr;
-    }
-
-    public function getTypeuser(): ?int
-    {
-        return $this->typeuser;
     }
 
 #==============================SETTERS=========================#
@@ -191,13 +180,6 @@ class CApiculteur implements UserInterface
     public function setPostaddr(string $postaddr): self
     {
         $this->postaddr = $postaddr;
-
-        return $this;
-    }
-
-    public function setTypeuser(int $typeuser): self
-    {
-        $this->typeuser = $typeuser;
 
         return $this;
     }
