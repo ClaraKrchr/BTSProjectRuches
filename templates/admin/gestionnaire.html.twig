@@ -40,6 +40,9 @@
 						    {% endif %}
 						{% endfor %}
 					</td>
+					<td>
+					<a href="{{ path('edit', {'nom' : capiculteur.nom}) }}" class="btn btn-dark">Modifier</a>
+					</td>
 				</tr>
 			{% endfor %}
 		</tbody>			

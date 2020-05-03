@@ -29,7 +29,6 @@ class RegistrationController extends AbstractController
             
             $hash = $encoder->encodePassword($CApiculteur, $CApiculteur->getPassword());
             $CApiculteur->SetPassword($hash);
-            $CApiculteur->setTypeuser("0");
             
             $manager->persist($CApiculteur); //persiste l’info dans le temps
             $manager->flush(); //envoie les info à la BDD
