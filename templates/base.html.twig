@@ -34,9 +34,11 @@
       <li class="nav-item">
       	<a class="nav-link" href="{{ path('googleMap') }}">Ajout d'un rucher</a>
   	  </li>
+  	  {% if is_granted('ROLE_ADMIN') %}
   	  <li class="nav-item">
         <a class="nav-link" href="{{ path('gestionnaire') }}">Gestionnaire apiculteurs</a>
       </li>
+      {% endif %}
       {% endif %}
     </ul>      
     

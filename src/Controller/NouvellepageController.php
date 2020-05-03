@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class NouvellepageController extends AbstractController
 {
@@ -23,6 +24,7 @@ class NouvellepageController extends AbstractController
     
     
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/ruches_privees", name="ruches_privees")
      */
     public function ruches_privees()
@@ -31,6 +33,7 @@ class NouvellepageController extends AbstractController
     }
     
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/googleMap", name="googleMap")
      */
     public function googleMap(){

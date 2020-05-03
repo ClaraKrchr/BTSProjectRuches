@@ -7,12 +7,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 use App\Entity\CRucher;
 use App\Form\AddRucherFormType;
 class AddRucherController extends AbstractController
 {
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/ajout_rucher/{latitude}/{longitude}/{region}", name="ajout_rucher")
      */
     public function new($latitude, $longitude, $region, EntityManagerInterface $em, Request $request) {

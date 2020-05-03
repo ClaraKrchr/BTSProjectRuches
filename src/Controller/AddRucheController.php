@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 use App\Entity\CApiculteur;
 use App\Entity\CPeseRuche;
@@ -16,6 +17,7 @@ use App\Form\AddRucheFormType;
 class AddRucheController extends AbstractController
 {
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/add", name="add")
      */
     public function new(EntityManagerInterface $em, Request $request) {

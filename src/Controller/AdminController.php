@@ -9,11 +9,13 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 
 class AdminController extends AbstractController
 {
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/gestionnaire", name="gestionnaire")
      */
     public function userList(CApiculteurRepository $user)
@@ -24,6 +26,7 @@ class AdminController extends AbstractController
     }
     
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("gestionnaire/edit/{nom}", name="edit")
      */
     public function editUser(Request $request, CApiculteur $user, EntityManagerInterface $em) 

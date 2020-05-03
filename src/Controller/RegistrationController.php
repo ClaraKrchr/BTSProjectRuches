@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Doctrine\Persistence\ObjectManager; //ajout du manager
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 use App\Entity\CApiculteur;
 use App\Form\RegistrationFormType;
@@ -52,6 +53,7 @@ class RegistrationController extends AbstractController
     }
     
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/deconnexion", name="security_logout")
      */
     public function logout()
