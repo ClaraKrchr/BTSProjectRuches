@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestionnaire des apiculteurs{% endblock %}
+
+{% block body %}
+
+<meta charset="UTF-8">
+
+<h1>Gestionnaire des apiculteurs</h1>
+	<table id="capiculteur" class="table table-striped">
+		<thread>
+			<tr>
+				<th>Nom</th>
+				<th>Prénom</th>
+				<th>Mail</th>
+				<th>Téléphone</th>
+				<th>Adresse postale</th>
+				<th>Code postal</th>
+				<th>Ville</th>
+				<th>Type d'utilisateur</th>
+				<th>Action</th>
+			</tr>
+		</thread>
+		<tbody>
+			{% for capiculteur in users %}
+				<tr>
+					<td>{{ capiculteur.nom }}</td>
+					<td>{{ capiculteur.prenom }}</td>
+					<td>{{ capiculteur.mail }}</td>
+					<td>{{ capiculteur.tel }}</td>
+					<td>{{ capiculteur.postaddr }}</td>
+					<td>{{ capiculteur.codepostal }}</td>
+					<td>{{ capiculteur.ville }}</td>
+					<td>
+						{% for  role in capiculteur.roles %}
+						    {% if role=="ROLE_USER" %}
+								Apiculteur
+						    {% elseif role=="ROLE_ADMIN" %}
+								Administrateur
+						    {% endif %}
+						{% endfor %}
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>			
+	</table>
+
+{% endblock %}

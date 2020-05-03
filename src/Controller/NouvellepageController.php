@@ -31,17 +31,6 @@ class NouvellepageController extends AbstractController
     }
     
     /**
-     * @Route("/gestionnaire_apiculteurs", name="gestionnaire_apiculteurs")   
-     */
-    public function gestionnaire_apiculteurs()
-    {
-        $apiculteurs = $this->getDoctrine()->getRepository(CApiculteur::class)->findAll();
-        
-        return $this->render('nouvellepage/gestionnaire_apiculteurs.html.twig', ['apiculteurs' => $apiculteurs,]);
-    }
-
-    
-    /**
      * @Route("/googleMap", name="googleMap")
      */
     public function googleMap(){
