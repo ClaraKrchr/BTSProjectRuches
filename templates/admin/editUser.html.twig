@@ -3,9 +3,35 @@
 {% block title %}Modification d'un apiculteur{% endblock %}
 
 {% block body %}
+<meta charset="UTF-8">
+<center><h1>Modification d'un apiculteur</h1></center>
+
 <div class="d-flex justify-content-around">
     {{ form_start(formUser) }}
+    
+    <form>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      {{ form_row(formUser.nom, { 'attr' : { 'placeholder':'Nom'}}) }}
+    </div>
+    <div class="form-group col-md-6">
+       {{ form_row(formUser.prenom, { 'label' : 'Prénom' , 'attr' : { 'placeholder':'Prénom'}}) }}
+    </div>
+  </div>
+        
+        {{ form_row(formUser.mail, { 'label': 'Mail', 'attr' : { 'placeholder':'Adresse mail'}}) }}
+        {{ form_row(formUser.tel, { 'label':'Téléphone', 'attr' : { 'placeholder':'Téléphone'}}) }}
+        <div class="form-row">
+    <div class="form-group col-md-6">
+        {{ form_row(formUser.codepostal, { 'label':'Code postal', 'attr' : { 'placeholder':'Code postal'}}) }}
+         </div>
+    <div class="form-group col-md-6">
+        {{ form_row(formUser.ville, { 'attr' : { 'placeholder':'Ville'}}) }}
+        </div>
+  </div>
+        {{ form_row(formUser.postaddr, { 'label':'Adresse postale','attr' : { 'placeholder':'Adresse postale'}}) }}
     {{ form_widget(formUser) }}
+    
 	<button type="submit" class="btn btn-success">Modifier</button>
 	<a href="{{ path('gestionnaire') }}"><button class="btn btn-secondary">Annuler</button></a>
     {{ form_end(formUser) }}
