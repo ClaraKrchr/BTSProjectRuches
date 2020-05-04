@@ -1,0 +1,5 @@
+## /config/packages/knp_paginator.yaml
+
+knp_paginator:
+    template:
+        pagination: '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig'
