@@ -21,9 +21,9 @@ class MapController extends NouvellepageController{
      */
     public function tableau_donnees($regions)
     {
-      /*  $NomProprietaire=...;*/
+        $NomProprietaire=$this->getUser();
         $ruchers = $this->getDoctrine()->getRepository(CRucher::class)->findBy(array('region'=>$regions));
-        $peseruches = $this->getDoctrine()->getRepository(CPeseRuche::class)->findBy(array('rucher'=>$ruchers/*,'proprietaire_id'=>$NomProprietaire*/));
+        $peseruches = $this->getDoctrine()->getRepository(CPeseRuche::class)->findBy(array('rucher'=>$ruchers,'proprietaire'=>$NomProprietaire));
                
         
          return $this->render('map/tableau_donnees.html.twig', ['peseruches' => $peseruches,]);
