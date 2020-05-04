@@ -6,10 +6,14 @@
 
 <link rel="stylesheet" href="{{ asset('css/connexion.css') }}">
 
+ {% if error %}
+        <center><div class="alert alert-danger">Mail ou mot de passe incorrect. </div></center>
+        {% endif %}
+
 <div class="modal-dialog text-center">
 	<div class="col-sm-9 main-section">
 		<div class="modal-content">
-		
+    
 			<div class="col-12 bee-img">
 				<img src="{{ asset('bee.png') }}">
 			</div>
