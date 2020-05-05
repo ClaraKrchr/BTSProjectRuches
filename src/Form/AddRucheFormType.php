@@ -27,6 +27,7 @@ class AddRucheFormType extends AbstractType
                 'widget' => 'single_text', 
                 
             ])
+            
             ->add('Type',ChoiceType::class,array('choices'=>array(
                 'Ruches en paille'=>'Ruches en paille',
                 'Ruche kenyane(KTBH)'=>'Ruche kenyane(KTBH)',
