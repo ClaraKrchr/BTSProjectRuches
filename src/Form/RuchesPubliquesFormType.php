@@ -6,6 +6,12 @@ namespace App\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
+
+use App\Entity\CApiculteur;
+use App\Entity\CPeseRuche;
+
 
 class RuchesPubliquesFormType extends AbstractType 
 {    
@@ -13,8 +19,19 @@ class RuchesPubliquesFormType extends AbstractType
     {
         
         $builder        
-        ->add('Nom_ruche')
-        ->add('Proprietaire')
+        ->add('Nom_ruche',EntityType::class,[
+            'class'=>CPeseRuche::class,
+            'choice_label'=> function(CPeseRuche $CPeseRuche){
+            if($CPeseRuche->getVisibilite()==false)return sprintf("%s",$CPeseRuche->getNomPeseRuche());else return null;
+            },
+            'placeholder'=>'',
+            'required'=> false
+        ])
+        ->add('Proprietaire',EntityType::class,[
+            'class'=>CApiculteur::class,
+            'placeholder'=>'',
+            'required'=> false
+        ])
         ->add('Type',ChoiceType::class, [
             'choices'=> [
             'Ruches en paille'=>'Ruches en paille',

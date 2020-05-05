@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\CPeseRuche;
+
+use App\Entity\CApiculteur;
 use App\Entity\CRucher;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,14 +22,16 @@ class RuchesPubliquesController extends AbstractController{
     public function new(EntityManagerInterface $em, CPeseRucheRepository $repository, $regions, PaginatorInterface $paginator, Request $request, $page)   {
         
         $ruchers = $this->getDoctrine()->getRepository(CRucher::class)->findBy(array('region'=>$regions));
-        $paginations = $paginator->paginate(
-            $repository->findBy(array('rucher'=>$ruchers,'visibilite'=>0)),
-            $page,
-            6
-            );
-        
+              
         //$pubPeseRuches = $this->getDoctrine()->getRepository(CPeseRuche::class)->findBy(array('rucher'=>$ruchers,'visibilite'=>0));
         $form = $this->createForm(\App\Form\RuchesPubliquesFormType::class);
+        
+        
+        $paginations = $paginator->paginate(
+            $repository->findBy(array('visibilite'=>0,'rucher'=>$ruchers)),
+            $page,
+            6
+            );  
         return $this->render('ruches_publiques/ruches_publiques.html.twig',
             ['filterForm' => $form->createView(),
                 //'pubPeseRuches' =>$pubPeseRuches,
