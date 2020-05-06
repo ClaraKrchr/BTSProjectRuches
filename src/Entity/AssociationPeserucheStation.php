@@ -20,7 +20,6 @@ class AssociationPeserucheStation
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\CPeseRuche", mappedBy="associationPeserucheStation")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $peseruche;
 
