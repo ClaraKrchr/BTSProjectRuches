@@ -43,9 +43,21 @@ class CRucher
      */
     private $mesuresRuchers;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\AssociationRucheRucher", mappedBy="rucher")
+     */
+    private $associationRucheRuchers;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\AssociationStationRucher", mappedBy="rucher")
+     */
+    private $associationStationRuchers;
+
     public function __construct()
     {
         $this->mesuresRuchers = new ArrayCollection();
+        $this->associationRucheRuchers = new ArrayCollection();
+        $this->associationStationRuchers = new ArrayCollection();
     }
 
 #=======================GETTERS========================#
@@ -135,6 +147,68 @@ public function removeMesuresRucher(MesuresRuchers $mesuresRucher): self
         // set the owning side to null (unless already changed)
         if ($mesuresRucher->getRucher() === $this) {
             $mesuresRucher->setRucher(null);
+        }
+    }
+
+    return $this;
+}
+
+/**
+ * @return Collection|AssociationRucheRucher[]
+ */
+public function getAssociationRucheRuchers(): Collection
+{
+    return $this->associationRucheRuchers;
+}
+
+public function addAssociationRucheRucher(AssociationRucheRucher $associationRucheRucher): self
+{
+    if (!$this->associationRucheRuchers->contains($associationRucheRucher)) {
+        $this->associationRucheRuchers[] = $associationRucheRucher;
+        $associationRucheRucher->setRucher($this);
+    }
+
+    return $this;
+}
+
+public function removeAssociationRucheRucher(AssociationRucheRucher $associationRucheRucher): self
+{
+    if ($this->associationRucheRuchers->contains($associationRucheRucher)) {
+        $this->associationRucheRuchers->removeElement($associationRucheRucher);
+        // set the owning side to null (unless already changed)
+        if ($associationRucheRucher->getRucher() === $this) {
+            $associationRucheRucher->setRucher(null);
+        }
+    }
+
+    return $this;
+}
+
+/**
+ * @return Collection|AssociationStationRucher[]
+ */
+public function getAssociationStationRuchers(): Collection
+{
+    return $this->associationStationRuchers;
+}
+
+public function addAssociationStationRucher(AssociationStationRucher $associationStationRucher): self
+{
+    if (!$this->associationStationRuchers->contains($associationStationRucher)) {
+        $this->associationStationRuchers[] = $associationStationRucher;
+        $associationStationRucher->setRucher($this);
+    }
+
+    return $this;
+}
+
+public function removeAssociationStationRucher(AssociationStationRucher $associationStationRucher): self
+{
+    if ($this->associationStationRuchers->contains($associationStationRucher)) {
+        $this->associationStationRuchers->removeElement($associationStationRucher);
+        // set the owning side to null (unless already changed)
+        if ($associationStationRucher->getRucher() === $this) {
+            $associationStationRucher->setRucher(null);
         }
     }
 
