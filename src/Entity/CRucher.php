@@ -43,16 +43,6 @@ class CRucher
      */
     private $mesuresRuchers;
 
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\AssociationStationRucher", mappedBy="rucher", cascade={"persist", "remove"})
-     */
-    private $associationStationRucher;
-
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\AssociationRucheRucher", mappedBy="rucher", cascade={"persist", "remove"})
-     */
-    private $associationRucheRucher;
-
     public function __construct()
     {
         $this->mesuresRuchers = new ArrayCollection();
@@ -151,37 +141,4 @@ public function removeMesuresRucher(MesuresRuchers $mesuresRucher): self
     return $this;
 }
 
-public function getAssociationStationRucher(): ?AssociationStationRucher
-{
-    return $this->associationStationRucher;
-}
-
-public function setAssociationStationRucher(AssociationStationRucher $associationStationRucher): self
-{
-    $this->associationStationRucher = $associationStationRucher;
-
-    // set the owning side of the relation if necessary
-    if ($associationStationRucher->getRucher() !== $this) {
-        $associationStationRucher->setRucher($this);
-    }
-
-    return $this;
-}
-
-public function getAssociationRucheRucher(): ?AssociationRucheRucher
-{
-    return $this->associationRucheRucher;
-}
-
-public function setAssociationRucheRucher(AssociationRucheRucher $associationRucheRucher): self
-{
-    $this->associationRucheRucher = $associationRucheRucher;
-
-    // set the owning side of the relation if necessary
-    if ($associationRucheRucher->getRucher() !== $this) {
-        $associationRucheRucher->setRucher($this);
-    }
-
-    return $this;
-}
 }

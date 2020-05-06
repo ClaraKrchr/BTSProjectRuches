@@ -33,17 +33,6 @@ class CStation
      */
     private $mesuresRuchers;
 
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\AssociationPeserucheStation", mappedBy="station", cascade={"persist", "remove"})
-     */
-    private $associationPeserucheStation;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\AssociationStationRucher", inversedBy="station")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $associationStationRucher;
-
     public function __construct()
     {
         $this->mesuresStations = new ArrayCollection();
@@ -129,32 +118,4 @@ class CStation
         return $this;
     }
 
-    public function getAssociationPeserucheStation(): ?AssociationPeserucheStation
-    {
-        return $this->associationPeserucheStation;
-    }
-
-    public function setAssociationPeserucheStation(AssociationPeserucheStation $associationPeserucheStation): self
-    {
-        $this->associationPeserucheStation = $associationPeserucheStation;
-
-        // set the owning side of the relation if necessary
-        if ($associationPeserucheStation->getStation() !== $this) {
-            $associationPeserucheStation->setStation($this);
-        }
-
-        return $this;
-    }
-
-    public function getAssociationStationRucher(): ?AssociationStationRucher
-    {
-        return $this->associationStationRucher;
-    }
-
-    public function setAssociationStationRucher(?AssociationStationRucher $associationStationRucher): self
-    {
-        $this->associationStationRucher = $associationStationRucher;
-
-        return $this;
-    }
 }
