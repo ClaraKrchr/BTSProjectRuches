@@ -53,6 +53,11 @@ class CRuche
      */
     private $associationRucheRucher;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\AssociationRucheApiculteur", mappedBy="ruche", cascade={"persist", "remove"})
+     */
+    private $associationRucheApiculteur;
+
     public function __construct()
     {
         $this->mesuresRuches = new ArrayCollection();
@@ -171,6 +176,23 @@ class CRuche
         // set the owning side of the relation if necessary
         if ($associationRucheRucher->getRuche() !== $this) {
             $associationRucheRucher->setRuche($this);
+        }
+
+        return $this;
+    }
+
+    public function getAssociationRucheApiculteur(): ?AssociationRucheApiculteur
+    {
+        return $this->associationRucheApiculteur;
+    }
+
+    public function setAssociationRucheApiculteur(AssociationRucheApiculteur $associationRucheApiculteur): self
+    {
+        $this->associationRucheApiculteur = $associationRucheApiculteur;
+
+        // set the owning side of the relation if necessary
+        if ($associationRucheApiculteur->getRuche() !== $this) {
+            $associationRucheApiculteur->setRuche($this);
         }
 
         return $this;
