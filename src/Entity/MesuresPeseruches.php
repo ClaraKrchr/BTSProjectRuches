@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\MesuresRuchesRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\MesuresPeseruchesRepository")
  */
-class MesuresRuches
+class MesuresPeseruches
 {
     /**
      * @ORM\Id()
@@ -17,13 +17,13 @@ class MesuresRuches
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\CRuche", inversedBy="mesuresRuches")
+     * @ORM\ManyToOne(targetEntity="App\Entity\cpeseruche", inversedBy="mesuresPeseruches")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $ruche;
+    private $peseruche;
 
     /**
-     * @ORM\Column(type="smallint", nullable=true)
+     * @ORM\Column(type="smallint")
      */
     private $poids;
 
@@ -37,14 +37,14 @@ class MesuresRuches
         return $this->id;
     }
 
-    public function getRuche(): ?CRuche
+    public function getPeseruche(): ?cpeseruche
     {
-        return $this->ruche;
+        return $this->peseruche;
     }
 
-    public function setRuche(?CRuche $ruche): self
+    public function setPeseruche(?cpeseruche $peseruche): self
     {
-        $this->ruche = $ruche;
+        $this->peseruche = $peseruche;
 
         return $this;
     }
@@ -54,7 +54,7 @@ class MesuresRuches
         return $this->poids;
     }
 
-    public function setPoids(?int $poids): self
+    public function setPoids(int $poids): self
     {
         $this->poids = $poids;
 
