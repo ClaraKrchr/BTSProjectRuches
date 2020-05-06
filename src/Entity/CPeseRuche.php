@@ -50,6 +50,17 @@ class CPeseRuche
      */
     private $mesuresPeseruches;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\AssociationRuchePeseruche", mappedBy="peseruche", cascade={"persist", "remove"})
+     */
+    private $associationRuchePeseruche;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\AssociationPeserucheStation", inversedBy="peseruche")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $associationPeserucheStation;
+
     public function __construct()
     {
         $this->mesuresPeseruches = new ArrayCollection();
@@ -151,6 +162,35 @@ class CPeseRuche
                 $mesuresPeseruch->setPeserucheId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAssociationRuchePeseruche(): ?AssociationRuchePeseruche
+    {
+        return $this->associationRuchePeseruche;
+    }
+
+    public function setAssociationRuchePeseruche(AssociationRuchePeseruche $associationRuchePeseruche): self
+    {
+        $this->associationRuchePeseruche = $associationRuchePeseruche;
+
+        // set the owning side of the relation if necessary
+        if ($associationRuchePeseruche->getPeseruche() !== $this) {
+            $associationRuchePeseruche->setPeseruche($this);
+        }
+
+        return $this;
+    }
+
+    public function getAssociationPeserucheStation(): ?AssociationPeserucheStation
+    {
+        return $this->associationPeserucheStation;
+    }
+
+    public function setAssociationPeserucheStation(?AssociationPeserucheStation $associationPeserucheStation): self
+    {
+        $this->associationPeserucheStation = $associationPeserucheStation;
 
         return $this;
     }

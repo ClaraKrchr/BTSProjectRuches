@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,11 +24,6 @@ class CRucher
     private $region;
 
     /**
-     * @ORM\Column(type="smallint", nullable=true)
-     */
-    private $nbruches;
-
-    /**
      * @ORM\Column(type="float")
      */
     private $latitude;
@@ -41,6 +38,26 @@ class CRucher
      */
     private $nom;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\MesuresRuchers", mappedBy="rucher", orphanRemoval=true)
+     */
+    private $mesuresRuchers;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\AssociationStationRucher", mappedBy="rucher", cascade={"persist", "remove"})
+     */
+    private $associationStationRucher;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\AssociationRucheRucher", mappedBy="rucher", cascade={"persist", "remove"})
+     */
+    private $associationRucheRucher;
+
+    public function __construct()
+    {
+        $this->mesuresRuchers = new ArrayCollection();
+    }
+
 #=======================GETTERS========================#
 
     public function getId(): ?int
@@ -51,11 +68,6 @@ class CRucher
     public function getRegion(): ?string
     {
         return $this->region;
-    }
-
-    public function getNbRuches(): ?int
-    {
-        return $this->nbruches;
     }
 
     public function getLatitude(): ?float
@@ -82,13 +94,6 @@ class CRucher
         return $this;
     }
 
-    public function setNbRuches(?int $nbruches): self
-    {
-        $this->nbruches = $nbruches;
-
-        return $this;
-    }
-
     public function setLatitude(float $latitude): self
     {
         $this->latitude = $latitude;
@@ -109,9 +114,74 @@ class CRucher
 
         return $this;
     }
-    
+
 #=================OTHER========================#
     public function __toString(){
         return $this->getNom();
     }
+
+/**
+ * @return Collection|MesuresRuchers[]
+ */
+public function getMesuresRuchers(): Collection
+{
+    return $this->mesuresRuchers;
+}
+
+public function addMesuresRucher(MesuresRuchers $mesuresRucher): self
+{
+    if (!$this->mesuresRuchers->contains($mesuresRucher)) {
+        $this->mesuresRuchers[] = $mesuresRucher;
+        $mesuresRucher->setRucher($this);
+    }
+
+    return $this;
+}
+
+public function removeMesuresRucher(MesuresRuchers $mesuresRucher): self
+{
+    if ($this->mesuresRuchers->contains($mesuresRucher)) {
+        $this->mesuresRuchers->removeElement($mesuresRucher);
+        // set the owning side to null (unless already changed)
+        if ($mesuresRucher->getRucher() === $this) {
+            $mesuresRucher->setRucher(null);
+        }
+    }
+
+    return $this;
+}
+
+public function getAssociationStationRucher(): ?AssociationStationRucher
+{
+    return $this->associationStationRucher;
+}
+
+public function setAssociationStationRucher(AssociationStationRucher $associationStationRucher): self
+{
+    $this->associationStationRucher = $associationStationRucher;
+
+    // set the owning side of the relation if necessary
+    if ($associationStationRucher->getRucher() !== $this) {
+        $associationStationRucher->setRucher($this);
+    }
+
+    return $this;
+}
+
+public function getAssociationRucheRucher(): ?AssociationRucheRucher
+{
+    return $this->associationRucheRucher;
+}
+
+public function setAssociationRucheRucher(AssociationRucheRucher $associationRucheRucher): self
+{
+    $this->associationRucheRucher = $associationRucheRucher;
+
+    // set the owning side of the relation if necessary
+    if ($associationRucheRucher->getRucher() !== $this) {
+        $associationRucheRucher->setRucher($this);
+    }
+
+    return $this;
+}
 }

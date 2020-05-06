@@ -43,6 +43,17 @@ class CRuche
      */
     private $mesuresRuches;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\AssociationRuchePeseruche", mappedBy="ruche", cascade={"persist", "remove"})
+     */
+    private $associationRuchePeseruche;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\AssociationRucheRucher", inversedBy="ruche")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $associationRucheRucher;
+
     public function __construct()
     {
         $this->mesuresRuches = new ArrayCollection();
@@ -128,6 +139,35 @@ class CRuche
                 $mesuresRuch->setRucheId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAssociationRuchePeseruche(): ?AssociationRuchePeseruche
+    {
+        return $this->associationRuchePeseruche;
+    }
+
+    public function setAssociationRuchePeseruche(AssociationRuchePeseruche $associationRuchePeseruche): self
+    {
+        $this->associationRuchePeseruche = $associationRuchePeseruche;
+
+        // set the owning side of the relation if necessary
+        if ($associationRuchePeseruche->getRuche() !== $this) {
+            $associationRuchePeseruche->setRuche($this);
+        }
+
+        return $this;
+    }
+
+    public function getAssociationRucheRucher(): ?AssociationRucheRucher
+    {
+        return $this->associationRucheRucher;
+    }
+
+    public function setAssociationRucheRucher(?AssociationRucheRucher $associationRucheRucher): self
+    {
+        $this->associationRucheRucher = $associationRucheRucher;
 
         return $this;
     }
