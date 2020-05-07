@@ -18,13 +18,13 @@
         </tr>
         {% for peseruche in peseruches %}
 		<tr> 
-			<td> {{ peseruche.id }}						</td>
-			<td> {{ peseruche.nompeseruche }}			</td>
-			<td> {{ peseruche.Proprietaire.Nom }}		</td>
-			<td> {{ peseruche.rucher.Nom }}				</td>
+			<td> {{ peseruche.id }}									</td>
+			<td><a href="{{ path('info_ruche',{nomruche: peseruche.nompeseruche  }) }}"> {{ peseruche.nompeseruche }}			</a></td>
+			<td> {{ peseruche.Proprietaire.Nom }}					</td>
+			<td> {{ peseruche.rucher.Nom }}							</td>
 			<td> {{ peseruche.dateinstall|date("m/d/Y") }}			</td>
-			<td> {{ peseruche.visibilite }}				</td>
-			<td> {{ peseruche.Rucher.Region }}			</td>
+			<td> {{ peseruche.visibilite }}							</td>
+			<td> {{ peseruche.Rucher.Region }}						</td>
 		</tr>
         {% endfor %}
         </table>

@@ -10,7 +10,6 @@ class AddRucherFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-        ->add('Nb_Ruche')
         ->add('Nom')
         ;
     }

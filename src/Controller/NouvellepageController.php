@@ -43,4 +43,11 @@ class NouvellepageController extends AbstractController
         return $this->render('map/googleMap.html.twig', ['ruchers' => $ruchers,]);
     }
     
+    /**
+     * @Route("/info_ruche/{nomruche}", name="info_ruche")
+     */
+    public function info_ruche($nomruche){
+        
+        return $this->render('map/info_ruche.html.twig',['nomruche'=>$nomruche,]);
+    }
 }
