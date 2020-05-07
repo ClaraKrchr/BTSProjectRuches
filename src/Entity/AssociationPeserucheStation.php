@@ -11,27 +11,17 @@ class AssociationPeserucheStation
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
-    /**
      * @ORM\OneToOne(targetEntity="App\Entity\CPeseRuche", inversedBy="associationPeserucheStation", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $peseruche;
 
     /**
+     * @ORM\Id()
      * @ORM\ManyToOne(targetEntity="App\Entity\CStation", inversedBy="associationPeserucheStations")
      * @ORM\JoinColumn(nullable=false)
      */
     private $station;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getPeseruche(): ?CPeseRuche
     {

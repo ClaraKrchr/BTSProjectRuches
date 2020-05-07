@@ -9,29 +9,20 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class AssociationRucheApiculteur
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
 
     /**
+     * @ORM\Id()
      * @ORM\OneToOne(targetEntity="App\Entity\CRuche", inversedBy="associationRucheApiculteur", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $ruche;
 
     /**
+     * @ORM\Id()
      * @ORM\ManyToOne(targetEntity="App\Entity\CApiculteur", inversedBy="associationRucheApiculteurs")
      * @ORM\JoinColumn(nullable=false)
      */
     private $apiculteur;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getRuche(): ?CRuche
     {
