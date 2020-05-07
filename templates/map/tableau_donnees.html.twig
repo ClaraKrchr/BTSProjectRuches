@@ -10,18 +10,9 @@
         <tr>
         	<td>Id</td>
         	<td>Nom p&egrave;se ruche</td>
-        	<td>Poids</td>
         	<td>Nom Propri&eacute;taire</td>
         	<td>Nom Rucher</td>
-        	<td>Humidit&eacute; int&eacute;rieur</td>
-        	<td>Humidit&eacute; ext&eacute;rieur</td>
-        	<td>Temp&eacute;rature int&eacute;rieur</td>
-        	<td>Temp&eacute;rature ext&eacute;rieur</td>
-        	<td>Luminosit&eacute;</td>
-        	<td>Niveau Eau</td>
-        	<td>Date d'installation</td>
-        	<td>Date du relev&eacute;</td>
-        	<td>Type de ruche</td>
+          	<td>Date d'installation</td>
         	<td>Visibilit&eacute;</td>
         	<td>R&eacute;gion</td>
         </tr>
@@ -29,18 +20,9 @@
 		<tr> 
 			<td> {{ peseruche.id }}						</td>
 			<td> {{ peseruche.nompeseruche }}			</td>
-			<td> {{ peseruche.poids }}					</td>
 			<td> {{ peseruche.Proprietaire.Nom }}		</td>
 			<td> {{ peseruche.rucher.Nom }}				</td>
-			<td> {{ peseruche.humiditeinter }}			</td>
-			<td> {{ peseruche.humiditeexter }}			</td>
-			<td> {{ peseruche.tempinter }}				</td>
-			<td> {{ peseruche.tempexter }}				</td>
-			<td> {{ peseruche.luminosite }}				</td>
-			<td> {{ peseruche.niveau }}					</td>
 			<td> {{ peseruche.dateinstall|date("m/d/Y") }}			</td>
-			<td> {{ peseruche.datereleve |date("m/d/Y") }}				</td>
-			<td> {{ peseruche.typeruche }}				</td>
 			<td> {{ peseruche.visibilite }}				</td>
 			<td> {{ peseruche.Rucher.Region }}			</td>
 		</tr>

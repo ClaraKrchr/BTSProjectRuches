@@ -27,20 +27,6 @@ class AddRucheFormType extends AbstractType
                 'widget' => 'single_text', 
                 
             ])
-            ->add('Type',ChoiceType::class,array('choices'=>array(
-                'Ruches en paille'=>'Ruches en paille',
-                'Ruche kenyane(KTBH)'=>'Ruche kenyane(KTBH)',
-                'Ruche Tronc'=>'Ruche Tronc',
-                'Ruche alsacienne(Ruche Bastian)'=>'Ruche alsacienne(Ruche Bastian)',
-                'Ruche horizontales'=>'Ruche horizontales',
-                'Ruche Dadant'=>'Ruche Dadant',
-                'Ruche Langstroth(standard)'=>'Ruche Langstroth(standard)',
-                'Ruche Voirnot'=>'Ruche Voirnot',
-                'Ruche Warre(ruche populaire)'=>'Ruche Warre(ruche populaire)',
-                'Ruche Layens'=>'Ruche Layens',
-                'Ruche William Braughton Carr'=>'Ruche William Braughton Carr',
-                'Ruche de production'=>'Ruche de production',              
-            )))
             ->add('Visibilite',ChoiceType::class,
                 array(
                     'choices'=>array(

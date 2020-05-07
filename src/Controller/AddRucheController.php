@@ -34,19 +34,10 @@ class AddRucheController extends AbstractController
             $apiculteur = $em->getRepository(CApiculteur::class)->findOneBy(array('id'=>$NomApiculteur));
            
             $CPeseRuche->setNomPeseRuche($data['Nom_ruche']);
-            $CPeseRuche->setPoids(NULL);
-            $CPeseRuche->setHumiditeInter(NULL);
-            $CPeseRuche->setHumiditeExter(NULL);
-            $CPeseRuche->setTempInter(NULL);
-            $CPeseRuche->setTempExter(NULL);
-            $CPeseRuche->setLuminosite(NULL);
-            $CPeseRuche->setNivEau(NULL);
-            $CPeseRuche->setDateInstall($data['Date_installation']);
-            $CPeseRuche->setDateReleve(NULL);
-            $CPeseRuche->setTypeRuche($data['Type']);
             $CPeseRuche->setProprietaire($apiculteur);
-            $CPeseRuche->setVisibilite($data['Visibilite']);
             $CPeseRuche->setRucher($data['Rucher']);
+            $CPeseRuche->setDateInstall($data['Date_installation']);
+            $CPeseRuche->setVisibilite($data['Visibilite']);
             ($data['Rucher'])->setNbRuches(($data['Rucher'])->getNbRuches() + 1);
             
             $em->persist($CPeseRuche);
