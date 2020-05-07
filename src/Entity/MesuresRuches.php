@@ -32,6 +32,12 @@ class MesuresRuches
      */
     private $date_releve;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\CPeseRuche", inversedBy="mesuresRuches")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $peseruche;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +75,18 @@ class MesuresRuches
     public function setDateReleve(\DateTimeInterface $date_releve): self
     {
         $this->date_releve = $date_releve;
+
+        return $this;
+    }
+
+    public function getPeseruche(): ?CPeseRuche
+    {
+        return $this->peseruche;
+    }
+
+    public function setPeseruche(?CPeseRuche $peseruche): self
+    {
+        $this->peseruche = $peseruche;
 
         return $this;
     }

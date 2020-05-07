@@ -39,11 +39,6 @@ class CRucher
     private $nom;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\MesuresRuchers", mappedBy="rucher", orphanRemoval=true)
-     */
-    private $mesuresRuchers;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\AssociationRucheRucher", mappedBy="rucher")
      */
     private $associationRucheRuchers;
@@ -53,11 +48,16 @@ class CRucher
      */
     private $associationStationRuchers;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\MesuresStations", mappedBy="rucher", orphanRemoval=true)
+     */
+    private $mesuresStations;
+
     public function __construct()
     {
-        $this->mesuresRuchers = new ArrayCollection();
         $this->associationRucheRuchers = new ArrayCollection();
         $this->associationStationRuchers = new ArrayCollection();
+        $this->mesuresStations = new ArrayCollection();
     }
 
 #=======================GETTERS========================#
@@ -123,37 +123,6 @@ class CRucher
     }
 
 /**
- * @return Collection|MesuresRuchers[]
- */
-public function getMesuresRuchers(): Collection
-{
-    return $this->mesuresRuchers;
-}
-
-public function addMesuresRucher(MesuresRuchers $mesuresRucher): self
-{
-    if (!$this->mesuresRuchers->contains($mesuresRucher)) {
-        $this->mesuresRuchers[] = $mesuresRucher;
-        $mesuresRucher->setRucher($this);
-    }
-
-    return $this;
-}
-
-public function removeMesuresRucher(MesuresRuchers $mesuresRucher): self
-{
-    if ($this->mesuresRuchers->contains($mesuresRucher)) {
-        $this->mesuresRuchers->removeElement($mesuresRucher);
-        // set the owning side to null (unless already changed)
-        if ($mesuresRucher->getRucher() === $this) {
-            $mesuresRucher->setRucher(null);
-        }
-    }
-
-    return $this;
-}
-
-/**
  * @return Collection|AssociationRucheRucher[]
  */
 public function getAssociationRucheRuchers(): Collection
@@ -209,6 +178,37 @@ public function removeAssociationStationRucher(AssociationStationRucher $associa
         // set the owning side to null (unless already changed)
         if ($associationStationRucher->getRucher() === $this) {
             $associationStationRucher->setRucher(null);
+        }
+    }
+
+    return $this;
+}
+
+/**
+ * @return Collection|MesuresStations[]
+ */
+public function getMesuresStations(): Collection
+{
+    return $this->mesuresStations;
+}
+
+public function addMesuresStation(MesuresStations $mesuresStation): self
+{
+    if (!$this->mesuresStations->contains($mesuresStation)) {
+        $this->mesuresStations[] = $mesuresStation;
+        $mesuresStation->setRucher($this);
+    }
+
+    return $this;
+}
+
+public function removeMesuresStation(MesuresStations $mesuresStation): self
+{
+    if ($this->mesuresStations->contains($mesuresStation)) {
+        $this->mesuresStations->removeElement($mesuresStation);
+        // set the owning side to null (unless already changed)
+        if ($mesuresStation->getRucher() === $this) {
+            $mesuresStation->setRucher(null);
         }
     }
 

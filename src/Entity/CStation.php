@@ -29,11 +29,6 @@ class CStation
     private $mesuresStations;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\MesuresRuchers", mappedBy="station", orphanRemoval=true)
-     */
-    private $mesuresRuchers;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\AssociationPeserucheStation", mappedBy="station")
      */
     private $associationPeserucheStations;
@@ -46,7 +41,6 @@ class CStation
     public function __construct()
     {
         $this->mesuresStations = new ArrayCollection();
-        $this->mesuresRuchers = new ArrayCollection();
         $this->associationPeserucheStations = new ArrayCollection();
     }
 
@@ -92,37 +86,6 @@ class CStation
             // set the owning side to null (unless already changed)
             if ($mesuresStation->getStation() === $this) {
                 $mesuresStation->setStation(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|MesuresRuchers[]
-     */
-    public function getMesuresRuchers(): Collection
-    {
-        return $this->mesuresRuchers;
-    }
-
-    public function addMesuresRucher(MesuresRuchers $mesuresRucher): self
-    {
-        if (!$this->mesuresRuchers->contains($mesuresRucher)) {
-            $this->mesuresRuchers[] = $mesuresRucher;
-            $mesuresRucher->setStation($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMesuresRucher(MesuresRuchers $mesuresRucher): self
-    {
-        if ($this->mesuresRuchers->contains($mesuresRucher)) {
-            $this->mesuresRuchers->removeElement($mesuresRucher);
-            // set the owning side to null (unless already changed)
-            if ($mesuresRucher->getStation() === $this) {
-                $mesuresRucher->setStation(null);
             }
         }
 

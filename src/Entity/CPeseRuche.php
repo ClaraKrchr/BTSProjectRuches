@@ -46,11 +46,6 @@ class CPeseRuche
     private $visibilite;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\MesuresPeseruches", mappedBy="peseruche_id", orphanRemoval=true)
-     */
-    private $mesuresPeseruches;
-
-    /**
      * @ORM\OneToOne(targetEntity="App\Entity\AssociationPeserucheStation", mappedBy="peseruche", cascade={"persist", "remove"})
      */
     private $associationPeserucheStation;
@@ -60,9 +55,14 @@ class CPeseRuche
      */
     private $associationRuchePeseruche;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\MesuresRuches", mappedBy="peseruche", orphanRemoval=true)
+     */
+    private $mesuresRuches;
+
     public function __construct()
     {
-        $this->mesuresPeseruches = new ArrayCollection();
+        $this->mesuresRuches = new ArrayCollection();
     }
 
 #============================GETTERS=========================#
@@ -134,37 +134,6 @@ class CPeseRuche
         return $this;
     }
 
-    /**
-     * @return Collection|MesuresPeseruches[]
-     */
-    public function getMesuresPeseruches(): Collection
-    {
-        return $this->mesuresPeseruches;
-    }
-
-    public function addMesuresPeseruch(MesuresPeseruches $mesuresPeseruch): self
-    {
-        if (!$this->mesuresPeseruches->contains($mesuresPeseruch)) {
-            $this->mesuresPeseruches[] = $mesuresPeseruch;
-            $mesuresPeseruch->setPeserucheId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMesuresPeseruch(MesuresPeseruches $mesuresPeseruch): self
-    {
-        if ($this->mesuresPeseruches->contains($mesuresPeseruch)) {
-            $this->mesuresPeseruches->removeElement($mesuresPeseruch);
-            // set the owning side to null (unless already changed)
-            if ($mesuresPeseruch->getPeserucheId() === $this) {
-                $mesuresPeseruch->setPeserucheId(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getAssociationPeserucheStation(): ?AssociationPeserucheStation
     {
         return $this->associationPeserucheStation;
@@ -194,6 +163,37 @@ class CPeseRuche
         // set the owning side of the relation if necessary
         if ($associationRuchePeseruche->getPeseruche() !== $this) {
             $associationRuchePeseruche->setPeseruche($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MesuresRuches[]
+     */
+    public function getMesuresRuches(): Collection
+    {
+        return $this->mesuresRuches;
+    }
+
+    public function addMesuresRuch(MesuresRuches $mesuresRuch): self
+    {
+        if (!$this->mesuresRuches->contains($mesuresRuch)) {
+            $this->mesuresRuches[] = $mesuresRuch;
+            $mesuresRuch->setPeseruche($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMesuresRuch(MesuresRuches $mesuresRuch): self
+    {
+        if ($this->mesuresRuches->contains($mesuresRuch)) {
+            $this->mesuresRuches->removeElement($mesuresRuch);
+            // set the owning side to null (unless already changed)
+            if ($mesuresRuch->getPeseruche() === $this) {
+                $mesuresRuch->setPeseruche(null);
+            }
         }
 
         return $this;
