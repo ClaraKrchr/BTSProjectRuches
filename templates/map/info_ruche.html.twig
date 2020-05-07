@@ -1,4 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-<center><h3>La ruche {{ nomruche }} qui appartient &agrave; {{ proprietaire }} install&eacute; le : {{ dateinstall|date("m/d/Y") }}</h3></center>
+<!-- for HTML5 -->
+<meta charset="UTF-8">
+<center><h3>La ruche {{ nomruche }} qui appartient à {{ proprietaire }} installée le : {{ dateinstall|date("m/d/Y") }}</h3></center>
 {% endblock %}

@@ -1,19 +1,21 @@
 {% extends 'nouvellepage/ruches_privees.html.twig' %}
 {% block tableau_donnees %}
+<!-- for HTML5 -->
+<meta charset="UTF-8">
     <center>
     <br></br>
     {% if peseruches %}
-        <h1>Les p&egrave;seruches pr&eacute;sentes dans la r&eacute;gion {{ region }}</h1>
+        <h1>Les pèse ruches présents dans la région {{ region }}</h1>
        
         <table border bgcolor="white" cellpadding="5px">
         <tr>
         	<td>Id</td>
-        	<td>Nom p&egrave;se ruche</td>
-        	<td>Nom Propri&eacute;taire</td>
+        	<td>Nom pèse ruche</td>
+        	<td>Nom Propriétaire</td>
         	<td>Nom Rucher</td>
           	<td>Date d'installation</td>
-        	<td>Visibilit&eacute;</td>
-        	<td>R&eacute;gion</td>
+        	<td>Visibilité</td>
+        	<td>Région</td>
         </tr>
         {% for peseruche in peseruches %}
 		<tr> 
@@ -28,7 +30,7 @@
         {% endfor %}
         </table>
         {% else %}
-         <h1>Aucune ruche dans la r&eacute;gion choisie</h1>
+         <h1>Aucune ruche dans la région choisie</h1>
         
         {% endif %}
         <br></br>
