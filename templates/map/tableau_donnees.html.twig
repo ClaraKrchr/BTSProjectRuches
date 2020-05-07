@@ -1,11 +1,10 @@
 {% extends 'nouvellepage/ruches_privees.html.twig' %}
 {% block tableau_donnees %}
-<div id ="block2" class="col-lg-6">
     <center>
+    <br></br>
     {% if peseruches %}
-        <h1>Les ruches pr&eacute;sentes dans la r&eacute;gion</h1>
-        <br></br>
-        
+        <h1>Les p&egrave;seruches pr&eacute;sentes dans la r&eacute;gion {{ region }}</h1>
+       
         <table border bgcolor="white" cellpadding="5px">
         <tr>
         	<td>Id</td>
@@ -35,5 +34,4 @@
         <br></br>
        
     </center>
-</div>
 {% endblock %}

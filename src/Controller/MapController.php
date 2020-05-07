@@ -26,10 +26,17 @@ class MapController extends NouvellepageController{
         $peseruches = $this->getDoctrine()->getRepository(CPeseRuche::class)->findBy(array('rucher'=>$ruchers,'proprietaire'=>$NomProprietaire));
                
         
-         return $this->render('map/tableau_donnees.html.twig', ['peseruches' => $peseruches,]);
+         return $this->render('map/tableau_donnees.html.twig', ['peseruches' => $peseruches,'region'=>$regions]);
     }
     
-    /*Les fonctions*/
-    
-    
+    /**
+     * @Route("/info_ruche/{nomruche}", name="info_ruche")
+     */
+    public function info_ruche($nomruche){
+        
+        $NomProprietaire=$this->getUser();
+        $dateinstall= $this->getDoctrine()->getRepository(CPeseRuche::class)->findOneBy(array('nompeseruche'=>$nomruche))->getDateInstall();
+        return $this->render('map/info_ruche.html.twig',['nomruche'=>$nomruche,'proprietaire'=>$NomProprietaire,'dateinstall'=>$dateinstall,]);
+    }
+        
 }
