@@ -58,6 +58,11 @@ class CRuche
      */
     private $associationRucheApiculteur;
 
+    /**
+     * @ORM\Column(type="smallint")
+     */
+    private $etat;
+
     public function __construct()
     {
         $this->mesuresRuches = new ArrayCollection();
@@ -194,6 +199,18 @@ class CRuche
         if ($associationRucheApiculteur->getRuche() !== $this) {
             $associationRucheApiculteur->setRuche($this);
         }
+
+        return $this;
+    }
+
+    public function getEtat(): ?int
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(int $etat): self
+    {
+        $this->etat = $etat;
 
         return $this;
     }
