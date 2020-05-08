@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block title %} Ajouter un Rucher{% endblock %}
+{% block body %}
+ {% for message in app.flashes('notice') %}
+              	<div class="flash-notice">
+                	Chargement effectué
+  	    		</div>
+  	    	{% endfor %}
+<meta charset="UTF-8">
+<link rel="stylesheet" href="{{ asset('css/inscription.css') }}">
+	<center><h1>Ajouter une station</h1></center>
+	<br>
+	<div class="d-flex justify-content-around">
+		
+    		{{ form_start(addStationForm) }}
+       		{{ form_widget(addStationForm) }}	
+           		
+       			<button type="submit" class="btn btn-primary">Valider</button>
+       		
+            {{ form_end(addStationForm) }}
+           
+    	
+    	</div>
+{% endblock %}

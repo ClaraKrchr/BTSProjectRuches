@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 use App\Entity\CApiculteur;
-use App\Entity\CPeseRuche;
+use App\Entity\CRuche;
 use App\Entity\CRucher;
 use App\Form\AddRucheFormType;
 
@@ -27,21 +27,14 @@ class AddRucheController extends AbstractController
         
         if($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-            $CPeseRuche = new CPeseRuche();
+            $CRuche = new CRuche();
+                                
+            $CRuche->setNomruche($data['Nom_ruche']);
+            $CRuche->setDateinstall($data['Date_installation']);
+            $CRuche->setVisibilite($data['Visibilite']);
+            $CRuche->setTyperuche($data['Type_ruche']);
             
-            $NomApiculteur=$this->getUser();
-        
-            $apiculteur = $em->getRepository(CApiculteur::class)->findOneBy(array('id'=>$NomApiculteur));
-           
-            $CPeseRuche->setNomPeseRuche($data['Nom_ruche']);
-            $CPeseRuche->setProprietaire($apiculteur);
-            $CPeseRuche->setRucher($data['Rucher']);
-            $CPeseRuche->setDateInstall($data['Date_installation']);
-            $CPeseRuche->setVisibilite($data['Visibilite']);
-            ($data['Rucher'])->setNbRuches(($data['Rucher'])->getNbRuches() + 1);
-            
-            $em->persist($CPeseRuche);
-            $em->persist($data['Rucher']);
+            $em->persist($CRuche);
             $em->flush();
             
             $message=utf8_encode('La ruche a été ajoutée');
