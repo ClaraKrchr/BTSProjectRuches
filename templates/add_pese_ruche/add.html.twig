@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AddPeseRucheController!{% endblock %}
+
+{% block body %}
+
+<meta charset="UTF-8">
+
+<center><h1>Ajout d'un pese ruche</h1></center>
+
+	<div class="d-flex justify-content-around">
+
+    {{ form_start(addPeseRucheForm) }}
+
+    {{ form_row(addPeseRucheForm.nompeseruche, { 'label': 'Nom pèse ruche', 'attr' : { 'placeholder':'Nom pèse ruche'}}) }}
+    {{ form_row(addPeseRucheForm.dateinstall, { 'label': 'Date d\'installation', 'attr' : { 'placeholder':'Date d\'installation'}}) }}
+
+
+	</div>
+{{ form_end(addPeseRucheForm) }}
+{% endblock %}
