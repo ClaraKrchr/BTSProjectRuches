@@ -33,6 +33,7 @@ class AddRucheController extends AbstractController
             $CRuche->setDateinstall($data['Date_installation']);
             $CRuche->setVisibilite($data['Visibilite']);
             $CRuche->setTyperuche($data['Type_ruche']);
+            $CRuche->setEtat($data['Etat']);
             
             $em->persist($CRuche);
             $em->flush();

@@ -17,14 +17,19 @@ class AddRucheFormType extends AbstractType
         $builder
             ->add('Nom_ruche')
             
-            ->add('Date_installation',DateType::class, [
-                'class'=>CRucher::class,
-                'choice_label'=>function(CRucher $CRucher){
-                return sprintf(' %s',$CRucher->getNom());
-                }
+            ->add('Date_installation',DateType::class, [               
+                'widget' => 'single_text',
                 
             ])
-            
+            ->add('Etat',ChoiceType::class,
+                array(
+                    'choices'=>array(
+                        'En attente'=>'0',
+                        'Dans un rucher'=>'1',
+                        'Chez un apiculteur'=>'2'
+                    )
+                )
+                )
             ->add('Type_ruche',ChoiceType::class, [
                 'choices'=> [
                     'Ruches en paille'=>'Ruches en paille',
@@ -40,7 +45,6 @@ class AddRucheFormType extends AbstractType
                     'Ruche William Braughton Carr'=>'Ruche William Braughton Carr',
                     'Ruche de production'=>'Ruche de production',
                 ],
-                'required'=> false
             ])
             
             ->add('Visibilite',ChoiceType::class,
@@ -52,7 +56,7 @@ class AddRucheFormType extends AbstractType
                     'expanded'=>true,
                     'multiple'=>false
                 ))
-                
+            
         ;
     }
    
