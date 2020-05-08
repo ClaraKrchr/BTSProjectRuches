@@ -38,6 +38,11 @@ class CStation
      */
     private $associationStationRucher;
 
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $dateinstall;
+
     public function __construct()
     {
         $this->mesuresStations = new ArrayCollection();
@@ -136,6 +141,18 @@ class CStation
         if ($associationStationRucher->getStation() !== $this) {
             $associationStationRucher->setStation($this);
         }
+
+        return $this;
+    }
+
+    public function getDateinstall(): ?\DateTimeInterface
+    {
+        return $this->dateinstall;
+    }
+
+    public function setDateinstall(\DateTimeInterface $dateinstall): self
+    {
+        $this->dateinstall = $dateinstall;
 
         return $this;
     }

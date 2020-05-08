@@ -69,7 +69,7 @@ class CApiculteur implements UserInterface
     * @ORM\Column(type="string")
     */
     private $postaddr;
-    
+
     /**
      * @ORM\Column(type="json")
      */
@@ -227,17 +227,17 @@ class CApiculteur implements UserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        
-        //garantit que chaque utilisateur possède le rose USER
+
+        //garantit que chaque utilisateur possï¿½de le rose USER
         $roles[] = 'ROLE_USER';
-        
+
         return array_unique($roles);
     }
-    
-    public function setRoles(array $roles): self 
+
+    public function setRoles(array $roles): self
     {
         $this->roles = $roles;
-        
+
         return $this;
     }
 
