@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\CRucher;
 use App\Entity\CApiculteur;
+use App\Entity\CPeseRuche;
 
 class AddRucheFormType extends AbstractType
 {
@@ -50,6 +51,12 @@ class AddRucheFormType extends AbstractType
                 'class'=>CRucher::class,
                 'choice_label'=>function(CRucher $CRucher){
                 return sprintf(' %s',$CRucher->getNom());
+                }
+                ])
+            ->add('PeseRuche',EntityType::class, [
+                'class'=>CPeseRuche::class,
+                'choice_label'=>function(CPeseRuche $CPeseRuche){
+                return sprintf(' %s',$CPeseRuche->getNomPeseRuche());
                 }
                 ])
             ->add('Visibilite',ChoiceType::class,
