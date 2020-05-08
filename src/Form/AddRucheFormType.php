@@ -46,7 +46,12 @@ class AddRucheFormType extends AbstractType
                     'Ruche de production'=>'Ruche de production',
                 ],
             ])
-            
+            ->add('Rucher',EntityType::class, [
+                'class'=>CRucher::class,
+                'choice_label'=>function(CRucher $CRucher){
+                return sprintf(' %s',$CRucher->getNom());
+                }
+                ])
             ->add('Visibilite',ChoiceType::class,
                 array(
                     'choices'=>array(

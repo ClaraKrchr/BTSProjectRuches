@@ -5,11 +5,10 @@
     <center>
     <br></br>
     {% if peseruches %}
-        <h1>Les pèse ruches présents dans la région {{ region }}</h1>
+        <h1>Mes pèse ruches présents dans la région {{ region }}</h1>
        
         <table border bgcolor="white" cellpadding="5px">
         <tr>
-        	<td>Id</td>
         	<td>Nom pèse ruche</td>
         	<td>Nom Propriétaire</td>
         	<td>Nom Rucher</td>
@@ -19,7 +18,6 @@
         </tr>
         {% for peseruche in peseruches %}
 		<tr> 
-			<td> {{ peseruche.id }}									</td>
 			<td><a href="{{ path('info_ruche',{nomruche: peseruche.nompeseruche  }) }}"> {{ peseruche.nompeseruche }}			</a></td>
 			<td> {{ peseruche.Proprietaire.Nom }}					</td>
 			<td> {{ peseruche.rucher.Nom }}							</td>
@@ -30,8 +28,7 @@
         {% endfor %}
         </table>
         {% else %}
-         <h1>Aucune ruche dans la région choisie</h1>
-        
+         <h1>Aucun pèse ruche dans la région choisie</h1>
         {% endif %}
         <br></br>
        

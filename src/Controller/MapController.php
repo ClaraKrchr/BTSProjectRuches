@@ -10,12 +10,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\HttpFoundation\Request;
+use App\Entity\CRuche;
 
 class MapController extends NouvellepageController{
-    
-    /*Les routes des régions*/
-    
-    
+        
     /**
      * @Route("/tableau_donnees/{regions}",name="tableau_donnees")
      */
@@ -23,10 +21,9 @@ class MapController extends NouvellepageController{
     {
         $NomProprietaire=$this->getUser();
         $ruchers = $this->getDoctrine()->getRepository(CRucher::class)->findBy(array('region'=>$regions));
-        $peseruches = $this->getDoctrine()->getRepository(CPeseRuche::class)->findBy(array('rucher'=>$ruchers,'proprietaire'=>$NomProprietaire));
+        $ruches = $this->getDoctrine()->getRepository(CRuche::class)->findBy(array('rucher'=>$ruchers,'proprietaire'=>$NomProprietaire));
                
-        
-         return $this->render('map/tableau_donnees.html.twig', ['peseruches' => $peseruches,'region'=>$regions]);
+        return $this->render('map/tableau_donnees.html.twig', ['ruches' => $ruches,'region'=>$regions]);
     }
     
     /**
@@ -35,8 +32,7 @@ class MapController extends NouvellepageController{
     public function info_ruche($nomruche){
         
         $NomProprietaire=$this->getUser();
-        $dateinstall= $this->getDoctrine()->getRepository(CPeseRuche::class)->findOneBy(array('nompeseruche'=>$nomruche))->getDateInstall();
+        $dateinstall= $this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche))->getDateInstall();
         return $this->render('map/info_ruche.html.twig',['nomruche'=>$nomruche,'proprietaire'=>$NomProprietaire,'dateinstall'=>$dateinstall,]);
-    }
-        
+    }        
 }
