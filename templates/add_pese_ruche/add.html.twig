@@ -3,7 +3,11 @@
 {% block title %}Hello AddPeseRucheController!{% endblock %}
 
 {% block body %}
-
+{% for message in app.flashes('message') %}
+      		 <center><div class="alert alert-success">
+        	    {{ message }}
+			 </div></center>
+     	  {% endfor %}
 <meta charset="UTF-8">
 
 <center><h1>Ajout d'un pese ruche</h1></center>
