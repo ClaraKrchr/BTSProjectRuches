@@ -29,18 +29,6 @@ class CPeseRuche
     private $dateinstall;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\CApiculteur")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $proprietaire;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\CRucher")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $rucher;
-
-    /**
      * @ORM\Column(type="boolean")
      */
     private $visibilite;
@@ -82,16 +70,6 @@ class CPeseRuche
         return $this->dateinstall;
     }
 
-    public function getProprietaire(): ?CApiculteur
-    {
-        return $this->proprietaire;
-    }
-
-    public function getRucher(): ?CRucher
-    {
-        return $this->rucher;
-    }
-
     public function getVisibilite(): ?bool
     {
         return $this->visibilite;
@@ -109,20 +87,6 @@ class CPeseRuche
     public function setDateInstall(?\DateTimeInterface $dateinstall): self
     {
         $this->dateinstall = $dateinstall;
-
-        return $this;
-    }
-
-    public function setProprietaire(?CApiculteur $proprietaire): self
-    {
-        $this->proprietaire = $proprietaire;
-
-        return $this;
-    }
-
-    public function setRucher(?CRucher $rucher): self
-    {
-        $this->rucher = $rucher;
 
         return $this;
     }
