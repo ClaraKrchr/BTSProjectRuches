@@ -29,6 +29,7 @@ class AddStationController extends AbstractController{
             
             $CStation = new CStation();
             $CStation->setNom($data['Nom_station']);
+            $CStation->setDateinstall($data['Date_installation']);
           
             $em->persist($CStation);
             

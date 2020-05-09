@@ -6,6 +6,7 @@ namespace App\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use App\Entity\CRucher;
 
 class AddStationFormType extends AbstractType
@@ -19,6 +20,10 @@ class AddStationFormType extends AbstractType
                 'choice_label'=>function(CRucher $CRucher){
                 return sprintf(' %s',$CRucher->getNom());
                 }                
+            ])
+            ->add('Date_installation', DateType::class, [
+                'widget' => 'single_text',
+                
             ])
         ;
             
