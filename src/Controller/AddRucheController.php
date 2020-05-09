@@ -54,23 +54,25 @@ class AddRucheController extends AbstractController
             $apiculteur->addAssociationRucheApiculteur($AssociationRucheApiculteur);
             $CRuche->setAssociationRucheApiculteur($AssociationRucheApiculteur);
             
+            if($data['Rucher'] != NULL){
+                $AssociationRucheRucher = new AssociationRucheRucher();
+                
+                $AssociationRucheRucher->setRuche($CRuche);
+                $AssociationRucheRucher->setRucher($em->getRepository(CRucher::class)->findOneBy(array('id'=>($data['Rucher'])->getId())));
+                $em->persist($AssociationRucheRucher);
+                ($data['Rucher'])->addAssociationRucheRucher($AssociationRucheRucher);
+                $CRuche->setAssociationRucheRucher($AssociationRucheRucher);
+            }
             
-            $AssociationRucheRucher = new AssociationRucheRucher();
-            
-            $AssociationRucheRucher->setRuche($CRuche);
-            $AssociationRucheRucher->setRucher($em->getRepository(CRucher::class)->findOneBy(array('id'=>($data['Rucher'])->getId())));
-            $em->persist($AssociationRucheRucher);
-            ($data['Rucher'])->addAssociationRucheRucher($AssociationRucheRucher);
-            $CRuche->setAssociationRucheRucher($AssociationRucheRucher);
-            
-            
-            $AssociationRuchePeseruche = new AssociationRuchePeseruche();
-            
-            $AssociationRuchePeseruche->setRuche($CRuche);
-            $AssociationRuchePeseruche->setPeseruche($em->getRepository(CPeseRuche::class)->findOneBy(array('id'=>($data['PeseRuche'])->getId())));
-            $em->persist($AssociationRuchePeseruche);
-            ($data['PeseRuche'])->setAssociationRuchePeseruche($AssociationRuchePeseruche);
-            $CRuche->setAssociationRuchePeseruche($AssociationRuchePeseruche);
+            if($data['PeseRuche'] != NULL){
+                $AssociationRuchePeseruche = new AssociationRuchePeseruche();
+                
+                $AssociationRuchePeseruche->setRuche($CRuche);
+                $AssociationRuchePeseruche->setPeseruche($em->getRepository(CPeseRuche::class)->findOneBy(array('id'=>($data['PeseRuche'])->getId())));
+                $em->persist($AssociationRuchePeseruche);
+                ($data['PeseRuche'])->setAssociationRuchePeseruche($AssociationRuchePeseruche);
+                $CRuche->setAssociationRuchePeseruche($AssociationRuchePeseruche);
+            }
             
             $em->flush();
             
