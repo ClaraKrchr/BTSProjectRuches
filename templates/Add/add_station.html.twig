@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 {% block title %} Ajouter un Rucher{% endblock %}
 {% block body %}
- {% for message in app.flashes('notice') %}
-              	<div class="flash-notice">
-                	Chargement effectué
-  	    		</div>
+            {% for station in app.flashes('station') %}
+              	<center><div class="alert alert-success">
+                	{{ station }}
+  	    		</div></center>
   	    	{% endfor %}
 <meta charset="UTF-8">
 <link rel="stylesheet" href="{{ asset('css/inscription.css') }}">

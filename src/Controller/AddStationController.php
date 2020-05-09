@@ -41,9 +41,9 @@ class AddStationController extends AbstractController{
             ($data['Rucher'])->addAssociationStationRucher($AssociationStationRucher);
             $CStation->setAssociationStationRucher($AssociationStationRucher);
             $em->flush();
-          
+            
             $message=utf8_encode('La station a été ajoutée');
-            $this->addFlash('message',$message);
+            $this->addFlash('station',$message);
             
             return $this->redirectToRoute('add_station');
         }

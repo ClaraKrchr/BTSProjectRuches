@@ -18,8 +18,7 @@ use App\Entity\AssociationRucheApiculteur;
 use App\Entity\AssociationRucheRucher;
 use App\Entity\AssociationRuchePeseruche;
 
-class AddRucheController extends AbstractController
-{
+class AddRucheController extends AbstractController{
     /**
      * @IsGranted("ROLE_USER")
      * @Route("/add_ruche", name="add_ruche")
