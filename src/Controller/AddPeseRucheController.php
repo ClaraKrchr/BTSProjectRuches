@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 use App\Entity\CPeseRuche;
 use App\Entity\AssociationPeserucheStation;
-use App\Entity\AssociationRuchePeseruche;
 use App\Entity\CStation;
 
 use App\Form\AddPeseRucheFormType;
@@ -38,7 +37,7 @@ class AddPeseRucheController extends AbstractController
             
             $associationPeserucheStation = new AssociationPeserucheStation();
             
-            $associationPeserucheStation->setPeseruche($CPeseruche);
+            $associationPeserucheStation->setPeseruche($CPeseRuche);
             $associationPeserucheStation->setStation($em->getRepository(CStation::class)->findOneBy(array('id'=>($data['nomstation'])->getId())));
             $em->persist($associationPeserucheStation);
             ($data['nomstation'])->addAssociationPeserucheStation($associationPeserucheStation);
@@ -46,7 +45,7 @@ class AddPeseRucheController extends AbstractController
             $CPeseRuche->setAssociationPeserucheStation($associationPeserucheStation);           
             $em->flush();
             
-            $message=utf8_encode('Le pèse ruche a été ajoutée');
+            $message=utf8_encode('Le pèse ruche a été ajouté');
             $this->addFlash('message',$message);
             
             return $this->redirectToRoute('add_pese_ruche');
