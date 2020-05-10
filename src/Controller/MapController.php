@@ -13,7 +13,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Entity\CRuche;
 use App\Entity\CRucher;
 use App\Entity\AssociationRucheRucher;
-use App\Entity\AssociationRucheApiculteur;
+use App\Entity\AssociationRucheApiculteur; 
 use App\Entity\MesuresStations;
 use App\Entity\MesuresRuches;
 
