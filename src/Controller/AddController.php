@@ -131,7 +131,7 @@ class AddController extends AbstractController{
         }
         
         
-        return $this->render('add_pese_ruche/add.html.twig', [
+        return $this->render('Add/add_pese_ruche.html.twig', [
             'addPeseRucheForm' => $form->createView(),
         ]);
     }
