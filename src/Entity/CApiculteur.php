@@ -80,6 +80,11 @@ class CApiculteur implements UserInterface
      */
     private $associationRucheApiculteurs;
 
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
+    private $pseudo;
+
     public function __construct()
     {
         $this->associationRucheApiculteurs = new ArrayCollection();
@@ -268,6 +273,18 @@ class CApiculteur implements UserInterface
                 $associationRucheApiculteur->setApiculteur(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
 
         return $this;
     }
