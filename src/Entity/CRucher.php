@@ -19,10 +19,10 @@ class CRucher
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=30)
      */
-    private $region;
-
+    private $nom;
+    
     /**
      * @ORM\Column(type="float")
      */
@@ -34,9 +34,10 @@ class CRucher
     private $longitude;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(type="string", length=255)
      */
-    private $nom;
+    private $region;
+    
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\AssociationRucheRucher", mappedBy="rucher")
