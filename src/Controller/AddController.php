@@ -178,7 +178,7 @@ class AddController extends AbstractController{
 
     /**
      * @IsGranted("ROLE_USER")
-     * @Route("/ajout_rucher/{latitude}/{longitude}/{region}", name="ajout_rucher")
+     * @Route("/add_rucher/{latitude}/{longitude}/{region}", name="add_rucher")
      */
     public function add_rucher($latitude, $longitude, $region, EntityManagerInterface $em, Request $request) {
         $form = $this->createForm(AddRucherFormType::class);
