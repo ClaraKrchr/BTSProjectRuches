@@ -29,7 +29,7 @@ class NouvellepageController extends AbstractController
      */
     public function ruches_privees()
     {
-        return $this->render('nouvellepage/ruches_privees.html.twig');
+        return $this->render('Ruches/ruches_privees.html.twig');
     }
     
     /**
