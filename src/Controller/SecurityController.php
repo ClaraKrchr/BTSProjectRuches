@@ -1,5 +1,5 @@
 <?php
-/* src/Controller/RegistrationController.php */
+/* src/Controller/SecurityController.php */
 
 namespace App\Controller;
 
@@ -16,7 +16,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Entity\CApiculteur;
 use App\Form\RegistrationFormType;
 
-class RegistrationController extends AbstractController
+class SecurityController extends AbstractController
 {
     /**
      * @Route("/registration", name="registration")
