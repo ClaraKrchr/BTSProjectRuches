@@ -16,6 +16,7 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('nom')      
             ->add('prenom')            
+            ->add('pseudo')
             ->add('mail')            
             ->add('password',PasswordType::class)
             ->add('confirm_password',PasswordType::class)
