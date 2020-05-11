@@ -34,7 +34,7 @@ class MapController extends NouvellepageController{
         //------------Recherche des ruches appartenant a l'utilisateur connecté-------------//
         $RuchesApiculteurs = $this->getDoctrine()->getRepository(AssociationRucheApiculteur::class)->findBy(array('ruche'=>$RuchesRuchers,'apiculteur'=>$NomProprietaire));
        
-        return $this->render('map/tableau_donnees.html.twig', ['apiculteurs' => $RuchesApiculteurs,'region'=>$regions]);
+        return $this->render('Ruches/tableau_donnees.html.twig', ['apiculteurs' => $RuchesApiculteurs,'region'=>$regions]);
     }
     
     /**
@@ -48,6 +48,6 @@ class MapController extends NouvellepageController{
         $MesuresStations=$this->getDoctrine()->getRepository(MesuresStations::class)->findBy(array('rucher'=>$Rucher));
         $MesuresRuches=$this->getDoctrine()->getRepository(MesuresRuches::class)->findBy(array('ruche'=>$nomruche));
         $dateinstall= $this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche))->getDateInstall();
-        return $this->render('map/info_ruche.html.twig',['nomruche'=>$nomruche,'proprietaire'=>$NomProprietaire,'dateinstall'=>$dateinstall,'mesuresstations'=>$MesuresStations,'mesuresruches'=>$MesuresRuches]);
+        return $this->render('Ruches/info_ruche.html.twig',['nomruche'=>$nomruche,'proprietaire'=>$NomProprietaire,'dateinstall'=>$dateinstall,'mesuresstations'=>$MesuresStations,'mesuresruches'=>$MesuresRuches]);
     }        
 }
