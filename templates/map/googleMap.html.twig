@@ -70,7 +70,9 @@
 				infoWindow = new google.maps.InfoWindow({position: mapsMouseEvent.latLng});
 	        	infoWindow.setContent(region);
 	        	infoWindow.open(map);
-	        	window.location.href = "/add_rucher/"+mapsMouseEvent.latLng.lat()+"/"+mapsMouseEvent.latLng.lng()+"/"+region;
+	        	var pathLocal = "/add_rucher/"+mapsMouseEvent.latLng.lat()+"/"+mapsMouseEvent.latLng.lng()+"/"+region;
+	        	var pathDistant = "/ruche/public/index.php/add_rucher/"+mapsMouseEvent.latLng.lat()+"/"+mapsMouseEvent.latLng.lng()+"/"+region;
+	        	window.location.href = pathLocal;
 	        });
 
         {% endfor %}
