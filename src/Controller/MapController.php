@@ -13,7 +13,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Entity\CRuche;
 use App\Entity\CRucher;
 use App\Entity\AssociationRucheRucher;
-use App\Entity\AssociationRucheApiculteur;
+use App\Entity\AssociationRucheApiculteur; 
+use App\Entity\MesuresStations;
+use App\Entity\MesuresRuches;
 
 class MapController extends NouvellepageController{
         
@@ -36,12 +38,16 @@ class MapController extends NouvellepageController{
     }
     
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/info_ruche/{nomruche}", name="info_ruche")
      */
     public function info_ruche($nomruche){
         
         $NomProprietaire=$this->getUser();
+        $Rucher=$this->getDoctrine()->getRepository(AssociationRucheRucher::class)->findBy(array('ruche'=>$nomruche));
+        $MesuresStations=$this->getDoctrine()->getRepository(MesuresStations::class)->findBy(array('rucher'=>$Rucher));
+        $MesuresRuches=$this->getDoctrine()->getRepository(MesuresRuches::class)->findBy(array('ruche'=>$nomruche));
         $dateinstall= $this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche))->getDateInstall();
-        return $this->render('map/info_ruche.html.twig',['nomruche'=>$nomruche,'proprietaire'=>$NomProprietaire,'dateinstall'=>$dateinstall,]);
+        return $this->render('map/info_ruche.html.twig',['nomruche'=>$nomruche,'proprietaire'=>$NomProprietaire,'dateinstall'=>$dateinstall,'mesuresstations'=>$MesuresStations,'mesuresruches'=>$MesuresRuches]);
     }        
 }
