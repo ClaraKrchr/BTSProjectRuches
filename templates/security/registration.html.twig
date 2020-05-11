@@ -26,7 +26,7 @@
        {{ form_row(registrationForm.prenom, { 'label' : 'Prénom' , 'attr' : { 'placeholder':'Prénom'}}) }}
     </div>
   </div>
-        
+        {{ form_row(registrationForm.pseudo, { 'label' : 'Pseudo' , 'attr' : { 'placeholder':'Pseudo'}}) }}
         {{ form_row(registrationForm.mail, { 'label': 'Mail', 'attr' : { 'placeholder':'Adresse mail'}}) }}
         {{ form_row(registrationForm.password, { 'label':'Mot de passe', 'attr' : { 'placeholder':'Mot de passe'}}) }}
         {{ form_row(registrationForm.confirm_password, {'label':'Confirmer le mot de passe', 'attr' : {'placeholder':'Saisir le même mot de passe'}}) }}
@@ -44,7 +44,7 @@
         <button type="submit" class="btn btn-primary">Inscription</button>
         
    </div>
-{{ form_end(registrationForm) }}
+
 
 
 {%  endblock %}
