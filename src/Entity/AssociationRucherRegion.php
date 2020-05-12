@@ -9,20 +9,16 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class AssociationRucherRegion
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
 
     /**
+    * @ORM\Id()
      * @ORM\OneToOne(targetEntity="App\Entity\CRucher", inversedBy="associationRucherRegion", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $rucher;
 
     /**
+    * @ORM\Id()
      * @ORM\ManyToOne(targetEntity="App\Entity\Regions", inversedBy="associationRucherRegions")
      * @ORM\JoinColumn(nullable=false)
      */
