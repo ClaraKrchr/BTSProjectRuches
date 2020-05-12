@@ -18,6 +18,7 @@ use App\Entity\AssociationRuchePeseruche;
 use App\Entity\AssociationRucheRucher;
 use App\Entity\AssociationPeserucheStation;
 use App\Entity\AssociationStationRucher;
+use App\Entity\AssociationRucherRegion;
 use App\Entity\Regions;
 
 use App\Form\AddRucheFormType;
@@ -191,12 +192,20 @@ class AddController extends AbstractController{
             $data = $form->getData();
             $CRucher = new CRucher();
             
-            $CRucher->setRegion($region);
             $CRucher->setLatitude($latitude);
             $CRucher->setLongitude($longitude);
             $CRucher->setNom($data['Nom']);
             
             $em->persist($CRucher);
+            
+            $AssociationRucherRegion = new AssociationRucherRegion();
+            
+            $AssociationRucherRegion->setRucher($CRucher);
+            $AssociationRucherRegion->setRegion($em->getRepository(Regions::class)->findOneBy(array('nomregion'=>$region)));
+            $em->persist($AssociationRucherRegion);
+            ($em->getRepository(Regions::class)->findOneBy(array('nomregion'=>$region)))->addAssociationRucherRegion($AssociationRucherRegion);
+            $CRucher->setAssociationRucherRegion($AssociationRucherRegion);
+
             $em->flush();
             
             $message=utf8_encode('Le rucher a été ajouté');

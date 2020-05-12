@@ -32,11 +32,6 @@ class CRucher
      * @ORM\Column(type="float")
      */
     private $longitude;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $region;
     
 
     /**
@@ -54,6 +49,11 @@ class CRucher
      */
     private $mesuresStations;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\AssociationRucherRegion", mappedBy="rucher", cascade={"persist", "remove"})
+     */
+    private $associationRucherRegion;
+
     public function __construct()
     {
         $this->associationRucheRuchers = new ArrayCollection();
@@ -66,11 +66,6 @@ class CRucher
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getRegion(): ?string
-    {
-        return $this->region;
     }
 
     public function getLatitude(): ?float
@@ -89,13 +84,6 @@ class CRucher
     }
 
 #========================SETTERS=======================#
-
-    public function setRegion(string $region): self
-    {
-        $this->region = $region;
-
-        return $this;
-    }
 
     public function setLatitude(float $latitude): self
     {
@@ -211,6 +199,23 @@ public function removeMesuresStation(MesuresStations $mesuresStation): self
         if ($mesuresStation->getRucher() === $this) {
             $mesuresStation->setRucher(null);
         }
+    }
+
+    return $this;
+}
+
+public function getAssociationRucherRegion(): ?AssociationRucherRegion
+{
+    return $this->associationRucherRegion;
+}
+
+public function setAssociationRucherRegion(AssociationRucherRegion $associationRucherRegion): self
+{
+    $this->associationRucherRegion = $associationRucherRegion;
+
+    // set the owning side of the relation if necessary
+    if ($associationRucherRegion->getRucher() !== $this) {
+        $associationRucherRegion->setRucher($this);
     }
 
     return $this;

@@ -42,7 +42,7 @@
                 	{% for rucher in ruchers %}
                 	<tr>
                 	    <td> {{ rucher.id }}						</td>
-                	    <td> {{ rucher.region }}					</td>
+                	    <td> {{ rucher.associationRucherRegion.region.nomregion }}					</td>
                 	    <td> {{ rucher.latitude }}					</td>
                 	    <td> {{ rucher.longitude }}					</td>
                 	    <td> {{ rucher.nom }}						</td>
