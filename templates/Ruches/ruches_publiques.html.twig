@@ -20,20 +20,19 @@
 		<div class="row" id="Content">
 	
 {% for pagination in paginations %}
-		
 		<div class="col-xl-4 col-md-6 mb-2">
 			<div class="card shadow mb-4">
 				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-					<h6 class="m-o font-weight-bold text-primary">{{ pagination.nompeseruche }}</h6>
+					<h6 class="m-o font-weight-bold text-primary">{{ pagination.nomruche }}</h6>
 				</div>
 				<div class="card-header">
 					<img src="{{ asset('téléchargé.png') }}" width="480"/>
 				</div>
 				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-					<h6 class="m-o font-weight-bold text-secondary">Localisation: {{ pagination.Rucher.Region }}</h6>
+					<h6 class="m-o font-weight-bold text-secondary">Localisation: {{ region }}</h6>
 				</div>
 				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-					<h6 class="m-o font-weight-bold text-secondary">Propriétaire: {{ pagination.Proprietaire.Nom }}</h6>
+					<h6 class="m-o font-weight-bold text-secondary">Propriétaire: {{ pagination.associationRucheApiculteur.apiculteur.pseudo }}</h6>
 				</div>
 			</div>
 		</div>
