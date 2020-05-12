@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AddPeseRucheController!{% endblock %}
+
+{% block body %}
+
+<meta charset="UTF-8">
+
+<center><h1>Ajout d'une région</h1></center>
+
+	<div class="d-flex justify-content-around">
+	
+	{{ form_start(addregions) }}
+
+    {{ form_row(addregions.nomregion, { 'label': 'Nom région'}) }}
+
+	<button type="submit" class="btn btn-primary">Ajout</button>
+
+	</div>
+{{ form_end(addregions) }}
+
+{% endblock %}

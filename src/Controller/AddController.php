@@ -18,11 +18,13 @@ use App\Entity\AssociationRuchePeseruche;
 use App\Entity\AssociationRucheRucher;
 use App\Entity\AssociationPeserucheStation;
 use App\Entity\AssociationStationRucher;
+use App\Entity\Regions;
 
 use App\Form\AddRucheFormType;
 use App\Form\AddPeseRucheFormType;
 use App\Form\AddStationFormType;
 use App\Form\AddRucherFormType;
+use App\Form\RegionsFormType;
 
 class AddController extends AbstractController{
     /**
@@ -209,5 +211,32 @@ class AddController extends AbstractController{
         return $this->render('Add/add_rucher.html.twig', [
             'addrucherform' => $form->createView(),'ruchers' =>$ruchers,
         ]);
+    }
+    
+    /**
+     * @IsGranted("ROLE_ADMIN")
+     * @Route("/add_region", name="add_region")
+     */
+    public function addRegion(EntityManagerInterface $em, Request $request){
+        $form = $this->createForm(RegionsFormType::class);
+        
+        $form->handleRequest($request);
+        
+        if($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $Regions = new Regions();
+            
+            $Regions->setNomregion($data['nomregion']);
+            
+            $em->persist($Regions);
+            $em->flush();
+            
+            return ($this->redirectToRoute('add_region'));
+        }
+        
+        return $this->render('Add/add_region.html.twig', [
+            'addregions' => $form->createView(),
+        ]);
+        
     }
 }
