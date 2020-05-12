@@ -29,6 +29,33 @@
 </tr>
 {% endfor %}
 </table>
+{% for mesuresstation in mesuresstations %}
+<div style="width:100px; height: 100px;"></div>
+<script>
+	$(function)(){
+		$('container').highcharts({
+			chart: {
+				type:'bar'
+					},
+			title:{
+				text: 'Mesures de la Station'}
+					,
+			xAxis:{
+				categories: ['Temperature','Tension','Humidite','Pression']
+					},
+			yAxis:{
+				title:{
+					text:'Unités'
+						}
+					},
+			series:[{
+				name:'Jane',
+				data:[{{mesuresstation.temperature}},{{ mesuresstation.tension }},{{ mesuresstation.humidite }},{{ mesuresstation.pression }}]
+		})
+		}
+</script>
+
+{% endfor %}
 {% endif %}
 
 {% if mesuresruches %}
@@ -41,7 +68,7 @@
 	<td>Date du relevé</td>
 	<td>Nom du Pèse Ruche</td>
 </tr>
-{% for mesuresruche in mesuresruches %}
+{% for mesuresruche in mesuresruches %} 
 <tr>
 	<td>{{ mesuresruche.station.nom }}</td>
 	<td>{{ mesuresruche.poids }}</td>
@@ -50,6 +77,33 @@
 </tr>
 {% endfor %}
 </table>
+{% for mesuresstation in mesuresstations %}
+<div style="width:100px; height: 100px;"></div>
+<script>
+	$(function)(){
+		$('container').highcharts({
+			chart: {
+				type:'bar'
+					},
+			title:{
+				text: 'Mesures de la Ruche'}
+					,
+			xAxis:{
+				categories: ['Poids']
+					},
+			yAxis:{
+				title:{
+					text:'Poids(en kg)'
+						}
+					},
+			series:[{
+				name:'Jane',
+				data:[{{ mesuresruche.poids}}]
+		})
+		}
+</script>
+
+{% endfor %}
 {% endif %}
 
 {% endblock %}
