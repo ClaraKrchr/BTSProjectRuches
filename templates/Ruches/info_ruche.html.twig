@@ -19,43 +19,16 @@
 </tr>
 {% for mesuresstation in mesuresstations %}
 <tr>
-	<td>{{ mesuresstation.station.nom }}</td>
+	<td>{{ mesuresstation.station.nomstation }}</td>
 	<td>{{ mesuresstation.temperature}}</td>
 	<td>{{ mesuresstation.tension }}</td>
 	<td>{{ mesuresstation.humidite }}</td>
 	<td>{{ mesuresstation.pression }}</td>
-	<td>{{ mesuresstation.date_releve }}</td>
-	<td>{{ mesuresstation.rucher.nom }}</td>
+	<td>{{ mesuresstation.datereleve|date("m/d/Y") }}</td>
+	<td>{{ mesuresstation.rucher.nomrucher }}</td>
 </tr>
 {% endfor %}
 </table>
-{% for mesuresstation in mesuresstations %}
-<div style="width:100px; height: 100px;"></div>
-<script>
-	$(function)(){
-		$('container').highcharts({
-			chart: {
-				type:'bar'
-					},
-			title:{
-				text: 'Mesures de la Station'}
-					,
-			xAxis:{
-				categories: ['Temperature','Tension','Humidite','Pression']
-					},
-			yAxis:{
-				title:{
-					text:'Unités'
-						}
-					},
-			series:[{
-				name:'Jane',
-				data:[{{mesuresstation.temperature}},{{ mesuresstation.tension }},{{ mesuresstation.humidite }},{{ mesuresstation.pression }}]
-		})
-		}
-</script>
-
-{% endfor %}
 {% endif %}
 
 {% if mesuresruches %}
@@ -70,40 +43,16 @@
 </tr>
 {% for mesuresruche in mesuresruches %} 
 <tr>
-	<td>{{ mesuresruche.station.nom }}</td>
+	<td>{{ mesuresruche.ruche.nomruche }}</td>
 	<td>{{ mesuresruche.poids }}</td>
-	<td>{{ mesuresruche.date_releve }}</td>
-	<td>{{ mesuresruche.peseruche.nom }}</td>
+	<td>{{ mesuresruche.datereleve|date("m/d/Y")}}</td>
+	<td>{{ mesuresruche.peseruche.nompeseruche }}</td>
 </tr>
 {% endfor %}
 </table>
-{% for mesuresstation in mesuresstations %}
-<div style="width:100px; height: 100px;"></div>
-<script>
-	$(function)(){
-		$('container').highcharts({
-			chart: {
-				type:'bar'
-					},
-			title:{
-				text: 'Mesures de la Ruche'}
-					,
-			xAxis:{
-				categories: ['Poids']
-					},
-			yAxis:{
-				title:{
-					text:'Poids(en kg)'
-						}
-					},
-			series:[{
-				name:'Jane',
-				data:[{{ mesuresruche.poids}}]
-		})
-		}
-</script>
 
-{% endfor %}
+
 {% endif %}
+
 
 {% endblock %}

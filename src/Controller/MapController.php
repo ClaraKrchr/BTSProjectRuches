@@ -17,6 +17,8 @@ use App\Entity\AssociationRucheRucher;
 use App\Entity\AssociationRucheApiculteur; 
 use App\Entity\MesuresStations;
 use App\Entity\MesuresRuches;
+use App\Entity\AssociationRucherRegion;
+use App\Entity\Regions;
 
 class MapController extends NouvellepageController{
         
@@ -26,12 +28,14 @@ class MapController extends NouvellepageController{
      */
     public function tableau_donnees($regions)
     {
+       
         //--------Obtention du nom ce l'utilisateur----------------//
         $NomProprietaire=$this->getUser();
         //-------------Recherche des ruchers dans la region---------------//
-        $Ruchers = $this->getDoctrine()->getRepository(CRucher::class)->findBy(array('region'=>$regions));
+        $Regions=$this->getDoctrine()->getRepository(Regions::class)->findBy(array('nomregion'=>$regions));
+        $RucherRegion = $this->getDoctrine()->getRepository(AssociationRucherRegion::class)->findBy(array('region'=>$Regions));
         //-------------Recherche des ruches dans les ruchers-----------------//
-        $RuchesRuchers= $this->getDoctrine()->getRepository(AssociationRucheRucher::class)->findBy(array('rucher'=>$Ruchers));
+        $RuchesRuchers= $this->getDoctrine()->getRepository(AssociationRucheRucher::class)->findBy(array('rucher'=>$RucherRegion));
         //------------Recherche des ruches appartenant a l'utilisateur connecté-------------//
         $RuchesApiculteurs = $this->getDoctrine()->getRepository(AssociationRucheApiculteur::class)->findBy(array('ruche'=>$RuchesRuchers,'apiculteur'=>$NomProprietaire));
        
@@ -47,8 +51,10 @@ class MapController extends NouvellepageController{
         $NomProprietaire=$this->getUser();
         $Rucher=$this->getDoctrine()->getRepository(AssociationRucheRucher::class)->findBy(array('ruche'=>$nomruche));
         $MesuresStations=$this->getDoctrine()->getRepository(MesuresStations::class)->findBy(array('rucher'=>$Rucher));
-        $MesuresRuches=$this->getDoctrine()->getRepository(MesuresRuches::class)->findBy(array('ruche'=>$nomruche));
+        $Ruches=$this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche));
+        $MesuresRuches=$this->getDoctrine()->getRepository(MesuresRuches::class)->findBy(array('ruche'=>$Ruches));
         $dateinstall= $this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche))->getDateInstall();
-        return $this->render('Ruches/info_ruche.html.twig',['nomruche'=>$nomruche,'proprietaire'=>$NomProprietaire,'dateinstall'=>$dateinstall,'mesuresstations'=>$MesuresStations,'mesuresruches'=>$MesuresRuches]);
+        return $this->render('Ruches/info_ruche.html.twig',[
+            'nomruche'=>$nomruche,'proprietaire'=>$NomProprietaire,'dateinstall'=>$dateinstall,'mesuresstations'=>$MesuresStations,'mesuresruches'=>$MesuresRuches]);
     }        
 }

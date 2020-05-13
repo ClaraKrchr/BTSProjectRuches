@@ -21,11 +21,13 @@ use App\Entity\AssociationStationRucher;
 use App\Entity\AssociationRucherRegion;
 use App\Entity\Regions;
 
+use App\Form\AddMesuresRuchesForm;
 use App\Form\AddRucheFormType;
 use App\Form\AddPeseRucheFormType;
 use App\Form\AddStationFormType;
 use App\Form\AddRucherFormType;
 use App\Form\RegionsFormType;
+use App\Entity\MesuresRuches;
 
 class AddController extends AbstractController{
     /**
@@ -247,5 +249,40 @@ class AddController extends AbstractController{
             'addregions' => $form->createView(),
         ]);
         
+    }
+    
+    /**
+     * @Route("/add_mesures_ruches", name="add_mesures_ruches")
+     */
+    public function add_mesures_ruches(EntityManagerInterface $em, Request $request)
+    {
+        
+        
+        $form = $this->createForm(AddMesuresRuchesForm::class);
+        $form->handleRequest($request);
+        
+        if($form->isSubmitted() && $form->isValid()){
+            $data = $form->getData();
+            
+            $MesuresRuches = new MesuresRuches();
+            $MesuresRuches->setRuche($data['ruche']);
+            $MesuresRuches->setDateReleve($data['datereleve']);
+            $MesuresRuches->setPoids($data['poids']);
+            $MesuresRuches->setPeseruche($data['peseruche']);
+            
+            $em->persist($MesuresRuches);
+           
+            $em->flush();
+            
+            $mesuresRuche=utf8_encode('La mesure a été ajouté');
+            $this->addFlash('mesuresRuche',$mesuresRuche);
+            
+            return $this->redirectToRoute('add_mesures_ruches');
+        }
+        
+        
+        return $this->render('Add/add_mesures_ruches.html.twig', [
+            'addMesuresRuchesForm' => $form->createView(),
+        ]);
     }
 }

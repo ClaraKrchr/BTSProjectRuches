@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% block title %}Mesures{% endblock %}
+{% block body %}
+ {% for mesuresRuche in app.flashes('mesuresRuche') %}
+      		 <center><div class="alert alert-success">
+        	    {{ mesuresRuche }}
+			 </div></center>
+     	  {% endfor %}
+<meta charset="UTF-8">
+<link rel="stylesheet" href="{{ asset('css/inscription.css') }}">
+
+<center><h1>Ajout d'une mesure</h1></center>
+<br>
+	<div class="d-flex justify-content-around">
+
+            {{ form_start(addMesuresRuchesForm) }}
+            {{ form_widget(addMesuresRuchesForm) }}
+
+    <button type="submit" class="btn btn-primary">Valider</button></center>
+    
+{{ form_end(addMesuresRuchesForm) }}
+
+	</div>
+
+{%  endblock %}
