@@ -27,8 +27,7 @@ class RuchesPubliquesController extends AbstractController{
         $RucherRegion = $this->getDoctrine()->getRepository(AssociationRucherRegion::class)->findBy(array('region'=>$region));
         $AssosRucheRucher = $this->getDoctrine()->getRepository(AssociationRucheRucher::class)->findBy(array('rucher'=>$RucherRegion));
         $ARRLength = count($AssosRucheRucher);
-        $j = 0;
-        for($i = 0; $i < $ARRLength; $i++)
+        for($j = $i = 0; $i < $ARRLength; $i++)
         {
             if ($AssosRucheRucher[$i]->getRuche()->getVisibilite() == '0'){
                 $ruches[$j] = $AssosRucheRucher[$i]->getRuche();
