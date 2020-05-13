@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\CRucher;
 use App\Entity\CRuche;
 use App\Entity\AssociationRucheRucher;
+use App\Entity\AssociationRucherRegion;
+use App\Entity\Regions;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,12 +23,13 @@ class RuchesPubliquesController extends AbstractController{
      */
     public function new(EntityManagerInterface $em, $regions, PaginatorInterface $paginator, Request $request, $page)   {
         
-        $ruchers = $this->getDoctrine()->getRepository(CRucher::class)->findBy(array('region'=>$regions));
-        $AssosRucheRucher = $this->getDoctrine()->getRepository(AssociationRucheRucher::class)->findBy(array('rucher'=>$ruchers));
+        $region = $this->getDoctrine()->getRepository(Regions::class)->findBy(array('nomregion'=>$regions));
+        $RucherRegion = $this->getDoctrine()->getRepository(AssociationRucherRegion::class)->findBy(array('region'=>$region));
+        $AssosRucheRucher = $this->getDoctrine()->getRepository(AssociationRucheRucher::class)->findBy(array('rucher'=>$RucherRegion));
         $ARRLength = count($AssosRucheRucher);
+        $j = 0;
         for($i = 0; $i < $ARRLength; $i++)
         {
-            $j = 0;
             if ($AssosRucheRucher[$i]->getRuche()->getVisibilite() == '0'){
                 $ruches[$j] = $AssosRucheRucher[$i]->getRuche();
                 $j++;
