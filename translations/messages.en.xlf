@@ -7,7 +7,7 @@
     <body>
       <trans-unit id="3pAffxq" resname="Ajout d'une ruche">
         <source>Ajout d'une ruche</source>
-        <target>add a beehive</target>
+        <target>Add a beehive</target>
       </trans-unit>
       <trans-unit id="YmunqJ." resname="Valider">
         <source>Valider</source>
@@ -15,7 +15,7 @@
       </trans-unit>
       <trans-unit id="j2HnuMp" resname="Ajouter une station">
         <source>Ajouter une station</source>
-        <target>add a station</target>
+        <target>Add a station</target>
       </trans-unit>
     </body>
   </file>
