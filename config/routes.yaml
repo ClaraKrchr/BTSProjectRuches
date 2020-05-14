@@ -1,3 +1,8 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+contact:
+    path:       /{_locale}/add_ruche
+    controller: App\Controller\AddController::new
+    requirements:
+        _locale: en|fr|de

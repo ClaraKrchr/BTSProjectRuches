@@ -42,5 +42,19 @@ class NouvellepageController extends AbstractController
         $this->addFlash('messageGoogleMap',$message);
         return $this->render('map/googleMap.html.twig', ['ruchers' => $ruchers,]);
     }
-    
+    /**
+     * @Route("/change_locale/{locale}", name="change_locale")
+     */
+    public function changeLocale($locale, Request $request){
+        // on stocke la langue demandée dans la session
+        $request->getSession()->Set('_locale',$locale);
+        
+        // on reviens sur la page précédente
+        return $this->redirect($request->headers->get('referer'));
+    }
 }
+    
+        
+        
+        
+        
