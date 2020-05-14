@@ -20,14 +20,17 @@ use App\Entity\AssociationPeserucheStation;
 use App\Entity\AssociationStationRucher;
 use App\Entity\AssociationRucherRegion;
 use App\Entity\Regions;
+use App\Entity\MesuresRuches;
+use App\Entity\MesuresStations;
 
+
+use App\Form\AddMesuresStationsForm;
 use App\Form\AddMesuresRuchesForm;
 use App\Form\AddRucheFormType;
 use App\Form\AddPeseRucheFormType;
 use App\Form\AddStationFormType;
 use App\Form\AddRucherFormType;
 use App\Form\RegionsFormType;
-use App\Entity\MesuresRuches;
 
 class AddController extends AbstractController{
     /**
@@ -283,6 +286,44 @@ class AddController extends AbstractController{
         
         return $this->render('Add/add_mesures_ruches.html.twig', [
             'addMesuresRuchesForm' => $form->createView(),
+        ]);
+    }
+    
+    /**
+     * @Route("/add_mesures_stations", name="add_mesures_stations")
+     */
+    public function add_mesures_stations(EntityManagerInterface $em, Request $request)
+    {
+        
+        
+        $form = $this->createForm(AddMesuresStationsForm::class);
+        $form->handleRequest($request);
+        
+        if($form->isSubmitted() && $form->isValid()){
+            $data = $form->getData();
+            
+            $MesuresStations = new MesuresStations();
+            $MesuresStations->setStation($data['station']);
+            $MesuresStations->setTemperature($data['temperature']);
+            $MesuresStations->setTension($data['tension']);
+            $MesuresStations->setHumidite($data['humidite']); 
+            $MesuresStations->setPression($data['pression']);
+            $MesuresStations->setDateReleve($data['datereleve']);
+            $MesuresStations->setRucher($data['rucher']);
+            
+            $em->persist($MesuresStations);
+            
+            $em->flush();
+            
+            $mesuresStations=utf8_encode('La mesure a été ajouté');
+            $this->addFlash('mesuresStations',$mesuresStations);
+            
+            return $this->redirectToRoute('add_mesures_stations');
+        }
+        
+        
+        return $this->render('Add/add_mesures_stations.html.twig', [
+            'addMesuresStationsForm' => $form->createView(),
         ]);
     }
 }

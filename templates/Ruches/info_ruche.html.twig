@@ -2,38 +2,80 @@
 {% block body %}
 <!-- for HTML5 -->
 <meta charset="UTF-8">
-<center><h3>Les données de la ruche {{ nomruche }} qui appartient à {{ proprietaire }} installée le : {{ dateinstall|date("m/d/Y") }}</h3></center>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+
+<center><h3>Les données de la ruche {{ nomruche }} qui appartient à {{ proprietaire }} installée le : {{ dateinstall|date("m/d/Y") }}</h3>
 <br></br>
 {% if mesuresstations %}
 <h4>Les mesures de la station</h4>
-<br></br>
+
 <table border bgcolor="white" cellpadding="5px">
 <tr>
 	<td>Nom Station</td>
 	<td>Température</td>
 	<td>Tension</td>
 	<td>Humidité</td>
-	<td>Pression</td>
 	<td>Date du relevé</td>
+	<td>Pression</td>
 	<td>Nom du Rucher</td>
 </tr>
 {% for mesuresstation in mesuresstations %}
 <tr>
-	<td>{{ mesuresstation.station.nomstation }}</td>
+	<td>{{ mesuresstation.station.nom }}</td>
 	<td>{{ mesuresstation.temperature}}</td>
 	<td>{{ mesuresstation.tension }}</td>
 	<td>{{ mesuresstation.humidite }}</td>
-	<td>{{ mesuresstation.pression }}</td>
 	<td>{{ mesuresstation.datereleve|date("m/d/Y") }}</td>
-	<td>{{ mesuresstation.rucher.nomrucher }}</td>
+	<td>{{ mesuresstation.pression }}</td>
+	<td>{{ mesuresstation.rucher.nom }}</td>
 </tr>
 {% endfor %}
 </table>
+
+<div style="width:50%; height:30%;">
+<canvas id="myChart2"></canvas></div>
+<script>
+    var ctx = document.getElementById('myChart2').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+    
+        // The data for our dataset
+        data: {
+            labels: [{% for mesuresstation in mesuresstations %} {{mesuresstation.datereleve|date("m/d/Y")}}, {% endfor %}],
+            datasets: [{
+                label: 'Temperature',
+                
+                borderColor: 'rgb(255, 99, 132)',
+                data: [{% for mesuresstation in mesuresstations %} {{ mesuresstation.temperature }},{% endfor %}]
+            },{
+                label: 'Tension',
+                
+                borderColor: 'rgb(255, 0, 255)',
+                data: [{% for mesuresstation in mesuresstations %} {{ mesuresstation.tension }},{% endfor %}]
+            },{
+                label: 'Humidite',
+                borderColor: 'rgb(255, 255, 0)',
+                data: [{% for mesuresstation in mesuresstations %} {{ mesuresstation.humidite }},{% endfor %}]
+            },{
+                label: 'Pression',
+                borderColor: 'rgb(0, 99, 132)',
+                data: [{% for mesuresstation in mesuresstations %} {{ mesuresstation.pression }},{% endfor %}]
+            },
+            ]
+        },
+    
+        // Configuration options go here
+        options: {}
+    });
+</script>
+
 {% endif %}
 
 {% if mesuresruches %}
-<h4>Les mesures de la ruche</h4>
 <br></br>
+<h4>Les mesures de la ruche</h4>
+
 <table border bgcolor="white" cellpadding="5px">
 <tr>
 	<td>Nom Ruche</td>
@@ -50,9 +92,32 @@
 </tr>
 {% endfor %}
 </table>
-
+<div style="width:50%; height:50px;">
+<canvas id="myChart"></canvas></div>
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+    
+        // The data for our dataset
+        data: {
+            labels: [{% for mesuresruche in mesuresruches %} {{mesuresruche.datereleve|date("m/d/Y")}}, {% endfor %}],
+            datasets: [{
+                label: 'Poids',
+                backgroundColor: 'rgb(255, 255, 125)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [{% for mesuresruche in mesuresruches %}{{ mesuresruche.poids }},{% endfor %}]
+            }]
+        },
+    
+        // Configuration options go here
+        options: {}
+    });
+</script>
 
 {% endif %}
 
+</center>
 
 {% endblock %}

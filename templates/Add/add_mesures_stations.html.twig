@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
-{% block title %}Mesures Ruches{% endblock %}
+{% block title %}Mesures Stations{% endblock %}
 {% block body %}
- {% for mesuresRuche in app.flashes('mesuresRuche') %}
+ {% for mesuresStation in app.flashes('mesuresStation') %}
       		 <center><div class="alert alert-success">
-        	    {{ mesuresRuche }}
+        	    {{ mesuresStation }}
 			 </div></center>
      	  {% endfor %}
 <meta charset="UTF-8">
@@ -13,12 +13,12 @@
 <br>
 	<div class="d-flex justify-content-around">
 
-            {{ form_start(addMesuresRuchesForm) }}
-            {{ form_widget(addMesuresRuchesForm) }}
+            {{ form_start(addMesuresStationsForm) }}
+            {{ form_widget(addMesuresStationsForm) }}
 
     <button type="submit" class="btn btn-primary">Valider</button></center>
     
-{{ form_end(addMesuresRuchesForm) }}
+{{ form_end(addMesuresStationsForm) }}
 
 	</div>
 

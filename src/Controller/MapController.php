@@ -49,10 +49,14 @@ class MapController extends NouvellepageController{
     public function info_ruche($nomruche){
         
         $NomProprietaire=$this->getUser();
-        $Rucher=$this->getDoctrine()->getRepository(AssociationRucheRucher::class)->findBy(array('ruche'=>$nomruche));
-        $MesuresStations=$this->getDoctrine()->getRepository(MesuresStations::class)->findBy(array('rucher'=>$Rucher));
+        
         $Ruches=$this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche));
+        
+        $RucheRucher=$this->getDoctrine()->getRepository(AssociationRucheRucher::class)->findBy(array('ruche'=>$Ruches));        
+        $MesuresStations=$this->getDoctrine()->getRepository(MesuresStations::class)->findBy(array('rucher'=>$RucheRucher));
+        
         $MesuresRuches=$this->getDoctrine()->getRepository(MesuresRuches::class)->findBy(array('ruche'=>$Ruches));
+        
         $dateinstall= $this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche))->getDateInstall();
         return $this->render('Ruches/info_ruche.html.twig',[
             'nomruche'=>$nomruche,'proprietaire'=>$NomProprietaire,'dateinstall'=>$dateinstall,'mesuresstations'=>$MesuresStations,'mesuresruches'=>$MesuresRuches]);
