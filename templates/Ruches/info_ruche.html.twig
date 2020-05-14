@@ -42,7 +42,7 @@
     
         // The data for our dataset
         data: {
-            labels: [{% for mesuresstation in mesuresstations %} {{mesuresstation.datereleve|date("m/d/Y")}}, {% endfor %}],
+            labels: [{% for mesuresstation in mesuresstations %} '{{mesuresstation.datereleve|date("m/d/Y")}}', {% endfor %}],
             datasets: [{
                 label: 'Temperature',
                 
@@ -102,10 +102,9 @@
     
         // The data for our dataset
         data: {
-            labels: [{% for mesuresruche in mesuresruches %} {{mesuresruche.datereleve|date("m/d/Y")}}, {% endfor %}],
+            labels: [{% for mesuresruche in mesuresruches %} '{{mesuresruche.datereleve|date("m/d/Y")}}', {% endfor %}],
             datasets: [{
                 label: 'Poids',
-                backgroundColor: 'rgb(255, 255, 125)',
                 borderColor: 'rgb(255, 99, 132)',
                 data: [{% for mesuresruche in mesuresruches %}{{ mesuresruche.poids }},{% endfor %}]
             }]
