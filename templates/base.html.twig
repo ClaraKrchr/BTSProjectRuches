@@ -26,24 +26,24 @@
     <ul class="navbar-nav bd-navbar-nav mr-auto">
       {% if app.user %}
       <li class="nav-item">
-        <a class="nav-link" href="{{ path('ruches_privees') }}">Mes ruches</a>
+        <a class="nav-link" href="{{ path('ruches_privees') }}">{% trans %}Mes ruches{% endtrans %}</a>
       </li>
       <li class="nav-item">
-      	<a class="nav-link" href="{{ path('add_ruche') }}">Ajout d'une ruche</a>
+      	<a class="nav-link" href="{{ path('add_ruche') }}">{% trans %}Ajout d'une ruche{% endtrans %}</a>
   	  </li>
       <li class="nav-item">
-      	<a class="nav-link" href="{{ path('googleMap') }}">Ajout d'un rucher</a>
+      	<a class="nav-link" href="{{ path('googleMap') }}">{% trans %}Ajout d'un rucher{% endtrans %}</a>
   	  </li>
   	  <li class="nav-item">
-      	<a class="nav-link" href="{{ path('add_pese_ruche') }}">Ajout d'un pèse-ruche</a>
+      	<a class="nav-link" href="{{ path('add_pese_ruche') }}">{% trans %}Ajout d'un pèse-ruche{% endtrans %}</a>
   	  </li>
   	  <li class="nav-item">
-      	<a class="nav-link" href="{{ path('add_station') }}" onclick="ga('send', 'event', '	Navbar', 'Community links', 'Ajout d'une station');">Ajout d'une station</a>
+      	<a class="nav-link" href="{{ path('add_station') }}" onclick="ga('send', 'event', '	Navbar', 'Community links', 'Ajout d'une station');">{% trans %}Ajout d'une station{% endtrans %}</a>
 	  
   	  </li>
   	  {% if is_granted('ROLE_ADMIN') %}
   	  <li class="nav-item">
-        <a class="nav-link" href="{{ path('gestionnaire') }}">Gestionnaire apiculteurs</a>
+        <a class="nav-link" href="{{ path('gestionnaire') }}">{% trans %}Gestionnaire apiculteurs{% endtrans %}</a>
       </li>
       {% endif %}
       {% endif %}

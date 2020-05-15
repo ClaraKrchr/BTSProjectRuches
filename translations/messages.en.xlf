@@ -5,6 +5,78 @@
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
+      <trans-unit id="WIE7DCK" resname="Nom ruche">
+        <source>Nom ruche</source>
+        <target>Hive name</target>
+      </trans-unit>
+      <trans-unit id="Duz1aPQ" resname="Date installation">
+        <source>Date installation</source>
+        <target>Installation date</target>
+      </trans-unit>
+      <trans-unit id="WNM8a3N" resname="Etat">
+        <source>Etat</source>
+        <target>Status</target>
+      </trans-unit>
+      <trans-unit id="WGLWiK6" resname="Type ruche">
+        <source>Type ruche</source>
+        <target>Hive type</target>
+      </trans-unit>
+      <trans-unit id="ta6IFGl" resname="Rucher">
+        <source>Rucher</source>
+        <target>Apiary</target>
+      </trans-unit>
+      <trans-unit id="WP5TKz7" resname="Pese ruche">
+        <source>Pese ruche</source>
+        <target>Hive scale</target>
+      </trans-unit>
+      <trans-unit id="uZKlb_l" resname="Visibilite">
+        <source>Visibilite</source>
+        <target>Visibility</target>
+      </trans-unit>
+      <trans-unit id="ZlOvWAV" resname="Publique">
+        <source>Publique</source>
+        <target>Public</target>
+      </trans-unit>
+      <trans-unit id="U3EyUHL" resname="Privee">
+        <source>Privee</source>
+        <target>Private</target>
+      </trans-unit>
+      <trans-unit id="L2yEd_k" resname="En attente">
+        <source>En attente</source>
+        <target>pending</target>
+      </trans-unit>
+      <trans-unit id="p1gh8rg" resname="Dans un rucher">
+        <source>Dans un rucher</source>
+        <target>in an apiary</target>
+      </trans-unit>
+      <trans-unit id="m3upfPp" resname="Chez un apiculteur">
+        <source>Chez un apiculteur</source>
+        <target>At a beekeeper's</target>
+      </trans-unit>
+      <trans-unit id="ZYBJ_mB" resname="Ruche kenyane(KTBH)">
+        <source>Ruche kenyane(KTBH)</source>
+        <target>Kenayne hive</target>
+      </trans-unit>
+      <trans-unit id="vpgfmDP" resname="Ruche Dadant">
+        <source>Ruche Dadant</source>
+        <target>Dadant hive</target>
+      </trans-unit>
+      <trans-unit id="Yu56ss0" resname="Ruche Warre(ruche populaire)">
+        <source>Ruche Warre(ruche populaire)</source>
+        <target>Warre hive</target>
+      </trans-unit>
+      <trans-unit id="L2mBFzf" resname="Ruche Langstroth(standard)">
+        <source>Ruche Langstroth(standard)</source>
+        <target>Langstroth hive</target>
+      </trans-unit>
+      <trans-unit id="wuaE4nk" resname="Ruches en paille">
+        <source>Ruches en paille</source>
+        <target>Straw hive</target>
+      </trans-unit>
+      <trans-unit id="Y1rbe87" resname="Nom station">
+        <source>Nom station</source>
+        <target>Station name</target>
+      </trans-unit>
       <trans-unit id="3pAffxq" resname="Ajout d'une ruche">
         <source>Ajout d'une ruche</source>
         <target>Add a beehive</target>
@@ -15,7 +87,27 @@
       </trans-unit>
       <trans-unit id="j2HnuMp" resname="Ajouter une station">
         <source>Ajouter une station</source>
-        <target>Add a station</target>
+        <target>Add station</target>
+      </trans-unit>
+      <trans-unit id="CGHukRG" resname="Mes ruches">
+        <source>Mes ruches</source>
+        <target>My hives</target>
+      </trans-unit>
+      <trans-unit id="epgZXj6" resname="Ajout d'un rucher">
+        <source>Ajout d'un rucher</source>
+        <target>Add apiary</target>
+      </trans-unit>
+      <trans-unit id="J88sqdX" resname="Ajout d'un pèse-ruche">
+        <source>Ajout d'un pèse-ruche</source>
+        <target>Add hive scale</target>
+      </trans-unit>
+      <trans-unit id="ZkAW45q" resname="Gestionnaire apiculteurs">
+        <source>Gestionnaire apiculteurs</source>
+        <target>Beekeeper manager</target>
+      </trans-unit>
+      <trans-unit id="1FPFZyL" resname="Ajout d'une station">
+        <source>Ajout d'une station</source>
+        <target>Add sation</target>
       </trans-unit>
     </body>
   </file>
