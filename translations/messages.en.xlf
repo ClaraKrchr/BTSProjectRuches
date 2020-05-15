@@ -109,6 +109,14 @@
         <source>Ajout d'une station</source>
         <target>Add sation</target>
       </trans-unit>
+      <trans-unit id="YdaVBBA" resname="Connexion">
+        <source>Connexion</source>
+        <target>Connect</target>
+      </trans-unit>
+      <trans-unit id="DL02fX6" resname="Deconnexion">
+        <source>Deconnexion</source>
+        <target>Disconnect</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
