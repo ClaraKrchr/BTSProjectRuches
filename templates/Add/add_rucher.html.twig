@@ -33,21 +33,15 @@
 			<center>
 				<table class="table table-bordered" >
                 	<tr>
-                		<td>Id</td>
-                		<td>Region</td>
                 		<td>Latitude</td>
                 		<td>Longitude</td>
-                		<td>Nom</td>
+                		<td>Région</td>
                 	</tr>
-                	{% for rucher in ruchers %}
                 	<tr>
-                	    <td> {{ rucher.id }}						</td>
-                	    <td> {{ rucher.associationRucherRegion.region.nomregion }}					</td>
-                	    <td> {{ rucher.latitude }}					</td>
-                	    <td> {{ rucher.longitude }}					</td>
-                	    <td> {{ rucher.nom }}						</td>
+                	    <td> {{ latitude }}						</td>
+                	    <td> {{ longitude }}					</td>
+                	    <td> {{ region }}					</td>
                 	</tr>
-                	{% endfor %}
                 </table>
                 <br></br>
             </center>

@@ -223,7 +223,7 @@ class AddController extends AbstractController{
         
         
         return $this->render('Add/add_rucher.html.twig', [
-            'addrucherform' => $form->createView(),'ruchers' =>$ruchers,
+            'addrucherform' => $form->createView(),'ruchers' =>$ruchers, 'latitude'=>$latitude, 'longitude'=>$longitude, 'region'=>$region
         ]);
     }
     
