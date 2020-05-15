@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification d'une ruche{% endblock %}
+
+{% block body %}
+<meta charset="UTF-8">
+<center><h1>Modification d'une ruche</h1></center>
+
+<div class="d-flex justify-content-around">
+    {{ form_start(formRuche) }}
+    
+    <form>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      {{ form_row(formRuche.Nom_ruche, { 'attr' : { 'placeholder':'Nom ruche'}}) }}
+    </div>
+    <div class="form-group col-md-6">
+       {{ form_row(formRuche.Date_installation, { 'label' : 'Date d'installation' , 'attr' : { 'placeholder':'Date d'installation'}}) }}
+    </div>
+  </div>
+        {{ form_row(formRuche.Etat, { 'label' : 'Etat' , 'attr' : { 'placeholder':'Etat'}}) }}
+        {{ form_row(formRuche.Type_ruche, { 'label': 'Type de ruche', 'attr' : { 'placeholder':'Type de ruche'}}) }}
+        {{ form_row(formRuche.Rucher, { 'label':'Rucher', 'attr' : { 'placeholder':'Rucher'}}) }}
+        <div class="form-row">
+    <div class="form-group col-md-6">
+        {{ form_row(formRuche.PeseRuche, { 'label':'Pèse-ruche', 'attr' : { 'placeholder':'Pèse-ruche'}}) }}
+         </div>
+    <div class="form-group col-md-6">
+        {{ form_row(formRuche.Visibilite, { 'attr' : { 'placeholder':'Visibilité'}}) }}
+        </div>
+  </div>
+    {{ form_widget(formRuche) }}
+    
+	<button type="submit" class="btn btn-success">Modifier</button>
+	<a href="{{ path('tableau_donnees') }}"><button class="btn btn-secondary">Annuler</button></a>
+    {{ form_end(formRuche) }}
+</div>
+{% endblock %}
