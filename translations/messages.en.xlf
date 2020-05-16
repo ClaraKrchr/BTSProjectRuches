@@ -5,12 +5,12 @@
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
-      <trans-unit id="WIE7DCK" resname="Nom ruche">
-        <source>Nom ruche</source>
+      <trans-unit id="WIE7DCK" resname="Nom de la ruche">
+        <source>Nom de la ruche</source>
         <target>Hive name</target>
       </trans-unit>
-      <trans-unit id="Duz1aPQ" resname="Date installation">
-        <source>Date installation</source>
+      <trans-unit id="Duz1aPQ" resname="Date d'installation">
+        <source>Date d'installation</source>
         <target>Installation date</target>
       </trans-unit>
       <trans-unit id="WNM8a3N" resname="Etat">
