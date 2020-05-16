@@ -44,11 +44,11 @@ class EditController extends AbstractController
                 if ($em->getRepository(AssociationRucheRucher::class)->findOneBy(array('ruche'=>$ruche, 'rucher'=>($data['Rucher'])))){}
                 else{
                     $AssociationRucheRucher = new AssociationRucheRucher;
-                    $AssociationRucheRucher->setRuche($CRuche);
+                    $AssociationRucheRucher->setRuche($ruche);
                     $AssociationRucheRucher->setRucher($em->getRepository(CRucher::class)->findOneBy(array('id'=>($data['Rucher'])->getId())));
                     $em->persist($AssociationRucheRucher);
                     ($data['Rucher'])->addAssociationRucheRucher($AssociationRucheRucher);
-                    $CRuche->setAssociationRucheRucher($AssociationRucheRucher);
+                    $ruche->setAssociationRucheRucher($AssociationRucheRucher);
                 }
             }
             

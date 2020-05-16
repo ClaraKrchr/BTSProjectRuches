@@ -63,9 +63,15 @@ class CRuche
      */
     private $etat;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\AssociationRucheCarnet", mappedBy="ruche", orphanRemoval=true)
+     */
+    private $associationRucheCarnets;
+
     public function __construct()
     {
         $this->mesuresRuches = new ArrayCollection();
+        $this->associationRucheCarnets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -211,6 +217,37 @@ class CRuche
     public function setEtat(int $etat): self
     {
         $this->etat = $etat;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|AssociationRucheCarnet[]
+     */
+    public function getAssociationRucheCarnets(): Collection
+    {
+        return $this->associationRucheCarnets;
+    }
+
+    public function addAssociationRucheCarnet(AssociationRucheCarnet $associationRucheCarnet): self
+    {
+        if (!$this->associationRucheCarnets->contains($associationRucheCarnet)) {
+            $this->associationRucheCarnets[] = $associationRucheCarnet;
+            $associationRucheCarnet->setRuche($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAssociationRucheCarnet(AssociationRucheCarnet $associationRucheCarnet): self
+    {
+        if ($this->associationRucheCarnets->contains($associationRucheCarnet)) {
+            $this->associationRucheCarnets->removeElement($associationRucheCarnet);
+            // set the owning side to null (unless already changed)
+            if ($associationRucheCarnet->getRuche() === $this) {
+                $associationRucheCarnet->setRuche(null);
+            }
+        }
 
         return $this;
     }
