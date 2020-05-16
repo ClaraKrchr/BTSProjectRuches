@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block title %}Mesures Ruches{% endblock %}
+{% block body %}
+
+<center><h1>Ajout d'une info</h1></center>
+
+<div class="d-flex justify-content-around">
+
+            {{ form_start(addCarnetForm) }}
+            {{ form_widget(addCarnetForm) }}
+
+    <button type="submit" class="btn btn-primary">Valider</button></center>
+    
+{{ form_end(addCarnetForm) }}
+
+{% endblock %}

@@ -4,6 +4,7 @@
 
 {% block body %}
 <meta charset="UTF-8">
+
 <center><h1>Mon carnet d'apiculteur</h1></center>
 <table id="carnet" class="table table-striped">
 	<thread>
@@ -13,6 +14,21 @@
 			<th>Action</th>
 			<th>Commentaire</th>			
 		</tr>
+		
+		<tbody>
+			{% for carnet in carnet %}
+				<tr>
+					<td>{{ carnet.Ruche }}</td>
+					<td>{{ capiculteur.date }}</td>
+					<td>{{ capiculteur.Action }}</td>
+					<td>{{ capiculteur.commentaire }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+		
+		<a href="{{ path('add_carnet') }}"><button class="btn btn-primary">Ajouter une info</button></a>	
+		
 	</thread>
+</table>
 
 {% endblock %}

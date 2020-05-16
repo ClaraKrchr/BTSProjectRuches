@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AddPeseRucheController!{% endblock %}
+
+{% block body %}
+
+<meta charset="UTF-8">
+
+<center><h1>Ajout d'une action</h1></center>
+
+	<div class="d-flex justify-content-around">
+	
+	{{ form_start(addAction) }}
+
+    {{ form_row(addAction.nomaction, { 'label': 'Nom action'}) }}
+
+	<button type="submit" class="btn btn-primary">Ajout</button>
+
+	</div>
+{{ form_end(addAction) }}
+
+{% endblock %}

@@ -22,8 +22,9 @@ use App\Entity\AssociationRucherRegion;
 use App\Entity\Regions;
 use App\Entity\MesuresRuches;
 use App\Entity\MesuresStations;
+use App\Entity\Action;
 
-
+use App\Form\ActionFormType;
 use App\Form\AddMesuresStationsForm;
 use App\Form\AddMesuresRuchesForm;
 use App\Form\AddRucheFormType;
@@ -325,5 +326,32 @@ class AddController extends AbstractController{
         return $this->render('Add/add_mesures_stations.html.twig', [
             'addMesuresStationsForm' => $form->createView(),
         ]);
+    }
+    
+    /**
+     * @IsGranted("ROLE_ADMIN")
+     * @Route("/add_action", name="add_action")
+     */
+    public function addAction(EntityManagerInterface $em, Request $request){
+        $form = $this->createForm(ActionFormType::class);
+        
+        $form->handleRequest($request);
+        
+        if($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $Action = new Action();
+            
+            $Action->setNomaction($data['nomaction']);
+            
+            $em->persist($Action);
+            $em->flush();
+            
+            return ($this->redirectToRoute('add_action'));
+        }
+        
+        return $this->render('Add/add_action.html.twig', [
+            'addAction' => $form->createView(),
+        ]);
+        
     }
 }
