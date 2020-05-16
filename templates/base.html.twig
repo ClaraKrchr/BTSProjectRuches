@@ -38,9 +38,12 @@
       	<a class="nav-link" href="{{ path('add_pese_ruche') }}">{% trans %}Ajout d'un pèse-ruche{% endtrans %}</a>
   	  </li>
   	  <li class="nav-item">
-      	<a class="nav-link" href="{{ path('add_station') }}" onclick="ga('send', 'event', '	Navbar', 'Community links', 'Ajout d'une station');">{% trans %}Ajout d'une station{% endtrans %}</a>
-	  
+      	<a class="nav-link" href="{{ path('add_station') }}" onclick="ga('send', 'event', '	Navbar', 'Community links', 'Ajout d'une station');">{% trans %}Ajout d'une station{% endtrans %}</a>	  
   	  </li>
+  	  <li class="nav-item">
+  	  	<a class="nav-link" href="{{ path('carnet') }}">{% trans %}Mon carnet d'apiculteur{% endtrans %}</a>
+  	  </li>
+  	  
   	  {% if is_granted('ROLE_ADMIN') %}
   	  <li class="nav-item">
         <a class="nav-link" href="{{ path('gestionnaire') }}">{% trans %}Gestionnaire apiculteurs{% endtrans %}</a>

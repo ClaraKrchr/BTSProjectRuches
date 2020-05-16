@@ -50,6 +50,14 @@ class NouvellepageController extends AbstractController
         // on reviens sur la page précédente
         return $this->redirect($request->headers->get('referer'));
     }
+    
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/carnet", name="carnet")
+     */
+    public function carnet(){
+        return $this->render('Ruches/carnet.html.twig');
+    }
 }
     
         
