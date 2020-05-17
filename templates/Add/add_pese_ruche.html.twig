@@ -10,7 +10,7 @@
      	  {% endfor %}
 <meta charset="UTF-8">
 
-<center><h1>Ajout d'un pese ruche</h1></center>
+<center><h1>{% trans %}Ajout d'un pese ruche{% endtrans %}</h1></center>
 
 	<div class="d-flex justify-content-around">
 
@@ -21,7 +21,7 @@
     {{ form_row(addPeseRucheForm.visibilite, {'label': 'Visibilité'}) }}
     {{ form_row(addPeseRucheForm.nomstation, {'label': 'Nom station'}) }}
 
-	<button type="submit" class="btn btn-primary">Ajout</button>
+	<button type="submit" class="btn btn-primary">{% trans %}Ajout{% endtrans %}</button>
 
 	</div>
 {{ form_end(addPeseRucheForm) }}

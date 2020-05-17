@@ -201,6 +201,14 @@
         <source>Annuler</source>
         <target>Cancel</target>
       </trans-unit>
+      <trans-unit id="6Kbx5f3" resname="Ajout d'un pese ruche">
+        <source>Ajout d'un pese ruche</source>
+        <target>Add hive scale</target>
+      </trans-unit>
+      <trans-unit id="NfB_iiZ" resname="Ajout">
+        <source>Ajout</source>
+        <target>Add</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
