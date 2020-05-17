@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Doctrine\ORM\EntityRepository;
 use App\Entity\CRucher;
 use App\Entity\CApiculteur;
 use App\Entity\CPeseRuche;
@@ -56,6 +57,9 @@ class AddRucheFormType extends AbstractType
                 ])
             ->add('PeseRuche',EntityType::class, [
                 'class'=>CPeseRuche::class,
+                'query_builder' => function(EntityRepository $er){
+                return $er->createQueryBuilder('u')->select('w')->from(CPeseRuche::class, 'w')->where('w.nbAssosRuche = 0');
+                },
                 'choice_label'=>function(CPeseRuche $CPeseRuche){
                 return sprintf(' %s',$CPeseRuche->getNomPeseRuche());
                 },

@@ -85,6 +85,8 @@ class AddController extends AbstractController{
                 $AssociationRuchePeseruche->setPeseruche($em->getRepository(CPeseRuche::class)->findOneBy(array('id'=>($data['PeseRuche'])->getId())));
                 $em->persist($AssociationRuchePeseruche);
                 ($data['PeseRuche'])->setAssociationRuchePeseruche($AssociationRuchePeseruche);
+                ($data['PeseRuche'])->setNbAssosRuche(($data['PeseRuche'])->getNbAssosRuche()+1);
+                $em->persist($data['PeseRuche']);
                 $CRuche->setAssociationRuchePeseruche($AssociationRuchePeseruche);
             }
             
