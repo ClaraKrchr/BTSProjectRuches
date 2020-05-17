@@ -5,12 +5,12 @@
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
-      <trans-unit id="WIE7DCK" resname="Nom de la ruche">
-        <source>Nom de la ruche</source>
+      <trans-unit id="WIE7DCK" resname="Nom ruche">
+        <source>Nom ruche</source>
         <target>Hive name</target>
       </trans-unit>
-      <trans-unit id="Duz1aPQ" resname="Date d'installation">
-        <source>Date d'installation</source>
+      <trans-unit id="Duz1aPQ" resname="Date installation">
+        <source>Date installation</source>
         <target>Installation date</target>
       </trans-unit>
       <trans-unit id="WNM8a3N" resname="Etat">
@@ -77,6 +77,22 @@
         <source>Nom station</source>
         <target>Station name</target>
       </trans-unit>
+      <trans-unit id="kaVQXXN" resname="Apiculteur">
+        <source>Apiculteur</source>
+        <target>beekeeper</target>
+      </trans-unit>
+      <trans-unit id="53Az_YO" resname="Administrateur">
+        <source>Administrateur</source>
+        <target>manager</target>
+      </trans-unit>
+      <trans-unit id="lYqJTLV" resname="Nom de la ruche">
+        <source>Nom de la ruche</source>
+        <target>Hive name</target>
+      </trans-unit>
+      <trans-unit id="Je1.ne0" resname="Date d'installation">
+        <source>Date d'installation</source>
+        <target>Installation date</target>
+      </trans-unit>
       <trans-unit id="3pAffxq" resname="Ajout d'une ruche">
         <source>Ajout d'une ruche</source>
         <target>Add a beehive</target>
@@ -116,6 +132,74 @@
       <trans-unit id="DL02fX6" resname="Deconnexion">
         <source>Deconnexion</source>
         <target>Disconnect</target>
+      </trans-unit>
+      <trans-unit id="0gChFkF" resname="Mon carnet d'apiculteur">
+        <source>Mon carnet d'apiculteur</source>
+        <target>My beekeeper notebook</target>
+      </trans-unit>
+      <trans-unit id="YSHyAf3" resname="Bienvenue">
+        <source>Bienvenue</source>
+        <target>Welcome</target>
+      </trans-unit>
+      <trans-unit id="PpdUL7t" resname="Carte de France interactive des régions">
+        <source>Carte de France interactive des régions</source>
+        <target>Interactive map of France</target>
+      </trans-unit>
+      <trans-unit id="RRQENfT" resname="Gestionnaire des apiculteurs">
+        <source>Gestionnaire des apiculteurs</source>
+        <target>Beekeeper manager</target>
+      </trans-unit>
+      <trans-unit id="ssEkU20" resname="Nom">
+        <source>Nom</source>
+        <target>Name</target>
+      </trans-unit>
+      <trans-unit id="4yW.j5A" resname="Prénom">
+        <source>Prénom</source>
+        <target>First name</target>
+      </trans-unit>
+      <trans-unit id="BH9Ys5T" resname="Pseudo">
+        <source>Pseudo</source>
+        <target>Pseudo</target>
+      </trans-unit>
+      <trans-unit id="zExCS1c" resname="Téléphone">
+        <source>Téléphone</source>
+        <target>phone</target>
+      </trans-unit>
+      <trans-unit id="UmZcLre" resname="Adresse postale">
+        <source>Adresse postale</source>
+        <target>address</target>
+      </trans-unit>
+      <trans-unit id="vnBxYSs" resname="Code postal">
+        <source>Code postal</source>
+        <target>Postal code</target>
+      </trans-unit>
+      <trans-unit id="Dr0lo0H" resname="Ville">
+        <source>Ville</source>
+        <target>City</target>
+      </trans-unit>
+      <trans-unit id="Kgq5MoA" resname="Type d'utilisateur">
+        <source>Type d'utilisateur</source>
+        <target>User type</target>
+      </trans-unit>
+      <trans-unit id="ZM.xMZ0" resname="Action">
+        <source>Action</source>
+        <target>Action</target>
+      </trans-unit>
+      <trans-unit id="QuN2BLY" resname="Modifier">
+        <source>Modifier</source>
+        <target>Edit</target>
+      </trans-unit>
+      <trans-unit id="B_1sz2v" resname="Mail">
+        <source>Mail</source>
+        <target>Mail</target>
+      </trans-unit>
+      <trans-unit id="m8noAjF" resname="Modification d'un apiculteur">
+        <source>Modification d'un apiculteur</source>
+        <target>Modification of a beekeeper</target>
+      </trans-unit>
+      <trans-unit id="Rq05Fva" resname="Annuler">
+        <source>Annuler</source>
+        <target>Cancel</target>
       </trans-unit>
     </body>
   </file>

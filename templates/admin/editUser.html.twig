@@ -4,7 +4,7 @@
 
 {% block body %}
 <meta charset="UTF-8">
-<center><h1>Modification d'un apiculteur</h1></center>
+<center><h1>{% trans %}Modification d'un apiculteur{% endtrans %}</h1></center>
 
 <div class="d-flex justify-content-around">
     {{ form_start(formUser) }}
@@ -32,8 +32,8 @@
         {{ form_row(formUser.postaddr, { 'label':'Adresse postale','attr' : { 'placeholder':'Adresse postale'}}) }}
     {{ form_widget(formUser) }}
     
-	<button type="submit" class="btn btn-success">Modifier</button>
-	<a href="{{ path('gestionnaire') }}"><button class="btn btn-secondary">Annuler</button></a>
+	<button type="submit" class="btn btn-success">{% trans %}Modifier{% endtrans %}</button>
+	<a href="{{ path('gestionnaire') }}"><button class="btn btn-secondary">{% trans %}Annuler{% endtrans %}</button></a>
     {{ form_end(formUser) }}
 </div>
 {% endblock %}

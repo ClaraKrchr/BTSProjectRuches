@@ -6,20 +6,20 @@
 
 <meta charset="UTF-8">
 
-<h1>Gestionnaire des apiculteurs</h1>
+<h1>{% trans %}Gestionnaire des apiculteurs{% endtrans %}</h1>
 	<table id="capiculteur" class="table table-striped">
 		<thread>
 			<tr>
-				<th>Nom</th>
-				<th>Prénom</th>
-				<th>Pseudo</th>
-				<th>Mail</th>
-				<th>Téléphone</th>
-				<th>Adresse postale</th>
-				<th>Code postal</th>
-				<th>Ville</th>
-				<th>Type d'utilisateur</th>
-				<th>Action</th>
+				<th>{% trans %}Nom{% endtrans %}</th>
+				<th>{% trans %}Prénom{% endtrans %}</th>
+				<th>{% trans %}Pseudo{% endtrans %}</th>
+				<th>{% trans %}Mail{% endtrans %}</th>
+				<th>{% trans %}Téléphone{% endtrans %}</th>
+				<th>{% trans %}Adresse postale{% endtrans %}</th>
+				<th>{% trans %}Code postal{% endtrans %}</th>
+				<th>{% trans %}Ville{% endtrans %}</th>
+				<th>{% trans %}Type d'utilisateur{% endtrans %}</th>
+				<th>{% trans %}Action{% endtrans %}</th>
 			</tr>
 		</thread>
 		<tbody>
@@ -43,7 +43,7 @@
 						{% endfor %}
 					</td>
 					<td>
-					<a href="{{ path('edit', {'nom' : capiculteur.nom}) }}" class="btn btn-dark">Modifier</a>
+					<a href="{{ path('edit', {'nom' : capiculteur.nom}) }}" class="btn btn-dark">{% trans %}Modifier{% endtrans %}</a>
 					</td>
 				</tr>
 			{% endfor %}
