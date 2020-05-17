@@ -47,14 +47,14 @@ class EditRucheType extends AbstractType
                     'Ruche de production'=>'Ruche de production',
                 ],
             ])
-            ->add('Rucher',EntityType::class, [
+            ->add('associationRucheRucher',EntityType::class, [
                 'class'=>CRucher::class,
                 'choice_label'=>function(CRucher $CRucher){
                 return sprintf(' %s',$CRucher->getNom());
                 },
                 'required'=>false
                 ])
-            ->add('PeseRuche',EntityType::class, [
+            ->add('associationRuchePeseruche',EntityType::class, [
                 'class'=>CPeseRuche::class,
                 'choice_label'=>function(CPeseRuche $CPeseRuche){
                 return sprintf(' %s',$CPeseRuche->getNomPeseRuche());
