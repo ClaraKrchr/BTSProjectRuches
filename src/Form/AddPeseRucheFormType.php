@@ -21,16 +21,7 @@ class AddPeseRucheFormType extends AbstractType
             ->add('dateinstall', DateType::class, [
                 'widget' => 'single_text',
                 
-            ])
-            ->add('visibilite',ChoiceType::class,
-                array(
-                    'choices'=>array(
-                        'Publique'=>'0',
-                        'Privee'=>'1',
-                    ),
-                    'expanded'=>true,
-                    'multiple'=>false
-                ))                
+            ])              
              ->add('nomstation',EntityType::class, [
                 'class'=>CStation::class,
                 'choice_label'=>function(CStation $CStation){

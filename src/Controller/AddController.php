@@ -119,7 +119,6 @@ class AddController extends AbstractController{
             $CPeseRuche = new CPeseRuche();
             $CPeseRuche->setNomPeseRuche($data['nompeseruche']);
             $CPeseRuche->setDateInstall($data['dateinstall']);
-            $CPeseRuche->setVisibilite($data['visibilite']);
             
             $em->persist($CPeseRuche);
             

@@ -29,11 +29,6 @@ class CPeseRuche
     private $dateinstall;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $visibilite;
-
-    /**
      * @ORM\OneToOne(targetEntity="App\Entity\AssociationPeserucheStation", mappedBy="peseruche", cascade={"persist", "remove"})
      */
     private $associationPeserucheStation;
@@ -47,6 +42,11 @@ class CPeseRuche
      * @ORM\OneToMany(targetEntity="App\Entity\MesuresRuches", mappedBy="peseruche", orphanRemoval=true)
      */
     private $mesuresRuches;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $nbAssosRuche;
 
     public function __construct()
     {
@@ -70,11 +70,6 @@ class CPeseRuche
         return $this->dateinstall;
     }
 
-    public function getVisibilite(): ?bool
-    {
-        return $this->visibilite;
-    }
-
 #=========================SETTERS==========================#
 
     public function setNomPeseRuche(string $nompeseruche): self
@@ -87,13 +82,6 @@ class CPeseRuche
     public function setDateInstall(?\DateTimeInterface $dateinstall): self
     {
         $this->dateinstall = $dateinstall;
-
-        return $this;
-    }
-
-    public function setVisibilite(bool $visibilite): self
-    {
-        $this->visibilite = $visibilite;
 
         return $this;
     }
@@ -159,6 +147,18 @@ class CPeseRuche
                 $mesuresRuch->setPeseruche(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNbAssosRuche(): ?bool
+    {
+        return $this->nbAssosRuche;
+    }
+
+    public function setNbAssosRuche(bool $nbAssosRuche): self
+    {
+        $this->nbAssosRuche = $nbAssosRuche;
 
         return $this;
     }
