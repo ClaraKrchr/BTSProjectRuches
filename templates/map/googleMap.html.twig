@@ -34,7 +34,9 @@
         var i = 0;
         
       	{% for rucher in ruchers %}
-	        var rucherLatLng = {lat: {{ rucher.latitude }}, lng: {{ rucher.longitude }}};
+      		randlat = Math.random() * (0.05 - 0.001) + 0.001;
+      		randlng = Math.random() * (0.05 - 0.001) + 0.001;
+	        var rucherLatLng = {lat: {{ rucher.latitude }} + randlat, lng: {{ rucher.longitude }} + randlng};
 	
 	        var marker = new google.maps.Marker({
 	          position: rucherLatLng,
