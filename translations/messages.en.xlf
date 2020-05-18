@@ -85,6 +85,18 @@
         <source>Administrateur</source>
         <target>manager</target>
       </trans-unit>
+      <trans-unit id="XHqA_WZ" resname="Nom pese ruche">
+        <source>Nom pese ruche</source>
+        <target>Name hive scale</target>
+      </trans-unit>
+      <trans-unit id="TN9QWFC" resname="Nom pèse ruche">
+        <source>Nom pèse ruche</source>
+        <target>Name hive scale</target>
+      </trans-unit>
+      <trans-unit id="3k3QMpe" resname="État">
+        <source>État</source>
+        <target>Status</target>
+      </trans-unit>
       <trans-unit id="lYqJTLV" resname="Nom de la ruche">
         <source>Nom de la ruche</source>
         <target>Hive name</target>
@@ -123,7 +135,7 @@
       </trans-unit>
       <trans-unit id="1FPFZyL" resname="Ajout d'une station">
         <source>Ajout d'une station</source>
-        <target>Add sation</target>
+        <target>Add station</target>
       </trans-unit>
       <trans-unit id="YdaVBBA" resname="Connexion">
         <source>Connexion</source>
@@ -208,6 +220,18 @@
       <trans-unit id="NfB_iiZ" resname="Ajout">
         <source>Ajout</source>
         <target>Add</target>
+      </trans-unit>
+      <trans-unit id="mcQKtAW" resname="Date">
+        <source>Date</source>
+        <target>Date</target>
+      </trans-unit>
+      <trans-unit id="SNPoFla" resname="Commentaire">
+        <source>Commentaire</source>
+        <target>Comment</target>
+      </trans-unit>
+      <trans-unit id="F20b9fw" resname="Ajouter une info">
+        <source>Ajouter une info</source>
+        <target>Add a news</target>
       </trans-unit>
     </body>
   </file>

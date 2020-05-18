@@ -5,14 +5,14 @@
 {% block body %}
 <meta charset="UTF-8">
 
-<center><h1>Mon carnet d'apiculteur</h1></center>
+<center><h1>{% trans %}Mon carnet d'apiculteur{% endtrans %}</h1></center>
 <table id="carnet" class="table table-striped">
 	<thread>
 		<tr>
-			<th>Nom de la ruche</th>
-			<th>Date</th>
-			<th>Action</th>
-			<th>Commentaire</th>			
+			<th>{% trans %}Nom de la ruche{% endtrans %}</th>
+			<th>{% trans %}Date{% endtrans %}</th>
+			<th>{% trans %}Action{% endtrans %}</th>
+			<th>{% trans %}Commentaire{% endtrans %}</th>			
 		</tr>
 		
 		<tbody>
@@ -26,7 +26,7 @@
 			{% endfor %}
 		</tbody>
 		
-		<a href="{{ path('add_carnet') }}"><button class="btn btn-primary">Ajouter une info</button></a>	
+		<a href="{{ path('add_carnet') }}"><button class="btn btn-primary">{% trans %}Ajouter une info{% endtrans %}</button></a>	
 		
 	</thread>
 </table>
