@@ -2,10 +2,22 @@
 {% block body %}
 <!-- for HTML5 -->
 <meta charset="UTF-8">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
 
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+ 
+<script src="https://code.highcharts.com/highstock.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+
+ 
 <center><h3>Les données de la ruche {{ nomruche }} qui appartient à {{ proprietaire }} installée le : {{ dateinstall|date("m/d/Y") }}</h3>
 <br></br>
+<div class="container ">
+<div class="row">
+<div class="block1 col-lg-5">
 {% if mesuresstations %}
 <h4>Les mesures de la station</h4>
 
@@ -22,56 +34,79 @@
 {% for mesuresstation in mesuresstations %}
 <tr>
 	<td>{{ mesuresstation.station.nom }}</td>
-	<td>{{ mesuresstation.temperature}}</td>
-	<td>{{ mesuresstation.tension }}</td>
-	<td>{{ mesuresstation.humidite }}</td>
-	<td>{{ mesuresstation.datereleve|date("m/d/Y") }}</td>
-	<td>{{ mesuresstation.pression }}</td>
+	<td>{{ mesuresstation.temperature}}°C</td>
+	<td>{{ mesuresstation.tension }} V</td>
+	<td>{{ mesuresstation.humidite }}%</td>
+	<td>{{ mesuresstation.datereleve|date("d/m/Y",false) }}</td>
+	<td>{{ mesuresstation.pression}} hPa</td>
 	<td>{{ mesuresstation.rucher.nom }}</td>
 </tr>
 {% endfor %}
 </table>
+</div>
+<div class="block2 col-lg-2"></div>
+<div class="block3 col-lg-5" style="height: 400px; min-width: 310px">
+<figure class="highcharts-figure">
+  <div id="chart"></div>
+  </figure>
+  <script>
+  var chartOptions = {
+	      chart: {
+	        type: 'spline',
+	        zoomType: 'x',
+	        panning: true,
+	        panKey: 'ctrl'
+	      },
+	      title: {
+	        text: 'Les mesures de la station'
+	      },
+	      subtitle:{
+	    	  text: 'Utilisez Ctrl+Clic Gauche pour naviguer sur le diagramme',
+	    	  color:'#111111'
+	    	  },
+	      xAxis: {
+	        categories: [{% for mesuresstation in mesuresstations %}'{{ mesuresstation.datereleve|date ('d/m/Y')}}',{% endfor %}],
+	      },
+	      yAxis: {
+	        title: 'Value'
+	      },
+	      series: [{
+	        name: 'Temperature',
+	        data: [{% for mesuresstation in mesuresstations %}{{ mesuresstation.temperature }},{% endfor %}]
+	      },{
+		      name: 'Tension',
+		      data:[{% for mesuresstation in mesuresstations %}{{ mesuresstation.tension }},{% endfor %}]
+	      },{
+		      name:'Humidité',
+		      data:[{% for mesuresstation in mesuresstations %}{{ mesuresstation.humidite }},{% endfor %}]
+	      },{
+		      name:'Pression',
+		      data: [{% for mesuresstation in mesuresstations %}{{ mesuresstation.pression }},{% endfor %}]}
+	      ],
+	      responsive:{
+		      rules:[{
+			      condition:{
+				      maxWidth:400
+				      },
+				      chartOptions:{
+					      legend:{enabled:false},
+					      }
+				      },
+				  {
+				  condition:{
+					  }	  }
+		      ]
+	      },
+	    };
 
-<div style="width:50%; height:30%;">
-<canvas id="myChart2"></canvas></div>
-<script>
-    var ctx = document.getElementById('myChart2').getContext('2d');
-    var chart = new Chart(ctx, {
-        // The type of chart we want to create
-        type: 'line',
-    
-        // The data for our dataset
-        data: {
-            labels: [{% for mesuresstation in mesuresstations %} '{{mesuresstation.datereleve|date("m/d/Y")}}', {% endfor %}],
-            datasets: [{
-                label: 'Temperature',
-                
-                borderColor: 'rgb(255, 99, 132)',
-                data: [{% for mesuresstation in mesuresstations %} {{ mesuresstation.temperature }},{% endfor %}]
-            },{
-                label: 'Tension',
-                
-                borderColor: 'rgb(255, 0, 255)',
-                data: [{% for mesuresstation in mesuresstations %} {{ mesuresstation.tension }},{% endfor %}]
-            },{
-                label: 'Humidite',
-                borderColor: 'rgb(255, 255, 0)',
-                data: [{% for mesuresstation in mesuresstations %} {{ mesuresstation.humidite }},{% endfor %}]
-            },{
-                label: 'Pression',
-                borderColor: 'rgb(0, 99, 132)',
-                data: [{% for mesuresstation in mesuresstations %} {{ mesuresstation.pression }},{% endfor %}]
-            },
-            ]
-        },
-    
-        // Configuration options go here
-        options: {}
-    });
-</script>
+	    var chart = new Highcharts.Chart('chart',chartOptions);
+  </script>
 
 {% endif %}
-
+</div>
+</div>
+<div class="row">
+<div class="block1 col-lg-5">
 {% if mesuresruches %}
 <br></br>
 <h4>Les mesures de la ruche</h4>
@@ -86,37 +121,72 @@
 {% for mesuresruche in mesuresruches %} 
 <tr>
 	<td>{{ mesuresruche.ruche.nomruche }}</td>
-	<td>{{ mesuresruche.poids }}</td>
+	<td>{{ mesuresruche.poids }} kg</td>
 	<td>{{ mesuresruche.datereleve|date("m/d/Y")}}</td>
 	<td>{{ mesuresruche.peseruche.nompeseruche }}</td>
 </tr>
 {% endfor %}
 </table>
-<div style="width:50%; height:50px;">
-<canvas id="myChart"></canvas></div>
-<script>
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var chart = new Chart(ctx, {
-        // The type of chart we want to create
-        type: 'line',
-    
-        // The data for our dataset
-        data: {
-            labels: [{% for mesuresruche in mesuresruches %} '{{mesuresruche.datereleve|date("m/d/Y")}}', {% endfor %}],
-            datasets: [{
-                label: 'Poids',
-                borderColor: 'rgb(255, 99, 132)',
-                data: [{% for mesuresruche in mesuresruches %}{{ mesuresruche.poids }},{% endfor %}]
-            }]
-        },
-    
-        // Configuration options go here
-        options: {}
-    });
-</script>
-
+</div>
+<div class="block2 col-lg-6">
+<br></br>
+Date de début:<input id="date_depart" type="date"/>
+Date de fin:<input id="date_fin" type="date"/>
+<figure class="highcharts-figure">
+  <div id="chart2" style="height: 400px; min-width: 310px"></div>
+  </figure>
+  <script>
+  date_depart.oninput = function() {
+		
+	   };
+  var chartOptions = {
+	      chart: {
+	        renderTo: 'chart2',
+	        type: 'spline',
+			zoomType:'x',
+	        panning: true,
+	        panKey: 'ctrl'
+	      },
+	     
+	      title: {
+	        text: 'Les mesures de la station'
+	      },
+	      subtitle:{
+	    	  text: 'Utilisez Ctrl+Clic Gauche pour naviguer sur le diagramme',
+	    	  color:'#010101'
+	    	  },
+	      xAxis: {
+	        categories: [{% for mesuresruche in mesuresruches %} '{{ mesuresruche.datereleve|date ('d/m/Y')}}',{% endfor %}],
+	      },
+	      yAxis: {
+	        title: 'Poids (en kg)'
+	      },
+	      series: [{
+	        name: 'Poids',
+	        data: [{% for mesuresruche in mesuresruches %}{{ mesuresruche.poids }},{% endfor %}],
+	      
+	      }],
+	      responsive:{
+		      rules:[{
+			      condition:{
+				      maxWidth:300
+				      },
+				      chartOptions:{
+					      legend:{enabled:false},
+					      }
+				      }
+		      ]
+	      },
+	      
+	    };
+	    var chart = new Highcharts.Chart(chartOptions);
+	    
+	    
+  </script>
+ 
 {% endif %}
-
+ </div>
 </center>
-
+</div>
+</div>
 {% endblock %}
