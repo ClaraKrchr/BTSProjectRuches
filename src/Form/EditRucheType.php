@@ -55,8 +55,7 @@ class EditRucheType extends AbstractType
                 },
                 'choice_label'=>function(CRucher $CRucher){
                 return sprintf(' %s',$CRucher->getNom());
-                },
-                'required'=>false
+                }
                 ])
             ->add('associationRuchePeseruche',EntityType::class, [
                 'class'=>CPeseRuche::class,
@@ -65,8 +64,7 @@ class EditRucheType extends AbstractType
                 },
                 'choice_label'=>function(CPeseRuche $CPeseRuche){
                 return sprintf(' %s',$CPeseRuche->getNomPeseRuche());
-                },
-                'required'=>false
+                }
                 ])
             ->add('Visibilite',ChoiceType::class,
                 array(
