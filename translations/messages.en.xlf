@@ -89,6 +89,14 @@
         <source>Nom pese ruche</source>
         <target>Name hive scale</target>
       </trans-unit>
+      <trans-unit id=".5yLjAZ" resname="Mot de passe">
+        <source>Mot de passe</source>
+        <target>Password</target>
+      </trans-unit>
+      <trans-unit id="SQlNO6e" resname="Confirmer le mot de passe">
+        <source>Confirmer le mot de passe</source>
+        <target>Confirm password</target>
+      </trans-unit>
       <trans-unit id="TN9QWFC" resname="Nom pèse ruche">
         <source>Nom pèse ruche</source>
         <target>Name hive scale</target>
@@ -213,8 +221,8 @@
         <source>Annuler</source>
         <target>Cancel</target>
       </trans-unit>
-      <trans-unit id="6Kbx5f3" resname="Ajout d'un pese ruche">
-        <source>Ajout d'un pese ruche</source>
+      <trans-unit id="Km33NGk" resname="Ajout d'un pèse ruche">
+        <source>Ajout d'un pèse ruche</source>
         <target>Add hive scale</target>
       </trans-unit>
       <trans-unit id="NfB_iiZ" resname="Ajout">
@@ -231,7 +239,15 @@
       </trans-unit>
       <trans-unit id="F20b9fw" resname="Ajouter une info">
         <source>Ajouter une info</source>
-        <target>Add a news</target>
+        <target>Add news</target>
+      </trans-unit>
+      <trans-unit id="rSjnCQP" resname="Carte interactive des régions de France">
+        <source>Carte interactive des régions de France</source>
+        <target>Interactive map</target>
+      </trans-unit>
+      <trans-unit id="z7GsDIB" resname="Inscription">
+        <source>Inscription</source>
+        <target>Registration</target>
       </trans-unit>
     </body>
   </file>

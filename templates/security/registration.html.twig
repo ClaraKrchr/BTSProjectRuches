@@ -12,7 +12,7 @@
 
 <meta charset="UTF-8">
 <link rel="stylesheet" href="{{ asset('css/inscription.css') }}">
-<center><h1>Inscription</h1></center>
+<center><h1>{% trans %}Inscription{% endtrans %}</h1></center>
 <br>
 	<div class="d-flex justify-content-around">
 		
@@ -41,7 +41,7 @@
   </div>
         {{ form_row(registrationForm.postaddr, { 'label':'Adresse postale','attr' : { 'placeholder':'Adresse postale'}}) }}
         
-        <button type="submit" class="btn btn-primary">Inscription</button>
+        <button type="submit" class="btn btn-primary">{% trans %}Inscription{% endtrans %}</button>
         
         {{ form_end(registrationForm) }}
         

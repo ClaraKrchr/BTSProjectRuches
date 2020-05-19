@@ -23,3 +23,10 @@ Nom station : Station name
 #EditUser
 Apiculteur : beekeeper
 Administrateur : manager
+
+#ajout pese ruche
+Nom pese ruche : Name hive scale
+
+#Inscription
+Mot de passe : Password
+Confirmer le mot de passe : Confirm password
