@@ -33,11 +33,6 @@ class Carnet
     private $ruche;
 
     /**
-     * @ORM\Column(type="smallint")
-     */
-    private $action;
-
-    /**
      * @ORM\Column(type="string", length=7, nullable=true)
      */
     private $etatRuche;
@@ -205,18 +200,6 @@ class Carnet
     public function setRuche(?CRuche $ruche): self
     {
         $this->ruche = $ruche;
-
-        return $this;
-    }
-
-    public function getAction(): ?int
-    {
-        return $this->action;
-    }
-
-    public function setAction(int $action): self
-    {
-        $this->action = $action;
 
         return $this;
     }
