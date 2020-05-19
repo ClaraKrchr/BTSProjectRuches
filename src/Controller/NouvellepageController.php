@@ -2,15 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\CApiculteur;
 use App\Entity\CRucher;
-use App\Entity\Carnet;
-use App\Entity\AssociationRucheCarnet;
-use App\Entity\AssociationActionCarnet;
-use App\Entity\AssociationApiculteurCarnet;
-use App\Entity\CRuche;
-
-use App\Form\CarnetFormType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -71,19 +63,6 @@ class NouvellepageController extends AbstractController
         ]);
     }
     
-    /**
-     * @IsGranted("ROLE_USER")
-     * @Route("/add_carnet", name="add_carnet")
-     */
-    public function addCarnet(Request $request, EntityManagerInterface $em){
-        $form = $this->createForm(CarnetFormType::class);
-        
-        $form->handleRequest($request);
-        
-        return $this->render('Add/add_carnet.html.twig', [
-            'addCarnetForm' => $form->createView(),
-        ]);
-    }
 }
     
         
