@@ -40,62 +40,62 @@ class Carnet
     /**
      * @ORM\Column(type="string", length=7, nullable=true)
      */
-    private $etat_ruche;
+    private $etatRuche;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $nb_cadres_couvain;
+    private $nbCadresCouvain;
 
     /**
      * @ORM\Column(type="string", length=3, nullable=true)
      */
-    private $presence_males;
+    private $presenceMales;
 
     /**
      * @ORM\Column(type="string", length=3, nullable=true)
      */
-    private $presence_larves;
+    private $presenceLarves;
 
     /**
      * @ORM\Column(type="string", length=3, nullable=true)
      */
-    private $presence_oeufs;
+    private $presenceOeufs;
 
     /**
      * @ORM\Column(type="string", length=3, nullable=true)
      */
-    private $couvain_opercule;
+    private $couvainOpercule;
 
     /**
      * @ORM\Column(type="string", length=25, nullable=true)
      */
-    private $eatt_essaim;
+    private $etatEssaim;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    private $date_reine;
+    private $dateReine;
 
     /**
      * @ORM\Column(type="string", length=3, nullable=true)
      */
-    private $cellules_royales;
+    private $cellulesRoyales;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $race_reine;
+    private $raceReine;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $age_reine;
+    private $ageReine;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $nb_cadres_miel;
+    private $nbCadresMiel;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -105,12 +105,12 @@ class Carnet
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    private $date_traitement;
+    private $dateTraitement;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $nature_traitement;
+    private $natureTraitement;
 
     /**
      * @ORM\Column(type="date", nullable=true)
@@ -223,144 +223,144 @@ class Carnet
 
     public function getEtatRuche(): ?string
     {
-        return $this->etat_ruche;
+        return $this->etatRuche;
     }
 
-    public function setEtatRuche(?string $etat_ruche): self
+    public function setEtatRuche(?string $etatRuche): self
     {
-        $this->etat_ruche = $etat_ruche;
+        $this->etatRuche = $etatRuche;
 
         return $this;
     }
 
     public function getNbCadresCouvain(): ?int
     {
-        return $this->nb_cadres_couvain;
+        return $this->nbCadresCouvain;
     }
 
-    public function setNbCadresCouvain(?int $nb_cadres_couvain): self
+    public function setNbCadresCouvain(?int $nbCadresCouvain): self
     {
-        $this->nb_cadres_couvain = $nb_cadres_couvain;
+        $this->nbCadresCouvain = $nbCadresCouvain;
 
         return $this;
     }
 
     public function getPresenceMales(): ?string
     {
-        return $this->presence_males;
+        return $this->presenceMales;
     }
 
-    public function setPresenceMales(?string $presence_males): self
+    public function setPresenceMales(?string $presenceMales): self
     {
-        $this->presence_males = $presence_males;
+        $this->presenceMales = $presenceMales;
 
         return $this;
     }
 
     public function getPresenceLarves(): ?string
     {
-        return $this->presence_larves;
+        return $this->presenceLarves;
     }
 
-    public function setPresenceLarves(?string $presence_larves): self
+    public function setPresenceLarves(?string $presenceLarves): self
     {
-        $this->presence_larves = $presence_larves;
+        $this->presenceLarves = $presenceLarves;
 
         return $this;
     }
 
     public function getPresenceOeufs(): ?string
     {
-        return $this->presence_oeufs;
+        return $this->presenceOeufs;
     }
 
-    public function setPresenceOeufs(?string $presence_oeufs): self
+    public function setPresenceOeufs(?string $presenceOeufs): self
     {
-        $this->presence_oeufs = $presence_oeufs;
+        $this->presenceOeufs = $presenceOeufs;
 
         return $this;
     }
 
     public function getCouvainOpercule(): ?string
     {
-        return $this->couvain_opercule;
+        return $this->couvainOpercule;
     }
 
-    public function setCouvainOpercule(?string $couvain_opercule): self
+    public function setCouvainOpercule(?string $couvainOpercule): self
     {
-        $this->couvain_opercule = $couvain_opercule;
+        $this->couvainOpercule = $couvainOpercule;
 
         return $this;
     }
 
-    public function getEattEssaim(): ?string
+    public function getEtatEssaim(): ?string
     {
-        return $this->eatt_essaim;
+        return $this->etatEssaim;
     }
 
-    public function setEattEssaim(?string $eatt_essaim): self
+    public function setEtatEssaim(?string $etatEssaim): self
     {
-        $this->eatt_essaim = $eatt_essaim;
+        $this->etatEssaim = $etatEssaim;
 
         return $this;
     }
 
     public function getDateReine(): ?\DateTimeInterface
     {
-        return $this->date_reine;
+        return $this->dateReine;
     }
 
-    public function setDateReine(?\DateTimeInterface $date_reine): self
+    public function setDateReine(?\DateTimeInterface $dateReine): self
     {
-        $this->date_reine = $date_reine;
+        $this->dateReine = $dateReine;
 
         return $this;
     }
 
     public function getCellulesRoyales(): ?string
     {
-        return $this->cellules_royales;
+        return $this->cellulesRoyales;
     }
 
-    public function setCellulesRoyales(?string $cellules_royales): self
+    public function setCellulesRoyales(?string $cellulesRoyales): self
     {
-        $this->cellules_royales = $cellules_royales;
+        $this->cellulesRoyales = $cellulesRoyales;
 
         return $this;
     }
 
     public function getRaceReine(): ?string
     {
-        return $this->race_reine;
+        return $this->raceReine;
     }
 
-    public function setRaceReine(?string $race_reine): self
+    public function setRaceReine(?string $raceReine): self
     {
-        $this->race_reine = $race_reine;
+        $this->raceReine = $raceReine;
 
         return $this;
     }
 
     public function getAgeReine(): ?int
     {
-        return $this->age_reine;
+        return $this->ageReine;
     }
 
-    public function setAgeReine(?int $age_reine): self
+    public function setAgeReine(?int $ageReine): self
     {
-        $this->age_reine = $age_reine;
+        $this->ageReine = $ageReine;
 
         return $this;
     }
 
     public function getNbCadresMiel(): ?int
     {
-        return $this->nb_cadres_miel;
+        return $this->nbCadresMiel;
     }
 
-    public function setNbCadresMiel(?int $nb_cadres_miel): self
+    public function setNbCadresMiel(?int $nbCadresMiel): self
     {
-        $this->nb_cadres_miel = $nb_cadres_miel;
+        $this->nbCadresMiel = $nbCadresMiel;
 
         return $this;
     }
