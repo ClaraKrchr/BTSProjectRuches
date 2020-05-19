@@ -339,7 +339,7 @@ class AddController extends AbstractController{
         $form = $this->createForm(CarnetFormType::class, $Carnet);
         $form->handleRequest($request);
         
-        if($form->isSubmitted){
+        if($form->isSubmitted()){
             $em->persist($Carnet);
             $em->flush();
             

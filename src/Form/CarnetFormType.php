@@ -10,6 +10,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class CarnetFormType extends AbstractType
 {
@@ -26,7 +27,110 @@ class CarnetFormType extends AbstractType
                 },
                 'required'=>true
                 ])
-            ->add('')
+            ->add('etatruche', ChoiceType::class, [
+                'choices'=> [
+                    'Faible'=>'Faible',
+                    'Moyenne'=>'Moyenne',
+                    'Forte'=>'Forte',
+                ],
+                ])
+            ->add('nbcadrescouvain')
+            ->add('etatessaim', ChoiceType::class,[
+                'choices'=> [
+                    'Orpheline' => 'Orpheline',
+                    'Bourdonneuse' => 'Bourdonneuse'
+                ],
+                'expanded' => true,
+                'multiple' => true,
+                'label' => utf8_encode('État essaim')
+            ])
+            ->add('datereine', DateType::class, [
+                'widget'=>'single_text',])
+            ->add('naturemiel', ChoiceType::class, [
+                'choices'=> [
+                    'Tournesol'=>'Tournesol',
+                    'Colza'=>'Colza',
+                    'Chataignier'=>'Chataignier',
+                    'Acacia'=>'Acacia',
+                    'Tilleul'=>'Tilleul',
+                    'Ronce'=>'Ronce',
+                    'Miel de printemps'=>'Miel de printemps',
+                    'Miel d\'été'=>'Miel d\'ete',
+                    'Miel de forêt'=>'Miel de foret',
+                    'Miel de montagne'=>'Miel de montagne',
+                ]
+            ])
+            ->add('presencevarroa', ChoiceType::class, [
+                'choices'=> [
+                    'Non visible'=>'Non visible',
+                    'Faible'=>'Faible',
+                    'Moyen'=>'Moyen',
+                    'Important'=>'Important',
+                ]
+            ])
+            ->add('lieutranshumance')
+            ->add('presencemales', ChoiceType::class, [
+                'choices'=>[
+                    'Non'=>'Non',
+                    'Oui'=>'Oui',
+                ]
+            ])
+            ->add('presencelarves', ChoiceType::class, [
+                'choices'=>[
+                    'Non'=>'Non',
+                    'Oui'=>'Oui',
+                ]
+            ])
+            ->add('presenceoeufs', ChoiceType::class, [
+                'choices'=>[
+                    'Non'=>'Non',
+                    'Oui'=>'Oui',
+                ]
+            ])
+            ->add('couvainopercule', ChoiceType::class, [
+                'choices'=>[
+                    'Opercule'=>'Opercule',
+                    'Pas opercule'=>'Pas opercule',
+                ]
+            ])
+            ->add('cellulesroyales', ChoiceType::class, [
+                'choices'=>[
+                    'Presence'=>'Presence',
+                    'Abscence'=>'Abscence',
+                ]
+            ])
+            ->add('racereine')
+            ->add('agereine')
+            ->add('nbcadresmiel')
+            ->add('nbcadrespollen')
+            ->add('datetraitement', DateType::class, [
+                'widget' => 'single_text',])
+            ->add('naturetraitement')
+            ->add('datenourrissement', DateType::class, [
+                'widget' => 'single_text',])
+            ->add('qttnourrissement')
+            ->add('naturenourrissement')
+            ->add('origineessaim', ChoiceType::class, [
+                'choices'=> [
+                    'Essaimage'=>'Essaimage',
+                    'Division'=>'Division',
+                    'Achat'=>'Achat',
+                ]               
+            ])
+            ->add('nbhausserecoltees')
+            ->add('daterecolte', DateType::class, [
+                'widget'=> 'single_text',])
+            ->add('etatabeilles', ChoiceType::class, [
+                'choices'=> [
+                    'Grandes'=>'Grandes',
+                    'Petites'=>'Petites',
+                    'Ailes atrophiees'=>'Ailes atrophies',
+                    'Agressives'=>'Agressives',
+                    'Douces'=>'Douces',
+                ]
+            ])
+            ->add('datetranshumance', DateType::class, [
+                'widget'=>'single_text',])
         ;
     }
 
