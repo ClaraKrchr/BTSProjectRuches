@@ -22,9 +22,8 @@ use App\Entity\AssociationRucherRegion;
 use App\Entity\Regions;
 use App\Entity\MesuresRuches;
 use App\Entity\MesuresStations;
-use App\Entity\Action;
+use App\Entity\Carnet;
 
-use App\Form\ActionFormType;
 use App\Form\AddMesuresStationsForm;
 use App\Form\AddMesuresRuchesForm;
 use App\Form\AddRucheFormType;
@@ -32,6 +31,7 @@ use App\Form\AddPeseRucheFormType;
 use App\Form\AddStationFormType;
 use App\Form\AddRucherFormType;
 use App\Form\RegionsFormType;
+use App\Form\CarnetFormType;
 
 class AddController extends AbstractController{
     /**
@@ -331,29 +331,16 @@ class AddController extends AbstractController{
     }
     
     /**
-     * @IsGranted("ROLE_ADMIN")
-     * @Route("/add_action", name="add_action")
+     * @IsGranted("ROLE_USER")
+     * @Route("/add_carnet", name="add_carnet")
      */
-    public function addAction(EntityManagerInterface $em, Request $request){
-        $form = $this->createForm(ActionFormType::class);
+    public function addCarnet(Request $request, EntityManagerInterface $em){
+        $form = $this->createForm(CarnetFormType::class);
         
         $form->handleRequest($request);
         
-        if($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-            $Action = new Action();
-            
-            $Action->setNomaction($data['nomaction']);
-            
-            $em->persist($Action);
-            $em->flush();
-            
-            return ($this->redirectToRoute('add_action'));
-        }
-        
-        return $this->render('Add/add_action.html.twig', [
-            'addAction' => $form->createView(),
+        return $this->render('Add/add_carnet.html.twig', [
+            'addCarnetForm' => $form->createView(),
         ]);
-        
     }
 }

@@ -2,14 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\CApiculteur;
 use App\Entity\CRucher;
-use App\Entity\Carnet;
-use App\Entity\AssociationRucheCarnet;
-use App\Entity\AssociationActionCarnet;
-use App\Entity\AssociationApiculteurCarnet;
-
-use App\Form\CarnetFormType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -70,56 +63,6 @@ class NouvellepageController extends AbstractController
         ]);
     }
     
-    /**
-     * @IsGranted("ROLE_USER")
-     * @Route("/add_carnet", name="add_carnet")
-     */
-    public function addCarnet(Request $request, EntityManagerInterface $em){
-        $form = $this->createForm(CarnetFormType::class);
-        
-        $form->handleRequest($request);
-        
-        if($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-            $Carnet = new Carnet();
-            
-            $NomApiculteur=$this->getUser();
-            
-            $apiculteur = $em->getRepository(CApiculteur::class)->findOneBy(array('id'=>$NomApiculteur));
-            
-            $Carnet->setDate($data['Date']);
-            $Carnet->setCommentaire($data['Commentaire']);
-            
-            $em->persist($Carnet);
-            
-            $associationRucheCarnet = new AssociationRucheCarnet();            
-            $associationRucheCarnet->setRuche($CRuche);
-            $associationRucheCarnet->setCarnet($Carnet);
-            $em->persist($associationRucheCarnet);
-            $CRuche->addAssociationRucheCarnet($associationRucheCarnet);
-            $Carnet->setAssociationRucheCarnet($associationRucheCarnet);
-            
-            $associationActionCarnet = new AssociationActionCarnet();
-            $associationActionCarnet->setAction($action);
-            $associationActionCarnet->setCarnet($Carnet);
-            $em->persist($associationActionCarnet);
-            $action->addAssociationActionCarnet($associationActionCarnet);
-            $Carnet->setAssociationActionCarnet($associationActionCarnet);
-            
-            $associationApiculteurCarnet = new AssociationApiculteurCarnet();
-            $associationApiculteurCarnet->setApiculteur($apiculteur);
-            $associationApiculteurCarnet->setCarnet($Carnet);
-            $em->persis($associationApiculteurCarnet);
-            $apiculteur->addAssociationApiculteurCarnet($associationApiculteurCarnet);
-            $Carnet->setAssociationApiculteurCarnet($associationApiculteurCarnet);
-        }
-        
-        $em->flush();
-        
-        return $this->render('Add/add_carnet.html.twig', [
-            'addCarnetForm' => $form->createView(),
-        ]);
-    }
 }
     
         
