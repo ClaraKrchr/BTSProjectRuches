@@ -13,6 +13,7 @@
         	<td>Etat</td>
           	<td>Date d'installation</td>
         	<td>Visibilité</td>
+        	<td>Action</td>
         </tr>
         {% for apiculteur in apiculteurs %}
 		<tr> 
@@ -20,6 +21,8 @@
 			<td> {% if apiculteur.ruche.etat == '0' %}En attente{% elseif apiculteur.ruche.etat =='1' %}Dans un rucher{% elseif apiculteur.ruche.etat =='2' %}Chez un apiculteur{% endif %}</td>
 			<td> {{ apiculteur.ruche.dateinstall|date("m/d/Y") }}			</td>
 			<td> {% if apiculteur.ruche.visibilite=='0' %}Public{% elseif apiculteur.ruche.visibilite=='1' %}Privée{% endif %}	</td>
+			<td><a href="{{ path('edit_ruche', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark">{% trans %}Modifier{% endtrans %}</a>
+			<a href="{{ path('delete_ruche', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark">{% trans %}Supprimer{% endtrans %}</a></td>
 		</tr>
         {% endfor %}
         </table>
