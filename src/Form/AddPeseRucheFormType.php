@@ -11,6 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Doctrine\ORM\EntityRepository;
 
 class AddPeseRucheFormType extends AbstractType
 {
@@ -24,6 +25,9 @@ class AddPeseRucheFormType extends AbstractType
             ])              
              ->add('nomstation',EntityType::class, [
                 'class'=>CStation::class,
+                 'query_builder' => function(EntityRepository $er){
+                 return $er->createQueryBuilder('u')->select('w')->from(CStation::class, 'w')->orderBy('w.nom', 'ASC');
+                 },
                 'choice_label'=>function(CStation $CStation){
                 return sprintf(' %s',$CStation->getNom());
                 }

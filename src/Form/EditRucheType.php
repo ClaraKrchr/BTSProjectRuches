@@ -11,6 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Doctrine\ORM\EntityRepository;
 
 class EditRucheType extends AbstractType
 {
@@ -49,6 +50,9 @@ class EditRucheType extends AbstractType
             ])
             ->add('associationRucheRucher',EntityType::class, [
                 'class'=>CRucher::class,
+                'query_builder' => function(EntityRepository $er){
+                return $er->createQueryBuilder('u')->select('w')->from(CRucher::class, 'w')->orderBy('w.nom', 'ASC');
+                },
                 'choice_label'=>function(CRucher $CRucher){
                 return sprintf(' %s',$CRucher->getNom());
                 },
@@ -56,6 +60,9 @@ class EditRucheType extends AbstractType
                 ])
             ->add('associationRuchePeseruche',EntityType::class, [
                 'class'=>CPeseRuche::class,
+                'query_builder' => function(EntityRepository $er){
+                return $er->createQueryBuilder('u')->select('w')->from(CPeseRuche::class, 'w')->orderBy('w.nompeseruche', 'ASC');
+                },
                 'choice_label'=>function(CPeseRuche $CPeseRuche){
                 return sprintf(' %s',$CPeseRuche->getNomPeseRuche());
                 },

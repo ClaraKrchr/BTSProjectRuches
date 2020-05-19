@@ -13,6 +13,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\RangeType;
+use Doctrine\ORM\EntityRepository;
 
 class AddMesuresStationsForm extends AbstractType
 {
@@ -21,6 +22,9 @@ class AddMesuresStationsForm extends AbstractType
         $builder
             ->add('station',EntityType::class, [
             'class'=>CStation::class,
+            'query_builder' => function(EntityRepository $er){
+            return $er->createQueryBuilder('u')->select('w')->from(CStation::class, 'w')->orderBy('w.nom', 'ASC');
+            },
             'choice_label'=>function(CStation $CStation){
             return sprintf(' %s',$CStation->getNom());
             }
@@ -35,6 +39,9 @@ class AddMesuresStationsForm extends AbstractType
             ])
             ->add('rucher',EntityType::class, [
                 'class'=>CRucher::class,
+                'query_builder' => function(EntityRepository $er){
+                return $er->createQueryBuilder('u')->select('w')->from(CRucher::class, 'w')->orderBy('w.nom', 'ASC');
+                },
                 'choice_label'=>function(CRucher $CRucher){
                 return sprintf(' %s',$CRucher->getNom());
                     }
