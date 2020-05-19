@@ -41,29 +41,29 @@ class EditController extends AbstractController
             
             if($data['Rucher'] != NULL){
                 
-                if ($em->getRepository(AssociationRucheRucher::class)->findOneBy(array('ruche'=>$ruche, 'rucher'=>($data['Rucher'])))){}
-                else{
-                    $AssociationRucheRucher = new AssociationRucheRucher;
-                    $AssociationRucheRucher->setRuche($ruche);
-                    $AssociationRucheRucher->setRucher($em->getRepository(CRucher::class)->findOneBy(array('id'=>($data['Rucher'])->getId())));
-                    $em->persist($AssociationRucheRucher);
-                    ($data['Rucher'])->addAssociationRucheRucher($AssociationRucheRucher);
-                    $ruche->setAssociationRucheRucher($AssociationRucheRucher);
-                }
+                if ($em->getRepository(AssociationRucheRucher::class)->findOneBy(array('ruche'=>$ruche))){ $em->remove($em->getRepository(AssociationRucheRucher::class)->findOneBy(array('ruche'=>$ruche)));}
+                
+                $AssociationRucheRucher = new AssociationRucheRucher;
+                $AssociationRucheRucher->setRuche($ruche);
+                $AssociationRucheRucher->setRucher($em->getRepository(CRucher::class)->findOneBy(array('id'=>($data['Rucher'])->getId())));
+                $em->persist($AssociationRucheRucher);
+                ($data['Rucher'])->addAssociationRucheRucher($AssociationRucheRucher);
+                $ruche->setAssociationRucheRucher($AssociationRucheRucher);
+                
             }
             
             if($data['PeseRuche'] != NULL){
                 
-                if ($em->getRepository(AssociationRuchePeseruche::class)->findOneBy(array('ruche'=>$ruche, 'peseruche'=>($data['PeseRuche'])))){}
-                else{
-                    $AssociationRuchePeseruche = new AssociationRuchePeseruche();
-                    
-                    $AssociationRuchePeseruche->setRuche($ruche);
-                    $AssociationRuchePeseruche->setPeseruche($em->getRepository(CPeseRuche::class)->findOneBy(array('id'=>($data['PeseRuche'])->getId())));
-                    $em->persist($AssociationRuchePeseruche);
-                    ($data['PeseRuche'])->setAssociationRuchePeseruche($AssociationRuchePeseruche);
-                    $ruche->setAssociationRuchePeseruche($AssociationRuchePeseruche);
-                }
+                if ($em->getRepository(AssociationRuchePeseruche::class)->findOneBy(array('ruche'=>$ruche))){ $em->remove($em->getRepository(AssociationRuchePeseruche::class)->findOneBy(array('ruche'=>$ruche)));}
+
+                $AssociationRuchePeseruche = new AssociationRuchePeseruche();
+                
+                $AssociationRuchePeseruche->setRuche($ruche);
+                $AssociationRuchePeseruche->setPeseruche($em->getRepository(CPeseRuche::class)->findOneBy(array('id'=>($data['PeseRuche'])->getId())));
+                $em->persist($AssociationRuchePeseruche);
+                ($data['PeseRuche'])->setAssociationRuchePeseruche($AssociationRuchePeseruche);
+                $ruche->setAssociationRuchePeseruche($AssociationRuchePeseruche);
+
             }
             
             $em->flush();

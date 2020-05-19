@@ -64,14 +64,14 @@ class CRuche
     private $etat;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\AssociationRucheCarnet", mappedBy="ruche", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Carnet", mappedBy="ruche")
      */
-    private $associationRucheCarnets;
+    private $carnets;
 
     public function __construct()
     {
         $this->mesuresRuches = new ArrayCollection();
-        $this->associationRucheCarnets = new ArrayCollection();
+        $this->carnets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -222,30 +222,30 @@ class CRuche
     }
 
     /**
-     * @return Collection|AssociationRucheCarnet[]
+     * @return Collection|Carnet[]
      */
-    public function getAssociationRucheCarnets(): Collection
+    public function getCarnets(): Collection
     {
-        return $this->associationRucheCarnets;
+        return $this->carnets;
     }
 
-    public function addAssociationRucheCarnet(AssociationRucheCarnet $associationRucheCarnet): self
+    public function addCarnet(Carnet $carnet): self
     {
-        if (!$this->associationRucheCarnets->contains($associationRucheCarnet)) {
-            $this->associationRucheCarnets[] = $associationRucheCarnet;
-            $associationRucheCarnet->setRuche($this);
+        if (!$this->carnets->contains($carnet)) {
+            $this->carnets[] = $carnet;
+            $carnet->setRuche($this);
         }
 
         return $this;
     }
 
-    public function removeAssociationRucheCarnet(AssociationRucheCarnet $associationRucheCarnet): self
+    public function removeCarnet(Carnet $carnet): self
     {
-        if ($this->associationRucheCarnets->contains($associationRucheCarnet)) {
-            $this->associationRucheCarnets->removeElement($associationRucheCarnet);
+        if ($this->carnets->contains($carnet)) {
+            $this->carnets->removeElement($carnet);
             // set the owning side to null (unless already changed)
-            if ($associationRucheCarnet->getRuche() === $this) {
-                $associationRucheCarnet->setRuche(null);
+            if ($carnet->getRuche() === $this) {
+                $carnet->setRuche(null);
             }
         }
 

@@ -85,15 +85,9 @@ class CApiculteur implements UserInterface
      */
     private $pseudo;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\AssociationApiculteurCarnet", mappedBy="apiculteur")
-     */
-    private $associationApiculteurCarnets;
-
     public function __construct()
     {
         $this->associationRucheApiculteurs = new ArrayCollection();
-        $this->associationApiculteurCarnets = new ArrayCollection();
     }
 
 
@@ -291,37 +285,6 @@ class CApiculteur implements UserInterface
     public function setPseudo(string $pseudo): self
     {
         $this->pseudo = $pseudo;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|AssociationApiculteurCarnet[]
-     */
-    public function getAssociationApiculteurCarnets(): Collection
-    {
-        return $this->associationApiculteurCarnets;
-    }
-
-    public function addAssociationApiculteurCarnet(AssociationApiculteurCarnet $associationApiculteurCarnet): self
-    {
-        if (!$this->associationApiculteurCarnets->contains($associationApiculteurCarnet)) {
-            $this->associationApiculteurCarnets[] = $associationApiculteurCarnet;
-            $associationApiculteurCarnet->setApiculteur($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAssociationApiculteurCarnet(AssociationApiculteurCarnet $associationApiculteurCarnet): self
-    {
-        if ($this->associationApiculteurCarnets->contains($associationApiculteurCarnet)) {
-            $this->associationApiculteurCarnets->removeElement($associationApiculteurCarnet);
-            // set the owning side to null (unless already changed)
-            if ($associationApiculteurCarnet->getApiculteur() === $this) {
-                $associationApiculteurCarnet->setApiculteur(null);
-            }
-        }
 
         return $this;
     }
