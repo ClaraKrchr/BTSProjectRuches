@@ -50,20 +50,21 @@ class AddRucheFormType extends AbstractType
             ])
             ->add('Rucher',EntityType::class, [
                 'class'=>CRucher::class,
+                'query_builder' => function(EntityRepository $er){
+                    return $er->createQueryBuilder('u')->select('w')->from(CRucher::class, 'w')->orderBy('w.nom', 'ASC');
+                },
                 'choice_label'=>function(CRucher $CRucher){
                 return sprintf(' %s',$CRucher->getNom());
-                },
-                'required'=>false
+                }
                 ])
             ->add('PeseRuche',EntityType::class, [
                 'class'=>CPeseRuche::class,
                 'query_builder' => function(EntityRepository $er){
-                return $er->createQueryBuilder('u')->select('w')->from(CPeseRuche::class, 'w')->where('w.nbAssosRuche = 0');
+                return $er->createQueryBuilder('u')->select('w')->from(CPeseRuche::class, 'w')->where('w.nbAssosRuche = 0')->orderBy('w.nompeseruche', 'ASC');
                 },
                 'choice_label'=>function(CPeseRuche $CPeseRuche){
                 return sprintf(' %s',$CPeseRuche->getNomPeseRuche());
-                },
-                'required'=>false
+                }
                 ])
             ->add('Visibilite',ChoiceType::class,
                 array(

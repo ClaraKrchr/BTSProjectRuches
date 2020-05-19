@@ -78,7 +78,7 @@ class AddController extends AbstractController{
                 $CRuche->setAssociationRucheRucher($AssociationRucheRucher);
             }
             
-            if($data['PeseRuche'] != NULL){
+            if($data['PeseRuche']->getNomPeseRuche() != 'Aucun'){
                 $AssociationRuchePeseruche = new AssociationRuchePeseruche();
                 
                 $AssociationRuchePeseruche->setRuche($CRuche);
@@ -121,6 +121,7 @@ class AddController extends AbstractController{
             $CPeseRuche = new CPeseRuche();
             $CPeseRuche->setNomPeseRuche($data['nompeseruche']);
             $CPeseRuche->setDateInstall($data['dateinstall']);
+            $CPeseRuche->setNbAssosRuche(0);
             
             $em->persist($CPeseRuche);
             
