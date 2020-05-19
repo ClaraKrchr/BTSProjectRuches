@@ -35,132 +35,132 @@ class Carnet
     /**
      * @ORM\Column(type="string", length=7, nullable=true)
      */
-    private $etatRuche;
+    private $etatruche;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $nbCadresCouvain;
+    private $nbcadrescouvain;
 
     /**
      * @ORM\Column(type="string", length=3, nullable=true)
      */
-    private $presenceMales;
+    private $presencemales;
 
     /**
      * @ORM\Column(type="string", length=3, nullable=true)
      */
-    private $presenceLarves;
+    private $presencelarves;
 
     /**
      * @ORM\Column(type="string", length=3, nullable=true)
      */
-    private $presenceOeufs;
+    private $presenceoeufs;
 
     /**
      * @ORM\Column(type="string", length=3, nullable=true)
      */
-    private $couvainOpercule;
+    private $couvainopercule;
 
     /**
      * @ORM\Column(type="string", length=25, nullable=true)
      */
-    private $etatEssaim;
+    private $etatessaim;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    private $dateReine;
+    private $datereine;
 
     /**
      * @ORM\Column(type="string", length=3, nullable=true)
      */
-    private $cellulesRoyales;
+    private $cellulesroyales;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $raceReine;
+    private $racereine;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $ageReine;
+    private $agereine;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $nbCadresMiel;
+    private $nbcadresmiel;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $nbCadresPollen;
+    private $nbcadrespollen;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    private $dateTraitement;
+    private $datetraitement;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $natureTraitement;
+    private $naturetraitement;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    private $dateNourrissement;
+    private $datenourrissement;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $qttNourrissement;
+    private $qttnourrissement;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $natureNourrissement;
+    private $naturenourrissement;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $origineEssaim;
+    private $origineessaim;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $nbHausseRecoltees;
+    private $nbhausserecoltees;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    private $dateRecolte;
+    private $daterecolte;
 
     /**
      * @ORM\Column(type="string", length=20, nullable=true)
      */
-    private $natureMiel;
+    private $naturemiel;
 
     /**
      * @ORM\Column(type="string", length=12, nullable=true)
      */
-    private $presenceVarroa;
+    private $presencevarroa;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $etatAbeilles;
+    private $etatabeilles;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    private $dateTranshumance;
+    private $datetranshumance;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      */
-    private $lieuTranshumance;
+    private $lieutranshumance;
 
 
     public function getId(): ?int
@@ -206,312 +206,312 @@ class Carnet
 
     public function getEtatRuche(): ?string
     {
-        return $this->etatRuche;
+        return $this->etatruche;
     }
 
-    public function setEtatRuche(?string $etatRuche): self
+    public function setEtatRuche(?string $etatruche): self
     {
-        $this->etatRuche = $etatRuche;
+        $this->etatruche = $etatruche;
 
         return $this;
     }
 
     public function getNbCadresCouvain(): ?int
     {
-        return $this->nbCadresCouvain;
+        return $this->nbcadrescouvain;
     }
 
-    public function setNbCadresCouvain(?int $nbCadresCouvain): self
+    public function setNbCadresCouvain(?int $nbcadrescouvain): self
     {
-        $this->nbCadresCouvain = $nbCadresCouvain;
+        $this->nbcadrescouvain = $nbcadrescouvain;
 
         return $this;
     }
 
     public function getPresenceMales(): ?string
     {
-        return $this->presenceMales;
+        return $this->presencemales;
     }
 
-    public function setPresenceMales(?string $presenceMales): self
+    public function setPresenceMales(?string $presencemales): self
     {
-        $this->presenceMales = $presenceMales;
+        $this->presencemales = $presencemales;
 
         return $this;
     }
 
     public function getPresenceLarves(): ?string
     {
-        return $this->presenceLarves;
+        return $this->presencelarves;
     }
 
-    public function setPresenceLarves(?string $presenceLarves): self
+    public function setPresenceLarves(?string $presencelarves): self
     {
-        $this->presenceLarves = $presenceLarves;
+        $this->presencelarves = $presencelarves;
 
         return $this;
     }
 
     public function getPresenceOeufs(): ?string
     {
-        return $this->presenceOeufs;
+        return $this->presenceoeufs;
     }
 
-    public function setPresenceOeufs(?string $presenceOeufs): self
+    public function setPresenceOeufs(?string $presenceoeufs): self
     {
-        $this->presenceOeufs = $presenceOeufs;
+        $this->presenceoeufs = $presenceoeufs;
 
         return $this;
     }
 
     public function getCouvainOpercule(): ?string
     {
-        return $this->couvainOpercule;
+        return $this->couvainopercule;
     }
 
-    public function setCouvainOpercule(?string $couvainOpercule): self
+    public function setCouvainOpercule(?string $couvainopercule): self
     {
-        $this->couvainOpercule = $couvainOpercule;
+        $this->couvainopercule = $couvainopercule;
 
         return $this;
     }
 
     public function getEtatEssaim(): ?string
     {
-        return $this->etatEssaim;
+        return $this->etatessaim;
     }
 
-    public function setEtatEssaim(?string $etatEssaim): self
+    public function setEtatEssaim(?string $etatessaim): self
     {
-        $this->etatEssaim = $etatEssaim;
+        $this->etatessaim = $etatessaim;
 
         return $this;
     }
 
     public function getDateReine(): ?\DateTimeInterface
     {
-        return $this->dateReine;
+        return $this->datereine;
     }
 
-    public function setDateReine(?\DateTimeInterface $dateReine): self
+    public function setDateReine(?\DateTimeInterface $datereine): self
     {
-        $this->dateReine = $dateReine;
+        $this->datereine = $datereine;
 
         return $this;
     }
 
     public function getCellulesRoyales(): ?string
     {
-        return $this->cellulesRoyales;
+        return $this->cellulesroyales;
     }
 
-    public function setCellulesRoyales(?string $cellulesRoyales): self
+    public function setCellulesRoyales(?string $cellulesroyales): self
     {
-        $this->cellulesRoyales = $cellulesRoyales;
+        $this->cellulesroyales = $cellulesroyales;
 
         return $this;
     }
 
     public function getRaceReine(): ?string
     {
-        return $this->raceReine;
+        return $this->racereine;
     }
 
-    public function setRaceReine(?string $raceReine): self
+    public function setRaceReine(?string $racereine): self
     {
-        $this->raceReine = $raceReine;
+        $this->racereine = $racereine;
 
         return $this;
     }
 
     public function getAgeReine(): ?int
     {
-        return $this->ageReine;
+        return $this->agereine;
     }
 
-    public function setAgeReine(?int $ageReine): self
+    public function setAgeReine(?int $agereine): self
     {
-        $this->ageReine = $ageReine;
+        $this->agereine = $agereine;
 
         return $this;
     }
 
     public function getNbCadresMiel(): ?int
     {
-        return $this->nbCadresMiel;
+        return $this->nbcadresmiel;
     }
 
-    public function setNbCadresMiel(?int $nbCadresMiel): self
+    public function setNbCadresMiel(?int $nbcadresmiel): self
     {
-        $this->nbCadresMiel = $nbCadresMiel;
+        $this->nbcadresmiel = $nbcadresmiel;
 
         return $this;
     }
 
     public function getNbCadresPollen(): ?int
     {
-        return $this->nbCadresPollen;
+        return $this->nbcadrespollen;
     }
 
-    public function setNbCadresPollen(?int $nbCadresPollen): self
+    public function setNbCadresPollen(?int $nbcadrespollen): self
     {
-        $this->nbCadresPollen = $nbCadresPollen;
+        $this->nbcadrespollen = $nbcadrespollen;
 
         return $this;
     }
 
     public function getDateTraitement(): ?\DateTimeInterface
     {
-        return $this->date_traitement;
+        return $this->datetraitement;
     }
 
-    public function setDateTraitement(?\DateTimeInterface $date_traitement): self
+    public function setDateTraitement(?\DateTimeInterface $datetraitement): self
     {
-        $this->date_traitement = $date_traitement;
+        $this->datetraitement = $datetraitement;
 
         return $this;
     }
 
     public function getNatureTraitement(): ?string
     {
-        return $this->nature_traitement;
+        return $this->naturetraitement;
     }
 
-    public function setNatureTraitement(?string $nature_traitement): self
+    public function setNatureTraitement(?string $naturetraitement): self
     {
-        $this->nature_traitement = $nature_traitement;
+        $this->naturetraitement = $naturetraitement;
 
         return $this;
     }
 
     public function getDateNourrissement(): ?\DateTimeInterface
     {
-        return $this->dateNourrissement;
+        return $this->datenourrissement;
     }
 
-    public function setDateNourrissement(?\DateTimeInterface $dateNourrissement): self
+    public function setDateNourrissement(?\DateTimeInterface $datenourrissement): self
     {
-        $this->dateNourrissement = $dateNourrissement;
+        $this->datenourrissement = $datenourrissement;
 
         return $this;
     }
 
     public function getQttNourrissement(): ?int
     {
-        return $this->qttNourrissement;
+        return $this->qttnourrissement;
     }
 
-    public function setQttNourrissement(?int $qttNourrissement): self
+    public function setQttNourrissement(?int $qttnourrissement): self
     {
-        $this->qttNourrissement = $qttNourrissement;
+        $this->qttnourrissement = $qttnourrissement;
 
         return $this;
     }
 
     public function getNatureNourrissement(): ?string
     {
-        return $this->natureNourrissement;
+        return $this->naturenourrissement;
     }
 
-    public function setNatureNourrissement(?string $natureNourrissement): self
+    public function setNatureNourrissement(?string $naturenourrissement): self
     {
-        $this->natureNourrissement = $natureNourrissement;
+        $this->naturenourrissement = $naturenourrissement;
 
         return $this;
     }
 
     public function getOrigineEssaim(): ?string
     {
-        return $this->origineEssaim;
+        return $this->origineessaim;
     }
 
-    public function setOrigineEssaim(?string $origineEssaim): self
+    public function setOrigineEssaim(?string $origineessaim): self
     {
-        $this->origineEssaim = $origineEssaim;
+        $this->origineessaim = $origineessaim;
 
         return $this;
     }
 
     public function getNbHausseRecoltees(): ?int
     {
-        return $this->nbHausseRecoltees;
+        return $this->nbhausserecoltees;
     }
 
-    public function setNbHausseRecoltees(?int $nbHausseRecoltees): self
+    public function setNbHausseRecoltees(?int $nbhausserecoltees): self
     {
-        $this->nbHausseRecoltees = $nbHausseRecoltees;
+        $this->nbhausserecoltees = $nbhausserecoltees;
 
         return $this;
     }
 
     public function getDateRecolte(): ?\DateTimeInterface
     {
-        return $this->dateRecolte;
+        return $this->daterecolte;
     }
 
-    public function setDateRecolte(?\DateTimeInterface $dateRecolte): self
+    public function setDateRecolte(?\DateTimeInterface $daterecolte): self
     {
-        $this->dateRecolte = $dateRecolte;
+        $this->daterecolte = $daterecolte;
 
         return $this;
     }
 
     public function getNatureMiel(): ?string
     {
-        return $this->natureMiel;
+        return $this->naturemiel;
     }
 
-    public function setNatureMiel(?string $natureMiel): self
+    public function setNatureMiel(?string $naturemiel): self
     {
-        $this->natureMiel = $natureMiel;
+        $this->naturemiel = $naturemiel;
 
         return $this;
     }
 
     public function getPresenceVarroa(): ?string
     {
-        return $this->presenceVarroa;
+        return $this->presencevarroa;
     }
 
-    public function setPresenceVarroa(?string $presenceVarroa): self
+    public function setPresenceVarroa(?string $presencevarroa): self
     {
-        $this->presenceVarroa = $presenceVarroa;
+        $this->presencevarroa = $presencevarroa;
 
         return $this;
     }
 
     public function getEtatAbeilles(): ?string
     {
-        return $this->etatAbeilles;
+        return $this->etatabeilles;
     }
 
-    public function setEtatAbeilles(?string $etatAbeilles): self
+    public function setEtatAbeilles(?string $etatabeilles): self
     {
-        $this->etatAbeilles = $etatAbeilles;
+        $this->etatabeilles = $etatabeilles;
 
         return $this;
     }
 
     public function getDateTranshumance(): ?\DateTimeInterface
     {
-        return $this->dateTranshumance;
+        return $this->datetranshumance;
     }
 
-    public function setDateTranshumance(?\DateTimeInterface $dateTranshumance): self
+    public function setDateTranshumance(?\DateTimeInterface $datetranshumance): self
     {
-        $this->dateTranshumance = $dateTranshumance;
+        $this->datetranshumance = $datetranshumance;
 
         return $this;
     }
 
     public function getLieuTranshumance(): ?string
     {
-        return $this->lieuTranshumance;
+        return $this->lieutranshumance;
     }
 
-    public function setLieuTranshumance(?string $lieuTranshumance): self
+    public function setLieuTranshumance(?string $lieutranshumance): self
     {
-        $this->lieuTranshumance = $lieuTranshumance;
+        $this->lieutranshumance = $lieutranshumance;
 
         return $this;
     }

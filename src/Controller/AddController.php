@@ -335,9 +335,16 @@ class AddController extends AbstractController{
      * @Route("/add_carnet", name="add_carnet")
      */
     public function addCarnet(Request $request, EntityManagerInterface $em){
-        $form = $this->createForm(CarnetFormType::class);
-        
+        $Carnet = new Carnet();
+        $form = $this->createForm(CarnetFormType::class, $Carnet);
         $form->handleRequest($request);
+        
+        if($form->isSubmitted){
+            $em->persist($Carnet);
+            $em->flush();
+            
+            return $this->redirectToRoute('carnet');
+        }
         
         return $this->render('Add/add_carnet.html.twig', [
             'addCarnetForm' => $form->createView(),
