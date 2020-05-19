@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\Carnet;
 use App\Entity\CRuche;
-use App\Entity\Action;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,13 +26,7 @@ class CarnetFormType extends AbstractType
                 },
                 'required'=>true
                 ])
-            ->add('Action', EntityType::class, [
-                'class'=>Action::class, 
-                'choice_label'=>function(Action $action){
-                return sprintf('%s', $action->getNomaction());
-                },
-                'required'=>true
-                ])
+            ->add('')
         ;
     }
 
