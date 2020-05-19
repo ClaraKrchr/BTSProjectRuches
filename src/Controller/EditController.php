@@ -52,7 +52,7 @@ class EditController extends AbstractController
                 
             }
             
-            if($data['PeseRuche']->getNompPeseRuche() != 'Aucun'){
+            if($data['PeseRuche']->getNomPeseRuche() != 'Aucun'){
                 
                 if ($em->getRepository(AssociationRuchePeseruche::class)->findOneBy(array('ruche'=>$ruche))){ $em->remove($em->getRepository(AssociationRuchePeseruche::class)->findOneBy(array('ruche'=>$ruche)));}
 
