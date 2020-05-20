@@ -4,7 +4,7 @@
 {% block body %}
 
 <meta charset="UTF-8">
-        	<center><h1>Carte interactive des régions de France</h1>
+        	<center><h1>{% trans %}Carte interactive des régions de France{% endtrans %}</h1>
         	
         	<img src="{{ asset('carte-france-regions.png') }}" alt="Les régions de France" usemap="#reg">
             <map name="reg">
@@ -102,9 +102,7 @@
             		
             </map><br></br>
             
-                <a href = "{{ path('add_ruche')}}"><button>Ajouter Ruche</button></a>
-                <a href = "#"><button>Modifier Ruche</button></a>
-                <a href = "#"><button>Supprimer Ruche</button></a>
+                <a href = "{{ path('add_ruche')}}"><button>{% trans %}Ajouter Ruche{% endtrans %}</button></a>
             </center>
         {% block tableau_donnees %}{% endblock %}
 

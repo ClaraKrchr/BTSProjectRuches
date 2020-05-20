@@ -29,8 +29,8 @@
         <source>Pese ruche</source>
         <target>Hive scale</target>
       </trans-unit>
-      <trans-unit id="uZKlb_l" resname="Visibilite">
-        <source>Visibilite</source>
+      <trans-unit id="uZKlb_l" resname="Visibilité">
+        <source>Visibilité</source>
         <target>Visibility</target>
       </trans-unit>
       <trans-unit id="ZlOvWAV" resname="Publique">
@@ -248,6 +248,22 @@
       <trans-unit id="z7GsDIB" resname="Inscription">
         <source>Inscription</source>
         <target>Registration</target>
+      </trans-unit>
+      <trans-unit id="DUULy0z" resname="Ajouter Ruche">
+        <source>Ajouter Ruche</source>
+        <target>Add hive</target>
+      </trans-unit>
+      <trans-unit id="Ij_.UVU" resname="Modifier Ruche">
+        <source>Modifier Ruche</source>
+        <target>Modify hive</target>
+      </trans-unit>
+      <trans-unit id="qnSGulc" resname="Supprimer Ruche">
+        <source>Supprimer Ruche</source>
+        <target>Remove hive</target>
+      </trans-unit>
+      <trans-unit id="Xl0CFs4" resname="Supprimer">
+        <source>Supprimer</source>
+        <target>Remove</target>
       </trans-unit>
     </body>
   </file>
