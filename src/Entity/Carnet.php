@@ -63,7 +63,7 @@ class Carnet
     private $couvainopercule;
 
     /**
-     * @ORM\Column(type="string", length=25, nullable=true)
+     * @ORM\Column(type="array", length=25, nullable=true)
      */
     private $etatessaim;
 
@@ -278,6 +278,7 @@ class Carnet
 
     public function getEtatEssaim(): ?string
     {
+        
         return $this->etatessaim;
     }
 

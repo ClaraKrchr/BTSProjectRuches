@@ -20,7 +20,7 @@ class CarnetFormType extends AbstractType
             ->add('date',DateType::class, [
                 'widget' => 'single_text',])
             ->add('commentaire')
-            ->add('Ruche',EntityType::class, [
+            ->add('ruche',EntityType::class, [
                 'class'=>CRuche::class,
                 'choice_label'=>function(CRuche $CRuche){
                 return sprintf(' %s',$CRuche->getNomruche());
@@ -42,10 +42,11 @@ class CarnetFormType extends AbstractType
                 ],
                 'expanded' => true,
                 'multiple' => true,
+                'required'=> false,
                 'label' => utf8_encode('État essaim')
             ])
             ->add('datereine', DateType::class, [
-                'widget'=>'single_text',])
+                'widget'=>'single_text', 'required'=>false])
             ->add('naturemiel', ChoiceType::class, [
                 'choices'=> [
                     'Tournesol'=>'Tournesol',
@@ -55,8 +56,8 @@ class CarnetFormType extends AbstractType
                     'Tilleul'=>'Tilleul',
                     'Ronce'=>'Ronce',
                     'Miel de printemps'=>'Miel de printemps',
-                    'Miel d\'été'=>'Miel d\'ete',
-                    'Miel de forêt'=>'Miel de foret',
+                    'Miel d\'ete'=>'Miel d\'ete',
+                    'Miel de foret'=>'Miel de foret',
                     'Miel de montagne'=>'Miel de montagne',
                 ]
             ])
@@ -104,10 +105,10 @@ class CarnetFormType extends AbstractType
             ->add('nbcadresmiel')
             ->add('nbcadrespollen')
             ->add('datetraitement', DateType::class, [
-                'widget' => 'single_text',])
+                'widget' => 'single_text','required'=>false])
             ->add('naturetraitement')
             ->add('datenourrissement', DateType::class, [
-                'widget' => 'single_text',])
+                'widget' => 'single_text','required'=>false])
             ->add('qttnourrissement')
             ->add('naturenourrissement')
             ->add('origineessaim', ChoiceType::class, [
@@ -119,7 +120,7 @@ class CarnetFormType extends AbstractType
             ])
             ->add('nbhausserecoltees')
             ->add('daterecolte', DateType::class, [
-                'widget'=> 'single_text',])
+                'widget'=> 'single_text','required'=>false])
             ->add('etatabeilles', ChoiceType::class, [
                 'choices'=> [
                     'Grandes'=>'Grandes',
@@ -127,10 +128,13 @@ class CarnetFormType extends AbstractType
                     'Ailes atrophiees'=>'Ailes atrophies',
                     'Agressives'=>'Agressives',
                     'Douces'=>'Douces',
-                ]
+                ],
+                'expanded' => true,
+                'multiple' => true,
+                'label' => utf8_encode('État abeilles')
             ])
             ->add('datetranshumance', DateType::class, [
-                'widget'=>'single_text',])
+                'widget'=>'single_text','required'=>false])
         ;
     }
 

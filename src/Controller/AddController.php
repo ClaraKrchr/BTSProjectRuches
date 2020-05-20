@@ -7,6 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Doctrine\Persistence\ObjectManager;
 
 use App\Entity\CApiculteur;
 use App\Entity\CRuche;
@@ -334,14 +335,14 @@ class AddController extends AbstractController{
      * @IsGranted("ROLE_USER")
      * @Route("/add_carnet", name="add_carnet")
      */
-    public function addCarnet(Request $request, EntityManagerInterface $em){
+    public function addCarnet(Request $request, ObjectManager $manager){
         $Carnet = new Carnet();
         $form = $this->createForm(CarnetFormType::class, $Carnet);
         $form->handleRequest($request);
         
         if($form->isSubmitted()){
-            $em->persist($Carnet);
-            $em->flush();
+            $manager->persist($Carnet);
+            $manager->flush();
             
             return $this->redirectToRoute('carnet');
         }

@@ -1,16 +1,140 @@
 {% extends 'base.html.twig' %}
 {% block title %}Mesures Ruches{% endblock %}
 {% block body %}
+<meta charset="UTF-8">
 
-<center><h1>Ajout d'une info</h1></center>
+<center><h1>{% trans %}Ajout d'une info{% endtrans %}</h1></center>
+<br>
 
-<div class="d-flex justify-content-around">
+	<div class="d-flex justify-content-around">
 
-            {{ form_start(addCarnetForm) }}
-            {{ form_widget(addCarnetForm) }}
+    {{ form_start(addCarnetForm) }}
+    <form>
+    <div class="form-row">
+    	<div class="form-group col-md-4">
+            {{ form_row(addCarnetForm.date, { 'label' :  'Date'}) }}
+        </div>
+        <div class="form-group col-md-4">
+            {{ form_row(addCarnetForm.commentaire, { 'label' :  'Commentaire', 'attr' : { 'placeholder':'Commentaire'}}) }}
+		</div>
+		<div class="form-group col-md-4">
+            {{ form_row(addCarnetForm.ruche, { 'label' :  'Ruche'}) }}
+        </div>
+    </div>
 
-    <button type="submit" class="btn btn-primary">Valider</button></center>
+    <div class="form-row">
+    	<div class="form-group col-md-4">
+	        {{ form_row(addCarnetForm.etatruche, { 'label' :  'État ruche'}) }}
+        </div>
+        <div class="form-group col-md-4">
+	        <center>{{ form_row(addCarnetForm.etatessaim, { 'label' :  'État essaim'}) }}</center>
+        </div>
+        <div class="form-group col-md-4">
+            {{ form_row(addCarnetForm.origineessaim, { 'label' :  'Origine essaim'})}}
+        </div>
+    </div>
     
-{{ form_end(addCarnetForm) }}
+	<div class="form-row">
+		<div class="form-group col-md-6">
+	        {{ form_row(addCarnetForm.nbcadrescouvain, { 'label' :  'Nombre de cadres couvain', 'attr' : { 'placeholder':'0'}}) }}
+		</div>
+        <div class="form-group col-md-6">
+	        {{ form_row(addCarnetForm.couvainopercule, { 'label' :  'Opercule du couvain'}) }}
+        </div>
+	</div>
+    
+    <div class="form-row">
+		<div class="form-group col-md-4">
+	        {{ form_row(addCarnetForm.presencemales, { 'label' :  'Présence de mâles'}) }}
+        </div>
+        <div class="form-group col-md-4">
+	        {{ form_row(addCarnetForm.presencelarves, { 'label' :  'Présence de larves'}) }}
+        </div>
+        <div class="form-group col-md-4">
+	        {{ form_row(addCarnetForm.presenceoeufs, { 'label' :  'Présence d\'œufs'}) }}
+        </div>
+    </div>	
+	
+    <div class="form-row">
+    	<div class="form-group col-md-3">
+	        {{ form_row(addCarnetForm.datereine, { 'label' :  'Date d\'arrivée de la reine'}) }}
+		</div>
+		<div class="form-group col-md-3">	        
+	        {{ form_row(addCarnetForm.racereine, { 'label' :  'Race de la reine', 'attr' : { 'placeholder':'Race'}}) }}
+		</div>
+		<div class="form-group col-md-3">
+	        {{ form_row(addCarnetForm.agereine, { 'label' :  'Âge de la reine (en mois)', 'attr' : { 'placeholder':'0'}}) }}
+        </div>
+        <div class="form-group col-md-3">
+	        {{ form_row(addCarnetForm.cellulesroyales, { 'label' :  'Présence de cellules royales'}) }}
+		</div>
+	</div>
+	
+    <div class="form-row">
+    	<div class="form-group col-md-6">
+	        {{ form_row(addCarnetForm.nbcadresmiel, { 'label' :  'Nombre de cadres de miel de réserve', 'attr' : { 'placeholder':'0'}})}}
+    	</div>
+    	<div class="form-group col-md-6">
+	        {{ form_row(addCarnetForm.nbcadrespollen, { 'label' :  'Nombre de cadres de pollen', 'attr' : { 'placeholder':'0'}})}}
+    	</div>
+    </div>
+    
+    <div class="form-row">
+    	<div class="form-group col-md-6">
+            {{ form_row(addCarnetForm.datetraitement, { 'label' :  'Date d\'introduction au traitement'})}}
+    	</div>
+    	<div class="form-group col-md-6">
+            {{ form_row(addCarnetForm.naturetraitement, { 'label' :  'Nature du traitement', 'attr' : { 'placeholder':'Nature du traitement'}})}}
+    	</div>
+	</div>
+    
+    <div class="form-row">
+    	<div class="form-group col-md-4">
+            {{ form_row(addCarnetForm.datenourrissement, { 'label' :  'Date nourrissement', 'attr' : { 'placeholder':'0'}})}}
+   		</div>
+    	<div class="form-group col-md-4">
+            {{ form_row(addCarnetForm.qttnourrissement, { 'label' :  'Quantité de nourrissement ', 'attr' : { 'placeholder':'0'}})}}
+    	</div>
+    	<div class="form-group col-md-4">
+            {{ form_row(addCarnetForm.naturenourrissement, { 'label' :  'Nature du nourrissement', 'attr' : { 'placeholder':'Nature du nourrissement'}})}}    
+		</div>
+	</div>
+
+    <div class="form-row">
+    	<div class="form-group col-md-4">
+            {{ form_row(addCarnetForm.daterecolte, { 'label' :  'Date de récolte'})}}
+    	</div>
+    	<div class="form-group col-md-4">
+            {{ form_row(addCarnetForm.nbhausserecoltees, { 'label' :  'Nombre de hausse récoltées', 'attr' : { 'placeholder':'0'}})}}
+    	</div>
+    	<div class="form-group col-md-4">
+            {{ form_row(addCarnetForm.naturemiel, { 'label' :  'Nature du miel'})}}
+    	</div>
+    </div>
+    
+    <div class="form-row">
+    	<div class="form-group col-md-6">
+            {{ form_row(addCarnetForm.presencevarroa, { 'label' :  'Présence Varroa'})}}
+    	</div>
+    	<div class="form-group col-md-6">
+            <center>{{ form_row(addCarnetForm.etatabeilles, { 'label' :  'État des abeilles', 'attr' : { 'placeholder':'0'}})}}</center>
+    	</div>
+    </div>
+    
+    <div class="form-row">
+    	<div class="form-group col-md-6">
+            {{ form_row(addCarnetForm.datetranshumance, { 'label' :  'Date transhumance'})}}
+    	</div>
+    <div class="form-group col-md-6">
+            {{ form_row(addCarnetForm.lieutranshumance, { 'label' :  'Lieu Transhumance', 'attr' : { 'placeholder':'Montauban'}})}}
+    	</div>
+    </div>
+                
+    <center><button type="submit" class="btn btn-primary">Valider</button></center></center>
+    
+    {{ form_end(addCarnetForm) }}
+    </form>
+    </div>
+    <br><br>
 
 {% endblock %}
