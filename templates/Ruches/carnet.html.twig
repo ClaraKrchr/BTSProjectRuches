@@ -11,7 +11,6 @@
 		<tr>
 			<th>{% trans %}Nom de la ruche{% endtrans %}</th>
 			<th>{% trans %}Date{% endtrans %}</th>
-			<th>{% trans %}Ruche{% endtrans %}</th>
 			<th>{% trans %}Commentaire{% endtrans %}</th>	
 			<th>{% trans %}État ruche{% endtrans %}</th>
 			<th>{% trans %}État essaim{% endtrans %}</th>
@@ -40,21 +39,67 @@
 			<th>{% trans %}Date transhumance{% endtrans %}</th>
 			<th>{% trans %}Lieu transhumance{% endtrans %}</th>	
 		</tr>
-		
-		<tbody>
-			{% for carnet in carnet %}
+	</thread>
+	<tbody>
+			{% for carnet in carnets %}
 				<tr>
-					<td>{{ carnet.Ruche }}</td>
-					<td>{{ capiculteur.date }}</td>
-					<td>{{ capiculteur.Action }}</td>
-					<td>{{ capiculteur.commentaire }}</td>
+					<td>{{ carnet.ruche }}</td>
+					<td>{{ carnet.date|date('d/m/Y') }}</td>
+					<td>{{ carnet.commentaire }}</td>
+					<td>{{ carnet.etatruche }}</td>
+					<td>{{ carnet.origineessaim }}</td>
+					<td>{{ carnet.nbcadrescouvain }}</td>
+					<td>{{ carnet.couvainopercule }}</td>
+					<td>{{ carnet.presencemales }}</td>
+					<td>{{ carnet.presencelarves }}</td>
+					<td>{{ carnet.presenceoeufs }}</td>
+					<td>{{ carnet.datereine|date('d/m/Y') }}</td>
+					<td>{{ carnet.racereine }}</td>
+					<td>{{ carnet.agereine }}</td>
+					<td>{{ carnet.cellulesroyales }}</td>
+					<td>{{ carnet.nbcadresmiel }}</td>
+					<td>{{ carnet.nbcadrespollen }}</td>
+					<td>{{ carnet.datetraitement|date('d/m/Y') }}</td>
+					<td>{{ carnet.naturetraitement }}</td>
+					<td>{{ carnet.datenourrissement|date('d/m/Y')  }}</td>
+					<td>{{ carnet.qttnourrissement }}</td>
+					<td>{{ carnet.naturenourrissement }}</td>
+					<td>{{ carnet.daterecolte|date('d/m/Y') }}</td>
+					<td>{{ carnet.nbhausserecoltees }}</td>
+					<td>{{ carnet.naturemiel }}</td>
+					<td>{{ carnet.presencevarroa }}</td>
+					<td>{{ carnet.datetranshumance|date('d/m/Y') }}</td>
+					<td>{{ carnet.lieutranshumance }}</td>
+					<td>
+					{% for  etatessaim in carnet.etatessaim %}
+						    {% if etatessaim=="Orpheline" %}
+								Orpheline
+						    {% elseif etatessaim=="Bourdonneuse" %}
+								Bourdonneuse
+						    {% endif %}
+					{% endfor %}
+					</td>
+					<td>
+					{% for  etatabeilles in carnet.etatabeilles %}
+						    {% if etatabeilles=="Grandes" %}
+								Grandes
+						    {% elseif etatabeilles=="Petites" %}
+								Petites
+							{% elseif etatabeilles=="Ailes atrophiees" %}
+								Ailes atrophiees
+							{% elseif etatabeilles=="Agressives" %}
+								Agressives
+							{% elseif etatabeilles=="Douces" %}
+								Douces
+						    {% endif %}
+					{% endfor %}
+					</td>					
 				</tr>
 			{% endfor %}
 		</tbody>
 		
 		<a href="{{ path('add_carnet') }}"><button class="btn btn-primary">{% trans %}Ajouter une info{% endtrans %}</button></a>	
 		
-	</thread>
 </table>
 
 {% endblock %}

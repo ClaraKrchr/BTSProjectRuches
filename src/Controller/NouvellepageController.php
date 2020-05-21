@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\CRucher;
+use App\Entity\Carnet;
+use App\Repository\CarnetRepository;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,7 +13,6 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Repository\CarnetRepository;
 
 class NouvellepageController extends AbstractController
 {
@@ -59,7 +60,7 @@ class NouvellepageController extends AbstractController
      */
     public function carnet(CarnetRepository $carnet){
         return $this->render('Ruches/carnet.html.twig' , [
-            'carnet' => $carnet->findAll()
+            'carnets' => $carnet->findAll()
         ]);
     }
     

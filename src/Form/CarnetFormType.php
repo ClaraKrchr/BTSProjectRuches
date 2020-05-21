@@ -90,14 +90,14 @@ class CarnetFormType extends AbstractType
             ])
             ->add('couvainopercule', ChoiceType::class, [
                 'choices'=>[
-                    'Opercule'=>'Opercule',
-                    'Pas opercule'=>'Pas opercule',
+                    'Non'=>'Non',
+                    'Oui'=>'Oui',
                 ]
             ])
             ->add('cellulesroyales', ChoiceType::class, [
                 'choices'=>[
-                    'Presence'=>'Presence',
-                    'Abscence'=>'Abscence',
+                    'Non'=>'Non',
+                    'Oui'=>'Oui',
                 ]
             ])
             ->add('racereine')
@@ -125,7 +125,7 @@ class CarnetFormType extends AbstractType
                 'choices'=> [
                     'Grandes'=>'Grandes',
                     'Petites'=>'Petites',
-                    'Ailes atrophiees'=>'Ailes atrophies',
+                    'Ailes atrophiees'=>'Ailes atrophiees',
                     'Agressives'=>'Agressives',
                     'Douces'=>'Douces',
                 ],

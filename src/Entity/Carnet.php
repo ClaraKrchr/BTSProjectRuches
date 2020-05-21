@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CarnetRepository")
@@ -63,9 +65,9 @@ class Carnet
     private $couvainopercule;
 
     /**
-     * @ORM\Column(type="array", length=25, nullable=true)
+     * @ORM\Column(type="json", nullable=true)
      */
-    private $etatessaim;
+    private $etatessaim = [];
 
     /**
      * @ORM\Column(type="date", nullable=true)
@@ -148,9 +150,9 @@ class Carnet
     private $presencevarroa;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="json", nullable=true)
      */
-    private $etatabeilles;
+    private $etatabeilles = [];
 
     /**
      * @ORM\Column(type="date", nullable=true)
@@ -276,13 +278,14 @@ class Carnet
         return $this;
     }
 
-    public function getEtatEssaim(): ?string
+    public function getEtatEssaim(): array
     {
+        $etatessaim = $this->etatessaim;
         
-        return $this->etatessaim;
+        return array_unique($etatessaim);
     }
 
-    public function setEtatEssaim(?string $etatessaim): self
+    public function setEtatEssaim(array $etatessaim): self
     {
         $this->etatessaim = $etatessaim;
 
@@ -481,12 +484,14 @@ class Carnet
         return $this;
     }
 
-    public function getEtatAbeilles(): ?string
+    public function getEtatAbeilles(): array
     {
-        return $this->etatabeilles;
+        $etatabeilles = $this->etatabeilles;
+        
+        return array_unique($etatabeilles);
     }
 
-    public function setEtatAbeilles(?string $etatabeilles): self
+    public function setEtatAbeilles(array $etatabeilles): self
     {
         $this->etatabeilles = $etatabeilles;
 
@@ -516,4 +521,5 @@ class Carnet
 
         return $this;
     }
+    
 }
