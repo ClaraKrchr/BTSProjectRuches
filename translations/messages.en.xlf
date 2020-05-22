@@ -29,8 +29,8 @@
         <source>Pese ruche</source>
         <target>Hive scale</target>
       </trans-unit>
-      <trans-unit id="uZKlb_l" resname="Visibilité">
-        <source>Visibilité</source>
+      <trans-unit id="uZKlb_l" resname="Visibilite">
+        <source>Visibilite</source>
         <target>Visibility</target>
       </trans-unit>
       <trans-unit id="ZlOvWAV" resname="Publique">
@@ -96,6 +96,14 @@
       <trans-unit id="SQlNO6e" resname="Confirmer le mot de passe">
         <source>Confirmer le mot de passe</source>
         <target>Confirm password</target>
+      </trans-unit>
+      <trans-unit id="T6jfNBx" resname="Visibilité">
+        <source>Visibilité</source>
+        <target>Visibility</target>
+      </trans-unit>
+      <trans-unit id="MKvkv4b" resname="Privée">
+        <source>Privée</source>
+        <target>Private</target>
       </trans-unit>
       <trans-unit id="TN9QWFC" resname="Nom pèse ruche">
         <source>Nom pèse ruche</source>
@@ -264,6 +272,122 @@
       <trans-unit id="Xl0CFs4" resname="Supprimer">
         <source>Supprimer</source>
         <target>Remove</target>
+      </trans-unit>
+      <trans-unit id="cpD.f7v" resname="Mes ruches présentes dans la région">
+        <source>Mes ruches présentes dans la région</source>
+        <target>My hive present in the region</target>
+      </trans-unit>
+      <trans-unit id="WRk1sVs" resname="Public">
+        <source>Public</source>
+        <target>Public</target>
+      </trans-unit>
+      <trans-unit id="DY7_2ee" resname="Ajout d'une info">
+        <source>Ajout d'une info</source>
+        <target>Add new</target>
+      </trans-unit>
+      <trans-unit id="beUw_Mz" resname="État ruche">
+        <source>État ruche</source>
+        <target>Hive status</target>
+      </trans-unit>
+      <trans-unit id="U6kp6Xq" resname="État essaim">
+        <source>État essaim</source>
+        <target>Swarm status</target>
+      </trans-unit>
+      <trans-unit id="MYbJcb4" resname="Origine essaim">
+        <source>Origine essaim</source>
+        <target>Origine swarm</target>
+      </trans-unit>
+      <trans-unit id="hU8QCoF" resname="Nb cadres couvain">
+        <source>Nb cadres couvain</source>
+        <target>Nb brood frame</target>
+      </trans-unit>
+      <trans-unit id="IReS5Lj" resname="Opercule du couvain">
+        <source>Opercule du couvain</source>
+        <target>Brood seal</target>
+      </trans-unit>
+      <trans-unit id="pt0B6H6" resname="Mâles">
+        <source>Mâles</source>
+        <target>Male</target>
+      </trans-unit>
+      <trans-unit id="pQXHB.x" resname="Larves">
+        <source>Larves</source>
+        <target>Larva</target>
+      </trans-unit>
+      <trans-unit id="jEpYQuN" resname="Œufs">
+        <source>Œufs</source>
+        <target>Egg</target>
+      </trans-unit>
+      <trans-unit id="iJjUbsd" resname="Date reine">
+        <source>Date reine</source>
+        <target>Queen date</target>
+      </trans-unit>
+      <trans-unit id="TD5r7fR" resname="Race reine">
+        <source>Race reine</source>
+        <target>Queen rave</target>
+      </trans-unit>
+      <trans-unit id="vZO5X.A" resname="Âge reine">
+        <source>Âge reine</source>
+        <target>Queen age</target>
+      </trans-unit>
+      <trans-unit id="1z72AAb" resname="Cellules royales">
+        <source>Cellules royales</source>
+        <target>Royals cells</target>
+      </trans-unit>
+      <trans-unit id="BwnXKru" resname="Nb cadres miel">
+        <source>Nb cadres miel</source>
+        <target>Nb honey frame</target>
+      </trans-unit>
+      <trans-unit id="FvC9oqN" resname="Nb cadres pollen">
+        <source>Nb cadres pollen</source>
+        <target>Nb pollen frame</target>
+      </trans-unit>
+      <trans-unit id="ZeQxxvQ" resname="Date traitement">
+        <source>Date traitement</source>
+        <target>Treatment date</target>
+      </trans-unit>
+      <trans-unit id=".MDaNHL" resname="Nature traitement">
+        <source>Nature traitement</source>
+        <target>Nature treatment</target>
+      </trans-unit>
+      <trans-unit id="YCr0KiG" resname="Date nourrissement">
+        <source>Date nourrissement</source>
+        <target>Feeding date</target>
+      </trans-unit>
+      <trans-unit id="TX7gc3U" resname="Quantité nourrissement">
+        <source>Quantité nourrissement</source>
+        <target>Feeding quantity</target>
+      </trans-unit>
+      <trans-unit id="4DxuBJw" resname="Nature nourrissement">
+        <source>Nature nourrissement</source>
+        <target>Feeding nature</target>
+      </trans-unit>
+      <trans-unit id="qI65yM0" resname="Date récolte">
+        <source>Date récolte</source>
+        <target>Harvest date</target>
+      </trans-unit>
+      <trans-unit id="ZhWKAWf" resname="Nb hausse récoltées">
+        <source>Nb hausse récoltées</source>
+        <target>Nb increase harvest</target>
+      </trans-unit>
+      <trans-unit id="tjqwC3c" resname="Nature miel">
+        <source>Nature miel</source>
+        <target>Honey nature</target>
+      </trans-unit>
+      <trans-unit id="XAmM1JN" resname="Présence varroa">
+        <source>Présence varroa</source>
+        <target>Varroa presence</target>
+      </trans-unit>
+      <trans-unit id="s9o2ekB" resname="État des abeilles">
+        <source>État des abeilles</source>
+        <target>Bee status</target>
+      </trans-unit>
+      <trans-unit id="BraCq_E" resname="Date transhumance">
+        <source>Date transhumance</source>
+        <target>Transhumance date</target>
+      </trans-unit>
+      <trans-unit id="M5uFYT1" resname="Lieu transhumance">
+        <source>Lieu transhumance</source>
+        <target>Transhumance location</target>
       </trans-unit>
     </body>
   </file>

@@ -5,22 +5,22 @@
     <center>
     <br></br>
     {% if apiculteurs %}
-        <h1>Mes ruches présentes dans la région {{ region }}</h1>
+        <h1>{% trans %}Mes ruches présentes dans la région{% endtrans %} {{ region }}</h1>
        
         <table border bgcolor="white" cellpadding="5px">
         <tr>
-        	<td>Nom ruche</td>
-        	<td>Etat</td>
-          	<td>Date d'installation</td>
-        	<td>Visibilité</td>
-        	<td>Action</td>
+        	<td>{% trans %}Nom ruche{% endtrans %}</td>
+        	<td>{% trans %}État{% endtrans %}</td>
+          	<td>{% trans %}Date d'installation{% endtrans %}</td>
+        	<td>{% trans %}Visibilité{% endtrans %}</td>
+        	<td>{% trans %}Action{% endtrans %}</td>
         </tr>
         {% for apiculteur in apiculteurs %}
 		<tr> 
 			<td><a href="{{ path('info_ruche',{nomruche: apiculteur.ruche.nomruche  }) }}"> {{ apiculteur.ruche.nomruche }}			</a></td>
-			<td> {% if apiculteur.ruche.etat == '0' %}En attente{% elseif apiculteur.ruche.etat =='1' %}Dans un rucher{% elseif apiculteur.ruche.etat =='2' %}Chez un apiculteur{% endif %}</td>
+			<td> {% if apiculteur.ruche.etat == '0' %}{% trans %}En attente{% endtrans %}{% elseif apiculteur.ruche.etat =='1' %}{% trans %}Dans un rucher{% endtrans %}{% elseif apiculteur.ruche.etat =='2' %}{% trans %}Chez un apiculteur{% endtrans %}{% endif %}</td>
 			<td> {{ apiculteur.ruche.dateinstall|date("m/d/Y") }}			</td>
-			<td> {% if apiculteur.ruche.visibilite=='0' %}Public{% elseif apiculteur.ruche.visibilite=='1' %}Privée{% endif %}	</td>
+			<td> {% if apiculteur.ruche.visibilite=='0' %}{% trans %}Public{% endtrans %}{% elseif apiculteur.ruche.visibilite=='1' %}{% trans %}Privée{% endtrans %}{% endif %}	</td>
 			<td><a href="{{ path('edit_ruche', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark">{% trans %}Modifier{% endtrans %}</a>
 			<a href="{{ path('delete_ruche', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark">{% trans %}Supprimer{% endtrans %}</a></td>
 		</tr>
