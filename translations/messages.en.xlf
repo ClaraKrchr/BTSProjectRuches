@@ -389,6 +389,74 @@
         <source>Lieu transhumance</source>
         <target>Transhumance location</target>
       </trans-unit>
+      <trans-unit id=".qM7WZw" resname="Les données de la ruche">
+        <source>Les données de la ruche</source>
+        <target>The hive data</target>
+      </trans-unit>
+      <trans-unit id="wdHQTti" resname="qui appartient à">
+        <source>qui appartient à</source>
+        <target>who belongs to</target>
+      </trans-unit>
+      <trans-unit id="Q1PPkkp" resname="installée le :">
+        <source>installée le :</source>
+        <target>Installed on :</target>
+      </trans-unit>
+      <trans-unit id="oEvOUc6" resname="Les mesures de la station">
+        <source>Les mesures de la station</source>
+        <target>Station measurements</target>
+      </trans-unit>
+      <trans-unit id="iJxlOuj" resname="Nom Station">
+        <source>Nom Station</source>
+        <target>Station name</target>
+      </trans-unit>
+      <trans-unit id="p9Fl6LD" resname="Température">
+        <source>Température</source>
+        <target>Temperature</target>
+      </trans-unit>
+      <trans-unit id="tTBpqDg" resname="Tension">
+        <source>Tension</source>
+        <target>Voltage</target>
+      </trans-unit>
+      <trans-unit id="qlGb.VA" resname="Humidité">
+        <source>Humidité</source>
+        <target>Humidity</target>
+      </trans-unit>
+      <trans-unit id="QyOC5iZ" resname="Date du relevé">
+        <source>Date du relevé</source>
+        <target>Date of statement</target>
+      </trans-unit>
+      <trans-unit id="9mrLaDA" resname="Pression">
+        <source>Pression</source>
+        <target>Pressure</target>
+      </trans-unit>
+      <trans-unit id="YEFW4od" resname="Nom du Rucher">
+        <source>Nom du Rucher</source>
+        <target>Apiary name</target>
+      </trans-unit>
+      <trans-unit id="XOok4QP" resname="Les mesures de la ruche">
+        <source>Les mesures de la ruche</source>
+        <target>Hive measures</target>
+      </trans-unit>
+      <trans-unit id="UZP5WBW" resname="Nom Ruche">
+        <source>Nom Ruche</source>
+        <target>Hive name</target>
+      </trans-unit>
+      <trans-unit id="r3UMoX_" resname="Poids">
+        <source>Poids</source>
+        <target>Weight</target>
+      </trans-unit>
+      <trans-unit id="rAj4qeP" resname="Nom du Pèse Ruche">
+        <source>Nom du Pèse Ruche</source>
+        <target>Hive scale name</target>
+      </trans-unit>
+      <trans-unit id="GR88apd" resname="Date de début:">
+        <source>Date de début:</source>
+        <target>Start date :</target>
+      </trans-unit>
+      <trans-unit id="0G6foQO" resname="Date de fin:">
+        <source>Date de fin:</source>
+        <target>End date :</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

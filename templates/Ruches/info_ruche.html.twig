@@ -13,23 +13,23 @@
 
 
  
-<center><h3>Les données de la ruche {{ nomruche }} qui appartient à {{ proprietaire }} installée le : {{ dateinstall|date("m/d/Y") }}</h3>
+<center><h3>{% trans %}Les données de la ruche {% endtrans %}{{ nomruche }}{% trans %} qui appartient à {% endtrans %}{{ proprietaire }}{% trans %} installée le : {% endtrans %}{{ dateinstall|date("m/d/Y") }}</h3>
 <br></br>
 <div class="container ">
 <div class="row">
 <div class="block1 col-lg-5">
 {% if mesuresstations %}
-<h4>Les mesures de la station</h4>
+<h4>{% trans %}Les mesures de la station{% endtrans %}</h4>
 
 <table border bgcolor="white" cellpadding="5px">
 <tr>
-	<td>Nom Station</td>
-	<td>Température</td>
-	<td>Tension</td>
-	<td>Humidité</td>
-	<td>Date du relevé</td>
-	<td>Pression</td>
-	<td>Nom du Rucher</td>
+	<td>{% trans %}Nom Station{% endtrans %}</td>
+	<td>{% trans %}Température{% endtrans %}</td>
+	<td>{% trans %}Tension{% endtrans %}</td>
+	<td>{% trans %}Humidité{% endtrans %}</td>
+	<td>{% trans %}Date du relevé{% endtrans %}</td>
+	<td>{% trans %}Pression{% endtrans %}</td>
+	<td>{% trans %}Nom du Rucher{% endtrans %}</td>
 </tr>
 {% for mesuresstation in mesuresstations %}
 <tr>
@@ -109,14 +109,14 @@
 <div class="block1 col-lg-5">
 {% if mesuresruches %}
 <br></br>
-<h4>Les mesures de la ruche</h4>
+<h4>{% trans %}Les mesures de la ruche{% endtrans %}</h4>
 
 <table border bgcolor="white" cellpadding="5px">
 <tr>
-	<td>Nom Ruche</td>
-	<td>Poids</td>
-	<td>Date du relevé</td>
-	<td>Nom du Pèse Ruche</td>
+	<td>{% trans %}Nom Ruche{% endtrans %}</td>
+	<td>{% trans %}Poids{% endtrans %}</td>
+	<td>{% trans %}Date du relevé{% endtrans %}</td>
+	<td>{% trans %}Nom du Pèse Ruche{% endtrans %}</td>
 </tr>
 {% for mesuresruche in mesuresruches %} 
 <tr>
@@ -130,8 +130,8 @@
 </div>
 <div class="block2 col-lg-6">
 <br></br>
-Date de début:<input id="date_depart" type="date"/>
-Date de fin:<input id="date_fin" type="date"/>
+{% trans %}Date de début:{% endtrans %}<input id="date_depart" type="date"/>
+{% trans %}Date de fin:{% endtrans %}<input id="date_fin" type="date"/>
 <figure class="highcharts-figure">
   <div id="chart2" style="height: 400px; min-width: 310px"></div>
   </figure>
