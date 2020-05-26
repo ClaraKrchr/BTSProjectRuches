@@ -13,16 +13,28 @@
         	<td>{% trans %}État{% endtrans %}</td>
           	<td>{% trans %}Date d'installation{% endtrans %}</td>
         	<td>{% trans %}Visibilité{% endtrans %}</td>
+        	<td>{% trans %}Rucher{% endtrans %}</td>
+        	<td>{% trans %}Pèse-ruche{% endtrans %}</td>
         	<td>{% trans %}Action{% endtrans %}</td>
         </tr>
         {% for apiculteur in apiculteurs %}
 		<tr> 
 			<td><a href="{{ path('info_ruche',{nomruche: apiculteur.ruche.nomruche  }) }}"> {{ apiculteur.ruche.nomruche }}			</a></td>
+			
 			<td> {% if apiculteur.ruche.etat == '0' %}{% trans %}En attente{% endtrans %}{% elseif apiculteur.ruche.etat =='1' %}{% trans %}Dans un rucher{% endtrans %}{% elseif apiculteur.ruche.etat =='2' %}{% trans %}Chez un apiculteur{% endtrans %}{% endif %}</td>
+			
 			<td> {{ apiculteur.ruche.dateinstall|date("m/d/Y") }}			</td>
+			
 			<td> {% if apiculteur.ruche.visibilite=='0' %}{% trans %}Public{% endtrans %}{% elseif apiculteur.ruche.visibilite=='1' %}{% trans %}Privée{% endtrans %}{% endif %}	</td>
+			
+			<td> {{ apiculteur.ruche.associationRucheRucher.rucher }} </td>
+			
+			<td> {% if apiculteur.ruche.associationRuchePeseruche != NULL %}{{ apiculteur.ruche.associationRuchePeseruche.peseruche.nomPeseruche }}{% else %} Aucun {% endif %} </td>
+			
 			<td><a href="{{ path('edit_ruche', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark">{% trans %}Modifier{% endtrans %}</a>
-			<a href="{{ path('delete_ruche', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark">{% trans %}Supprimer{% endtrans %}</a></td>
+			<a href="{{ path('delete_ruche', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark">{% trans %}Supprimer{% endtrans %}</a>
+			<a href="{{ path('dissociate_ruche_rucher', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark">{% trans %}Dissocier du rucher{% endtrans %}</a>
+			<a href="{{ path('dissociate_ruche_peseruche', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark">{% trans %}Dissocier du pèse-ruche{% endtrans %}</a></td>
 		</tr>
         {% endfor %}
         </table>
