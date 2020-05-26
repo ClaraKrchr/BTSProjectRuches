@@ -25,26 +25,10 @@ class DeleteController extends AbstractController
      */
     public function deleteRuche(Request $request, CRuche $ruche, EntityManagerInterface $em)
     {
-        $AssosRucheRucher = $this->getDoctrine()->getRepository(AssociationRucheRucher::class)->findBy(array('ruche'=>$ruche));
-        $ARRLength = count($AssosRucheRucher);
-        for($i = 0; $i < $ARRLength; $i++)
-        {
-            $em->remove($AssosRucheRucher[$i]);
-        }
-        $AssosRuchePeseruche = $this->getDoctrine()->getRepository(AssociationRuchePeseruche::class)->findBy(array('ruche'=>$ruche));
-        $ARRLength = count($AssosRuchePeseruche);
-        for($i = 0; $i < $ARRLength; $i++)
-        {
-            $em->remove($AssosRuchePeseruche[$i]);
-        }
-        $AssosRucheApiculteur = $this->getDoctrine()->getRepository(AssociationRucheApiculteur::class)->findBy(array('ruche'=>$ruche));
-        $ARRLength = count($AssosRucheApiculteur);
-        for($i = 0; $i < $ARRLength; $i++)
-        {
-            $em->remove($AssosRucheApiculteur[$i]);
-        }
         
-        $em->remove($ruche);
+        $AssosRucheRucher = $this->getDoctrine()->getRepository(AssociationRucheRucher::class)->findOneBy(array('ruche'=>$ruche));
+        $em->remove($AssosRucheRucher);
+
         
         $em->flush();
         

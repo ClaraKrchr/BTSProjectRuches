@@ -79,6 +79,8 @@ class EditController extends AbstractController
      */
     public function dissociate_ruche_rucher(Request $request, CRuche $ruche, EntityManagerInterface $em){
         
+        $em->remove($em->getRepository(AssociationRucheRucher::class)->findBy(array('ruche'=>$ruche)));
+        
     }
     
     /**
@@ -86,6 +88,8 @@ class EditController extends AbstractController
      * @Route("/tableau_donnees/dissociate_ruche_peseruche/{nomruche}", name="dissociate_ruche_peseruche")
      */
     public function dissociate_ruche_peseruche(Request $request, CRuche $ruche, EntityManagerInterface $em){
+        
+        $em->remove($em->getRepository(AssociationRuchePeseruche::class)->findOneBy(array('ruche'=>$ruche)));
         
     }
 }
