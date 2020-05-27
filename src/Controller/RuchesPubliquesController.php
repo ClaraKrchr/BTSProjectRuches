@@ -20,9 +20,9 @@ use App\Form\RuchesPubliquesFormType;
 class RuchesPubliquesController extends AbstractController{
     
     /**
-     * @Route("/ruches/publiques/{regions}/{ruche}/{proprietaire}/{page}", name="ruches_publiques", defaults={"page"=1})
+     * @Route("/ruches/publiques/{regions}/{ruche}/{proprietaire}/{type}/{page}", name="ruches_publiques", defaults={"page"=1})
      */
-    public function new(EntityManagerInterface $em, $regions, PaginatorInterface $paginator, Request $request, $page, $ruche, $proprietaire)   {
+    public function new(EntityManagerInterface $em, $regions, PaginatorInterface $paginator, Request $request, $page, $ruche, $proprietaire, $type)   {
         
         $region = $this->getDoctrine()->getRepository(Regions::class)->findBy(array('nomregion'=>$regions));
         $RucherRegion = $this->getDoctrine()->getRepository(AssociationRucherRegion::class)->findBy(array('region'=>$region));
@@ -32,26 +32,59 @@ class RuchesPubliquesController extends AbstractController{
         for($j = $i = 0; $i < $ARRLength; $i++)
         {
             if ($AssosRucheRucher[$i]->getRuche()->getVisibilite() == '0'){
-                if($ruche == 'NULL'){ //ruche pas précisée
-                    if ($proprietaire == 'NULL'){ //propriétaire et ruche pas précisés
+                if($ruche == 'NULL'){ //Ruche X
+                    if ($proprietaire == 'NULL'){ //Propio X
+                        if ($type == 'NULL'){ //Type X
+                            $ruches[$j] = $AssosRucheRucher[$i]->getRuche();
+                            $j++;
+                                    //Ruche X proprio X type X
+                        } //Type OK
+                        else if ($AssosRucheRucher[$i]->getRuche()->getTyperuche() == $type){
+                            $ruches[$j] = $AssosRucheRucher[$i]->getRuche();
+                            $j++;
+                                    //Ruche X proprio X type OK
+                        }
+                    } //Proprio OK
+                    else{
+                        if ($type == 'NULL'){ //Type X
+                            if ($AssosRucheRucher[$i]->getRuche()->getAssociationRucheApiculteur()->getApiculteur()->getPseudo() == $proprietaire){
+                                $ruches[$j] = $AssosRucheRucher[$i]->getRuche();
+                                $j++;
+                                    //Ruche X proprio OK type X
+                            }
+                        } //Type OK
+                        else if (($AssosRucheRucher[$i]->getRuche()->getAssociationRucheApiculteur()->getApiculteur()->getPseudo() == $proprietaire) && ($AssosRucheRucher[$i]->getRuche()->getTyperuche() == $type))
                         $ruches[$j] = $AssosRucheRucher[$i]->getRuche();
                         $j++;
+                                    //Ruche X proprio OK type OK
                     }
-                    else if ($AssosRucheRucher[$i]->getRuche()->getAssociationRucheApiculteur()->getApiculteur()->getPseudo() == $proprietaire){ //propriétaire précisé mais pas ruche
+                } //Ruche OK
+                else if($proprietaire == 'NULL'){ //Proprio X
+                    if ($type == 'NULL'){ //Type X
+                        if ($AssosRucheRucher[$i]->getRuche()->getNomruche() == $ruche){
+                            $ruches[$j] = $AssosRucheRucher[$i]->getRuche();
+                            $j++;
+                                    //Ruche OK proprio X type X
+                        }
+                    } //Type OK
+                    else if (($AssosRucheRucher[$i]->getRuche()->getNomruche() == $ruche) && ($AssosRucheRucher[$i]->getRuche()->getTyperuche() == $type)){
                         $ruches[$j] = $AssosRucheRucher[$i]->getRuche();
                         $j++;
+                                    //Ruche OK proprio X type OK
                     }
-                }
-                else if($proprietaire == 'NULL'){ //ruche précisée mais pas propriétaire
-                    if ($AssosRucheRucher[$i]->getRuche()->getNomruche() == $ruche){
-                        $ruches[$j] = $AssosRucheRucher[$i]->getRuche();
-                        $j++;
-                    }
-                }
+                } //Proprio OK
                 else{
-                    if (($AssosRucheRucher[$i]->getRuche()->getNomruche() == $ruche) && ($AssosRucheRucher[$i]->getRuche()->getAssociationRucheApiculteur()->getApiculteur()->getPseudo() == $proprietaire)){
+                    if ($type == 'NULL'){ //Type X
+                        if (($AssosRucheRucher[$i]->getRuche()->getNomruche() == $ruche) && ($AssosRucheRucher[$i]->getRuche()->getAssociationRucheApiculteur()->getApiculteur()->getPseudo() == $proprietaire)){
+                            $ruches[$j] = $AssosRucheRucher[$i]->getRuche();
+                            $j++;
+                                    //Ruche OK proprio OK type X
+                        }
+                    } //Type OK
+                    else if (($AssosRucheRucher[$i]->getRuche()->getNomruche() == $ruche) && ($AssosRucheRucher[$i]->getRuche()->getAssociationRucheApiculteur()->getApiculteur()->getPseudo() == $proprietaire) && ($AssosRucheRucher[$i]->getRuche()->getTyperuche() == $type)){
                         $ruches[$j] = $AssosRucheRucher[$i]->getRuche();
                         $j++;
+                                    //Ruche OK proprio OK type OK
                     }
                 }
             }
@@ -62,12 +95,28 @@ class RuchesPubliquesController extends AbstractController{
         
         if($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-            if ($data['Proprietaire'] == NULL) {
-                if ($data['Nom_ruche'] == NULL) return ($this->redirectToRoute('ruches_publiques', array('regions' => $regions, 'ruche' => 'NULL', 'proprietaire' => 'NULL'))); //Ni proprio ni ruche
-                return ($this->redirectToRoute('ruches_publiques', array('regions' => $regions, 'ruche' => $data['Nom_ruche'], 'proprietaire' => 'NULL'))); //Ruche mais pas proprio
-            }
-            if ($data['Nom_ruche'] == NULL) return ($this->redirectToRoute('ruches_publiques', array('regions' => $regions, 'ruche' => 'NULL', 'proprietaire' => $data['Proprietaire']->getPseudo()))); //Proprio mais pas ruche
-            return ($this->redirectToRoute('ruches_publiques', array('regions' => $regions, 'ruche' => $data['Nom_ruche'], 'proprietaire' => $data['Proprietaire']->getPseudo()))); //Proprio et ruche
+            if ($data['Proprietaire'] == NULL) { //Propriétaire X 
+                if ($data['Nom_ruche'] == NULL) { //Ruche X 
+                    if ($data['Type'] == NULL) return ($this->redirectToRoute('ruches_publiques', array('regions' => $regions, 'ruche' => 'NULL', 'proprietaire' => 'NULL', 'type' => 'NULL'))); 
+                    //Proprio X ruche X type X
+                    return ($this->redirectToRoute('ruches_publiques', array('regions' => $regions, 'ruche' => 'NULL', 'proprietaire' => 'NULL', 'type' => $data['Type']))); 
+                    //Proprio X ruche X type OK
+                } //Ruche OK
+                if ($data['Type'] == 'NULL') return ($this->redirectToRoute('ruches_publiques', array('regions' => $regions, 'ruche' => $data['Nom_ruche'], 'proprietaire' => 'NULL', 'type' => 'NULL')));
+                    //Proprio X ruche OK type X
+                return ($this->redirectToRoute('ruches_publiques', array('regions' => $regions, 'ruche' => $data['Nom_ruche'], 'proprietaire' => 'NULL', 'type' => data['Type']))); 
+                    //Proprio X ruche OK type OK
+            } //Propriétaire OK
+            if ($data['Nom_ruche'] == NULL) { //Ruche X
+                if ($data['Type'] == NULL) return ($this->redirectToRoute('ruches_publiques', array('regions' => $regions, 'ruche' => 'NULL', 'proprietaire' => $data['Proprietaire']->getPseudo(), 'type' => 'NULL'))); 
+                    //Proprio OK ruche X type X
+                return ($this->redirectToRoute('ruches_publiques', array('regions' => $regions, 'ruche' => 'NULL', 'proprietaire' => $data['Proprietaire']->getPseudo(), 'type' => $data['Type'])));
+                    //Proprio OK ruche X type OK
+            } //Ruche OK
+            if ($data['Type' == 'NULL']) return ($this->redirectToRoute('ruches_publiques', array('regions' => $regions, 'ruche' => $data['Nom_ruche'], 'proprietaire' => $data['Proprietaire']->getPseudo(), 'type' => 'NULL')));
+                    //Proprio OK ruche OK type X
+            return ($this->redirectToRoute('ruches_publiques', array('regions' => $regions, 'ruche' => $data['Nom_ruche'], 'proprietaire' => $data['Proprietaire']->getPseudo(), 'type' => $data['Type']))); 
+                    //Proprio OK ruche OK type OK
         }
         
         $paginations = $paginator->paginate(
