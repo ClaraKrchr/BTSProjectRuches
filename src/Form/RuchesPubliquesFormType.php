@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Doctrine\ORM\EntityRepository;
 
 
 use App\Entity\CApiculteur;
@@ -21,14 +22,23 @@ class RuchesPubliquesFormType extends AbstractType
         $builder        
         ->add('Nom_ruche',EntityType::class,[
             'class'=>CRuche::class,
-            'choice_label'=> function(CRuche $CRuche){
-            if($CRuche->getVisibilite()==false)return sprintf("%s",$CRuche->getNomruche());else return null;
+            'query_builder' => function(EntityRepository $er){
+            return $er->createQueryBuilder('u')->select('w')->from(CRuche::class, 'w')->where('w.visibilite = 0')->orderBy('w.nomruche', 'ASC');
+            },
+            'choice_label'=>function(CRuche $CRuche){
+            return sprintf(' %s',$CRuche->getNomruche());
             },
             'placeholder'=>'',
             'required'=> false
         ])
         ->add('Proprietaire',EntityType::class,[
             'class'=>CApiculteur::class,
+            'query_builder' => function(EntityRepository $er){
+            return $er->createQueryBuilder('u')->select('w')->from(CApiculteur::class, 'w')->orderBy('w.pseudo', 'ASC');
+            },
+            'choice_label'=>function(CApiculteur $CApiculteur){
+                return sprintf('%s', $CApiculteur->getPseudo());
+            },
             'placeholder'=>'',
             'required'=> false
         ])
