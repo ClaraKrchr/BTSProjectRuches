@@ -169,8 +169,8 @@
         <source>Bienvenue</source>
         <target>Welcome</target>
       </trans-unit>
-      <trans-unit id="PpdUL7t" resname="Carte de France interactive des régions">
-        <source>Carte de France interactive des régions</source>
+      <trans-unit id="PpdUL7t" resname="Carte interactive des régions de France">
+        <source>Carte interactive des régions de France</source>
         <target>Interactive map of France</target>
       </trans-unit>
       <trans-unit id="RRQENfT" resname="Gestionnaire des apiculteurs">
