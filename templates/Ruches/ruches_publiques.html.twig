@@ -18,8 +18,7 @@
     	    {{ form_end(filterForm) }}
 		</div>
 		<div class="row" id="Content">
-	
-{% for pagination in paginations %}
+			{% for pagination in paginations %}
 		<div class="col-xl-4 col-md-6 mb-2">
 			<div class="card shadow mb-4">
 				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -41,6 +40,9 @@
 			<div>
 				{{ knp_pagination_render(paginations) }}
 			</div>
+		{% if paginations.getTotalItemCount == 0 %}
+		<center><h1>Aucune ruche publique dans la région {{ region }}</h1></center>
+        {% endif %}
 	
 		</div>
 	</div>
