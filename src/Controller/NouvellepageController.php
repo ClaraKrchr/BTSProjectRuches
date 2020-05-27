@@ -3,8 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\CRucher;
-use App\Entity\Carnet;
-use App\Repository\CarnetRepository;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -54,19 +52,5 @@ class NouvellepageController extends AbstractController
         return $this->redirect($request->headers->get('referer'));
     }
     
-    /**
-     * @IsGranted("ROLE_USER")
-     * @Route("/carnet", name="carnet")
-     */
-    public function carnet(CarnetRepository $carnet){
-        return $this->render('Ruches/carnet.html.twig' , [
-            'carnets' => $carnet->findAll()
-        ]);
-    }
-    
 }
-    
-        
-        
-        
-        
+  

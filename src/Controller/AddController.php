@@ -32,7 +32,7 @@ use App\Form\AddPeseRucheFormType;
 use App\Form\AddStationFormType;
 use App\Form\AddRucherFormType;
 use App\Form\RegionsFormType;
-use App\Form\CarnetFormType;
+use App\Form\AddCarnetFormType;
 
 class AddController extends AbstractController{
     /**
@@ -337,7 +337,7 @@ class AddController extends AbstractController{
      */
     public function addCarnet(Request $request, ObjectManager $manager){
         $Carnet = new Carnet();
-        $form = $this->createForm(CarnetFormType::class, $Carnet);
+        $form = $this->createForm(AddCarnetFormType::class, $Carnet);
         $form->handleRequest($request);
         
         if($form->isSubmitted()){

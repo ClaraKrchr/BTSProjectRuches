@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon carnet d'apiculteur{% endblock %}
+
+{% block body %}
+<meta charset="UTF-8">
+
+<center><h1>{% trans %}Mon carnet d'apiculteur{% endtrans %}</h1></center>
+<table id="carnet" class="table table-striped">
+			{% for carnet in carnets %}
+            {{ carnet.ruche }}
+					{{ carnet.date|date('d/m/Y') }}
+					{{ carnet.commentaire }}
+					{{ carnet.etatruche }}
+					{{ carnet.origineessaim }}
+					{{ carnet.nbcadrescouvain }}
+					{{ carnet.couvainopercule }}
+					{{ carnet.presencemales }}
+					{{ carnet.presencelarves }}
+					{{ carnet.presenceoeufs }}
+					{{ carnet.datereine|date('d/m/Y') }}
+					{{ carnet.racereine }}
+					{{ carnet.agereine }}
+					{{ carnet.cellulesroyales }}
+					{{ carnet.nbcadresmiel }}
+					{{ carnet.nbcadrespollen }}
+					{{ carnet.datetraitement|date('d/m/Y') }}
+					{{ carnet.naturetraitement }}
+					{{ carnet.datenourrissement|date('d/m/Y')  }}
+					{{ carnet.qttnourrissement }}
+					{{ carnet.naturenourrissement }}
+					{{ carnet.daterecolte|date('d/m/Y') }}
+					{{ carnet.nbhausserecoltees }}
+					{{ carnet.naturemiel }}
+					{{ carnet.presencevarroa }}
+					{{ carnet.datetranshumance|date('d/m/Y') }}
+					{{ carnet.lieutranshumance }}
+					
+					{% for  etatessaim in carnet.etatessaim %}
+						    {% if etatessaim=="Orpheline" %}
+								Orpheline
+						    {% elseif etatessaim=="Bourdonneuse" %}
+								Bourdonneuse
+						    {% endif %}
+					{% endfor %}
+					
+					{% for  etatabeilles in carnet.etatabeilles %}
+						    {% if etatabeilles=="Grandes" %}
+								Grandes
+						    {% elseif etatabeilles=="Petites" %}
+								Petites
+							{% elseif etatabeilles=="Ailes atrophiees" %}
+								Ailes atrophiees
+							{% elseif etatabeilles=="Agressives" %}
+								Agressives
+							{% elseif etatabeilles=="Douces" %}
+								Douces
+						    {% endif %}
+					{% endfor %}
+			{% endfor %}
+		
+		<a href="{{ path('add_carnet') }}"><button class="btn btn-primary">{% trans %}Ajouter une info{% endtrans %}</button></a>	
+		
+</table>
+
+{% endblock %}

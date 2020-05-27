@@ -6,100 +6,14 @@
 <meta charset="UTF-8">
 
 <center><h1>{% trans %}Mon carnet d'apiculteur{% endtrans %}</h1></center>
+<center><p>{% trans %}Recherchez une ruche pour afficher ses informations du carnet{% endtrans %}</p></center>
 <table id="carnet" class="table table-striped">
-	<thread>
-		<tr>
-			<th>{% trans %}Nom de la ruche{% endtrans %}</th>
-			<th>{% trans %}Date{% endtrans %}</th>
-			<th>{% trans %}Commentaire{% endtrans %}</th>	
-			<th>{% trans %}État ruche{% endtrans %}</th>
-			<th>{% trans %}État essaim{% endtrans %}</th>
-			<th>{% trans %}Origine essaim{% endtrans %}</th>
-			<th>{% trans %}Nb cadres couvain{% endtrans %}</th>
-			<th>{% trans %}Opercule du couvain{% endtrans %}</th>
-			<th>{% trans %}Mâles{% endtrans %}</th>
-			<th>{% trans %}Larves{% endtrans %}</th>
-			<th>{% trans %}Œufs{% endtrans %}</th>
-			<th>{% trans %}Date reine{% endtrans %}</th>
-			<th>{% trans %}Race reine{% endtrans %}</th>
-			<th>{% trans %}Âge reine{% endtrans %}</th>
-			<th>{% trans %}Cellules royales{% endtrans %}</th>
-			<th>{% trans %}Nb cadres miel{% endtrans %}</th>
-			<th>{% trans %}Nb cadres pollen{% endtrans %}</th>
-			<th>{% trans %}Date traitement{% endtrans %}</th>
-			<th>{% trans %}Nature traitement{% endtrans %}</th>
-			<th>{% trans %}Date nourrissement{% endtrans %}</th>
-			<th>{% trans %}Quantité nourrissement{% endtrans %}</th>
-			<th>{% trans %}Nature nourrissement{% endtrans %}</th>
-			<th>{% trans %}Date récolte{% endtrans %}</th>
-			<th>{% trans %}Nb hausse récoltées{% endtrans %}</th>
-			<th>{% trans %}Nature miel{% endtrans %}</th>
-			<th>{% trans %}Présence varroa{% endtrans %}</th>
-			<th>{% trans %}État des abeilles{% endtrans %}</th>
-			<th>{% trans %}Date transhumance{% endtrans %}</th>
-			<th>{% trans %}Lieu transhumance{% endtrans %}</th>	
-		</tr>
-	</thread>
-	<tbody>
-			{% for carnet in carnets %}
-				<tr>
-					<td>{{ carnet.ruche }}</td>
-					<td>{{ carnet.date|date('d/m/Y') }}</td>
-					<td>{{ carnet.commentaire }}</td>
-					<td>{{ carnet.etatruche }}</td>
-					<td>{{ carnet.origineessaim }}</td>
-					<td>{{ carnet.nbcadrescouvain }}</td>
-					<td>{{ carnet.couvainopercule }}</td>
-					<td>{{ carnet.presencemales }}</td>
-					<td>{{ carnet.presencelarves }}</td>
-					<td>{{ carnet.presenceoeufs }}</td>
-					<td>{{ carnet.datereine|date('d/m/Y') }}</td>
-					<td>{{ carnet.racereine }}</td>
-					<td>{{ carnet.agereine }}</td>
-					<td>{{ carnet.cellulesroyales }}</td>
-					<td>{{ carnet.nbcadresmiel }}</td>
-					<td>{{ carnet.nbcadrespollen }}</td>
-					<td>{{ carnet.datetraitement|date('d/m/Y') }}</td>
-					<td>{{ carnet.naturetraitement }}</td>
-					<td>{{ carnet.datenourrissement|date('d/m/Y')  }}</td>
-					<td>{{ carnet.qttnourrissement }}</td>
-					<td>{{ carnet.naturenourrissement }}</td>
-					<td>{{ carnet.daterecolte|date('d/m/Y') }}</td>
-					<td>{{ carnet.nbhausserecoltees }}</td>
-					<td>{{ carnet.naturemiel }}</td>
-					<td>{{ carnet.presencevarroa }}</td>
-					<td>{{ carnet.datetranshumance|date('d/m/Y') }}</td>
-					<td>{{ carnet.lieutranshumance }}</td>
-					<td>
-					{% for  etatessaim in carnet.etatessaim %}
-						    {% if etatessaim=="Orpheline" %}
-								Orpheline
-						    {% elseif etatessaim=="Bourdonneuse" %}
-								Bourdonneuse
-						    {% endif %}
-					{% endfor %}
-					</td>
-					<td>
-					{% for  etatabeilles in carnet.etatabeilles %}
-						    {% if etatabeilles=="Grandes" %}
-								Grandes
-						    {% elseif etatabeilles=="Petites" %}
-								Petites
-							{% elseif etatabeilles=="Ailes atrophiees" %}
-								Ailes atrophiees
-							{% elseif etatabeilles=="Agressives" %}
-								Agressives
-							{% elseif etatabeilles=="Douces" %}
-								Douces
-						    {% endif %}
-					{% endfor %}
-					</td>					
-				</tr>
-			{% endfor %}
-		</tbody>
-		
+
+		{{ form_start(carnetForm) }}
+		{{ form_row(carnetForm.ruche, { 'label' :  'Ruche'}) }}
+		<center><button type="submit" class="btn btn-primary" href="{{ path('carnet_ruche', {ruche:carnetForm.ruche}) }}">Rechercher</button></center></center>
+		{{ form_end(carnetForm) }}	
 		<a href="{{ path('add_carnet') }}"><button class="btn btn-primary">{% trans %}Ajouter une info{% endtrans %}</button></a>	
-		
 </table>
 
 {% endblock %}
