@@ -10,7 +10,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 
 use App\Entity\CApiculteur;
-use App\Entity\CPeseRuche;
+use App\Entity\CRuche;
 
 
 class RuchesPubliquesFormType extends AbstractType 
@@ -20,9 +20,9 @@ class RuchesPubliquesFormType extends AbstractType
         
         $builder        
         ->add('Nom_ruche',EntityType::class,[
-            'class'=>CPeseRuche::class,
-            'choice_label'=> function(CPeseRuche $CPeseRuche){
-            if($CPeseRuche->getVisibilite()==false)return sprintf("%s",$CPeseRuche->getNomPeseRuche());else return null;
+            'class'=>CRuche::class,
+            'choice_label'=> function(CRuche $CRuche){
+            if($CRuche->getVisibilite()==false)return sprintf("%s",$CRuche->getNomruche());else return null;
             },
             'placeholder'=>'',
             'required'=> false
