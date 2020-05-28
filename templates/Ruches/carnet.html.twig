@@ -11,9 +11,10 @@
 
 		{{ form_start(carnetForm) }}
 		{{ form_row(carnetForm.ruche, { 'label' :  'Ruche'}) }}
-		<center><button type="submit" class="btn btn-primary" href="{{ path('carnet_ruche', {ruche:carnetForm.ruche}) }}">Rechercher</button></center></center>
+		<center><button type="submit" class="btn btn-primary">Rechercher</button></center></center>
 		{{ form_end(carnetForm) }}	
 		<a href="{{ path('add_carnet') }}"><button class="btn btn-primary">{% trans %}Ajouter une info{% endtrans %}</button></a>	
 </table>
 
+{% block inforuches %}{% endblock %}
 {% endblock %}

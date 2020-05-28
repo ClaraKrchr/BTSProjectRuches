@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Carnet;
+use App\Entity\CRuche;
+use App\Repository\CRucheRepository;
 use App\Repository\CarnetRepository;
 
 use App\Form\CarnetFormType;
@@ -26,6 +28,12 @@ class CarnetController extends AbstractController
         $form = $this->createForm(CarnetFormType::class);
         $form->handleRequest($request);
         
+        if($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            
+            return ($this->redirectToRoute('carnet_ruche', array('ruche'=> $data['ruche'])));
+        }
+        
         return $this->render('Ruches/carnet.html.twig' , [
         'carnetForm' => $form->createView()
         ]);
@@ -35,15 +43,16 @@ class CarnetController extends AbstractController
      * @IsGRanted("ROLE_USER")
      * @Route("/carnet/{ruche}/{page}", name="carnet_ruche", defaults={"page"=1})
      */
-    public function carnetRuche(Request $request, PaginatorInterface $paginator){
-        $donnees = $this->getDoctrine()->getRepository(Carnet::class)->findAll();
+    public function carnetRuche(Request $request, PaginatorInterface $paginator, $ruche, $page){
+        $rucheObjet = $this->getDoctrine()->getRepository(CRuche::class)->findBy(array('nomruche'=>$ruche));
+        $donnees = $this->getDoctrine()->getRepository(Carnet::class)->findBy(array('ruche'=>$rucheObjet));
         
         $carnet = $paginator->paginate(
             $donnees, 
-            $request->query->getIn('page', 1), 
+            $page, 
             30);
         
-        return $this->render('Ruches/carnet.html.twig', [
+        return $this->render('Ruches/carnet_ruche.html.twig', [
             'carnets' => $carnet, ]
         );
     }

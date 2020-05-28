@@ -1,8 +1,5 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Mon carnet d'apiculteur{% endblock %}
-
-{% block body %}
+{% extends 'Ruches/carnet.html.twig' %}
+{% block inforuches %}
 <meta charset="UTF-8">
 
 <center><h1>{% trans %}Mon carnet d'apiculteur{% endtrans %}</h1></center>
@@ -57,10 +54,7 @@
 								Douces
 						    {% endif %}
 					{% endfor %}
-			{% endfor %}
-		
-		<a href="{{ path('add_carnet') }}"><button class="btn btn-primary">{% trans %}Ajouter une info{% endtrans %}</button></a>	
-		
+			{% endfor %}			
 </table>
 
 {% endblock %}
