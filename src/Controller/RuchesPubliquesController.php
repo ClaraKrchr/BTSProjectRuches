@@ -102,7 +102,7 @@ class RuchesPubliquesController extends AbstractController{
                     return ($this->redirectToRoute('ruches_publiques', array('regions' => $regions, 'ruche' => 'NULL', 'proprietaire' => 'NULL', 'type' => $data['Type']))); 
                     //Proprio X ruche X type OK
                 } //Ruche OK
-                if ($data['Type'] == 'NULL') return ($this->redirectToRoute('ruches_publiques', array('regions' => $regions, 'ruche' => $data['Nom_ruche'], 'proprietaire' => 'NULL', 'type' => 'NULL')));
+                if ($data['Type'] == NULL) return ($this->redirectToRoute('ruches_publiques', array('regions' => $regions, 'ruche' => $data['Nom_ruche'], 'proprietaire' => 'NULL', 'type' => 'NULL')));
                     //Proprio X ruche OK type X
                 return ($this->redirectToRoute('ruches_publiques', array('regions' => $regions, 'ruche' => $data['Nom_ruche'], 'proprietaire' => 'NULL', 'type' => $data['Type']))); 
                     //Proprio X ruche OK type OK
@@ -113,7 +113,7 @@ class RuchesPubliquesController extends AbstractController{
                 return ($this->redirectToRoute('ruches_publiques', array('regions' => $regions, 'ruche' => 'NULL', 'proprietaire' => $data['Proprietaire']->getPseudo(), 'type' => $data['Type'])));
                     //Proprio OK ruche X type OK
             } //Ruche OK
-            if ($data['Type' == 'NULL']) return ($this->redirectToRoute('ruches_publiques', array('regions' => $regions, 'ruche' => $data['Nom_ruche'], 'proprietaire' => $data['Proprietaire']->getPseudo(), 'type' => 'NULL')));
+            if ($data['Type'] == NULL) return ($this->redirectToRoute('ruches_publiques', array('regions' => $regions, 'ruche' => $data['Nom_ruche'], 'proprietaire' => $data['Proprietaire']->getPseudo(), 'type' => 'NULL')));
                     //Proprio OK ruche OK type X
             return ($this->redirectToRoute('ruches_publiques', array('regions' => $regions, 'ruche' => $data['Nom_ruche'], 'proprietaire' => $data['Proprietaire']->getPseudo(), 'type' => $data['Type']))); 
                     //Proprio OK ruche OK type OK
