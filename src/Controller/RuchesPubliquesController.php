@@ -104,7 +104,7 @@ class RuchesPubliquesController extends AbstractController{
                 } //Ruche OK
                 if ($data['Type'] == 'NULL') return ($this->redirectToRoute('ruches_publiques', array('regions' => $regions, 'ruche' => $data['Nom_ruche'], 'proprietaire' => 'NULL', 'type' => 'NULL')));
                     //Proprio X ruche OK type X
-                return ($this->redirectToRoute('ruches_publiques', array('regions' => $regions, 'ruche' => $data['Nom_ruche'], 'proprietaire' => 'NULL', 'type' => data['Type']))); 
+                return ($this->redirectToRoute('ruches_publiques', array('regions' => $regions, 'ruche' => $data['Nom_ruche'], 'proprietaire' => 'NULL', 'type' => $data['Type']))); 
                     //Proprio X ruche OK type OK
             } //Propriétaire OK
             if ($data['Nom_ruche'] == NULL) { //Ruche X
