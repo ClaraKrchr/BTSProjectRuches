@@ -1,5 +1,5 @@
-{% extends 'Ruches/carnet.html.twig' %}
-{% block inforuches %}
+{% extends 'base.html.twig' %}
+{% block body %}
 <meta charset="UTF-8">
 
 <center><h1>{% trans %}Mon carnet d'apiculteur{% endtrans %}</h1></center>
@@ -54,7 +54,9 @@
 								Douces
 						    {% endif %}
 					{% endfor %}
-			{% endfor %}			
+			{% endfor %}
+			{{ knp_pagination_render(carnets) }}
+					
 </table>
-
+			<center><a href="{{ path('carnet') }}"><button class="btn btn-primary">{% trans %}Retour{% endtrans %}</button></a></center>	
 {% endblock %}
