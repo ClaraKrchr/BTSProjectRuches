@@ -87,11 +87,14 @@ class MapController extends NouvellepageController{
      * @param $nomruche
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function mesures_ruche_diagramme($nomruche):
+    public function mesures_ruche_diagramme($nomruche, EntityManagerInterface $em):
         Response
         {       
         $Ruches=$this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche));
-        $MesuresRuches=$this->getDoctrine()->getRepository(MesuresRuches::class)->findBy(array('ruche'=>$Ruches));
+        $qb = $em->createQueryBuilder();
+        $qb->select('w')->from(MesuresRuches::class, 'w')->where('w.ruche = ' . $Ruches->getId())->orderBy('w.date_releve', 'ASC');
+        $query = $qb->getQuery();
+        $MesuresRuches = $query->getResult();
         $stock[]='';
         foreach ($MesuresRuches as $MesuresRuche){
             
