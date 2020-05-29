@@ -11,6 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class AddCarnetFormType extends AbstractType
 {
@@ -19,7 +20,7 @@ class AddCarnetFormType extends AbstractType
         $builder
             ->add('date',DateType::class, [
                 'widget' => 'single_text',])
-            ->add('commentaire')
+            ->add('commentaire', TextareaType::class, ['required'=>false])
             ->add('ruche',EntityType::class, [
                 'class'=>CRuche::class,
                 'choice_label'=>function(CRuche $CRuche){
@@ -33,6 +34,7 @@ class AddCarnetFormType extends AbstractType
                     'Moyenne'=>'Moyenne',
                     'Forte'=>'Forte',
                 ],
+                'required'=>false
                 ])
             ->add('nbcadrescouvain')
             ->add('etatessaim', ChoiceType::class,[
@@ -59,7 +61,8 @@ class AddCarnetFormType extends AbstractType
                     'Miel d\'ete'=>'Miel d\'ete',
                     'Miel de foret'=>'Miel de foret',
                     'Miel de montagne'=>'Miel de montagne',
-                ]
+                ],
+                'required'=>false
             ])
             ->add('presencevarroa', ChoiceType::class, [
                 'choices'=> [
@@ -67,38 +70,44 @@ class AddCarnetFormType extends AbstractType
                     'Faible'=>'Faible',
                     'Moyen'=>'Moyen',
                     'Important'=>'Important',
-                ]
+                ],
+                'required'=>false
             ])
             ->add('lieutranshumance')
             ->add('presencemales', ChoiceType::class, [
                 'choices'=>[
                     'Non'=>'Non',
                     'Oui'=>'Oui',
-                ]
+                ],
+                'required'=>false
             ])
             ->add('presencelarves', ChoiceType::class, [
                 'choices'=>[
                     'Non'=>'Non',
                     'Oui'=>'Oui',
-                ]
+                ],
+                'required'=>false
             ])
             ->add('presenceoeufs', ChoiceType::class, [
                 'choices'=>[
                     'Non'=>'Non',
                     'Oui'=>'Oui',
-                ]
+                ],
+                'required'=>false
             ])
             ->add('couvainopercule', ChoiceType::class, [
                 'choices'=>[
                     'Non'=>'Non',
                     'Oui'=>'Oui',
-                ]
+                ],
+                'required'=>false
             ])
             ->add('cellulesroyales', ChoiceType::class, [
                 'choices'=>[
                     'Non'=>'Non',
                     'Oui'=>'Oui',
-                ]
+                ],
+                'required'=>false
             ])
             ->add('racereine')
             ->add('agereine')
@@ -116,7 +125,8 @@ class AddCarnetFormType extends AbstractType
                     'Essaimage'=>'Essaimage',
                     'Division'=>'Division',
                     'Achat'=>'Achat',
-                ]               
+                ],
+                'required'=>false
             ])
             ->add('nbhausserecoltees')
             ->add('daterecolte', DateType::class, [

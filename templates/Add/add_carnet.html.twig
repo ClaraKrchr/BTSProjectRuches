@@ -11,26 +11,24 @@
     {{ form_start(addCarnetForm) }}
     <form>
     <div class="form-row">
-    	<div class="form-group col-md-4">
+    	<div class="form-group col-md-6">
             {{ form_row(addCarnetForm.date, { 'label' :  'Date'}) }}
         </div>
-        <div class="form-group col-md-4">
-            {{ form_row(addCarnetForm.commentaire, { 'label' :  'Commentaire', 'attr' : { 'placeholder':'Commentaire'}}) }}
-		</div>
-		<div class="form-group col-md-4">
+        
+		<div class="form-group col-md-6">
             {{ form_row(addCarnetForm.ruche, { 'label' :  'Ruche'}) }}
         </div>
     </div>
 
     <div class="form-row">
     	<div class="form-group col-md-4">
-	        {{ form_row(addCarnetForm.etatruche, { 'label' :  'État ruche'}) }}
+	        {{ form_row(addCarnetForm.etatruche, { 'label' :  'État ruche', 'placeholder':'...'}) }}
         </div>
         <div class="form-group col-md-4">
 	        <center>{{ form_row(addCarnetForm.etatessaim, { 'label' :  'État essaim'}) }}</center>
         </div>
         <div class="form-group col-md-4">
-            {{ form_row(addCarnetForm.origineessaim, { 'label' :  'Origine essaim'})}}
+            {{ form_row(addCarnetForm.origineessaim, { 'label' :  'Origine essaim', 'placeholder':'...'})}}
         </div>
     </div>
     
@@ -39,19 +37,19 @@
 	        {{ form_row(addCarnetForm.nbcadrescouvain, { 'label' :  'Nombre de cadres couvain', 'attr' : { 'placeholder':'0'}}) }}
 		</div>
         <div class="form-group col-md-6">
-	        {{ form_row(addCarnetForm.couvainopercule, { 'label' :  'Opercule du couvain'}) }}
+	        {{ form_row(addCarnetForm.couvainopercule, { 'label' :  'Opercule du couvain', 'placeholder':'...'}) }}
         </div>
 	</div>
     
     <div class="form-row">
 		<div class="form-group col-md-4">
-	        {{ form_row(addCarnetForm.presencemales, { 'label' :  'Présence de mâles'}) }}
+	        {{ form_row(addCarnetForm.presencemales, { 'label' :  'Présence de mâles', 'placeholder':'...'}) }}
         </div>
         <div class="form-group col-md-4">
-	        {{ form_row(addCarnetForm.presencelarves, { 'label' :  'Présence de larves'}) }}
+	        {{ form_row(addCarnetForm.presencelarves, { 'label' :  'Présence de larves', 'placeholder':'...'}) }}
         </div>
         <div class="form-group col-md-4">
-	        {{ form_row(addCarnetForm.presenceoeufs, { 'label' :  'Présence d\'œufs'}) }}
+	        {{ form_row(addCarnetForm.presenceoeufs, { 'label' :  'Présence d\'œufs', 'placeholder':'...'}) }}
         </div>
     </div>	
 	
@@ -66,7 +64,7 @@
 	        {{ form_row(addCarnetForm.agereine, { 'label' :  'Âge de la reine (en mois)', 'attr' : { 'placeholder':'0'}}) }}
         </div>
         <div class="form-group col-md-3">
-	        {{ form_row(addCarnetForm.cellulesroyales, { 'label' :  'Présence de cellules royales'}) }}
+	        {{ form_row(addCarnetForm.cellulesroyales, { 'label' :  'Présence de cellules royales', 'placeholder':'...'}) }}
 		</div>
 	</div>
 	
@@ -108,13 +106,13 @@
             {{ form_row(addCarnetForm.nbhausserecoltees, { 'label' :  'Nombre de hausse récoltées', 'attr' : { 'placeholder':'0'}})}}
     	</div>
     	<div class="form-group col-md-4">
-            {{ form_row(addCarnetForm.naturemiel, { 'label' :  'Nature du miel'})}}
+            {{ form_row(addCarnetForm.naturemiel, { 'label' :  'Nature du miel', 'placeholder':'...'})}}
     	</div>
     </div>
     
     <div class="form-row">
     	<div class="form-group col-md-6">
-            {{ form_row(addCarnetForm.presencevarroa, { 'label' :  'Présence Varroa'})}}
+            {{ form_row(addCarnetForm.presencevarroa, { 'label' :  'Présence Varroa', 'placeholder':'...'})}}
     	</div>
     	<div class="form-group col-md-6">
             <center>{{ form_row(addCarnetForm.etatabeilles, { 'label' :  'État des abeilles', 'attr' : { 'placeholder':'0'}})}}</center>
@@ -129,8 +127,10 @@
             {{ form_row(addCarnetForm.lieutranshumance, { 'label' :  'Lieu Transhumance', 'attr' : { 'placeholder':'Montauban'}})}}
     	</div>
     </div>
+
+    <center>{{ form_row(addCarnetForm.commentaire, { 'label' :  'Commentaire', 'attr' : { 'placeholder':'Commentaire'}}) }}</center>
                 
-    <center><button type="submit" class="btn btn-primary">Valider</button></center></center>
+    <center><button type="submit" class="btn btn-primary">Valider</button></center>
     
     {{ form_end(addCarnetForm) }}
     </form>
