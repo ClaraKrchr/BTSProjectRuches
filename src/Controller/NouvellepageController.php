@@ -2,7 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\CRuche;
 use App\Entity\CRucher;
+use App\Entity\AssociationRucheRucher;
+use App\Entity\AssociationRucheApiculteur;
+use App\Entity\MesuresStations;
+use App\Entity\MesuresRuches;
+use App\Entity\AssociationRucherRegion;
+use App\Entity\Regions;
+use function Symfony\Component\DependencyInjection\Exception\__toString;
+use App\Entity\CApiculteur;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,7 +39,12 @@ class NouvellepageController extends AbstractController
      */
     public function ruches_privees()
     {
-        return $this->render('Ruches/ruches_privees.html.twig');
+        //--------Obtention du nom ce l'utilisateur----------------//
+        $NomProprietaire=$this->getUser();
+        
+        //------------Recherche des ruches appartenant a l'utilisateur connecté-------------//
+        $RuchesApiculteurs = $this->getDoctrine()->getRepository(AssociationRucheApiculteur::class)->findBy(array('apiculteur'=>$NomProprietaire));
+        return $this->render('Ruches/ruches_privees.html.twig', ['apiculteurs' => $RuchesApiculteurs]);
     }
     
     /**

@@ -3,6 +3,7 @@
 <!-- for HTML5 -->
 <meta charset="UTF-8">
     <center>
+     <a href = "{{ path('ruches_privees')}}"><button>{% trans %}Voir toutes mes ruches{% endtrans %}</button></a>
     <br></br>
     {% if apiculteurs %}
         <h1>{% trans %}Mes ruches présentes dans la région{% endtrans %} {{ region }}</h1>
