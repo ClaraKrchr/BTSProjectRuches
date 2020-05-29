@@ -21,11 +21,37 @@
 			{% for pagination in paginations %}
 		<div class="col-xl-4 col-md-6 mb-2">
 			<div class="card shadow mb-4">
-				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-					<h6 class="m-o font-weight-bold text-primary">{{ pagination.nomruche }}</h6>
-				</div>
+				
 				<div class="card-header">
-					<img src="{{ asset('telecharge.png') }}" width="480"/>
+					<figure class="highcharts-figure">
+                      	<div id="{{ pagination.nomruche }}" ></div>
+                  	</figure>
+                 	<script type="text/javascript">
+                     	Highcharts.getJSON(' {{ path('mesures_ruche_diagramme',{nomruche : pagination.nomruche}) }} ', function (data) {
+                     		  // Create the chart
+                 		  	Highcharts.stockChart('{{ pagination.nomruche }}', {
+                     		    rangeSelector: {
+                     		      selected: 1
+                     		    },
+							chart:{
+								zoomKey:'ctrl',
+								zoomType:'x'
+								},
+                 		    title: {
+                     		      text: '{{ pagination.nomruche }}'
+                     		    },
+    
+                 		    series: [{                     				
+                     		      	name: 'Poids',
+                     		      	data: data,
+                     		      	type: 'areaspline',
+                     		     	tooltip: {
+                     		        	valueDecimals: 2
+                     		      }
+                     		    }]
+                     		  });
+                     		});
+                		</script>
 				</div>
 				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 					<h6 class="m-o font-weight-bold text-secondary">Localisation: {{ region }}</h6>
@@ -43,7 +69,7 @@
 			<div>
 				{{ knp_pagination_render(paginations) }}
 			</div>
-		{% if paginations.getTotalItemCount == 0 %}
+		{% if paginations.getTotalItemCount =='0' %}
 		<center><h1>Aucune ruche publique dans la région {{ region }}</h1></center>
         {% endif %}
 	
