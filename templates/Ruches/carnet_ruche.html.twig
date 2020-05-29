@@ -5,34 +5,11 @@
 <center><h1>{% trans %}Mon carnet d'apiculteur{% endtrans %}</h1></center>
 <table id="carnet" class="table table-striped">
 			{% for carnet in carnets %}
-            {{ carnet.ruche }}
-					{{ carnet.date|date('d/m/Y') }}
-					{{ carnet.commentaire }}
-					{{ carnet.etatruche }}
-					{{ carnet.origineessaim }}
-					{{ carnet.nbcadrescouvain }}
-					{{ carnet.couvainopercule }}
-					{{ carnet.presencemales }}
-					{{ carnet.presencelarves }}
-					{{ carnet.presenceoeufs }}
-					{{ carnet.datereine|date('d/m/Y') }}
-					{{ carnet.racereine }}
-					{{ carnet.agereine }}
-					{{ carnet.cellulesroyales }}
-					{{ carnet.nbcadresmiel }}
-					{{ carnet.nbcadrespollen }}
-					{{ carnet.datetraitement|date('d/m/Y') }}
-					{{ carnet.naturetraitement }}
-					{{ carnet.datenourrissement|date('d/m/Y')  }}
-					{{ carnet.qttnourrissement }}
-					{{ carnet.naturenourrissement }}
-					{{ carnet.daterecolte|date('d/m/Y') }}
-					{{ carnet.nbhausserecoltees }}
-					{{ carnet.naturemiel }}
-					{{ carnet.presencevarroa }}
-					{{ carnet.datetranshumance|date('d/m/Y') }}
-					{{ carnet.lieutranshumance }}
+                    <br><center><h2>{{ carnet.ruche }}</h2></center>
+					<center><h3>{{ carnet.date|date('d/m/Y') }}</h3></center><br>					
 					
+					<center><p>État ruche État essaim Origine essaim</p></center>
+					<center>{{ carnet.etatruche }}
 					{% for  etatessaim in carnet.etatessaim %}
 						    {% if etatessaim=="Orpheline" %}
 								Orpheline
@@ -40,7 +17,43 @@
 								Bourdonneuse
 						    {% endif %}
 					{% endfor %}
+					{{ carnet.origineessaim }}</center><br>
 					
+					<center><p>Nombre de cadres couvain Opercule du couvain</p></center>
+					<center>{{ carnet.nbcadrescouvain }}
+					{{ carnet.couvainopercule }}</center><br>
+					
+					<center><p>Présence de mâles Présence de larves Présence d'œufs</p></center>
+					<center>{{ carnet.presencemales }}
+					{{ carnet.presencelarves }}
+					{{ carnet.presenceoeufs }}</center><br>
+					
+					<center><p>Date d'arrivée de la reine Race de la reine Âge de la reine Présence de cellules royales</p></center>
+					<center>{{ carnet.datereine|date('d/m/Y') }}
+					{{ carnet.racereine }}
+					{{ carnet.agereine }}
+					{{ carnet.cellulesroyales }}</center><br>
+					
+					<center><p>Nombre de cadres de miel de réserve Nombre de cadres de pollen</p></center>
+					<center>{{ carnet.nbcadresmiel }}
+					{{ carnet.nbcadrespollen }}</center><br>
+					
+					<center><p>Date d'introduction au traitement Nature du traitement</p></center>
+					<center>{{ carnet.datetraitement|date('d/m/Y') }}
+					{{ carnet.naturetraitement }}</center><br>
+					
+					<center><p>Date nourrissement Quantité Nourrissement Nature du nourrissement</p></center>
+					<center>{{ carnet.datenourrissement|date('d/m/Y')  }}
+					{{ carnet.qttnourrissement }}
+					{{ carnet.naturenourrissement }}</center><br>
+					
+					<center><p>Date de récolte Nombre de hausse récoltées Nature du miel</p></center>
+					<center>{{ carnet.daterecolte|date('d/m/Y') }}
+					{{ carnet.nbhausserecoltees }}
+					{{ carnet.naturemiel }}</center><br>
+					
+					<center><p>Présence varroa État des abeilles</p></center>
+					<center>{{ carnet.presencevarroa }}
 					{% for  etatabeilles in carnet.etatabeilles %}
 						    {% if etatabeilles=="Grandes" %}
 								Grandes
@@ -53,10 +66,18 @@
 							{% elseif etatabeilles=="Douces" %}
 								Douces
 						    {% endif %}
-					{% endfor %}
-			{% endfor %}
-			{{ knp_pagination_render(carnets) }}
+					{% endfor %}</center><br>
 					
+					<center><p>Date transhumance Lieu transhumance</p></center>
+					<center>{{ carnet.datetranshumance|date('d/m/Y') }}
+					{{ carnet.lieutranshumance }}</center><br>
+
+					<center><p>Commentaire</p></center>
+					<center>{{ carnet.commentaire }}</center><br>
+			{% endfor %}				
 </table>
-			<center><a href="{{ path('carnet') }}"><button class="btn btn-primary">{% trans %}Retour{% endtrans %}</button></a></center>	
+			<center><a href="{{ path('carnet') }}"><button class="btn btn-primary">{% trans %}Retour{% endtrans %}</button></a></center><br>
+			<ul class="pagination justify-content-end"
+			    {{ knp_pagination_render(carnets) }}	
+			</ul>
 {% endblock %}
