@@ -81,7 +81,6 @@ class MapController extends NouvellepageController{
     //---Passe toutes les mesures de la ruche sous format json---//
     
     /**
-     * @IsGranted("ROLE_USER")
      * @Route("/mesures_ruche_diagramme/{nomruche}", name="mesures_ruche_diagramme")
      * 
      * @param $nomruche
