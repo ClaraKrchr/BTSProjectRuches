@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CRucheRepository")
@@ -20,21 +21,25 @@ class CRuche
 
     /**
      * @ORM\Column(type="string", length=30)
+     * @Groups("mesure:read")
      */
     private $nomruche;
 
     /**
      * @ORM\Column(type="date", nullable=true)
+     * @Groups("mesure:read")
      */
     private $dateinstall;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
+     * @Groups("mesure:read")
      */
     private $typeruche;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Groups("mesure:read")
      */
     private $visibilite;
 
