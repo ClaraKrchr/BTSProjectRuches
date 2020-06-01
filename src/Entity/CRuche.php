@@ -44,7 +44,7 @@ class CRuche
     private $visibilite;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\MesuresRuches", mappedBy="ruche_id", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\MesuresRuches", mappedBy="ruche_id")
      */
     private $mesuresRuches;
 
@@ -256,7 +256,7 @@ class CRuche
 
         return $this;
     }
-    
+
     public function __toString(){
         return $this->getNomRuche();
     }
