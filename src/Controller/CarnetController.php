@@ -43,17 +43,24 @@ class CarnetController extends AbstractController
      * @IsGRanted("ROLE_USER")
      * @Route("/carnet/{ruche}/{page}", name="carnet_ruche", defaults={"page"=1})
      */
-    public function carnetRuche(Request $request, PaginatorInterface $paginator, $ruche, $page){
-        $rucheObjet = $this->getDoctrine()->getRepository(CRuche::class)->findBy(array('nomruche'=>$ruche));
-        $donnees = $this->getDoctrine()->getRepository(Carnet::class)->findBy(array('ruche'=>$rucheObjet));
+    public function carnetRuche(Request $request, PaginatorInterface $paginator, $ruche, $page, EntityManagerInterface $em){
+        $rucheObjet = $this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$ruche));
+        
+        $qb = $em->createQueryBuilder();
+        $qb->select('w')->from(Carnet::class, 'w')->where('w.ruche = ' . $rucheObjet->getId())->orderBy('w.date', 'ASC');
+        $query = $qb->getQuery();
+        $CarnetDate = $query->getResult();
         
         $carnet = $paginator->paginate(
-            $donnees, 
-            $page, 
-            30);
+            $CarnetDate,
+            $page,
+            1);
         
         return $this->render('Ruches/carnet_ruche.html.twig', [
-            'carnets' => $carnet, ]
-        );
+            'carnets' => $carnet,
+            'paginations' => $carnet,
+            'ruche' => $rucheObjet,
+            'date' => $CarnetDate
+        ]);
     }
 }

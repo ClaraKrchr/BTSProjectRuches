@@ -8,7 +8,7 @@
                     <br><center><h2>{{ carnet.ruche }}</h2></center>
 					<center><h3>{{ carnet.date|date('d/m/Y') }}</h3></center><br>					
 					
-					<center><p>État ruche État essaim Origine essaim</p></center>
+					<center><p><b>État ruche État essaim Origine essaim</b></p></center>
 					<center>{{ carnet.etatruche }}
 					{% for  etatessaim in carnet.etatessaim %}
 						    {% if etatessaim=="Orpheline" %}
@@ -19,7 +19,7 @@
 					{% endfor %}
 					{{ carnet.origineessaim }}</center><br>
 					
-					<center><p>Nombre de cadres couvain Opercule du couvain</p></center>
+					<center><p><b>Nombre de cadres couvain Opercule du couvain</b></p></center>
 					<center>{{ carnet.nbcadrescouvain }}
 					{{ carnet.couvainopercule }}</center><br>
 					
