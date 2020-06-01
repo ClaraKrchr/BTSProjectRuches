@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\CRuche;
 use App\Entity\AssociationRuchePeseruche;
 use App\Entity\AssociationRucheRucher;
+use App\Entity\AssociationRucheApiculteur;
 use App\Entity\CPeseRuche;
 use App\Entity\CRucher;
 
@@ -25,13 +26,18 @@ class DeleteController extends AbstractController
      */
     public function deleteRuche(Request $request, CRuche $ruche, EntityManagerInterface $em)
     {
+
+        //Redirection si l'utilisateur n'est pas celui qui possède la ruche
+        $assosRucheApi = $em->getRepository(AssociationRucheApiculteur::class)->findOneBy(array('ruche'=>$ruche));
+        if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('ruches_privees');
+        //////////////////////////////
         
         $AssosRucheRucher = $this->getDoctrine()->getRepository(AssociationRucheRucher::class)->findOneBy(array('ruche'=>$ruche));
         $em->remove($AssosRucheRucher);
 
-        
+
         $em->flush();
-        
-        return $this->redirectToRoute('tableau_donnees');
+
+        return $this->redirectToRoute('tableau_donnees/Occitanie');
     }
 }
