@@ -6,7 +6,7 @@
 <!-- for HTML5 -->
 <meta charset="UTF-8">
 <link rel="stylesheet" href="{{ asset('css/ruches_publiques.css') }}">
-	<div class="d-flex">
+	<div class="d-flex ">
 	<!--  justify-content-around -->
 		<div id="FilterSidebar">
     		<h1>Filtrer ma recherche!</h1>
@@ -69,7 +69,7 @@
 				{{ knp_pagination_render(paginations) }}
 			</div>
 		{% if paginations.getTotalItemCount =='0' %}
-		<center><h1>Aucune ruche publique dans la région {{ region }}</h1></center>
+		<center><h1>Aucune ruche publique détectée</h1></center>
         {% endif %}
 	
 		</div>
