@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 
 <center><h1>{% trans %}Mon carnet d'apiculteur{% endtrans %}</h1></center>
-<table id="carnet" class="table table-striped">
+<table id="carnet" class="table table-striped">			
 			{% for carnet in carnets %}
                     <br><center><h2>{{ carnet.ruche }}</h2></center>
 					<center><h3>{{ carnet.date|date('d/m/Y') }}</h3></center><br>					
@@ -76,8 +76,12 @@
 					<center>{{ carnet.commentaire }}</center><br>
 			{% endfor %}				
 </table>
+			{% if paginations.getTotalItemCount =='0' %}
+			<center><h1>Aucune information enregistrée.</h1></center><br>
+            {% endif %}
 			<center><a href="{{ path('carnet') }}"><button class="btn btn-primary">{% trans %}Retour{% endtrans %}</button></a></center><br>
-			<ul class="pagination justify-content-end"
+			<ul class="pagination justify-content-end">
 			    {{ knp_pagination_render(carnets) }}	
 			</ul>
+		    
 {% endblock %}
