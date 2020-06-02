@@ -40,13 +40,15 @@ class DeleteController extends AbstractController
         if ($AssosRucheRucher != NULL){$em->remove($AssosRucheRucher);}
         
         $AssosRuchePeseruche = $this->getDoctrine()->getRepository(AssociationRuchePeseruche::class)->findOneBy(array('ruche'=>$ruche));
-        if($AssosRuchePeseruche != NULL){$em->remove($AssosRuchePeseruche);}
+        if($AssosRuchePeseruche != NULL){$AssosRuchePeseruche->getPeseruche()->setNbAssosRuche(0); $em->remove($AssosRuchePeseruche);}
         
         $mesuresRuches = $this->getDoctrine()->getRepository(MesuresRuches::class)->findBy(array('ruche'=>$ruche));
         $carnets = $this->getDoctrine()->getRepository(Carnet::class)->findBy(array('ruche'=>$ruche));
         if(($carnets != NULL) || ($mesuresRuches != NULL)){
             $ruche->setEtat('4');
             $em->flush();
+            $message=utf8_encode('La ruche a été archivée.');
+            $this->addFlash('message', $message);
             return $this->redirectToRoute('ruches_privees');
         }
         
@@ -55,6 +57,8 @@ class DeleteController extends AbstractController
 
         $em->flush();
 
+        $message=utf8_encode('La ruche a été supprimée.');
+        $this->addFlash('message', $message);
         return $this->redirectToRoute('ruches_privees');
     }
     
@@ -78,6 +82,8 @@ class DeleteController extends AbstractController
         
         $em->flush();
         
+        $message=utf8_encode('La ruche a été dissociée du rucher.');
+        $this->addFlash('message', $message);
         return $this->redirectToRoute('ruches_privees');
     }
     
@@ -95,11 +101,14 @@ class DeleteController extends AbstractController
         
         $AssosRuchePeseruche = $this->getDoctrine()->getRepository(AssociationRuchePeseruche::class)->findOneBy(array('ruche'=>$ruche));
         if ($AssosRuchePeseruche == NULL){return $this->redirectToRoute('ruches_privees');}
+        $AssosRuchePeseruche->getPeseruche()->setNbAssosRuche(0);
         $em->remove($AssosRuchePeseruche);
         
         
         $em->flush();
         
+        $message=utf8_encode('La ruche a été dissociée du pèse-ruche.');
+        $this->addFlash('message', $message);
         return $this->redirectToRoute('ruches_privees');
     }
 }

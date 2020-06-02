@@ -3,6 +3,11 @@
 {% block title %}Carte{% endblock %}
 {% block body %}
 <link rel="stylesheet" href="{{ asset('css/ruche_privees.css') }}" type="text/css"> 
+{% for message in app.flashes('message') %}
+      		 <center><div class="alert alert-success">
+        	    {{ message }}
+			 </div></center>
+     	  {% endfor %}
 <meta charset="UTF-8">
         	<center><h1>{% trans %}Carte interactive des régions de France{% endtrans %}</h1>
         	
