@@ -78,7 +78,7 @@
     		<a href="{{  path('security_login') }}"><button class="btn btn-secondary"  class="nav-link">{% trans %}Connexion{% endtrans %}</button></a>
 
 	{% else %}
-
+			<a href="{{ path('edit', {'nom' : app.user}) }}"><button class="btn btn-secondary" class="nav-link">{{ app.user.pseudo }}</button></a> &nbsp;
 			<a href="{{ path('security_logout') }}"><button class="btn btn-secondary" class="nav-link">{% trans %}Deconnexion{% endtrans %}</button></a>
 
 	{% endif %}
