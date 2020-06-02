@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Carnet;
 use App\Entity\CRuche;
+use App\Entity\AssociationRucheApiculteur;
 use App\Repository\CRucheRepository;
 use App\Repository\CarnetRepository;
 
@@ -44,6 +45,13 @@ class CarnetController extends AbstractController
      * @Route("/carnet/{ruche}/{page}", name="carnet_ruche", defaults={"page"=1})
      */
     public function carnetRuche(Request $request, PaginatorInterface $paginator, $ruche, $page, EntityManagerInterface $em){
+        
+        //Redirection si l'utilisateur n'est pas celui qui possède la ruche
+        $Ruche = $em->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$ruche));
+        $assosRucheApi = $em->getRepository(AssociationRucheApiculteur::class)->findOneBy(array('ruche'=>$Ruche));
+        if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('home');
+        //////////////////////////////
+        
         $rucheObjet = $this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$ruche));
         
         $qb = $em->createQueryBuilder();
