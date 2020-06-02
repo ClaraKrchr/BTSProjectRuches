@@ -11,7 +11,7 @@ class AssociationPeserucheStation
 {
     /**
      * @ORM\Id()
-     * @ORM\OneToOne(targetEntity="App\Entity\CPeseRuche", inversedBy="associationPeserucheStation", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\CPeseRuche", inversedBy="associationPeserucheStation", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $peseruche;

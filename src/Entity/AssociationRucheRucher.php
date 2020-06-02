@@ -12,7 +12,7 @@ class AssociationRucheRucher
 
     /**
      * @ORM\Id()
-     * @ORM\OneToOne(targetEntity="App\Entity\CRuche", inversedBy="associationRucheRucher", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\CRuche", inversedBy="associationRucheRucher", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $ruche;
