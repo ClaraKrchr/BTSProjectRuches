@@ -43,6 +43,11 @@ class CStation
      */
     private $dateinstall;
 
+    /**
+     * @ORM\Column(type="bigint", nullable=true)
+     */
+    private $idstation;
+
     public function __construct()
     {
         $this->mesuresStations = new ArrayCollection();
@@ -153,6 +158,18 @@ class CStation
     public function setDateinstall(\DateTimeInterface $dateinstall): self
     {
         $this->dateinstall = $dateinstall;
+
+        return $this;
+    }
+
+    public function getIdstation(): ?string
+    {
+        return $this->idstation;
+    }
+
+    public function setIdstation(?string $idstation): self
+    {
+        $this->idstation = $idstation;
 
         return $this;
     }
