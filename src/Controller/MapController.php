@@ -78,6 +78,19 @@ class MapController extends NouvellepageController{
         ]);
     }    
     
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/ruches_desactivees", name="ruches_desactivees")
+     */
+    public function ruches_desactivees(EntityManagerInterface $em, Request $request){
+        
+        $NomProprietaire=$this->getUser();
+        
+        $AssosRucheApi = $this->getDoctrine()->getRepository(AssociationRucheApiculteur::class)->findBy(array('apiculteur'=>$NomProprietaire));
+        
+        return $this->render('Ruches/ruches_desactivees.html.twig', ['apiculteurs' => $AssosRucheApi]);
+    }    
+    
     //---Passe toutes les mesures de la ruche sous format json---//
     
     /**

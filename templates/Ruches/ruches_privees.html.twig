@@ -102,7 +102,7 @@
             		
             </map><br></br>
             
-                <a href = "{{ path('add_ruche')}}"><button>{% trans %}Ajouter Ruche{% endtrans %}</button></a>
+                <a href = "{{ path('ruches_desactivees')}}"><button>{% trans %}Mes ruches archivées{% endtrans %}</button></a>
             <br></br>
         {% block tableau_donnees %}
         {% if apiculteurs %}
@@ -118,6 +118,7 @@
         	<td>{% trans %}Action{% endtrans %}</td>
         </tr>
         {% for apiculteur in apiculteurs %}
+        {% if apiculteur.ruche.etat != '4' %}
 		<tr> 
 			<td><a href="{{ path('info_ruche',{nomruche: apiculteur.ruche.nomruche  }) }}"> {{ apiculteur.ruche.nomruche }}			</a></td>
 			
@@ -136,6 +137,7 @@
 			<a href="{{ path('dissociate_ruche_rucher', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark">{% trans %}Dissocier du rucher{% endtrans %}</a>
 			<a href="{{ path('dissociate_ruche_peseruche', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark">{% trans %}Dissocier du pèse-ruche{% endtrans %}</a></td>
 		</tr>
+		{% endif %}
         {% endfor %}
         </table>
         {% else %}

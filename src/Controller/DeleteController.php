@@ -29,6 +29,8 @@ class DeleteController extends AbstractController
     public function deleteRuche(Request $request, CRuche $ruche, EntityManagerInterface $em)
     {
 
+        //METTRE MESSAGE CARNET
+        
         //Redirection si l'utilisateur n'est pas celui qui possède la ruche
         $assosRucheApi = $em->getRepository(AssociationRucheApiculteur::class)->findOneBy(array('ruche'=>$ruche));
         if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('ruches_privees');
@@ -40,19 +42,12 @@ class DeleteController extends AbstractController
         $AssosRuchePeseruche = $this->getDoctrine()->getRepository(AssociationRuchePeseruche::class)->findOneBy(array('ruche'=>$ruche));
         if($AssosRuchePeseruche != NULL){$em->remove($AssosRuchePeseruche);}
         
-        $AssosRucheApiculteur = $this->getDoctrine()->getRepository(AssociationRucheApiculteur::class)->findOneBy(array('ruche'=>$ruche));
-        $em->remove($AssosRucheApiculteur);
-        
-        $carnets = $this->getDoctrine()->getRepository(Carnet::class)->findBy(array('ruche'=>$ruche));
-        if($carnets != NULL){
-            foreach($carnets as $carnet)
-            $em->remove($carnet);
-        }
-        
         $mesuresRuches = $this->getDoctrine()->getRepository(MesuresRuches::class)->findBy(array('ruche'=>$ruche));
-        if($mesuresRuches != NULL){
-            foreach($mesuresRuches as $mesureRuche)
-            $em->remove($mesureRuche);
+        $carnets = $this->getDoctrine()->getRepository(Carnet::class)->findBy(array('ruche'=>$ruche));
+        if(($carnets != NULL) || ($mesuresRuches != NULL)){
+            $ruche->setEtat('4');
+            $em->flush();
+            return $this->redirectToRoute('ruches_privees');
         }
         
         $em->remove($ruche);
