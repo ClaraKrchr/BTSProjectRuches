@@ -35,19 +35,25 @@ class DeleteController extends AbstractController
         //////////////////////////////
         
         $AssosRucheRucher = $this->getDoctrine()->getRepository(AssociationRucheRucher::class)->findOneBy(array('ruche'=>$ruche));
-        $em->remove($AssosRucheRucher);
+        if ($AssosRucheRucher != NULL){$em->remove($AssosRucheRucher);}
         
         $AssosRuchePeseruche = $this->getDoctrine()->getRepository(AssociationRuchePeseruche::class)->findOneBy(array('ruche'=>$ruche));
-        $em->remove($AssosRuchePeseruche);
+        if($AssosRuchePeseruche != NULL){$em->remove($AssosRuchePeseruche);}
         
         $AssosRucheApiculteur = $this->getDoctrine()->getRepository(AssociationRucheApiculteur::class)->findOneBy(array('ruche'=>$ruche));
         $em->remove($AssosRucheApiculteur);
         
         $carnets = $this->getDoctrine()->getRepository(Carnet::class)->findBy(array('ruche'=>$ruche));
-        $em->remove($carnets);
+        if($carnets != NULL){
+            foreach($carnets as $carnet)
+            $em->remove($carnet);
+        }
         
         $mesuresRuches = $this->getDoctrine()->getRepository(MesuresRuches::class)->findBy(array('ruche'=>$ruche));
-        $em->remove($mesuresRuches);
+        if($mesuresRuches != NULL){
+            foreach($mesuresRuches as $mesureRuche)
+            $em->remove($mesureRuche);
+        }
         
         $em->remove($ruche);
 
