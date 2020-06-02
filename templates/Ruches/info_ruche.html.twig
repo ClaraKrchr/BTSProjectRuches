@@ -48,7 +48,7 @@
   <script>
   var chartOptions = {
 	      chart: {
-	        type: 'spline',
+	        type: 'line',
 	        zoomType: 'x',
 	        panning: true,
 	        panKey: 'ctrl'
@@ -125,12 +125,116 @@
 </table>
 </div>
 <div class="block2 col-lg-6">
-  <script type="text/javascript" src="{{ asset('js/diagramme_mesures.js') }}"></script>
+
+  <script type="text/javascript">
+  function nom_ruche(){
+		var nomruchepublic = document.getElementById("liste_ruche_public").value;
+		var nomrucheprivee = document.getElementById("liste_ruche_privee").value;
+		
+		if(nomruchepublic!=''){
+			document.getElementById("liste_ruche_public").style.display = 'block';
+			document.getElementById("liste_ruche_privee").style.display = 'none';
+			document.getElementById("{{nomruche}}").style.display = 'none';
+			document.getElementById("test").style.display = 'block';
+
+			var url =' {{ path('mesures_ruche_diagramme',{nomruche : nomruche , nomruche2 : 'nomruche2'}) }} ';
+			url=url.replace("nomruche2",nomruchepublic);
+			Highcharts.getJSON(url, function (data) {
+				  // Create the chart
+			  	Highcharts.stockChart('test', {
+				    
+				chart:{
+					zoomKey:'ctrl',
+					zoomType:'x'
+					},
+			    title: {
+				      text: 'Les mesures de la ruche {{ nomruche }} comparée à '+nomrucheprivee
+				    },
+			    series: [{                     				
+				      	name: 'Poids Premiere ruche(en kg)',
+				      	data: data[0],
+				      	type: 'line',
+				     	tooltip: {
+				        	valueDecimals: 2
+				      }
+				    },{                     				
+				      	name: 'Poids Seconde ruche(en kg)',
+				      	data: data[1],
+				      	type: 'line',
+				     	tooltip: {
+				        	valueDecimals: 1
+				      }
+				    }
+				    ]
+				  });
+				});
+
+			console.log('affiche div test avec la ruche {{nomruche}} et la ruche public : '+nomruchepublic);
+		}else if(nomrucheprivee!=''){
+
+			document.getElementById("liste_ruche_privee").style.display = 'block';
+			document.getElementById("liste_ruche_public").style.display = 'none';
+			document.getElementById("{{nomruche}}").style.display = 'none';
+			document.getElementById("test").style.display = 'block';
+
+			var url =' {{ path('mesures_ruche_diagramme',{nomruche : nomruche , nomruche2 : 'nomruche2'}) }} ';
+			url=url.replace("nomruche2",nomrucheprivee);
+			Highcharts.getJSON(url, function (data) {
+				  // Create the chart
+			  	Highcharts.stockChart('test', {
+				    
+				chart:{
+					zoomKey:'ctrl',
+					zoomType:'x',
+					},
+			    title: {
+				      text: 'Les mesures de la ruche {{ nomruche }} comparée à '+nomrucheprivee
+				    },
+			    series: [{                     				
+				      	name: 'Poids Premiere ruche(en kg)',
+				      	data: data[0],
+				      	type: 'line',
+				     	tooltip: {
+				        	valueDecimals:0
+				      }
+				    },{                     				
+				      	name: 'Poids Seconde ruche(en kg)',
+				      	data: data[1],
+				      	type: 'line',
+				     	tooltip: {
+				        	valueDecimals: 0
+				      }
+				    }
+				    ]
+				  });
+				});
+			
+			console.log('affiche div test avec la ruche {{nomruche}} et la ruche privee : '+nomrucheprivee);
+		}
+		else if(nomruchepublic==''){
+			document.getElementById("liste_ruche_privee").style.display = 'block';
+			document.getElementById("liste_ruche_public").style.display = 'block';
+			document.getElementById("{{nomruche}}").style.display = 'block';
+			document.getElementById("test").style.display = 'none';
+			document.getElementById("nom_ruche_choisie").innerHTML ="";
+			
+			console.log('affiche div nomruche');				
+		}else if(nomrucheprivee!=''){
+
+			document.getElementById("liste_ruche_privee").style.display = 'block';
+			document.getElementById("liste_ruche_public").style.display = 'block';
+			document.getElementById("{{nomruche}}").style.display = 'block';
+			document.getElementById("test").style.display = 'none';
+			document.getElementById("nom_ruche_choisie").innerHTML ="";
+			
+			console.log('affiche div nomruche');	
+		}
+	}</script>
 {% if ruchepubliques %}
 <form id="form_ruche_public" >
     <select id="liste_ruche_public" onchange="nom_ruche()">
     {% for ruchepublique in ruchepubliques %}
-    {% if ruchepublique.nomruche == nomruche %}
+            {% if ruchepublique.nomruche == nomruche %}
     	<option selected value="">{{ ruchepublique.nomruche }}
     {% else %}
     	<option value="{{ ruchepublique.nomruche }}">{{ ruchepublique.nomruche }}
@@ -144,7 +248,7 @@
 <form id="form_ruche_privee" >
     <select id="liste_ruche_privee" onchange="nom_ruche()">
     {% for rucheprivee in rucheprivees %}
-    	  {% if rucheprivee.ruche.nomruche == nomruche %}
+	      {% if rucheprivee.ruche.nomruche == nomruche %}
     	<option selected value="">{{ rucheprivee.ruche.nomruche }}
     {% else %}
     	<option value="{{ rucheprivee.ruche.nomruche }}">{{ rucheprivee.ruche.nomruche }}
@@ -154,54 +258,36 @@
 </form>
 {% endif %}
 
-<div id="nom_ruche_choisie"></div>
-
 <figure class="highcharts-figure">
-  <div id="chart2" style="width:400px; "></div>
+  <div id="test" style="width:400px; "></div>
+  </figure>
+<figure class="highcharts-figure">
+  <div id="{{ nomruche }}" style="width:400px; "></div>
   </figure>
  <script type="text/javascript">
-		var chartOptions = {
-	      chart: {
-	        renderTo: 'chart2',
-	        type: 'spline',
-			zoomType:'x',
-	        panning: true,
-	        panKey: 'ctrl'
-	      },
-	     
-	      title: {
-	        text: 'Les mesures de la ruche ' 
-	      },
-	      subtitle:{
-	    	  text: 'Utilisez Ctrl+Clic Gauche pour naviguer sur le diagramme',
-	    	  color:'#010101'
-	    	  },
-	      xAxis: {
-	        categories: [{% for mesuresruche in mesuresruches %} '{{ mesuresruche.datereleve|date ('d/m/Y')}}',{% endfor %}],
-	      },
-	      yAxis: {
-	        title: 'Poids (en kg)'
-	      },
-	      series: [{
-	        name: 'Poids',
-	        data: [{% for mesuresruche in mesuresruches %}{{ mesuresruche.poids }},{% endfor %}],
-	      
-	      }],
-	      responsive:{
-		      rules:[{
-			      condition:{
-				      maxWidth:200
-				      },
-				      chartOptions:{
-					      legend:{enabled:false},
-					      }
-				      }
-		      ]
-	      },
-	      
-	    };
-	    
-	    var chart = new Highcharts.Chart(chartOptions);
+ Highcharts.getJSON(' {{ path('mesures_ruche_diagramme',{nomruche : nomruche , nomruche2 : 'NULL'}) }} ', function (data) {
+	  // Create the chart
+  	Highcharts.stockChart('{{ nomruche }}', {
+	    rangeSelector: {
+	      selected: 1
+	    },
+	chart:{
+		zoomKey:'ctrl',
+		zoomType:'x'
+		},
+    title: {
+	      text: 'Les mesures de la ruche {{ nomruche }}'
+	    },
+    series: [{                     				
+	      	name: 'Poids (en kg)',
+	      	data: data,
+	      	type: 'line',
+	     	tooltip: {
+	        	valueDecimals: 2
+	      }
+	    }]
+	  });
+	});
 	</script>
 {% endif %}
  </div>
@@ -210,12 +296,7 @@
 </div>
 
 
-<script src="{{ asset('js/info_ruche.js')}}">
-window.addEventListener('load', function () {
-  ajout_ruche_diagramme();
-  console.log('Cette fonction est exécutée une fois quand la page est chargée.');
-});
-</script>
+<script src="{{ asset('js/info_ruche.js')}}"></script>
 <a href="#" onclick="ajout_ruche_diagramme()">lien</a>
 <br></br>
 </center>
