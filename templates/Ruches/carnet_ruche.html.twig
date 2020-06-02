@@ -3,58 +3,161 @@
 <meta charset="UTF-8">
 
 <center><h1>{% trans %}Mon carnet d'apiculteur{% endtrans %}</h1></center>
-<table id="carnet" class="table table-striped">			
-			{% for carnet in carnets %}
+<div class="row justify-content-center">
+	<div class="col-auto">
+ 	<table class="table table-responsive table-striped table-bordered table-hover">
+	{% for carnet in carnets %}
                     <br><center><h2>{{ carnet.ruche }}</h2></center>
-					<center><h3>{{ carnet.date|date('d/m/Y') }}</h3></center><br>					
-					
-					<center><p><b>État ruche État essaim Origine essaim</b></p></center>
-					<center>{{ carnet.etatruche }}
-					{% for  etatessaim in carnet.etatessaim %}
+					<center><h3>{{ carnet.date|date('d/m/Y') }}</h3></center><br>
+	{% endfor %}
+	
+	<thread>
+		<tr>
+			<th>{% trans %}État ruche{% endtrans %}</th>
+			<th>{% trans %}État essaim{% endtrans %}</th>
+			<th>{% trans %}Origine essaim{% endtrans %}</th>
+		</tr>
+	</thread>
+	<tbody>
+		{% for carnet in carnets %}
+			<tr>
+				<td>{{ carnet.etatruche }}</td>
+				<td>{% for  etatessaim in carnet.etatessaim %}
 						    {% if etatessaim=="Orpheline" %}
 								Orpheline
 						    {% elseif etatessaim=="Bourdonneuse" %}
 								Bourdonneuse
 						    {% endif %}
-					{% endfor %}
-					{{ carnet.origineessaim }}</center><br>
-					
-					<center><p><b>Nombre de cadres couvain Opercule du couvain</b></p></center>
-					<center>{{ carnet.nbcadrescouvain }}
-					{{ carnet.couvainopercule }}</center><br>
-					
-					<center><p>Présence de mâles Présence de larves Présence d'œufs</p></center>
-					<center>{{ carnet.presencemales }}
-					{{ carnet.presencelarves }}
-					{{ carnet.presenceoeufs }}</center><br>
-					
-					<center><p>Date d'arrivée de la reine Race de la reine Âge de la reine Présence de cellules royales</p></center>
-					<center>{{ carnet.datereine|date('d/m/Y') }}
-					{{ carnet.racereine }}
-					{{ carnet.agereine }}
-					{{ carnet.cellulesroyales }}</center><br>
-					
-					<center><p>Nombre de cadres de miel de réserve Nombre de cadres de pollen</p></center>
-					<center>{{ carnet.nbcadresmiel }}
-					{{ carnet.nbcadrespollen }}</center><br>
-					
-					<center><p>Date d'introduction au traitement Nature du traitement</p></center>
-					<center>{{ carnet.datetraitement|date('d/m/Y') }}
-					{{ carnet.naturetraitement }}</center><br>
-					
-					<center><p>Date nourrissement Quantité Nourrissement Nature du nourrissement</p></center>
-					<center>{{ carnet.datenourrissement|date('d/m/Y')  }}
-					{{ carnet.qttnourrissement }}
-					{{ carnet.naturenourrissement }}</center><br>
-					
-					<center><p>Date de récolte Nombre de hausse récoltées Nature du miel</p></center>
-					<center>{{ carnet.daterecolte|date('d/m/Y') }}
-					{{ carnet.nbhausserecoltees }}
-					{{ carnet.naturemiel }}</center><br>
-					
-					<center><p>Présence varroa État des abeilles</p></center>
-					<center>{{ carnet.presencevarroa }}
-					{% for  etatabeilles in carnet.etatabeilles %}
+					{% endfor %}</td>
+					<td>{{ carnet.origineessaim }}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+	
+	<thread>
+		<tr>
+			<th>{% trans %}Nombre de cadres couvain{% endtrans %}</th>
+			<th>{% trans %}Couvain operculé{% endtrans %}</th>
+		</tr>
+	</thread>
+	<tbody>
+		{% for carnet in carnets %}
+			<tr>
+				<td>{{ carnet.nbcadrescouvain }}</td>
+				<td>{{ carnet.couvainopercule }}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+	
+	<thread>
+		<tr>
+			<th>{% trans %}Présence de mâles{% endtrans %}</th>
+			<th>{% trans %}Présence de larves{% endtrans %}</th>
+			<th>{% trans %}Présence d'œufs{% endtrans %}</th>
+		</tr>
+	</thread>
+	<tbody>
+		{% for carnet in carnets %}
+			<tr>
+				<td>{{ carnet.presencemales }}</td>
+				<td>{{ carnet.presencelarves }}</td>
+				<td>{{ carnet.presenceoeufs }}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+	
+	<thread>
+		<tr>
+			<th>{% trans %}Date d'arrivée de la reine{% endtrans %}</th>
+			<th>{% trans %}Âge de la reine{% endtrans %}</th>
+			<th>{% trans %}Présence de cellules royales{% endtrans %}</th>
+		</tr>
+	</thread>
+	<tbody>
+		{% for carnet in carnets %}
+			<tr>
+				<td>{{ carnet.racereine|date('d/m/Y')}}</td>
+				<td>{{ carnet.agereine }}</td>
+				<td>{{ carnet.cellulesroyales }}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+	
+	<thread>
+		<tr>
+			<th>{% trans %}Nombre de cadres de miel de réserve{% endtrans %}</th>
+			<th>{% trans %}Nombre de cadres de pollen{% endtrans %}</th>
+		</tr>
+	</thread>
+	<tbody>
+		{% for carnet in carnets %}
+			<tr>
+				<td>{{ carnet.nbcadresmiel}}</td>
+				<td>{{ carnet.nbcadrespollen }}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+	
+	<thread>
+		<tr>
+			<th>{% trans %}Date d'introduction au traitement{% endtrans %}</th>
+			<th>{% trans %}Nature du traitement{% endtrans %}</th>
+		</tr>
+	</thread>
+	<tbody>
+		{% for carnet in carnets %}
+			<tr>
+				<td>{{ carnet.datetraitement|date('d/m/Y')}}</td>
+				<td>{{ carnet.naturetraitement }}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+	
+	<thread>
+		<tr>
+			<th>{% trans %}Date nourrissement{% endtrans %}</th>
+			<th>{% trans %}Quantité nourrissement{% endtrans %}</th>
+			<th>{% trans %}Nature nourrissement{% endtrans %}</th>
+		</tr>
+	</thread>
+	<tbody>
+		{% for carnet in carnets %}
+			<tr>
+				<td>{{ carnet.datenourrissement|date('d/m/Y')}}</td>
+				<td>{{ carnet.qttnourrissement }}</td>
+				<td>{{ carnet.naturenourrissement }}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+	
+	<thread>
+		<tr>
+			<th>{% trans %}Date récolte{% endtrans %}</th>
+			<th>{% trans %}Nombre de hausse récoltées{% endtrans %}</th>
+			<th>{% trans %}Nature miel{% endtrans %}</th>
+		</tr>
+	</thread>
+	<tbody>
+		{% for carnet in carnets %}
+			<tr>
+				<td>{{ carnet.daterecolte|date('d/m/Y')}}</td>
+				<td>{{ carnet.nbhausserecoltees }}</td>
+				<td>{{ carnet.naturemiel }}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+	
+	<thread>
+		<tr>
+			<th>{% trans %}Présence varroa{% endtrans %}</th>
+			<th>{% trans %}État des abeilles{% endtrans %}</th>
+		</tr>
+	</thread>
+	<tbody>
+		{% for carnet in carnets %}
+			<tr>
+				<td>{{ carnet.presencevarroa}}</td>
+				<td>{% for  etatabeilles in carnet.etatabeilles %}
 						    {% if etatabeilles=="Grandes" %}
 								Grandes
 						    {% elseif etatabeilles=="Petites" %}
@@ -66,16 +169,32 @@
 							{% elseif etatabeilles=="Douces" %}
 								Douces
 						    {% endif %}
-					{% endfor %}</center><br>
-					
-					<center><p>Date transhumance Lieu transhumance</p></center>
-					<center>{{ carnet.datetranshumance|date('d/m/Y') }}
-					{{ carnet.lieutranshumance }}</center><br>
-
-					<center><p>Commentaire</p></center>
+					{% endfor %}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+	
+	<thread>
+		<tr>
+			<th>{% trans %}Date transhumance{% endtrans %}</th>
+			<th>{% trans %}Lieu transhumance{% endtrans %}</th>
+		</tr>
+	</thread>
+	<tbody>
+		{% for carnet in carnets %}
+			<tr>
+				<td>{{ carnet.datetranshumance|date('d/m/Y')}}</td>
+				<td>{{ carnet.lieutranshumance }}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+		    {% for carnet in carnets %}
+					<center><h3>Commentaire</h3></center>
 					<center>{{ carnet.commentaire }}</center><br>
 			{% endfor %}				
-</table>
+	</table>
+	</div>
+</div>
 			{% if paginations.getTotalItemCount =='0' %}
 			<center><h1>Aucune information enregistrée.</h1></center><br>
             {% endif %}
