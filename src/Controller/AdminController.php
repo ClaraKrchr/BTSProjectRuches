@@ -26,6 +26,7 @@ class AdminController extends AbstractController
     }
     
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("gestionnaire/edit/{nom}", name="edit")
      */
     public function editUser(Request $request, CApiculteur $user, EntityManagerInterface $em) 
