@@ -34,7 +34,7 @@ class DeleteController extends AbstractController
         
         //Redirection si l'utilisateur n'est pas celui qui possède la ruche
         $assosRucheApi = $em->getRepository(AssociationRucheApiculteur::class)->findOneBy(array('ruche'=>$ruche));
-        if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('ruches_privees');
+        if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('erreur');
         //////////////////////////////
         
         $AssosRucheRucher = $this->getDoctrine()->getRepository(AssociationRucheRucher::class)->findOneBy(array('ruche'=>$ruche));
@@ -73,7 +73,7 @@ class DeleteController extends AbstractController
         
         //Redirection si l'utilisateur n'est pas celui qui possède la ruche
         $assosRucheApi = $em->getRepository(AssociationRucheApiculteur::class)->findOneBy(array('ruche'=>$ruche));
-        if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('ruches_privees');
+        if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('erreur');
         //////////////////////////////
         
         $AssosRucheRucher = $this->getDoctrine()->getRepository(AssociationRucheRucher::class)->findOneBy(array('ruche'=>$ruche));
@@ -98,7 +98,7 @@ class DeleteController extends AbstractController
         
         //Redirection si l'utilisateur n'est pas celui qui possède la ruche
         $assosRucheApi = $em->getRepository(AssociationRucheApiculteur::class)->findOneBy(array('ruche'=>$ruche));
-        if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('ruches_privees');
+        if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('erreur');
         //////////////////////////////
         
         $AssosRuchePeseruche = $this->getDoctrine()->getRepository(AssociationRuchePeseruche::class)->findOneBy(array('ruche'=>$ruche));

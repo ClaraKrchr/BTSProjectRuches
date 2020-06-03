@@ -67,6 +67,7 @@ class NouvellepageController extends AbstractController
     }
     
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/erreur", name="erreur")
      */
     public function erreur()

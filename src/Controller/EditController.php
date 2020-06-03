@@ -28,7 +28,7 @@ class EditController extends AbstractController
     {
         //Redirection si l'utilisateur n'est pas celui qui possède la ruche
         $assosRucheApi = $em->getRepository(AssociationRucheApiculteur::class)->findOneBy(array('ruche'=>$ruche));
-        if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('ruches_privees');
+        if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('erreur');
         //////////////////////////////
         
         $form = $this->createForm(EditRucheType::class, $ruche);
