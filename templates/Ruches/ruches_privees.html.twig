@@ -2,7 +2,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}Carte{% endblock %}
 {% block body %}
-<link rel="stylesheet" href="{{ asset('css/ruche_privees.css') }}" type="text/css"> 
 {% for message in app.flashes('message') %}
       		 <center><div class="alert alert-success">
         	    {{ message }}

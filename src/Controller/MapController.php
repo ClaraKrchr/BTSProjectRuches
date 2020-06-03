@@ -88,6 +88,7 @@ class MapController extends NouvellepageController{
      */
     public function mesures_ruche_diagramme($nomruche,$nomruche2, EntityManagerInterface $em):Response
     {
+        $stock=[];
         if($nomruche!='NULL'){
             if($nomruche2!='NULL'){
                 $Ruches=$this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche));
@@ -95,7 +96,6 @@ class MapController extends NouvellepageController{
                 $qb->select('w')->from(MesuresRuches::class, 'w')->where('w.ruche = ' . $Ruches->getId())->orderBy('w.date_releve', 'ASC');
                 $query = $qb->getQuery();
                 $MesuresRuches = $query->getResult();
-                $stockage1=array('');
                 if($MesuresRuches){
                     foreach ($MesuresRuches as $MesuresRuche){
                         
@@ -110,7 +110,6 @@ class MapController extends NouvellepageController{
                 $qb->select('w')->from(MesuresRuches::class, 'w')->where('w.ruche = ' . $Ruches2->getId())->orderBy('w.date_releve', 'ASC');
                 $query = $qb->getQuery();
                 $MesuresDeRuches = $query->getResult();
-                $stockage2=array('');
                 if($MesuresDeRuches){
                     foreach ($MesuresDeRuches as $MesuresDeRuche){
                         
@@ -124,6 +123,7 @@ class MapController extends NouvellepageController{
                 $stock[]=$stockage2;
             }else{
                 $Ruches=$this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche));
+                if($Ruches){
                 $qb = $em->createQueryBuilder();
                 $qb->select('w')->from(MesuresRuches::class, 'w')->where('w.ruche = ' . $Ruches->getId())->orderBy('w.date_releve', 'ASC');
                 $query = $qb->getQuery();
@@ -136,11 +136,14 @@ class MapController extends NouvellepageController{
                         $MesuresRuche->getPoids()
                     );
                 }
+                return $this->json($stock, 200);
+                }
+                return $this->json($stock, 200);;
             }
             
             return $this->json($stock, 200);
         }
-        return $this->redirectToRoute('home');
+        return $this->json($stock, 200);;
     }
     /**
      * @IsGranted("ROLE_USER")

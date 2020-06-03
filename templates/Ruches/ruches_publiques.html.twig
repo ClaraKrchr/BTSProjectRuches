@@ -23,13 +23,19 @@
 			<div class="card shadow mb-4">
 				
 				<div class="card-header">
+					<center><div id="{{ pagination.nomruche }}2"></div>
 					<figure class="highcharts-figure">
                       	<div id="{{ pagination.nomruche }}" ></div>
                   	</figure>
+                  	</center>
                  	<script type="text/javascript">
                  	var url =' {{ path('mesures_ruche_diagramme',{nomruche : pagination.nomruche, nomruche2 :'NULL'}) }} ';
-                 	if(url){
                      	Highcharts.getJSON(url, function (data) {
+                     		if ( data.length == 0 ) {
+                     	       console.log("NO DATA!");
+                     	      document.getElementById("{{ pagination.nomruche }}2").innerHTML='{{ pagination.nomruche }}';
+                     	       document.getElementById("{{ pagination.nomruche }}").innerHTML='---> Pas de mesures pour cette ruche <---';
+                     	    }else{
                  		  	Highcharts.stockChart('{{ pagination.nomruche }}', {
                      		    rangeSelector: {
                      		      selected: 1
@@ -50,10 +56,9 @@
                      		      }
                      		    }]
                      		  });
+                     	    }
                      		});
-                 	}else{
-						dicument.getElementById('{{ pagination.nomruche }}').innerHTMl="Pas de mesures pour cette ruche";
-                     	}                 		
+                 	                		
                 		</script>
 				</div>
 				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
