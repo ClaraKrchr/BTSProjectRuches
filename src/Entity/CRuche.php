@@ -73,6 +73,11 @@ class CRuche
      */
     private $carnets;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $datearchive;
+
     public function __construct()
     {
         $this->mesuresRuches = new ArrayCollection();
@@ -259,6 +264,18 @@ class CRuche
 
     public function __toString(){
         return $this->getNomRuche();
+    }
+
+    public function getDatearchive(): ?\DateTimeInterface
+    {
+        return $this->datearchive;
+    }
+
+    public function setDatearchive(?\DateTimeInterface $datearchive): self
+    {
+        $this->datearchive = $datearchive;
+
+        return $this;
     }
 
 }
