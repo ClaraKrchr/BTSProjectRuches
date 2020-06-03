@@ -49,7 +49,7 @@ class CarnetController extends AbstractController
         //Redirection si l'utilisateur n'est pas celui qui possède la ruche
         $Ruche = $em->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$ruche));
         $assosRucheApi = $em->getRepository(AssociationRucheApiculteur::class)->findOneBy(array('ruche'=>$Ruche));
-        if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('home');
+        if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('erreur');
         //////////////////////////////
         
         $rucheObjet = $this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$ruche));
