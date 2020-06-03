@@ -151,12 +151,6 @@ class MapController extends NouvellepageController{
         $NomProprietaire=$this->getUser();
         
         $AssosRucheApi = $this->getDoctrine()->getRepository(AssociationRucheApiculteur::class)->findBy(array('apiculteur'=>$NomProprietaire));
-        
-        $Ruches = array();
-        
-        foreach($AssosRucheApi as $assos){
-            $Ruches[] = $assos->getRuche();
-        }
 
         $qb = $em->createQueryBuilder();
         $qb->select('w')->from(CRuche::class, 'w')->where('w.etat = 4')->orderBy('w.datearchive', 'ASC');
