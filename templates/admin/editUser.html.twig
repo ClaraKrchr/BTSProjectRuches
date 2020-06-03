@@ -30,7 +30,7 @@
         </div>
   </div>
         {{ form_row(formUser.postaddr, { 'label':'Adresse postale','attr' : { 'placeholder':'Adresse postale'}}) }}
-        {{ form_row(formUser.roles) }}
+        {% if is_granted('ROLE_ADMIN') %} {{ form_widget(formUser.roles) }} {% else %} <div style="display:none">{{ form_widget(formUser.roles) }}</div> {% endif %}
     
 	<button type="submit" class="btn btn-success">{% trans %}Modifier{% endtrans %}</button>
 	<a href="{{ path('gestionnaire') }}"><button class="btn btn-secondary">{% trans %}Annuler{% endtrans %}</button></a>
