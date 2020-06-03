@@ -142,5 +142,16 @@ class MapController extends NouvellepageController{
         }
         return $this->redirectToRoute('home');
     }
-    
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/ruches_desactivees", name="ruches_desactivees")
+     */
+    public function ruches_desactivees(EntityManagerInterface $em, Request $request){
+        
+        $NomProprietaire=$this->getUser();
+        
+        $AssosRucheApi = $this->getDoctrine()->getRepository(AssociationRucheApiculteur::class)->findBy(array('apiculteur'=>$NomProprietaire));
+        
+        return $this->render('Ruches/ruches_desactivees.html.twig', ['apiculteurs' => $AssosRucheApi]);
+    }    
 }

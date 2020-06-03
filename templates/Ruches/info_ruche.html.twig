@@ -97,7 +97,8 @@
 
 	    var chart = new Highcharts.Chart('chart',chartOptions);
   </script>
-
+{% else %}
+	<div>Aucune mesures pour cette station</div>
 {% endif %}
 </div>
 </div>
@@ -289,15 +290,14 @@
 	  });
 	});
 	</script>
+	{% else %}
+	<div>Aucune mesures pour cette ruche</div>
 {% endif %}
  </div>
 
 </div>
 </div>
 
-
-<script src="{{ asset('js/info_ruche.js')}}"></script>
-<a href="#" onclick="ajout_ruche_diagramme()">lien</a>
 <br></br>
 </center>
 {% endblock %}
