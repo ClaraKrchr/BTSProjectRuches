@@ -6,10 +6,27 @@
 <div class="row justify-content-center">
 	<div class="col-auto">
  	<table class="table table-responsive table-striped table-bordered table-hover" style="width:57%; float:left">
-	{% for carnet in carnets %}
+ 		
+		    {% for carnet in carnets %}
                     <br><center><h2>{{ carnet.ruche }}</h2></center>
+					<div style="width:50%; float:left"><center><h4>Commentaire</h4></center>
+					<center>{{ carnet.commentaire }}</center></div>
+					<div style="width:50%; float:left"><center><h4>État des abeilles</h4></center>
+					<center>{% for  etatabeilles in carnet.etatabeilles %}
+						    {% if etatabeilles=="Grandes" %}
+								Grandes
+						    {% elseif etatabeilles=="Petites" %}
+								Petites
+							{% elseif etatabeilles=="Ailes atrophiees" %}
+								Ailes atrophiees
+							{% elseif etatabeilles=="Agressives" %}
+								Agressives
+							{% elseif etatabeilles=="Douces" %}
+								Douces
+						    {% endif %}
+							{% endfor %}</center><br></div>
 					<center><h3>{{ carnet.date|date('d/m/Y') }}</h3></center><br>
-	{% endfor %}
+			{% endfor %}
 	
 	<thread>
 		<tr>
@@ -101,25 +118,7 @@
 			</tr>
 		{% endfor %}
 	</tbody>
-	
-		    {% for carnet in carnets %}
-					<center><h4>Commentaire</h4></center>
-					<center>{{ carnet.commentaire }}</center>
-					<center><h4>État des abeilles</h4></center>
-					<center>{% for  etatabeilles in carnet.etatabeilles %}
-						    {% if etatabeilles=="Grandes" %}
-								Grandes
-						    {% elseif etatabeilles=="Petites" %}
-								Petites
-							{% elseif etatabeilles=="Ailes atrophiees" %}
-								Ailes atrophiees
-							{% elseif etatabeilles=="Agressives" %}
-								Agressives
-							{% elseif etatabeilles=="Douces" %}
-								Douces
-						    {% endif %}
-					{% endfor %}</center><br>
-			{% endfor %}
+
 	</table>
 
 	<table class="table table-responsive table-striped table-bordered table-hover" style="width:43%; float:left">

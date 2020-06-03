@@ -55,7 +55,7 @@ class CarnetController extends AbstractController
         $rucheObjet = $this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$ruche));
         
         $qb = $em->createQueryBuilder();
-        $qb->select('w')->from(Carnet::class, 'w')->where('w.ruche = ' . $rucheObjet->getId())->orderBy('w.date', 'ASC');
+        $qb->select('w')->from(Carnet::class, 'w')->where('w.ruche = ' . $rucheObjet->getId())->orderBy('w.date', 'DESC');
         $query = $qb->getQuery();
         $CarnetDate = $query->getResult();
         
