@@ -27,8 +27,9 @@
                       	<div id="{{ pagination.nomruche }}" ></div>
                   	</figure>
                  	<script type="text/javascript">
-                     	Highcharts.getJSON(' {{ path('mesures_ruche_diagramme',{nomruche : pagination.nomruche}) }} ', function (data) {
-                     		  // Create the chart
+                 	var url =' {{ path('mesures_ruche_diagramme',{nomruche : pagination.nomruche, nomruche2 :'NULL'}) }} ';
+                 	if(url){
+                     	Highcharts.getJSON(url, function (data) {
                  		  	Highcharts.stockChart('{{ pagination.nomruche }}', {
                      		    rangeSelector: {
                      		      selected: 1
@@ -43,13 +44,16 @@
                  		    series: [{                     				
                      		      	name: 'Poids (en kg)',
                      		      	data: data,
-                     		      	type: 'areaspline',
+                     		      	type: 'line',
                      		     	tooltip: {
                      		        	valueDecimals: 2
                      		      }
                      		    }]
                      		  });
                      		});
+                 	}else{
+						dicument.getElementById('{{ pagination.nomruche }}').innerHTMl="Pas de mesures pour cette ruche";
+                     	}                 		
                 		</script>
 				</div>
 				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
