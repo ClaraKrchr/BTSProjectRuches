@@ -152,6 +152,17 @@ class MapController extends NouvellepageController{
         
         $AssosRucheApi = $this->getDoctrine()->getRepository(AssociationRucheApiculteur::class)->findBy(array('apiculteur'=>$NomProprietaire));
         
-        return $this->render('Ruches/ruches_desactivees.html.twig', ['apiculteurs' => $AssosRucheApi]);
+        $Ruches = array();
+        
+        foreach($AssosRucheApi as $assos){
+            $Ruches[] = $assos->getRuche();
+        }
+
+        $qb = $em->createQueryBuilder();
+        $qb->select('w')->from(CRuche::class, 'w')->where('w.etat = 4')->orderBy('w.datearchive', 'ASC');
+        $query = $qb->getQuery();
+        $sendRuches = $query->getResult();
+        
+        return $this->render('Ruches/ruches_desactivees.html.twig', ['ruches' => $sendRuches]);
     }    
 }

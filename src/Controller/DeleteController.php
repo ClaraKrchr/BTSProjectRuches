@@ -12,6 +12,7 @@ use App\Entity\Carnet;
 use App\Entity\MesuresRuches;
 
 use App\Form\EditRucheType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use App\Repository\CRucheRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,6 +47,7 @@ class DeleteController extends AbstractController
         $carnets = $this->getDoctrine()->getRepository(Carnet::class)->findBy(array('ruche'=>$ruche));
         if(($carnets != NULL) || ($mesuresRuches != NULL)){
             $ruche->setEtat('4');
+            $ruche->setDatearchive(date_create());
             $em->flush();
             $message=utf8_encode('La ruche a été archivée.');
             $this->addFlash('message', $message);
