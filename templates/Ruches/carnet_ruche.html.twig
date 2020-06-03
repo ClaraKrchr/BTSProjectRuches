@@ -55,15 +55,15 @@
 		<tr>
 			<th><center>{% trans %}Date d'arrivée de la reine{% endtrans %}</center></th>
 			<th><center>{% trans %}Âge de la reine{% endtrans %}</center></th>
-			<th><center>{% trans %}Présence de cellules royales{% endtrans %}</center></th>
+			<th><center>{% trans %}Race de la reine{% endtrans %}</center></th>
 		</tr>
 	</thread>
 	<tbody>
 		{% for carnet in carnets %}
 			<tr>
-				<td>{{ carnet.racereine|date('d/m/Y')}}</td>
+				<td>{{ carnet.datereine|date('d/m/Y')}}</td>
 				<td>{{ carnet.agereine }}</td>
-				<td>{{ carnet.cellulesroyales }}</td>
+				<td>{{ carnet.racereine }}</td>
 			</tr>
 		{% endfor %}
 	</tbody>
@@ -102,9 +102,23 @@
 		{% endfor %}
 	</tbody>
 	
-			    {% for carnet in carnets %}
-					<center><h3>Commentaire</h3></center>
-					<center>{{ carnet.commentaire }}</center><br>
+		    {% for carnet in carnets %}
+					<center><h4>Commentaire</h4></center>
+					<center>{{ carnet.commentaire }}</center>
+					<center><h4>État des abeilles</h4></center>
+					<center>{% for  etatabeilles in carnet.etatabeilles %}
+						    {% if etatabeilles=="Grandes" %}
+								Grandes
+						    {% elseif etatabeilles=="Petites" %}
+								Petites
+							{% elseif etatabeilles=="Ailes atrophiees" %}
+								Ailes atrophiees
+							{% elseif etatabeilles=="Agressives" %}
+								Agressives
+							{% elseif etatabeilles=="Douces" %}
+								Douces
+						    {% endif %}
+					{% endfor %}</center><br>
 			{% endfor %}
 	</table>
 
@@ -159,26 +173,14 @@
 	<thread>
 		<tr>
 			<th><center>{% trans %}Présence varroa{% endtrans %}</center></th>
-			<th><center>{% trans %}État des abeilles{% endtrans %}</center></th>
+			<th><center>{% trans %}Présence cellules royales{% endtrans %}</center></th>
 		</tr>
 	</thread>
 	<tbody>
 		{% for carnet in carnets %}
 			<tr>
 				<td>{{ carnet.presencevarroa}}</td>
-				<td>{% for  etatabeilles in carnet.etatabeilles %}
-						    {% if etatabeilles=="Grandes" %}
-								Grandes
-						    {% elseif etatabeilles=="Petites" %}
-								Petites
-							{% elseif etatabeilles=="Ailes atrophiees" %}
-								Ailes atrophiees
-							{% elseif etatabeilles=="Agressives" %}
-								Agressives
-							{% elseif etatabeilles=="Douces" %}
-								Douces
-						    {% endif %}
-					{% endfor %}</td>
+				<td>{{ carnet.cellulesroyales}}</td>
 			</tr>
 		{% endfor %}
 	</tbody>
