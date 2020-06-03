@@ -5,7 +5,7 @@
 <center><h1>{% trans %}Mon carnet d'apiculteur{% endtrans %}</h1></center>
 <div class="row justify-content-center">
 	<div class="col-auto">
- 	<table class="table table-responsive table-striped table-bordered table-hover">
+ 	<table class="table table-responsive table-striped table-bordered table-hover" style="width:57%; float:left">
 	{% for carnet in carnets %}
                     <br><center><h2>{{ carnet.ruche }}</h2></center>
 					<center><h3>{{ carnet.date|date('d/m/Y') }}</h3></center><br>
@@ -30,21 +30,6 @@
 						    {% endif %}
 					{% endfor %}</td>
 					<td>{{ carnet.origineessaim }}</td>
-			</tr>
-		{% endfor %}
-	</tbody>
-	
-	<thread>
-		<tr>
-			<th><center>{% trans %}Nombre de cadres couvain{% endtrans %}</center></th>
-			<th><center>{% trans %}Couvain operculé{% endtrans %}</center></th>
-		</tr>
-	</thread>
-	<tbody>
-		{% for carnet in carnets %}
-			<tr>
-				<td>{{ carnet.nbcadrescouvain }}</td>
-				<td>{{ carnet.couvainopercule }}</td>
 			</tr>
 		{% endfor %}
 	</tbody>
@@ -85,36 +70,6 @@
 	
 	<thread>
 		<tr>
-			<th><center>{% trans %}Nombre de cadres de miel de réserve{% endtrans %}</center></th>
-			<th><center>{% trans %}Nombre de cadres de pollen{% endtrans %}</center></th>
-		</tr>
-	</thread>
-	<tbody>
-		{% for carnet in carnets %}
-			<tr>
-				<td>{{ carnet.nbcadresmiel}}</td>
-				<td>{{ carnet.nbcadrespollen }}</td>
-			</tr>
-		{% endfor %}
-	</tbody>
-	
-	<thread>
-		<tr>
-			<th><center>{% trans %}Date d'introduction au traitement{% endtrans %}</center></th>
-			<th><center>{% trans %}Nature du traitement{% endtrans %}</center></th>
-		</tr>
-	</thread>
-	<tbody>
-		{% for carnet in carnets %}
-			<tr>
-				<td>{{ carnet.datetraitement|date('d/m/Y')}}</td>
-				<td>{{ carnet.naturetraitement }}</td>
-			</tr>
-		{% endfor %}
-	</tbody>
-	
-	<thread>
-		<tr>
 			<th><center>{% trans %}Date nourrissement{% endtrans %}</center></th>
 			<th><center>{% trans %}Quantité nourrissement{% endtrans %}</center></th>
 			<th><center>{% trans %}Nature nourrissement{% endtrans %}</center></th>
@@ -147,6 +102,60 @@
 		{% endfor %}
 	</tbody>
 	
+			    {% for carnet in carnets %}
+					<center><h3>Commentaire</h3></center>
+					<center>{{ carnet.commentaire }}</center><br>
+			{% endfor %}
+	</table>
+
+	<table class="table table-responsive table-striped table-bordered table-hover" style="width:43%; float:left">
+		
+		
+	<thread>
+		<tr>
+			<th><center>{% trans %}Nombre de cadres couvain{% endtrans %}</center></th>
+			<th><center>{% trans %}Couvain operculé{% endtrans %}</center></th>
+		</tr>
+	</thread>
+	<tbody>
+		{% for carnet in carnets %}
+			<tr>
+				<td>{{ carnet.nbcadrescouvain }}</td>
+				<td>{{ carnet.couvainopercule }}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+		
+	<thread>
+		<tr>
+			<th><center>{% trans %}Nombre de cadres de miel de réserve{% endtrans %}</center></th>
+			<th><center>{% trans %}Nombre de cadres de pollen{% endtrans %}</center></th>
+		</tr>
+	</thread>
+	<tbody>
+		{% for carnet in carnets %}
+			<tr>
+				<td>{{ carnet.nbcadresmiel}}</td>
+				<td>{{ carnet.nbcadrespollen }}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+	
+	<thread>
+		<tr>
+			<th><center>{% trans %}Date d'introduction au traitement{% endtrans %}</center></th>
+			<th><center>{% trans %}Nature du traitement{% endtrans %}</center></th>
+		</tr>
+	</thread>
+	<tbody>
+		{% for carnet in carnets %}
+			<tr>
+				<td>{{ carnet.datetraitement|date('d/m/Y')}}</td>
+				<td>{{ carnet.naturetraitement }}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+		
 	<thread>
 		<tr>
 			<th><center>{% trans %}Présence varroa{% endtrans %}</center></th>
@@ -188,12 +197,11 @@
 			</tr>
 		{% endfor %}
 	</tbody>
-		    {% for carnet in carnets %}
-					<center><h3>Commentaire</h3></center>
-					<center>{{ carnet.commentaire }}</center><br>
-			{% endfor %}				
+			
 	</table>
+	
 	</div>
+	
 </div>
 			{% if paginations.getTotalItemCount =='0' %}
 			<center><h1>Aucune information enregistrée.</h1></center><br>
