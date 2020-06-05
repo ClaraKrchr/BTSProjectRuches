@@ -9,7 +9,7 @@
 	<div class="d-flex ">
 	<!--  justify-content-around -->
 		<div id="FilterSidebar">
-    		<h1>Filtrer ma recherche!</h1>
+    		<h1>{% trans %}Filtrer ma recherche{% endtrans %}</h1>
     	
     	    {{ form_start(filterForm) }}
     			{{ form_widget(filterForm) }}
@@ -25,7 +25,7 @@
 				<div class="card-header">
 					<center><div class="card-header py-3 align-items-center ">{{ pagination.nomruche }}</div>
 					<figure class="highcharts-figure">
-                      	<div class="card-header py-3 d-flex flex-row align-items-center " id="{{ pagination.nomruche }}" style="width:100%; max-height:15%;" ></div>
+                      	<div class="card-header py-3 d-flex flex-row align-items-center " id="{{ pagination.nomruche }}" style="width:100%; max-height:15%; text-align:center;" ></div>
                   	</figure>
                   	</center>
                  	<script type="text/javascript">
@@ -33,7 +33,7 @@
                      	Highcharts.getJSON(url, function (data) {
                      		if ( data.length == 0 ) {
                      	       console.log("NO DATA!");
-                     	       document.getElementById("{{ pagination.nomruche }}").innerHTML='---> Pas de mesures pour cette ruche <---<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>';
+                     	       document.getElementById("{{ pagination.nomruche }}").innerHTML='{% trans %}---> Pas de mesures pour cette ruche <---{% endtrans %}<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>';
                      	    }else{
                  		  	Highcharts.stockChart('{{ pagination.nomruche }}', {
                      		    rangeSelector: {
@@ -58,13 +58,13 @@
                 		</script>
 				</div>
 				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-					<h6 class="m-o font-weight-bold text-secondary">Localisation: {{ region }}</h6>
+					<h6 class="m-o font-weight-bold text-secondary">{%trans %}Localisation: {% endtrans %}{{ region }}</h6>
 				</div>
 				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-					<h6 class="m-o font-weight-bold text-secondary">Propriétaire: {{ pagination.associationRucheApiculteur.apiculteur.pseudo }}</h6>
+					<h6 class="m-o font-weight-bold text-secondary">{% trans %}Propriétaire: {% endtrans %}{{ pagination.associationRucheApiculteur.apiculteur.pseudo }}</h6>
 				</div>
 				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-					<h6 class="m-o font-weight-bold text-secondary">Type de ruche: {{ pagination.typeruche }}</h6>
+					<h6 class="m-o font-weight-bold text-secondary">{% trans %}Type de ruche: {% endtrans %}{{ pagination.typeruche }}</h6>
 				</div>
 			</div>
 		</div>
@@ -73,7 +73,7 @@
 				{{ knp_pagination_render(paginations) }}
 			</div>
 		{% if paginations.getTotalItemCount =='0' %}
-		<div class="mx-auto"><center><h1>Aucune ruche publique détectée</h1></center></div>
+		<div class="mx-auto"><center><h1>{% trans %}Aucune ruche publique détectée{% endtrans %}</h1></center></div>
         {% endif %}
 	
 
