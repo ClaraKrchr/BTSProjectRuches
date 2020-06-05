@@ -69,14 +69,13 @@
 			</div>
 		</div>
 		    {% endfor %}
-			
-			<div>
+
 				{{ knp_pagination_render(paginations) }}
 			</div>
 		{% if paginations.getTotalItemCount =='0' %}
-		<center><h1>Aucune ruche publique détectée</h1></center>
+		<div class="mx-auto"><center><h1>Aucune ruche publique détectée</h1></center></div>
         {% endif %}
 	
-		</div>
+
 	</div>
 {% endblock %}
