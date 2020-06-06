@@ -75,5 +75,12 @@ class NouvellepageController extends AbstractController
         return $this->render('security/erreur.html.twig');
     }
     
+    /**
+     * @Route("/credits", name="credits")
+     */
+    public function credits(){
+        return $this->render('credits.html.twig');
+    }
+    
 }
   
