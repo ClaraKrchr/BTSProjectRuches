@@ -17,6 +17,7 @@ class CPeseRuche
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups("mesure:read")
      */
     private $id;
 

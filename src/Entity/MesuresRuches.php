@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MesuresRuchesRepository")
@@ -13,28 +15,35 @@ class MesuresRuches
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups("mesure:read")
      */
     private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\CRuche", inversedBy="mesuresRuches")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups("mesure:read")
      */
     private $ruche;
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
+     * @Groups("mesure:read")
+     * @Assert\NotBlank
      */
     private $poids;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups("mesure:read")
+     * @Assert\NotBlank
      */
     private $date_releve;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\CPeseRuche", inversedBy="mesuresRuches")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups("mesure:read")
      */
     private $peseruche;
 
