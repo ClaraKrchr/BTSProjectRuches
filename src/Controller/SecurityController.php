@@ -12,9 +12,15 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Doctrine\Persistence\ObjectManager; //ajout du manager
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+
 
 use App\Entity\CApiculteur;
 use App\Form\RegistrationFormType;
+use App\Repository\CApiculteurRepository;
+use App\Form\ResetPasswordFormType;
 
 class SecurityController extends AbstractController
 {
@@ -68,6 +74,92 @@ class SecurityController extends AbstractController
      */
     public function logout()
     {
+        
+    }
+    
+    /**
+     * @Route("/password", name="forgotten_password")
+     */
+    public function password(Request $request, CApiculteurRepository $userRepo, \Swift_Mailer $mailer, TokenGeneratorInterface $tokenGenerator)
+    {
+        //on crée le formualire
+        $form = $this->createForm(ResetPasswordFormType::class);
+        $form->handleRequest($request);
+        
+        if($form->isSubmitted() && $form->isValid()) {
+            $donnees = $form->getData();
+            $user = $userRepo->findOneBy(array('mail'=>$donnees['mail']));
+            
+            //si l'user n'existe pas
+            if(!$user){
+                $this->addFlash('danger', 'Cette adresse n\'existe pas');
+                return $this->redirectToRoute('security_login');
+            }
+            
+            //on génère un token
+            $token = $tokenGenerator->generateToken();
+            
+            try{
+                $user->setResetToken($token);
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($user);
+                $entityManager->flush();
+            } catch(\Exception $e) {
+                $this->addFlash('warning', 'Une erreur est survenue');
+                return $this->redirectToRoute('security_login');
+            }
+            
+            // on génère l'url de réinitialisation de mdp
+            $url = $this->generateUrl('reset_password', ['token' => $token], 
+                UrlGeneratorInterface::ABSOLUTE_URL);
+            
+            // envoi du message
+            $message = (new \Swift_Message('Mot de passe oublié'))
+            ->setFrom('no-reply@clubapi.fr')
+            ->setTo($user->getMail())
+            ->setBody(
+                "<p>Bonjour,</p><p>Une demande de réinitialisation de mot de passe a été effectuée pour le site
+                du club des apiculteurs de Thalès. Veuillez cliquer sur le lien suivant : " . $url . '</p>',
+                'text/html');
+            
+            // on envoi le mail
+            $mailer->send($message);
+            
+            $this->addFlash('message', 'Un e-mail pour réinitialiser votre mot de passe a été envoyé.');
+            return $this->redirectToRoute('security_login');
+        }
+        
+        // on envoi vers la page de demande de l'email
+        return $this->render('security/oublimdp.html.twig', ['mailForm'=>$form->createView()]);
+    }
+    
+    
+    /**
+     * @Route("/reset_password/{token}", name="reset_password")
+     */
+    public function resetPassword($token, Request $request, UserPasswordEncoderInterface $encoder){
+        // on va chercher l'user avec le token
+        $user = $this->getDoctrine()->getRepository(CApiculteur::class)->findOneBy(['reset_token' => $token]);
+        
+        if(!$user){
+            $this->addFlash('danger', 'Lien invalide');
+            return $this->redirectToRoute('security_login');
+        }
+        
+        //si le formualire est envoyé en méthode post
+        if($request->isMethod('POST')){
+            $user->setResetToken(null);
+            $user->setPassword($encoder->encodePassword($user, $request->request->get('password')));
+            
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+            
+            $this->addFlash('message', 'Mot de passe modifié avec succès');
+            return $this->redirectToRoute('security_login');
+        }else {
+            return $this->render('security/resetpassword.html.twig', ['token' => $token]);
+        }
         
     }
     

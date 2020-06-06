@@ -85,6 +85,11 @@ class CApiculteur implements UserInterface
      */
     private $pseudo;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $resettoken;
+
     public function __construct()
     {
         $this->associationRucheApiculteurs = new ArrayCollection();
@@ -285,6 +290,18 @@ class CApiculteur implements UserInterface
     public function setPseudo(string $pseudo): self
     {
         $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    public function getResettoken(): ?string
+    {
+        return $this->resettoken;
+    }
+
+    public function setResettoken(?string $resettoken): self
+    {
+        $this->resettoken = $resettoken;
 
         return $this;
     }

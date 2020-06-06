@@ -4,6 +4,12 @@
 
 {% block body %}
 
+ {% for message in app.flashes('danger', 'warning') %}
+ 	<center><div class="alert alert-success">
+        {{ message }}
+	 </div></center>
+{% endfor %}
+
 <link rel="stylesheet" href="{{ asset('css/connexion.css') }}">
 
  {% if error %}
