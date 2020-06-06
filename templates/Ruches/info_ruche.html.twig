@@ -42,7 +42,7 @@
 <div class="block2 col-lg-2"></div>
 <div class="block3 col-lg-5" >
 <figure class="highcharts-figure">
-  <div id="chart" style="width:400px;"></div>
+  <div id="chart" style="width:400px; max-height:400px;"></div>
   </figure>
   <script>
   var chartOptions = {
@@ -52,11 +52,12 @@
 	        panning: true,
 	        panKey: 'ctrl'
 	      },
+	      
 	      title: {
-	        text: 'Les mesures de la station'
+	        text: '{% trans %} Les mesures de la station {% endtrans %}'
 	      },
 	      subtitle:{
-	    	  text: 'Utilisez Ctrl+Clic Gauche pour naviguer sur le diagramme',
+	    	  text: '{% trans %} Utilisez Ctrl+Clic Gauche pour naviguer sur le diagramme {% endtrans %}',
 	    	  color:'#111111'
 	    	  },
 	      xAxis: {
@@ -66,16 +67,16 @@
 	        title: 'Value'
 	      },
 	      series: [{
-	        name: 'Temperature',
+	        name: '{% trans %}Temperature{% endtrans %}',
 	        data: [{% for mesuresstation in mesuresstations %}{{ mesuresstation.temperature }},{% endfor %}]
 	      },{
-		      name: 'Tension',
+		      name: '{% trans %}Tension{% endtrans %}',
 		      data:[{% for mesuresstation in mesuresstations %}{{ mesuresstation.tension }},{% endfor %}]
 	      },{
-		      name:'Humidité',
+		      name:'{% trans %}Humidité{% endtrans %}',
 		      data:[{% for mesuresstation in mesuresstations %}{{ mesuresstation.humidite }},{% endfor %}]
 	      },{
-		      name:'Pression',
+		      name:'{% trans %}Pression{% endtrans %}',
 		      data: [{% for mesuresstation in mesuresstations %}{{ mesuresstation.pression }},{% endfor %}]}
 	      ],
 	      responsive:{
@@ -126,171 +127,60 @@
 </div>
 <div class="block2 col-lg-6">
 
-  <script type="text/javascript">
-  function nom_ruche(){
-		var nomruchepublic = document.getElementById("liste_ruche_public").value;
-		var nomrucheprivee = document.getElementById("liste_ruche_privee").value;
-		
-		if(nomruchepublic!=''){
-			document.getElementById("liste_ruche_public").style.display = 'block';
-			document.getElementById("liste_ruche_privee").style.display = 'none';
-			document.getElementById("{{nomruche}}").style.display = 'none';
-			document.getElementById("test").style.display = 'block';
-
-			var url =' {{ path('mesures_ruche_diagramme',{nomruche : nomruche , nomruche2 : 'nomruche2'}) }} ';
-			url=url.replace("nomruche2",nomruchepublic);
-			Highcharts.getJSON(url, function (data) {
-				  // Create the chart
-			  	Highcharts.stockChart('test', {
-				    
-				chart:{
-					zoomKey:'ctrl',
-					zoomType:'x'
-					},
-			    title: {
-				      text: 'Les mesures de la ruche {{ nomruche }} comparée à '+nomrucheprivee
-				    },
-			    series: [{                     				
-				      	name: 'Poids Premiere ruche(en kg)',
-				      	data: data[0],
-				      	type: 'line',
-				     	tooltip: {
-				        	valueDecimals: 2
-				      }
-				    },{                     				
-				      	name: 'Poids Seconde ruche(en kg)',
-				      	data: data[1],
-				      	type: 'line',
-				     	tooltip: {
-				        	valueDecimals: 1
-				      }
-				    }
-				    ]
-				  });
-				});
-
-			console.log('affiche div test avec la ruche {{nomruche}} et la ruche public : '+nomruchepublic);
-		}else if(nomrucheprivee!=''){
-
-			document.getElementById("liste_ruche_privee").style.display = 'block';
-			document.getElementById("liste_ruche_public").style.display = 'none';
-			document.getElementById("{{nomruche}}").style.display = 'none';
-			document.getElementById("test").style.display = 'block';
-
-			var url =' {{ path('mesures_ruche_diagramme',{nomruche : nomruche , nomruche2 : 'nomruche2'}) }} ';
-			url=url.replace("nomruche2",nomrucheprivee);
-			Highcharts.getJSON(url, function (data) {
-				  // Create the chart
-			  	Highcharts.stockChart('test', {
-				    
-				chart:{
-					zoomKey:'ctrl',
-					zoomType:'x',
-					},
-			    title: {
-				      text: 'Les mesures de la ruche {{ nomruche }} comparée à '+nomrucheprivee
-				    },
-			    series: [{                     				
-				      	name: 'Poids Premiere ruche(en kg)',
-				      	data: data[0],
-				      	type: 'line',
-				     	tooltip: {
-				        	valueDecimals:0
-				      }
-				    },{                     				
-				      	name: 'Poids Seconde ruche(en kg)',
-				      	data: data[1],
-				      	type: 'line',
-				     	tooltip: {
-				        	valueDecimals: 0
-				      }
-				    }
-				    ]
-				  });
-				});
-			
-			console.log('affiche div test avec la ruche {{nomruche}} et la ruche privee : '+nomrucheprivee);
-		}
-		else if(nomruchepublic==''){
-			document.getElementById("liste_ruche_privee").style.display = 'block';
-			document.getElementById("liste_ruche_public").style.display = 'block';
-			document.getElementById("{{nomruche}}").style.display = 'block';
-			document.getElementById("test").style.display = 'none';
-			document.getElementById("nom_ruche_choisie").innerHTML ="";
-			
-			console.log('affiche div nomruche');				
-		}else if(nomrucheprivee!=''){
-
-			document.getElementById("liste_ruche_privee").style.display = 'block';
-			document.getElementById("liste_ruche_public").style.display = 'block';
-			document.getElementById("{{nomruche}}").style.display = 'block';
-			document.getElementById("test").style.display = 'none';
-			document.getElementById("nom_ruche_choisie").innerHTML ="";
-			
-			console.log('affiche div nomruche');	
-		}
-	}</script>
-{% if ruchepubliques %}
-<form id="form_ruche_public" >
-    <select id="liste_ruche_public" onchange="nom_ruche()">
-    {% for ruchepublique in ruchepubliques %}
-            {% if ruchepublique.nomruche == nomruche %}
-    	<option selected value="">{{ ruchepublique.nomruche }}
-    {% else %}
-    	<option value="{{ ruchepublique.nomruche }}">{{ ruchepublique.nomruche }}
-	{% endif %}</option>
-    {% endfor %}
-    </select>
-</form>
-{% endif %}
-
-{% if rucheprivees %}
-<form id="form_ruche_privee" >
-    <select id="liste_ruche_privee" onchange="nom_ruche()">
-    {% for rucheprivee in rucheprivees %}
-	      {% if rucheprivee.ruche.nomruche == nomruche %}
-    	<option selected value="">{{ rucheprivee.ruche.nomruche }}
-    {% else %}
-    	<option value="{{ rucheprivee.ruche.nomruche }}">{{ rucheprivee.ruche.nomruche }}
-	{% endif %}</option>
-    {% endfor %}
-    </select>
-</form>
-{% endif %}
-
 <figure class="highcharts-figure">
-  <div id="test" style="width:400px; "></div>
-  </figure>
-<figure class="highcharts-figure">
-  <div id="{{ nomruche }}" style="width:400px; "></div>
+  <div id="chart2" style="width:400px; max-height:400px;"></div>
   </figure>
  <script type="text/javascript">
- Highcharts.getJSON(' {{ path('mesures_ruche_diagramme',{nomruche : nomruche , nomruche2 : 'NULL'}) }} ', function (data) {
-	  // Create the chart
-  	Highcharts.stockChart('{{ nomruche }}', {
-	    rangeSelector: {
-	      selected: 1
-	    },
-	chart:{
-		zoomKey:'ctrl',
-		zoomType:'x'
-		},
-    title: {
-	      text: 'Les mesures de la ruche {{ nomruche }}'
-	    },
-    series: [{                     				
-	      	name: 'Poids (en kg)',
-	      	data: data,
-	      	type: 'line',
-	     	tooltip: {
-	        	valueDecimals: 2
-	      }
-	    }]
-	  });
-	});
+ var chartOptions = {
+	      chart: {
+	        type: 'line',
+	        zoomType: 'x',
+	        panning: true,
+	        panKey: 'ctrl'
+	      },
+	      exporting: {
+	    	  	enabled:false
+	    	  },
+	      title: {
+	        text: '{% trans %}Les mesures de la ruche {% endtrans %}: {{nomruche}} '
+	      },
+	      subtitle:{
+	    	  text: '{% trans %}Utilisez Ctrl+Clic Gauche pour naviguer sur le diagramme {% endtrans %}',
+	    	  color:'#111111'
+	    	  },
+	      xAxis: {
+	        categories: [{% for mesuresruche in mesuresruches %}'{{ mesuresruche.datereleve|date ('d/m/Y')}}',{% endfor %}],
+	      },
+	      yAxis: {
+	        title: 'Value'
+	      },
+	      series: [{
+	        name: '{% trans %}Poids{% endtrans %}',
+	        data: [{% for mesuresruche in mesuresruches %}{{ mesuresruche.poids }},{% endfor %}]
+	      }],
+	      responsive:{
+		      rules:[{
+			      condition:{
+				      maxWidth:200
+				      },
+				      chartOptions:{
+					      legend:{enabled:false},
+					      }
+				      },
+				  {
+				  condition:{
+					  }	  }
+		      ]
+	      },
+	    };
+
+	    var chart = new Highcharts.Chart('chart2',chartOptions);
 	</script>
-	{% else %}
-	<div>Aucune mesures pour cette ruche</div>
+	<div class="block3 col-lg-6">
+	<a href="{{ path('details_ruches',{nomruche:nomruche}) }}" ><button>{% trans %}Afficher les détails{% endtrans %}</button></a>
+	</div>
+{% else %}
+	<div>{% trans %}Aucune mesures pour cette ruche{% endtrans %}</div>
 {% endif %}
  </div>
 

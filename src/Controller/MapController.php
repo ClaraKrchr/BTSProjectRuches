@@ -59,21 +59,24 @@ class MapController extends NouvellepageController{
         
         $Ruches=$this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche));
         
-        $RucheRucher=$this->getDoctrine()->getRepository(AssociationRucheRucher::class)->findBy(array('ruche'=>$Ruches));
-        $MesuresStations=$this->getDoctrine()->getRepository(MesuresStations::class)->findBy(array('rucher'=>$RucheRucher));
+        $RucheRucher=$this->getDoctrine()->getRepository(AssociationRucheRucher::class)->findOneBy(array('ruche'=>$nomruche));
+        $qb = $em->createQueryBuilder();
+        $qb->select('w')->from(MesuresStations::class, 'w')->where('w.station = ' . $RucheRucher->getId())->orderBy('w.date_releve', 'ASC');
+        $query = $qb->getQuery();
+        $MesuresStations=$this->getResult();
         
-        $MesuresRuches=$this->getDoctrine()->getRepository(MesuresRuches::class)->findBy(array('ruche'=>$Ruches));
+        $qb = $em->createQueryBuilder();
+        $qb->select('w')->from(MesuresRuches::class, 'w')->where('w.ruche = ' . $Ruches->getId())->orderBy('w.date_releve', 'ASC');
+        $query = $qb->getQuery();
+        $MesuresRuches = $query->getResult();
         
         $dateinstall= $this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche))->getDateInstall();
         
         //------------Recherche des ruches appartenant a l'utilisateur connecté-------------//
-        $RuchesApiculteurs = $this->getDoctrine()->getRepository(AssociationRucheApiculteur::class)->findBy(array('apiculteur'=>$NomProprietaire));
-        $RuchesPublic =  $this->getDoctrine()->getRepository(CRuche::class)->findBy(array('visibilite'=>'0'));
+       
         return $this->render('Ruches/info_ruche.html.twig',[
             'nomruche'=>$nomruche,'proprietaire'=>$NomProprietaire,'dateinstall'=>$dateinstall,
             'mesuresstations'=>$MesuresStations,'mesuresruches'=>$MesuresRuches,
-            'ruchepubliques'=>$RuchesPublic,
-            'rucheprivees'=>$RuchesApiculteurs
         ]);
     }
     
@@ -161,5 +164,18 @@ class MapController extends NouvellepageController{
         $sendRuches = $query->getResult();
         
         return $this->render('Ruches/ruches_desactivees.html.twig', ['ruches' => $sendRuches]);
-    }    
+    }  
+    
+    /**
+     * @Route("/details_ruches/{nomruche}", name="details_ruches")
+     */
+    public function details_ruches($nomruche,EntityManagerInterface $em, Request $request){
+        
+        $NomProprietaire=$this->getUser();
+        
+        $RuchesApiculteurs = $this->getDoctrine()->getRepository(AssociationRucheApiculteur::class)->findBy(array('apiculteur'=>$NomProprietaire));
+        $RuchesPublic =  $this->getDoctrine()->getRepository(CRuche::class)->findBy(array('visibilite'=>'0'));
+        
+        return $this->render('Ruches/detail_ruche.html.twig',['nomruche'=>$nomruche,'ruchepubliques'=>$RuchesPublic,'rucheprivees'=>$RuchesApiculteurs]);
+    }
 }
