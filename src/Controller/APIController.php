@@ -24,6 +24,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Serializer\Exception\NotEncodableValueException;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\HttpFoundation\Response;
 
 class APIController extends AbstractController
 {
@@ -54,99 +55,67 @@ class APIController extends AbstractController
     /**
      * @Route("/api", name="api_post", methods={"POST"})
      */
-    public function post(Request $request)
+    public function post(Request $request, EntityManagerInterface $em, ValidatorInterface $validator)
     {
-        $contentArray = [];
+        try{
+            $contentArray = [];
             if ($jsonContent = $request->getContent()) {
                 $contentArray = json_decode($jsonContent, true);                
             }
-            $idStation = current($contentArray);
-            $tempertature = next($contentArray);
-            $tension = next($contentArray);
-            $humidite = next($contentArray);
-            $pression = next($contentArray);
-            for($i = 0; $i < (count($contentArray) - 5) / 2; $i++)
-            {
-                $idruche = next($contentArray);
-                $poids = next($contentArray);
-                CreateMesureRuche($idruche,
-                    $poids
-                );
-            }
 
-            CreateMesureStation(
-                $idStation,
-                $tempertature,
-                $tension,
-                $humidite,
-                $pression
-            );
-            return $this->json(current($contentArray), 201, [], ['groups'=>'mesure:read']);
-    }
-    
-    public function CreateMesureRuche(int $idRuche, float $poids, EntityManagerInterface $em)
-    {
-        try{
-            $mesure = new MesuresRuches;
-            $mesure->setDateReleve(new \datetime());
-            $mesure->setPoids($poids);
+            $mesureS = new MesuresStations;
 
-            $ruche = $em->GetRepository(CRuche::class)->findOneBy(array('id'=>$idRuche));
-            $mesure->setRuche($ruche);
+            $mesureS->setDateReleve(new \datetime());
 
-            $assos = $em->getRepository(AssociationRuchePeseRuche::class)->findOneBy(array('ruche'=>$ruche));
+            $station = $em->getRepository(CStation::class)->findOneBy(array('id'=>current($contentArray)));
+            $mesureS->setStation($station);
 
-            $peseRuche = $assos->getPeseruche();
-            $mesure->setPeseruche($peseRuche);
-
-            $errors = $validator->validate($mesure);
-            if(count($errors)){
-                return $this->json($errors, 400);
-            }
-
-            $em->persist($mesure);
-            $em->flush();
-
-            return $this->json($mesure, 201, [], ['groups'=>'mesure:read']);
-        }catch(NotEncodableValueException $e){
-            return $this->json([
-                'status' => 400,
-                'message' => $e->getMessage()
-            ], 400);
-        }
-    }
-
-    public function CreateMesureStation(int $idStation, float $tempertature, int $tension, int $humidite, int $pression, EntityManagerInterface $em)
-    {
-        try{
-            $mesure = new MesuresStations;
-            $mesure->setDateReleve(new \datetime());
-            $mesure->setTemperature($tempertature);
-            $mesure->setTension($tension);
-            $mesure->setHumidite($humidite);
-            $mesure->setPression($pression);
-
-            $station = $em->getRepository(CStation::class)->findOneBy(array('id'=>$idStation));
-            $mesure->setStation($station);
+            $mesureS->setTemperature(next($contentArray));
+            $mesureS->setTension(next($contentArray));
+            $mesureS->setHumidite(next($contentArray));
+            $mesureS->setPression(next($contentArray));
 
             $assos = $em->getRepository(AssociationStationRucher::class)->findOneBy(array('station'=>$station));
             $rucher = $assos->getRucher();
-            $mesure->setRucher($rucher);
+            $mesureS->setRucher($rucher);
 
-            $errors = $validator->validate($mesure);
-            if(count($errors)){
-                return $this->json($errors, 400);
-            }
+            $errors = $validator->validate($mesureS);
+                if(count($errors)){
+                    return $this->json($errors, 400);
+                }
 
-            $em->persist($mesure);
+            $em->persist($mesureS);
             $em->flush();
 
-            return $this->json($mesure, 201, [], ['groups'=>'mesureS:read']);
+            $mesureR = new MesuresRuches;
+            for($i = 0; $i < (count($contentArray) - 5) / 2; $i++)
+            {
+                $mesureR->setDateReleve(new \datetime());  
+
+                $ruche = $em->GetRepository(CRuche::class)->findOneBy(array('id'=>next($contentArray)));
+                $mesureR->setRuche($ruche);
+
+                $mesureR->setPoids(next($contentArray));
+
+                $assos = $em->getRepository(AssociationRuchePeseRuche::class)->findOneBy(array('ruche'=>$ruche));
+                $peseRuche = $assos->getPeseruche();
+                $mesureR->setPeseruche($peseRuche);
+
+                $errors = $validator->validate($mesureR);
+                if(count($errors)){
+                    return $this->json($errors, 400);
+                }
+
+                $em->persist($mesureR);
+                $em->flush();
+            }
+            return $this->json($contentArray, 201, [], ['groups'=>'mesure:read']);
         }catch(NotEncodableValueException $e){
             return $this->json([
                 'status' => 400,
                 'message' => $e->getMessage()
             ], 400);
         }
+        
     }
 }
