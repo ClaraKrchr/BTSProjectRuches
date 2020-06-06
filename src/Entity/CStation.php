@@ -16,13 +16,11 @@ class CStation
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups("mesureS:read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=30)
-     * @Groups("mesureS:read")
      */
     private $nom;
 

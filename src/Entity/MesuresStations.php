@@ -14,51 +14,43 @@ class MesuresStations
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups("mesureS:read")
      */
     private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\CStation", inversedBy="mesuresStations")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups("mesureS:read")
      */
     private $station;
 
     /**
      * @ORM\Column(type="smallint")
-     * @Groups("mesureS:read")
      */
     private $temperature;
 
     /**
      * @ORM\Column(type="smallint")
-     * @Groups("mesureS:read")
      */
     private $tension;
 
     /**
      * @ORM\Column(type="smallint")
-     * @Groups("mesureS:read")
      */
     private $humidite;
 
     /**
      * @ORM\Column(type="smallint")
-     * @Groups("mesureS:read")
      */
     private $pression;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups("mesureS:read")
      */
     private $date_releve;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\CRucher", inversedBy="mesuresStations")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups("mesureS:read")
      */
     private $rucher;
 

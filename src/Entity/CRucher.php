@@ -21,7 +21,6 @@ class CRucher
 
     /**
      * @ORM\Column(type="string", length=30)
-     * @Groups("mesureS:read")
      */
     private $nom;
     
