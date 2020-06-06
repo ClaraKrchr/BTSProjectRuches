@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\CRuche;
 use App\Entity\AssociationRuchePeseruche;
 use App\Entity\AssociationRucheRucher;
+use App\Entity\AssociationRucheApiculteur;
 use App\Entity\CPeseRuche;
 use App\Entity\CRucher;
 
@@ -25,6 +26,10 @@ class EditController extends AbstractController
      */
     public function editRuche(Request $request, CRuche $ruche, EntityManagerInterface $em)
     {
+        //Redirection si l'utilisateur n'est pas celui qui possède la ruche
+        $assosRucheApi = $em->getRepository(AssociationRucheApiculteur::class)->findOneBy(array('ruche'=>$ruche));
+        if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('erreur');
+        //////////////////////////////
         
         $form = $this->createForm(EditRucheType::class, $ruche);
         
@@ -72,24 +77,5 @@ class EditController extends AbstractController
         }
         return $this->render('Ruches/editRuche.html.twig', ['formRuche' => $form->createView()]);
     }
-    
-    /**
-     * @IsGranted("ROLE_USER")
-     * @Route("/tableau_donnees/dissociate_ruche_rucher/{nomruche}", name="dissociate_ruche_rucher")
-     */
-    public function dissociate_ruche_rucher(Request $request, CRuche $ruche, EntityManagerInterface $em){
-        
-        $em->remove($em->getRepository(AssociationRucheRucher::class)->findBy(array('ruche'=>$ruche)));
-        
-    }
-    
-    /**
-     * @IsGranted("ROLE_USER")
-     * @Route("/tableau_donnees/dissociate_ruche_peseruche/{nomruche}", name="dissociate_ruche_peseruche")
-     */
-    public function dissociate_ruche_peseruche(Request $request, CRuche $ruche, EntityManagerInterface $em){
-        
-        $em->remove($em->getRepository(AssociationRuchePeseruche::class)->findOneBy(array('ruche'=>$ruche)));
-        
-    }
+
 }

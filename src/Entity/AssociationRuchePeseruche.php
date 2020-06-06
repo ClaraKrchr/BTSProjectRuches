@@ -12,14 +12,14 @@ class AssociationRuchePeseruche
 
     /**
      * @ORM\Id()
-     * @ORM\OneToOne(targetEntity="App\Entity\CRuche", inversedBy="associationRuchePeseruche", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\CRuche", inversedBy="associationRuchePeseruche", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $ruche;
 
     /**
      * @ORM\Id()
-     * @ORM\OneToOne(targetEntity="App\Entity\CPeseRuche", inversedBy="associationRuchePeseruche", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\CPeseRuche", inversedBy="associationRuchePeseruche", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $peseruche;

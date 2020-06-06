@@ -66,5 +66,14 @@ class NouvellepageController extends AbstractController
         return $this->redirect($request->headers->get('referer'));
     }
     
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/erreur", name="erreur")
+     */
+    public function erreur()
+    {
+        return $this->render('security/erreur.html.twig');
+    }
+    
 }
   

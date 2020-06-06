@@ -155,11 +155,11 @@
       </trans-unit>
       <trans-unit id="YdaVBBA" resname="Connexion">
         <source>Connexion</source>
-        <target>Connect</target>
+        <target>Log in</target>
       </trans-unit>
       <trans-unit id="DL02fX6" resname="Deconnexion">
         <source>Deconnexion</source>
-        <target>Disconnect</target>
+        <target>Log out</target>
       </trans-unit>
       <trans-unit id="0gChFkF" resname="Mon carnet d'apiculteur">
         <source>Mon carnet d'apiculteur</source>

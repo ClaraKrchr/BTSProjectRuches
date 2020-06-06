@@ -26,11 +26,12 @@ class AdminController extends AbstractController
     }
     
     /**
-     * @IsGranted("ROLE_ADMIN")
+     * @IsGranted("ROLE_USER")
      * @Route("gestionnaire/edit/{nom}", name="edit")
      */
     public function editUser(Request $request, CApiculteur $user, EntityManagerInterface $em) 
     {
+        if (($user != $this->getUser()) && !($this->isGranted('ROLE_ADMIN'))){return $this->redirectToRoute('erreur');}
         $form = $this->createForm(EditUserType::class, $user);
         
         $form->handleRequest($request);

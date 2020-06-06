@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Carnet;
 use App\Entity\CRuche;
+use App\Entity\AssociationRucheApiculteur;
 use App\Repository\CRucheRepository;
 use App\Repository\CarnetRepository;
 
@@ -43,17 +44,31 @@ class CarnetController extends AbstractController
      * @IsGRanted("ROLE_USER")
      * @Route("/carnet/{ruche}/{page}", name="carnet_ruche", defaults={"page"=1})
      */
-    public function carnetRuche(Request $request, PaginatorInterface $paginator, $ruche, $page){
-        $rucheObjet = $this->getDoctrine()->getRepository(CRuche::class)->findBy(array('nomruche'=>$ruche));
-        $donnees = $this->getDoctrine()->getRepository(Carnet::class)->findBy(array('ruche'=>$rucheObjet));
+    public function carnetRuche(Request $request, PaginatorInterface $paginator, $ruche, $page, EntityManagerInterface $em){
+        
+        //Redirection si l'utilisateur n'est pas celui qui possède la ruche
+        $Ruche = $em->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$ruche));
+        $assosRucheApi = $em->getRepository(AssociationRucheApiculteur::class)->findOneBy(array('ruche'=>$Ruche));
+        if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('erreur');
+        //////////////////////////////
+        
+        $rucheObjet = $this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$ruche));
+        
+        $qb = $em->createQueryBuilder();
+        $qb->select('w')->from(Carnet::class, 'w')->where('w.ruche = ' . $rucheObjet->getId())->orderBy('w.date', 'DESC');
+        $query = $qb->getQuery();
+        $CarnetDate = $query->getResult();
         
         $carnet = $paginator->paginate(
-            $donnees, 
-            $page, 
-            30);
+            $CarnetDate,
+            $page,
+            1);
         
         return $this->render('Ruches/carnet_ruche.html.twig', [
-            'carnets' => $carnet, ]
-        );
+            'carnets' => $carnet,
+            'paginations' => $carnet,
+            'ruche' => $rucheObjet,
+            'date' => $CarnetDate
+        ]);
     }
 }

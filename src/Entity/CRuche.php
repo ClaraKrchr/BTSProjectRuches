@@ -44,7 +44,7 @@ class CRuche
     private $visibilite;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\MesuresRuches", mappedBy="ruche_id", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\MesuresRuches", mappedBy="ruche_id")
      */
     private $mesuresRuches;
 
@@ -72,6 +72,11 @@ class CRuche
      * @ORM\OneToMany(targetEntity="App\Entity\Carnet", mappedBy="ruche")
      */
     private $carnets;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $datearchive;
 
     public function __construct()
     {
@@ -256,9 +261,21 @@ class CRuche
 
         return $this;
     }
-    
+
     public function __toString(){
         return $this->getNomRuche();
+    }
+
+    public function getDatearchive(): ?\DateTimeInterface
+    {
+        return $this->datearchive;
+    }
+
+    public function setDatearchive(?\DateTimeInterface $datearchive): self
+    {
+        $this->datearchive = $datearchive;
+
+        return $this;
     }
 
 }

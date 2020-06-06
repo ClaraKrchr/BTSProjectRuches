@@ -9,6 +9,8 @@
 		<link rel="stylesheet" href="https://bootswatch.com/4/journal/bootstrap.min.css">
 		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+		
+		<link rel="stylesheet" href="{{ asset('css/ruche_privees.css') }}" type="text/css"> 
         {% endblock %}
 
         {% block javascripts %}
@@ -78,7 +80,7 @@
     		<a href="{{  path('security_login') }}"><button class="btn btn-secondary"  class="nav-link">{% trans %}Connexion{% endtrans %}</button></a>
 
 	{% else %}
-
+			<a href="{{ path('edit', {'nom' : app.user}) }}"><button class="btn btn-secondary" class="nav-link">{{ app.user.pseudo }}</button></a> &nbsp;
 			<a href="{{ path('security_logout') }}"><button class="btn btn-secondary" class="nav-link">{% trans %}Deconnexion{% endtrans %}</button></a>
 
 	{% endif %}

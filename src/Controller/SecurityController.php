@@ -19,6 +19,7 @@ use App\Form\RegistrationFormType;
 class SecurityController extends AbstractController
 {
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/registration", name="registration")
      */
     public function new(Request $request, UserPasswordEncoderInterface $encoder, ObjectManager $manager) {
