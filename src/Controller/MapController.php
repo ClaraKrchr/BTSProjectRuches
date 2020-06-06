@@ -16,8 +16,10 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 use App\Entity\CRuche;
 use App\Entity\CRucher;
+use App\Entity\AssociationRuchePeseruche;
 use App\Entity\AssociationRucheRucher;
 use App\Entity\AssociationRucheApiculteur;
+use App\Entity\AssociationPeserucheStation;
 use App\Entity\MesuresStations;
 use App\Entity\MesuresRuches;
 use App\Entity\AssociationRucherRegion;
@@ -59,11 +61,18 @@ class MapController extends NouvellepageController{
         
         $Ruches=$this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche));
         
-        $RucheRucher=$this->getDoctrine()->getRepository(AssociationRucheRucher::class)->findOneBy(array('ruche'=>$nomruche));
-        $qb = $em->createQueryBuilder();
-        $qb->select('w')->from(MesuresStations::class, 'w')->where('w.station = ' . $RucheRucher->getId())->orderBy('w.date_releve', 'ASC');
-        $query = $qb->getQuery();
-        $MesuresStations=$this->getResult();
+        $RuchePeseruche=$this->getDoctrine()->getRepository(AssociationRuchePeseruche::class)->findOneBy(array('ruche'=>$nomruche));
+        if ($RuchePeseruche != NULL){
+            $PeserucheStation = $this->getDoctrine()->getRepository(AssociationPeserucheStation::class)->findOneBy(array('peseruche'=>$RuchePeseruche->getPeseruche()));
+            $Station = $PeserucheStation->getStation();
+            $qb = $em->createQueryBuilder();
+            $qb->select('w')->from(MesuresStations::class, 'w')->where('w.station = ' . $Station)->orderBy('w.date_releve', 'ASC');
+            $query = $qb->getQuery();
+            $MesuresStations=$this->getResult();
+        }
+        else{
+            $MesuresStations = NULL;
+        }
         
         $qb = $em->createQueryBuilder();
         $qb->select('w')->from(MesuresRuches::class, 'w')->where('w.ruche = ' . $Ruches->getId())->orderBy('w.date_releve', 'ASC');
