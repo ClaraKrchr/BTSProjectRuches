@@ -499,59 +499,59 @@
       </trans-unit>
       <trans-unit id="33LtN7D" resname="Nombre de cadres de pollen">
         <source>Nombre de cadres de pollen</source>
-        <target>__Nombre de cadres de pollen</target>
+        <target>Number of pollen frames</target>
       </trans-unit>
       <trans-unit id="E2BGXwx" resname="Date d'introduction au traitement">
         <source>Date d'introduction au traitement</source>
-        <target>__Date d'introduction au traitement</target>
+        <target>Date of introduction to treatment</target>
       </trans-unit>
       <trans-unit id="NgYzf18" resname="Nature du traitement">
         <source>Nature du traitement</source>
-        <target>__Nature du traitement</target>
+        <target>Nature of processing</target>
       </trans-unit>
       <trans-unit id="dJ_69Mp" resname="Présence cellules royales">
         <source>Présence cellules royales</source>
-        <target>__Présence cellules royales</target>
+        <target>Presence of royal cells</target>
       </trans-unit>
       <trans-unit id="7yOllAJ" resname="Retour">
         <source>Retour</source>
-        <target>__Retour</target>
+        <target>return</target>
       </trans-unit>
       <trans-unit id="SEobKm1" resname="Date d'archivage">
         <source>Date d'archivage</source>
-        <target>__Date d'archivage</target>
+        <target>Archiving date</target>
       </trans-unit>
       <trans-unit id="Y5H8etf" resname="Voir le carnet associé">
         <source>Voir le carnet associé</source>
-        <target>__Voir le carnet associé</target>
+        <target>See the associated notebook</target>
       </trans-unit>
       <trans-unit id="B74qqso" resname="Mes ruches archivées">
         <source>Mes ruches archivées</source>
-        <target>__Mes ruches archivées</target>
+        <target>My archived hives</target>
       </trans-unit>
       <trans-unit id="AY23EnG" resname="Pèse-ruche">
         <source>Pèse-ruche</source>
-        <target>__Pèse-ruche</target>
+        <target>Hive scale</target>
       </trans-unit>
       <trans-unit id="VH_zXnz" resname="Dissocier du rucher">
         <source>Dissocier du rucher</source>
-        <target>__Dissocier du rucher</target>
+        <target>Ungroup from the apiary</target>
       </trans-unit>
       <trans-unit id="cP9Ti.3" resname="Dissocier du pèse-ruche">
         <source>Dissocier du pèse-ruche</source>
-        <target>__Dissocier du pèse-ruche</target>
+        <target>Ungroup from the hive scale</target>
       </trans-unit>
       <trans-unit id="AdnVvM9" resname="Filtrer ma recherche">
         <source>Filtrer ma recherche</source>
-        <target>__Filtrer ma recherche</target>
+        <target>Filter my search</target>
       </trans-unit>
       <trans-unit id="7BZxDg5" resname="Filtrer">
         <source>Filtrer</source>
-        <target>__Filtrer</target>
+        <target>Filter</target>
       </trans-unit>
       <trans-unit id="KhxX8zX" resname="---&gt; Pas de mesures pour cette ruche &lt;---">
         <source>---&gt; Pas de mesures pour cette ruche &lt;---</source>
-        <target><![CDATA[__---> Pas de mesures pour cette ruche <---]]></target>
+        <target><![CDATA[__---> No measures for this hive <---]]></target>
       </trans-unit>
       <trans-unit id="lI9Oyk." resname="Localisation:">
         <source>Localisation:</source>
