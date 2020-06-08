@@ -31,7 +31,7 @@
   </div>
     {{ form_widget(formRuche) }}
     
-	<button type="submit" class="btn btn-success">Modifier</button>
+	<button type="submit" class="btn btn-success">{% trans %}Modifier{% endtrans %}</button>
 	<a href="{{ path('tableau_donnees', {regions:'Occitanie' }) }}"><button class="btn btn-secondary">Annuler</button></a>
     {{ form_end(formRuche) }}
 </div>
