@@ -169,9 +169,9 @@
         <source>Bienvenue</source>
         <target>Welcome</target>
       </trans-unit>
-      <trans-unit id="PpdUL7t" resname="Carte interactive des régions de France">
+      <trans-unit id="rSjnCQP" resname="Carte interactive des régions de France">
         <source>Carte interactive des régions de France</source>
-        <target>Interactive map of France</target>
+        <target>Interactive map</target>
       </trans-unit>
       <trans-unit id="RRQENfT" resname="Gestionnaire des apiculteurs">
         <source>Gestionnaire des apiculteurs</source>
@@ -248,10 +248,6 @@
       <trans-unit id="F20b9fw" resname="Ajouter une info">
         <source>Ajouter une info</source>
         <target>Add news</target>
-      </trans-unit>
-      <trans-unit id="rSjnCQP" resname="Carte interactive des régions de France">
-        <source>Carte interactive des régions de France</source>
-        <target>Interactive map</target>
       </trans-unit>
       <trans-unit id="z7GsDIB" resname="Inscription">
         <source>Inscription</source>
@@ -456,6 +452,130 @@
       <trans-unit id="0G6foQO" resname="Date de fin:">
         <source>Date de fin:</source>
         <target>End date :</target>
+      </trans-unit>
+      <trans-unit id="onunO9e" resname="Recherchez une ruche pour afficher ses informations du carnet">
+        <source>Recherchez une ruche pour afficher ses informations du carnet</source>
+        <target>Find a beehive to view its logbook information</target>
+      </trans-unit>
+      <trans-unit id="L6yhscp" resname="Présence de mâles">
+        <source>Présence de mâles</source>
+        <target>Presence de males</target>
+      </trans-unit>
+      <trans-unit id="6wd9UfT" resname="Présence de larves">
+        <source>Présence de larves</source>
+        <target>Presence of larves</target>
+      </trans-unit>
+      <trans-unit id="mVHXgx2" resname="Présence d'œufs">
+        <source>Présence d'œufs</source>
+        <target>Presence of eggs</target>
+      </trans-unit>
+      <trans-unit id="NhL5d81" resname="Date d'arrivée de la reine">
+        <source>Date d'arrivée de la reine</source>
+        <target>Queen's arrival date</target>
+      </trans-unit>
+      <trans-unit id="cq83fSL" resname="Âge de la reine">
+        <source>Âge de la reine</source>
+        <target>Age of the queen</target>
+      </trans-unit>
+      <trans-unit id="GS_0VYp" resname="Race de la reine">
+        <source>Race de la reine</source>
+        <target>Queen race</target>
+      </trans-unit>
+      <trans-unit id="OsmYUHQ" resname="Nombre de hausse récoltées">
+        <source>Nombre de hausse récoltées</source>
+        <target>Number of raises harvested</target>
+      </trans-unit>
+      <trans-unit id="lWocvdo" resname="Nombre de cadres couvain">
+        <source>Nombre de cadres couvain</source>
+        <target>Number of brood frame</target>
+      </trans-unit>
+      <trans-unit id="wmA1t.U" resname="Couvain operculé">
+        <source>Couvain operculé</source>
+        <target>Sealed brood</target>
+      </trans-unit>
+      <trans-unit id="un6jZW1" resname="Nombre de cadres de miel de réserve">
+        <source>Nombre de cadres de miel de réserve</source>
+        <target>Number of honey frame reserved</target>
+      </trans-unit>
+      <trans-unit id="33LtN7D" resname="Nombre de cadres de pollen">
+        <source>Nombre de cadres de pollen</source>
+        <target>__Nombre de cadres de pollen</target>
+      </trans-unit>
+      <trans-unit id="E2BGXwx" resname="Date d'introduction au traitement">
+        <source>Date d'introduction au traitement</source>
+        <target>__Date d'introduction au traitement</target>
+      </trans-unit>
+      <trans-unit id="NgYzf18" resname="Nature du traitement">
+        <source>Nature du traitement</source>
+        <target>__Nature du traitement</target>
+      </trans-unit>
+      <trans-unit id="dJ_69Mp" resname="Présence cellules royales">
+        <source>Présence cellules royales</source>
+        <target>__Présence cellules royales</target>
+      </trans-unit>
+      <trans-unit id="7yOllAJ" resname="Retour">
+        <source>Retour</source>
+        <target>__Retour</target>
+      </trans-unit>
+      <trans-unit id="SEobKm1" resname="Date d'archivage">
+        <source>Date d'archivage</source>
+        <target>__Date d'archivage</target>
+      </trans-unit>
+      <trans-unit id="Y5H8etf" resname="Voir le carnet associé">
+        <source>Voir le carnet associé</source>
+        <target>__Voir le carnet associé</target>
+      </trans-unit>
+      <trans-unit id="B74qqso" resname="Mes ruches archivées">
+        <source>Mes ruches archivées</source>
+        <target>__Mes ruches archivées</target>
+      </trans-unit>
+      <trans-unit id="AY23EnG" resname="Pèse-ruche">
+        <source>Pèse-ruche</source>
+        <target>__Pèse-ruche</target>
+      </trans-unit>
+      <trans-unit id="VH_zXnz" resname="Dissocier du rucher">
+        <source>Dissocier du rucher</source>
+        <target>__Dissocier du rucher</target>
+      </trans-unit>
+      <trans-unit id="cP9Ti.3" resname="Dissocier du pèse-ruche">
+        <source>Dissocier du pèse-ruche</source>
+        <target>__Dissocier du pèse-ruche</target>
+      </trans-unit>
+      <trans-unit id="AdnVvM9" resname="Filtrer ma recherche">
+        <source>Filtrer ma recherche</source>
+        <target>__Filtrer ma recherche</target>
+      </trans-unit>
+      <trans-unit id="7BZxDg5" resname="Filtrer">
+        <source>Filtrer</source>
+        <target>__Filtrer</target>
+      </trans-unit>
+      <trans-unit id="KhxX8zX" resname="---&gt; Pas de mesures pour cette ruche &lt;---">
+        <source>---&gt; Pas de mesures pour cette ruche &lt;---</source>
+        <target><![CDATA[__---> Pas de mesures pour cette ruche <---]]></target>
+      </trans-unit>
+      <trans-unit id="lI9Oyk." resname="Localisation:">
+        <source>Localisation:</source>
+        <target>__Localisation:</target>
+      </trans-unit>
+      <trans-unit id="jzkXm3e" resname="Propriétaire:">
+        <source>Propriétaire:</source>
+        <target>__Propriétaire:</target>
+      </trans-unit>
+      <trans-unit id="l8ohPyD" resname="Type de ruche:">
+        <source>Type de ruche:</source>
+        <target>__Type de ruche:</target>
+      </trans-unit>
+      <trans-unit id=".N8kaRJ" resname="Aucune ruche publique détectée">
+        <source>Aucune ruche publique détectée</source>
+        <target>__Aucune ruche publique détectée</target>
+      </trans-unit>
+      <trans-unit id="GHJDWaU" resname="Voir toutes mes ruches">
+        <source>Voir toutes mes ruches</source>
+        <target>__Voir toutes mes ruches</target>
+      </trans-unit>
+      <trans-unit id="Ljhi_6S" resname="Mail ou mot de passe incorrect.">
+        <source>Mail ou mot de passe incorrect.</source>
+        <target>Wrong email or password.</target>
       </trans-unit>
     </body>
   </file>
