@@ -567,11 +567,11 @@
       </trans-unit>
       <trans-unit id=".N8kaRJ" resname="Aucune ruche publique détectée">
         <source>Aucune ruche publique détectée</source>
-        <target>__Aucune ruche publique détectée</target>
+        <target>No public hive detected</target>
       </trans-unit>
       <trans-unit id="GHJDWaU" resname="Voir toutes mes ruches">
         <source>Voir toutes mes ruches</source>
-        <target>__Voir toutes mes ruches</target>
+        <target>See all my hives</target>
       </trans-unit>
       <trans-unit id="Ljhi_6S" resname="Mail ou mot de passe incorrect.">
         <source>Mail ou mot de passe incorrect.</source>
