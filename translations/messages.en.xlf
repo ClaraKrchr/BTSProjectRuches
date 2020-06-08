@@ -555,7 +555,7 @@
       </trans-unit>
       <trans-unit id="lI9Oyk." resname="Localisation:">
         <source>Localisation:</source>
-        <target>__Localisation:</target>
+        <target>Location:</target>
       </trans-unit>
       <trans-unit id="jzkXm3e" resname="Propriétaire:">
         <source>Propriétaire:</source>
