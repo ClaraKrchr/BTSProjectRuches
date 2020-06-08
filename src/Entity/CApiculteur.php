@@ -90,6 +90,11 @@ class CApiculteur implements UserInterface
      */
     private $resettoken;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $activationtoken;
+
     public function __construct()
     {
         $this->associationRucheApiculteurs = new ArrayCollection();
@@ -302,6 +307,18 @@ class CApiculteur implements UserInterface
     public function setResettoken(?string $resettoken): self
     {
         $this->resettoken = $resettoken;
+
+        return $this;
+    }
+
+    public function getActivationtoken(): ?string
+    {
+        return $this->activationtoken;
+    }
+
+    public function setActivationtoken(?string $activationtoken): self
+    {
+        $this->activationtoken = $activationtoken;
 
         return $this;
     }
