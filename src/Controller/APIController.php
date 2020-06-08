@@ -47,7 +47,7 @@ class APIController extends AbstractController
          ]);
          */
         
-        // $response = new JsonResponse($json, 200, [], true); // équivalent du block commentaire au dessus
+        // $response = new JsonResponse($json, 200, [], true); // �quivalent du block commentaire au dessus
         
         return $this->json($mesuresRep->findAll(), 200, [], ['groups'=>'mesure:read']);
     }
@@ -63,17 +63,19 @@ class APIController extends AbstractController
                 $contentArray = json_decode($jsonContent, true);                
             }
 
-            $mesureS = new MesuresStations;
+            $stationArray = [];
+            $stationArray = current($contentArray);
 
+            $mesureS = new MesuresStations;
             $mesureS->setDateReleve(new \datetime());
 
-            $station = $em->getRepository(CStation::class)->findOneBy(array('id'=>current($contentArray)));
+            $station = $em->getRepository(CStation::class)->findOneBy(array('id'=>current($stationArray)));
             $mesureS->setStation($station);
 
-            $mesureS->setTemperature(next($contentArray));
-            $mesureS->setTension(next($contentArray));
-            $mesureS->setHumidite(next($contentArray));
-            $mesureS->setPression(next($contentArray));
+            $mesureS->setTemperature(next($stationArray));
+            $mesureS->setTension(next($stationArray));
+            $mesureS->setHumidite(next($stationArray));
+            $mesureS->setPression(next($stationArray));
 
             $assos = $em->getRepository(AssociationStationRucher::class)->findOneBy(array('station'=>$station));
             $rucher = $assos->getRucher();
@@ -87,27 +89,33 @@ class APIController extends AbstractController
             $em->persist($mesureS);
             $em->flush();
 
-            $mesureR = new MesuresRuches;
-            for($i = 0; $i < (count($contentArray) - 5) / 2; $i++)
+            $rucheArray = [];
+            for($i = 0; $i < 15; $i++)
             {
-                $mesureR->setDateReleve(new \datetime());  
+                $mesureR = new MesuresRuches;
+                $rucheArray = next($contentArray);
+                $poids = next($rucheArray);
+                if($poids != 0){
+                    reset($rucheArray);
+                    $mesureR->setDateReleve(new \datetime());  
 
-                $ruche = $em->GetRepository(CRuche::class)->findOneBy(array('id'=>next($contentArray)));
-                $mesureR->setRuche($ruche);
+                    $ruche = $em->GetRepository(CRuche::class)->findOneBy(array('id'=>current($rucheArray)));
+                    $mesureR->setRuche($ruche);
 
-                $mesureR->setPoids(next($contentArray));
+                    $mesureR->setPoids(next($rucheArray));
 
-                $assos = $em->getRepository(AssociationRuchePeseRuche::class)->findOneBy(array('ruche'=>$ruche));
-                $peseRuche = $assos->getPeseruche();
-                $mesureR->setPeseruche($peseRuche);
+                    $assos = $em->getRepository(AssociationRuchePeseRuche::class)->findOneBy(array('ruche'=>$ruche));
+                    $peseRuche = $assos->getPeseruche();
+                    $mesureR->setPeseruche($peseRuche);
 
-                $errors = $validator->validate($mesureR);
-                if(count($errors)){
-                    return $this->json($errors, 400);
+                    $errors = $validator->validate($mesureR);
+                    if(count($errors)){
+                        return $this->json($errors, 400);
+                    }
+
+                    $em->persist($mesureR);
+                    $em->flush();
                 }
-
-                $em->persist($mesureR);
-                $em->flush();
             }
             return $this->json($contentArray, 201, [], ['groups'=>'mesure:read']);
         }catch(NotEncodableValueException $e){

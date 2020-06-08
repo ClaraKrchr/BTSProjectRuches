@@ -4,11 +4,25 @@
 
 {% block body %}
 
- {% for message in app.flashes('danger', 'warning') %}
+{% for message in app.flashes('message') %}
  	<center><div class="alert alert-success">
         {{ message }}
 	 </div></center>
 {% endfor %}
+
+{% for message in app.flashes('warning') %}
+ 	<center><div class="alert alert-warning">
+        {{ message }}
+	 </div></center>
+{% endfor %} 
+
+{% for message in app.flashes('danger') %}
+ 	<center><div class="alert alert-danger">
+        {{ message }}
+	 </div></center>
+{% endfor %}
+
+
 
 <link rel="stylesheet" href="{{ asset('css/connexion.css') }}">
 

@@ -68,11 +68,20 @@ class NouvellepageController extends AbstractController
     
     /**
      * @IsGranted("ROLE_USER")
-     * @Route("/erreur", name="erreur")
+     * @Route("/erreur403", name="erreur403")
      */
-    public function erreur()
+    public function erreur403()
     {
         return $this->render('security/erreur.html.twig');
+    }
+    
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/erreur404", name="erreur404")
+     */
+    public function erreur404()
+    {
+        return $this->render('security/erreur404.html.twig');
     }
     
     /**

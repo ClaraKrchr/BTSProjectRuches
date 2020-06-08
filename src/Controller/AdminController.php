@@ -31,7 +31,7 @@ class AdminController extends AbstractController
      */
     public function editUser(Request $request, CApiculteur $user, EntityManagerInterface $em) 
     {
-        if (($user != $this->getUser()) && !($this->isGranted('ROLE_ADMIN'))){return $this->redirectToRoute('erreur');}
+        if (($user != $this->getUser()) && !($this->isGranted('ROLE_ADMIN'))){return $this->redirectToRoute('erreur403');}
         $form = $this->createForm(EditUserType::class, $user);
         
         $form->handleRequest($request);
