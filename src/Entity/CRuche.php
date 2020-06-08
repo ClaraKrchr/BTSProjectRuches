@@ -44,7 +44,7 @@ class CRuche
     private $visibilite;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\MesuresRuches", mappedBy="ruche_id")
+     * @ORM\OneToMany(targetEntity="App\Entity\MesuresRuches", mappedBy="ruche")
      */
     private $mesuresRuches;
 
