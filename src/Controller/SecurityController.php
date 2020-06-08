@@ -15,6 +15,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
+use Symfony\Component\Mailer\Bridge\Google\Transport\GmailSmtpTransport;
 
 
 use App\Entity\CApiculteur;
@@ -25,10 +28,10 @@ use App\Form\ResetPasswordFormType;
 class SecurityController extends AbstractController
 {
     /**
-     * @IsGranted("ROLE_ADMIN")
+     * 
      * @Route("/registration", name="registration")
      */
-    public function new(Request $request, UserPasswordEncoderInterface $encoder, ObjectManager $manager) {
+    public function registration(Request $request, UserPasswordEncoderInterface $encoder, ObjectManager $manager, MailerInterface $mailer) {
         $CApiculteur = new CApiculteur();
         $form = $this->createForm(RegistrationFormType::class, $CApiculteur);
         $form->handleRequest($request);
@@ -39,12 +42,34 @@ class SecurityController extends AbstractController
             $hash = $encoder->encodePassword($CApiculteur, $CApiculteur->getPassword());
             $CApiculteur->SetPassword($hash);
             
+            //On génère le token d'activation
+            $CApiculteur->setActivationToken(md5(uniqid()));
+            
             $manager->persist($CApiculteur); //persiste l’info dans le temps
             $manager->flush(); //envoie les info à la BDD
             
             $message=utf8_encode('Le compte a été crée');
             $this->addFlash('creationCompte',$message);
             return $this->redirectToRoute('registration');
+            
+            /*$message = (new \Swift_Message('Activation compte'))
+                ->setFrom('no-reply@gmail.com')
+                ->setTo($user->getMail())
+                ->setBody(
+                    $this->renderView(
+                        'email/activation.html.twig', ['token' => $user->getActivationToken()]
+                        ),
+                    'text/html');*/
+            
+            $message = (new Email())
+                ->from('noreply.clubapi@gmail.com')
+                ->to('clara.krchr@gmail.com')
+                ->subject('Yo')
+                ->text('Clara')
+                ->html('<p>Coucou</p>');
+            
+            //on envoie le mail
+            $mailer->send($message);
         }
         
         return $this->render('security/registration.html.twig', [
@@ -139,11 +164,11 @@ class SecurityController extends AbstractController
      */
     public function resetPassword($token, Request $request, UserPasswordEncoderInterface $encoder){
         // on va chercher l'user avec le token
-        $user = $this->getDoctrine()->getRepository(CApiculteur::class)->findOneBy(['reset_token' => $token]);
+        $user = $this->getDoctrine()->getRepository(CApiculteur::class)->findOneBy(['resettoken' => $token]);
         
         if(!$user){
-            $this->addFlash('danger', 'Lien invalide');
-            return $this->redirectToRoute('security_login');
+            //$this->addFlash('danger', 'Lien invalide');
+            return $this->redirectToRoute('erreur404');
         }
         
         //si le formualire est envoyé en méthode post
@@ -161,6 +186,30 @@ class SecurityController extends AbstractController
             return $this->render('security/resetpassword.html.twig', ['token' => $token]);
         }
         
+    }
+    
+    /**
+     * @Route("/activation/{token}", name="activation")
+     */
+    public function activation($token, CApiculteurRepository $userRepo)
+    {        
+        //on vérifie si un user a ce token
+        $user = $userRepo->findOneBy(['activationtoken' => $token]);
+        
+        //si le token n'existe pas 
+        if(!$user){
+            return $this->redirectToRoute('erreur404');
+        }
+        
+        //on supprime le token
+        $user->setActivationtoken(null);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+        
+        //envoi de message compte activé
+        $this->addFlash('message', 'Le compte a été activé');
+        return $this->redirectToRoute('home');
     }
     
 }
