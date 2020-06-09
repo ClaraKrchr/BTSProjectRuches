@@ -93,6 +93,12 @@
 
         {% block body %}
         
+        {% for message in app.flashes('message') %}	
+		 	<center><div class="alert alert-success">	
+		        {{ message }}	
+			 </div></center>	
+		{% endfor %}
+        
         <center><h1>{% trans %}Bienvenue{% endtrans %}</h1></center>
         <br>
         <center><h1>{% trans %}Carte interactive des régions de France{% endtrans %}</h1>
@@ -198,7 +204,7 @@
         </div>
 			<footer id="footer">
 
-				<center><small><a href="{{ path('credits') }}">{% trans %}Crédits{% endtrans %}</a></small></center>
+				<center><small><a href="{{ path('credits') }}" style="color:lightgray";>{% trans %}Crédits{% endtrans %}</a></small></center>
 			</footer>
 			</div>
     </body>
