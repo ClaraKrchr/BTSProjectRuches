@@ -18,6 +18,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mailer\Bridge\Google\Transport\GmailSmtpTransport;
+use Symfony\Component\Mailer\Bridge\Google\Smtp\GmailTransport;
 
 
 use App\Entity\CApiculteur;
@@ -61,15 +62,17 @@ class SecurityController extends AbstractController
                         ),
                     'text/html');*/
             
-            $message = (new Email())
+            $mail = (new Email())
                 ->from('noreply.clubapi@gmail.com')
-                ->to('clara.krchr@gmail.com')
+                ->to('clara@gmail.com')
                 ->subject('Yo')
                 ->text('Clara')
                 ->html('<p>Coucou</p>');
             
+            $transport = new GmailTransport('localhost');
+            $mail = new Mailer($transport);
             //on envoie le mail
-            $mailer->send($message);
+            $mailer->send($mail);
         }
         
         return $this->render('security/registration.html.twig', [
