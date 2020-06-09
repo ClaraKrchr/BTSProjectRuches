@@ -26,6 +26,8 @@
         <script src="https://code.highcharts.com/modules/data.js"></script>
         <script src="https://code.highcharts.com/modules/exporting.js"></script>
         <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         {% endblock %}
     </head>
     
@@ -90,12 +92,6 @@
 </nav>
 
         {% block body %}
-        
-{% for message in app.flashes('message') %}
- 	<center><div class="alert alert-success">
-        {{ message }}
-	 </div></center>
-{% endfor %}
         
         <center><h1>{% trans %}Bienvenue{% endtrans %}</h1></center>
         <br>
@@ -202,7 +198,7 @@
         </div>
 			<footer id="footer">
 
-				<center><small><a href="{{ path('credits') }}" style="color:lightgray";>{% trans %}Crédits{% endtrans %}</a></small></center>
+				<center><small><a href="{{ path('credits') }}">{% trans %}Crédits{% endtrans %}</a></small></center>
 			</footer>
 			</div>
     </body>

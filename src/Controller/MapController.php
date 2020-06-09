@@ -111,7 +111,7 @@ class MapController extends NouvellepageController{
                     foreach ($MesuresRuches as $MesuresRuche){
                         
                         $stockage1[] = array(
-                            $MesuresRuche->getDateReleve(),
+                            $MesuresRuche->getDateReleve()->getTimestamp(),
                             $MesuresRuche->getPoids()
                         );
                     }
@@ -125,7 +125,7 @@ class MapController extends NouvellepageController{
                     foreach ($MesuresDeRuches as $MesuresDeRuche){
                         
                         $stockage2[]= array(
-                            $MesuresDeRuche->getDateReleve(),
+                            $MesuresDeRuche->getDateReleve()->getTimestamp(),
                             $MesuresDeRuche->getPoids()
                         );
                     }
@@ -143,7 +143,7 @@ class MapController extends NouvellepageController{
                 foreach ($MesuresRuches as $MesuresRuche){
                     
                     $stock[] = array(
-                        $MesuresRuche->getDateReleve()->getTimestamp(),
+                        $MesuresRuche->getDateReleve(),
                         $MesuresRuche->getPoids()
                     );
                 }
@@ -184,6 +184,6 @@ class MapController extends NouvellepageController{
         $RuchesApiculteurs = $this->getDoctrine()->getRepository(AssociationRucheApiculteur::class)->findBy(array('apiculteur'=>$NomProprietaire));
         $RuchesPublic =  $this->getDoctrine()->getRepository(CRuche::class)->findBy(array('visibilite'=>'0'));
         
-        return $this->render('Ruches/detail_ruche.html.twig',['nomruche'=>$nomruche,'ruchepubliques'=>$RuchesPublic,'rucheprivees'=>$RuchesApiculteurs]);
+        return $this->render('Ruches/detail_ruche.html.twig',['nomruche'=>$nomruche,'proprietaire'=>$NomProprietaire,'ruchepubliques'=>$RuchesPublic,'rucheprivees'=>$RuchesApiculteurs]);
     }
 }

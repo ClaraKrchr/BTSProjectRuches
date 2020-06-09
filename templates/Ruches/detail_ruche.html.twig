@@ -1,14 +1,20 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-<div>Bienvenue</div>
+<!-- for HTML5 -->
+<meta charset="UTF-8">
+<center><h3>{% trans %}Les donn√©es de la ruche {% endtrans %} {{ nomruche }} {% trans %} qui appartient √† {% endtrans %} {{ proprietaire }} </h3>
+<br></br>
+
 <figure class="highcharts-figure">
-  <div id="{{ nomruche }}" style="width:400px;"></div>
+  <div id="chart" style="width:400px; max-height:400px;"></div>
   </figure>
-  
+
   <script type="text/javascript">
-  Highcharts.getJSON({{ path('mesures_ruche_diagramme',{nomruche : nomruche,nomruche2:'NULL'})}}, function (data) {
+  var url ='{{ path('mesures_ruche_diagramme',{nomruche : nomruche,nomruche2:'NULL'})}}';
+  Highcharts.getJSON(url, function (data) {
 	  // Create the chart
-  	Highcharts.stockChart('test', {
+	  console.log('Ta mere');
+  	Highcharts.stockChart('chart', {
 	    
 	chart:{
 		zoomKey:'ctrl',
@@ -18,7 +24,7 @@
 	      text: 'Les mesures de la ruche {{ nomruche }}'
 	    },
     series: [{                     				
-	      	name: 'Poids Premiere ruche(en kg)',
+	      	name: 'Poids de la ruche (en kg)',
 	      	data: data,
 	      	type: 'line',
 	     	tooltip: {
@@ -27,6 +33,8 @@
 	    }]
 	  });
 	});
+	</script>
+	<script type="text/javascript">
   function nom_ruche(){
 		var nomruchepublic = document.getElementById("liste_ruche_public").value;
 		var nomrucheprivee = document.getElementById("liste_ruche_privee").value;
@@ -41,14 +49,14 @@
 			url=url.replace("nomruche2",nomruchepublic);
 			Highcharts.getJSON(url, function (data) {
 				  // Create the chart
-			  	Highcharts.stockChart('test', {
+			  	Highcharts.stockChart('{{ nomruche }}', {
 				    
 				chart:{
 					zoomKey:'ctrl',
 					zoomType:'x'
 					},
 			    title: {
-				      text: 'Les mesures de la ruche {{ nomruche }} comparÈe ‡ '+nomrucheprivee
+				      text: 'Les mesures de la ruche {{ nomruche }} compar√©e √† '+nomrucheprivee
 				    },
 			    series: [{                     				
 				      	name: 'Poids Premiere ruche(en kg)',
@@ -81,14 +89,14 @@
 			url=url.replace("nomruche2",nomrucheprivee);
 			Highcharts.getJSON(url, function (data) {
 				  // Create the chart
-			  	Highcharts.stockChart('test', {
+			  	Highcharts.stockChart('{{ nomruche }}', {
 				    
 				chart:{
 					zoomKey:'ctrl',
 					zoomType:'x',
 					},
 			    title: {
-				      text: 'Les mesures de la ruche {{ nomruche }} comparÈe ‡ '+nomrucheprivee
+				      text: 'Les mesures de la ruche {{ nomruche }} compar√©e √† '+nomrucheprivee
 				    },
 			    series: [{                     				
 				      	name: 'Poids Premiere ruche(en kg)',
@@ -131,6 +139,10 @@
 		}
 	}</script>
 	
+	<figure class="highcharts-figure">
+  <div id="{{ nomruche }}" style="width:400px;"></div>
+  </figure>
+  
 {% if ruchepubliques %}
 <form id="form_ruche_public" >
     <select id="liste_ruche_public" onchange="nom_ruche()">
@@ -158,5 +170,4 @@
     </select>
 </form>
 {% endif %}
-
 {% endblock %}
