@@ -139,7 +139,7 @@ class SecurityController extends AbstractController
                 UrlGeneratorInterface::ABSOLUTE_URL);
             
             // envoi du message
-            $message = (new \Swift_Message('Mot de passe oublié'))
+            $mail = (new \Swift_Message('Mot de passe oublié'))
             ->setFrom('no-reply@clubapi.fr')
             ->setTo($user->getMail())
             ->setBody(
@@ -148,9 +148,10 @@ class SecurityController extends AbstractController
                 'text/html');
             
             // on envoi le mail
-            $mailer->send($message);
+            $mailer->send($mail);
             
-            $this->addFlash('message', 'Un e-mail pour réinitialiser votre mot de passe a été envoyé.');
+            $message=utf8_encode('Un e-mail pour réinitialiser votre mot de passe a été envoyé.');
+            $this->addFlash('message',$message);
             return $this->redirectToRoute('security_login');
         }
         
@@ -180,7 +181,8 @@ class SecurityController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
             
-            $this->addFlash('message', 'Mot de passe modifié avec succès');
+            $message=utf8_encode('Mot de passe modifié avec succès');
+            $this->addFlash('message',$message);
             return $this->redirectToRoute('security_login');
         }else {
             return $this->render('security/resetpassword.html.twig', ['token' => $token]);
@@ -207,8 +209,9 @@ class SecurityController extends AbstractController
         $entityManager->persist($user);
         $entityManager->flush();
         
-        //envoi de message compte activé
-        $this->addFlash('message', 'Le compte a été activé');
+        //envoi de message compte activé      
+        $message=utf8_encode('Le compte a été activé');
+        $this->addFlash('message',$message);
         return $this->redirectToRoute('home');
     }
     
