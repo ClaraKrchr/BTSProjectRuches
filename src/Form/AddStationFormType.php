@@ -19,7 +19,7 @@ class AddStationFormType extends AbstractType
             ->add('Rucher',EntityType::class, [
                 'class'=>CRucher::class,
                 'query_builder' => function(EntityRepository $er){
-                return $er->createQueryBuilder('u')->select('w')->from(CRucher::class, 'w')->orderBy('w.nom', 'ASC');
+                return $er->createQueryBuilder('u')->select('w')->from(CRucher::class, 'w')->orderBy('w.nom', 'ASC'); 
                 },
                 'choice_label'=>function(CRucher $CRucher){
                 return sprintf(' %s',$CRucher->getNom());
