@@ -551,7 +551,7 @@
       </trans-unit>
       <trans-unit id="KhxX8zX" resname="---&gt; Pas de mesures pour cette ruche &lt;---">
         <source>---&gt; Pas de mesures pour cette ruche &lt;---</source>
-        <target><![CDATA[__---> No measures for this hive <---]]></target>
+        <target> No measures for this hive </target>
       </trans-unit>
       <trans-unit id="lI9Oyk." resname="Localisation:">
         <source>Localisation:</source>
@@ -576,6 +576,30 @@
       <trans-unit id="Ljhi_6S" resname="Mail ou mot de passe incorrect.">
         <source>Mail ou mot de passe incorrect.</source>
         <target>Wrong email or password.</target>
+      </trans-unit>
+      <trans-unit id="8AiiWc8" resname="Crédits">
+        <source>Crédits</source>
+        <target>Credits</target>
+      </trans-unit>
+      <trans-unit id="zXh8ORh" resname="Utilisez Ctrl+Clic Gauche pour naviguer sur le diagramme">
+        <source>Utilisez Ctrl+Clic Gauche pour naviguer sur le diagramme</source>
+        <target>Use Ctrl + Left Click to navigate the diagram</target>
+      </trans-unit>
+      <trans-unit id="uVjOi4c" resname="Temperature">
+        <source>Temperature</source>
+        <target>Temperature</target>
+      </trans-unit>
+      <trans-unit id="mYKww4R" resname="Afficher les détails">
+        <source>Afficher les détails</source>
+        <target>Show details</target>
+      </trans-unit>
+      <trans-unit id="nRBGoae" resname="Aucune mesures pour cette ruche">
+        <source>Aucune mesures pour cette ruche</source>
+        <target>No measures for this hive</target>
+      </trans-unit>
+      <trans-unit id="hhTPAFh" resname="Archiver">
+        <source>Archiver</source>
+        <target>Archive</target>
       </trans-unit>
     </body>
   </file>
