@@ -97,6 +97,14 @@
         <source>Confirmer le mot de passe</source>
         <target>Confirm password</target>
       </trans-unit>
+      <trans-unit id="GudlWrE" resname="Aucune mesures pour cette station">
+        <source>Aucune mesures pour cette station</source>
+        <target>No measurements for this station</target>
+      </trans-unit>
+      <trans-unit id="RnmzsS3" resname="Aucun">
+        <source>Aucun</source>
+        <target>no one</target>
+      </trans-unit>
       <trans-unit id="T6jfNBx" resname="Visibilité">
         <source>Visibilité</source>
         <target>Visibility</target>
@@ -600,6 +608,10 @@
       <trans-unit id="hhTPAFh" resname="Archiver">
         <source>Archiver</source>
         <target>Archive</target>
+      </trans-unit>
+      <trans-unit id="tK1cukl" resname="Modification d'une ruche">
+        <source>Modification d'une ruche</source>
+        <target>Hive modification</target>
       </trans-unit>
     </body>
   </file>
