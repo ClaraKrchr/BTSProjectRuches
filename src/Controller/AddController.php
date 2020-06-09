@@ -69,7 +69,7 @@ class AddController extends AbstractController{
             $apiculteur->addAssociationRucheApiculteur($AssociationRucheApiculteur);
             $CRuche->setAssociationRucheApiculteur($AssociationRucheApiculteur);
             
-            if($data['Rucher'] != NULL){
+            if($data['Rucher']->getNom() != 'Aucun'){
                 $AssociationRucheRucher = new AssociationRucheRucher();
                 
                 $AssociationRucheRucher->setRuche($CRuche);
