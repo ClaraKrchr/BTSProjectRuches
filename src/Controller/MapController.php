@@ -111,7 +111,7 @@ class MapController extends NouvellepageController{
                     foreach ($MesuresRuches as $MesuresRuche){
                         
                         $stockage1[] = array(
-                            $MesuresRuche->getDateReleve()->getTimestamp(),
+                            $MesuresRuche->getDateReleve(),
                             $MesuresRuche->getPoids()
                         );
                     }
@@ -125,7 +125,7 @@ class MapController extends NouvellepageController{
                     foreach ($MesuresDeRuches as $MesuresDeRuche){
                         
                         $stockage2[]= array(
-                            $MesuresDeRuche->getDateReleve()->getTimestamp(),
+                            $MesuresDeRuche->getDateReleve(),
                             $MesuresDeRuche->getPoids()
                         );
                     }

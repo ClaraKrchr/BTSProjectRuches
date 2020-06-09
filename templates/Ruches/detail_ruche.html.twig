@@ -6,15 +6,44 @@
 <br></br>
 
 <figure class="highcharts-figure">
-  <div id="chart" style="width:400px; max-height:400px;"></div>
+  <div id="test" style="width:400px; max-height:400px;"></div>
+  </figure>	
+	<figure class="highcharts-figure">
+  <div id="{{ nomruche }}" style="width:400px;"></div>
   </figure>
+{% if ruchepubliques %}
+<form id="form_ruche_public" >
+    <select id="liste_ruche_public" onchange="nom_ruche()">
+    {% for ruchepublique in ruchepubliques %}
+            {% if ruchepublique.nomruche == nomruche %}
+    	<option selected value="">{{ ruchepublique.nomruche }}
+    {% else %}
+    	<option value="{{ ruchepublique.nomruche }}">{{ ruchepublique.nomruche }}
+	{% endif %}</option>
+    {% endfor %}
+    </select>
+</form>
+{% endif %}
 
+{% if rucheprivees %}
+<form id="form_ruche_privee" >
+    <select id="liste_ruche_privee" onchange="nom_ruche()">
+    {% for rucheprivee in rucheprivees %}
+	      {% if rucheprivee.ruche.nomruche == nomruche %}
+    	<option selected value="">{{ rucheprivee.ruche.nomruche }}
+    {% else %}
+    	<option value="{{ rucheprivee.ruche.nomruche }}">{{ rucheprivee.ruche.nomruche }}
+	{% endif %}</option>
+    {% endfor %}
+    </select>
+</form>
+{% endif %}
   <script type="text/javascript">
   var url ='{{ path('mesures_ruche_diagramme',{nomruche : nomruche,nomruche2:'NULL'})}}';
   Highcharts.getJSON(url, function (data) {
 	  // Create the chart
-	  console.log('Ta mere');
-  	Highcharts.stockChart('chart', {
+	  console.log('mesures_ruche {{nomruche}} ');
+  	Highcharts.stockChart('test', {
 	    
 	chart:{
 		zoomKey:'ctrl',
@@ -42,13 +71,14 @@
 		if(nomruchepublic!=''){
 			document.getElementById("liste_ruche_public").style.display = 'block';
 			document.getElementById("liste_ruche_privee").style.display = 'none';
-			document.getElementById("{{nomruche}}").style.display = 'none';
-			document.getElementById("test").style.display = 'block';
+			document.getElementById("{{nomruche}}").style.display = 'block';
+			document.getElementById("test").style.display = 'none';
 
 			var url =' {{ path('mesures_ruche_diagramme',{nomruche : nomruche , nomruche2 : 'nomruche2'}) }} ';
 			url=url.replace("nomruche2",nomruchepublic);
 			Highcharts.getJSON(url, function (data) {
-				  // Create the chart
+				  // Create the chart				  
+				console.log('mesures_ruche {{nomruche}} et '+nomruchepublic);
 			  	Highcharts.stockChart('{{ nomruche }}', {
 				    
 				chart:{
@@ -82,13 +112,14 @@
 
 			document.getElementById("liste_ruche_privee").style.display = 'block';
 			document.getElementById("liste_ruche_public").style.display = 'none';
-			document.getElementById("{{nomruche}}").style.display = 'none';
-			document.getElementById("test").style.display = 'block';
+			document.getElementById("{{nomruche}}").style.display = 'block';
+			document.getElementById("test").style.display = 'none';
 
 			var url =' {{ path('mesures_ruche_diagramme',{nomruche : nomruche , nomruche2 : 'nomruche2'}) }} ';
 			url=url.replace("nomruche2",nomrucheprivee);
 			Highcharts.getJSON(url, function (data) {
 				  // Create the chart
+				console.log('mesures_ruche {{nomruche}} et '+nomrucheprivee);
 			  	Highcharts.stockChart('{{ nomruche }}', {
 				    
 				chart:{
@@ -122,52 +153,23 @@
 		else if(nomruchepublic==''){
 			document.getElementById("liste_ruche_privee").style.display = 'block';
 			document.getElementById("liste_ruche_public").style.display = 'block';
-			document.getElementById("{{nomruche}}").style.display = 'block';
-			document.getElementById("test").style.display = 'none';
+			document.getElementById("{{nomruche}}").style.display = 'none';
+			document.getElementById("test").style.display = 'block';
 			document.getElementById("nom_ruche_choisie").innerHTML ="";
 			
 			console.log('affiche div nomruche');				
-		}else if(nomrucheprivee!=''){
+		}else if(nomrucheprivee==''){
 
 			document.getElementById("liste_ruche_privee").style.display = 'block';
 			document.getElementById("liste_ruche_public").style.display = 'block';
-			document.getElementById("{{nomruche}}").style.display = 'block';
-			document.getElementById("test").style.display = 'none';
+			document.getElementById("{{nomruche}}").style.display = 'none';
+			document.getElementById("test").style.display = 'block';
 			document.getElementById("nom_ruche_choisie").innerHTML ="";
 			
 			console.log('affiche div nomruche');	
 		}
 	}</script>
-	
-	<figure class="highcharts-figure">
-  <div id="{{ nomruche }}" style="width:400px;"></div>
-  </figure>
-  
-{% if ruchepubliques %}
-<form id="form_ruche_public" >
-    <select id="liste_ruche_public" onchange="nom_ruche()">
-    {% for ruchepublique in ruchepubliques %}
-            {% if ruchepublique.nomruche == nomruche %}
-    	<option selected value="">{{ ruchepublique.nomruche }}
-    {% else %}
-    	<option value="{{ ruchepublique.nomruche }}">{{ ruchepublique.nomruche }}
-	{% endif %}</option>
-    {% endfor %}
-    </select>
-</form>
-{% endif %}
 
-{% if rucheprivees %}
-<form id="form_ruche_privee" >
-    <select id="liste_ruche_privee" onchange="nom_ruche()">
-    {% for rucheprivee in rucheprivees %}
-	      {% if rucheprivee.ruche.nomruche == nomruche %}
-    	<option selected value="">{{ rucheprivee.ruche.nomruche }}
-    {% else %}
-    	<option value="{{ rucheprivee.ruche.nomruche }}">{{ rucheprivee.ruche.nomruche }}
-	{% endif %}</option>
-    {% endfor %}
-    </select>
-</form>
-{% endif %}
+  
+
 {% endblock %}
