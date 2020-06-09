@@ -7,10 +7,12 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CApiculteurRepository")
+ * @UniqueEntity("mail")
+ * @UniqueEntity("pseudo")
  */
 class CApiculteur implements UserInterface
 {
@@ -32,7 +34,7 @@ class CApiculteur implements UserInterface
     private $prenom;
 
     /**
-    * @ORM\Column(type="string")
+    * @ORM\Column(type="string", unique=true)
     * @Assert\Email(message="Veuillez saisir un mail valide")
     */
     private $mail;
@@ -81,7 +83,7 @@ class CApiculteur implements UserInterface
     private $associationRucheApiculteurs;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(type="string", length=30, unique=true)
      */
     private $pseudo;
 
