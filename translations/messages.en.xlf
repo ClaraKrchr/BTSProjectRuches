@@ -103,7 +103,7 @@
       </trans-unit>
       <trans-unit id="RnmzsS3" resname="Aucun">
         <source>Aucun</source>
-        <target>No one</target>
+        <target>None</target>
       </trans-unit>
       <trans-unit id="T6jfNBx" resname="Visibilité">
         <source>Visibilité</source>
