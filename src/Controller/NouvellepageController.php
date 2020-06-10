@@ -23,7 +23,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class NouvellepageController extends AbstractController
 {
-    
+
     /**
      * @Route("/", name="home")
      */
@@ -31,8 +31,8 @@ class NouvellepageController extends AbstractController
     {
         return $this->render('base.html.twig');
     }
-    
-    
+
+
     /**
      * @IsGranted("ROLE_USER")
      * @Route("/ruches_privees", name="ruches_privees")
@@ -41,12 +41,12 @@ class NouvellepageController extends AbstractController
     {
         //--------Obtention du nom ce l'utilisateur----------------//
         $NomProprietaire=$this->getUser();
-        
-        //------------Recherche des ruches appartenant a l'utilisateur connecté-------------//
+
+        //------------Recherche des ruches appartenant a l'utilisateur connectï¿½-------------//
         $RuchesApiculteurs = $this->getDoctrine()->getRepository(AssociationRucheApiculteur::class)->findBy(array('apiculteur'=>$NomProprietaire));
         return $this->render('Ruches/ruches_privees.html.twig', ['apiculteurs' => $RuchesApiculteurs]);
     }
-    
+
     /**
      * @IsGranted("ROLE_USER")
      * @Route("/googleMap", name="googleMap")
@@ -59,22 +59,22 @@ class NouvellepageController extends AbstractController
      * @Route("/change_locale/{locale}", name="change_locale")
      */
     public function changeLocale($locale, Request $request){
-        // on stocke la langue demandée dans la session
+        // on stocke la langue demandï¿½e dans la session
         $request->getSession()->Set('_locale',$locale);
-        
-        // on reviens sur la page précédente
+
+        // on reviens sur la page prï¿½cï¿½dente
         return $this->redirect($request->headers->get('referer'));
     }
-    
+
     /**
      * @IsGranted("ROLE_USER")
      * @Route("/erreur403", name="erreur403")
      */
     public function erreur403()
     {
-        return $this->render('security/erreur.html.twig');
+        return $this->render('security/erreur403.html.twig');
     }
-    
+
     /**
      * @IsGranted("ROLE_USER")
      * @Route("/erreur404", name="erreur404")
@@ -83,13 +83,12 @@ class NouvellepageController extends AbstractController
     {
         return $this->render('security/erreur404.html.twig');
     }
-    
+
     /**
      * @Route("/credits", name="credits")
      */
     public function credits(){
         return $this->render('credits.html.twig');
     }
-    
+
 }
-  
