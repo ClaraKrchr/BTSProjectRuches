@@ -27,11 +27,11 @@
 			
 			<td> {{ apiculteur.ruche.dateinstall|date("m/d/Y") }}			</td>
 			
-			<td> {% if apiculteur.ruche.visibilite=='0' %}{% trans %}Public{% endtrans %}{% elseif apiculteur.ruche.visibilite=='1' %}{% trans %}Privée{% endtrans %}{% endif %}	</td>
+			<td> {% if apiculteur.ruche.visibilite=='0' %}{% trans %}Publique{% endtrans %}{% elseif apiculteur.ruche.visibilite=='1' %}{% trans %}Privée{% endtrans %}{% endif %}	</td>
 			
-			<td> {{ apiculteur.ruche.associationRucheRucher.rucher }} </td>
+			<td> {% if apiculteur.ruche.associationRucheRucher != NULL %} {{ apiculteur.ruche.associationRucheRucher.rucher }} {% else %} {% trans %} Aucun {% endtrans %} {% endif %}</td>
 			
-			<td> {% if apiculteur.ruche.associationRuchePeseruche != NULL %}{{ apiculteur.ruche.associationRuchePeseruche.peseruche.nomPeseruche }}{% else %} Aucun {% endif %} </td>
+			<td> {% if apiculteur.ruche.associationRuchePeseruche != NULL %}{{ apiculteur.ruche.associationRuchePeseruche.peseruche.nomPeseruche }}{% else %} {% trans %} Aucun {% endtrans %} {% endif %} </td>
 			
 			<td><a href="{{ path('edit_ruche', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark">{% trans %}Modifier{% endtrans %}</a>
 			<a href="{{ path('delete_ruche', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark">{% if apiculteur.ruche.carnets is empty and apiculteur.ruche.mesuresRuches is empty %} {%trans %} Supprimer {% endtrans %} {% else %}{% trans %}Archiver{% endtrans %} {% endif %}</a>
