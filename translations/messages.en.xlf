@@ -43,11 +43,11 @@
       </trans-unit>
       <trans-unit id="L2yEd_k" resname="En attente">
         <source>En attente</source>
-        <target>pending</target>
+        <target>Pending</target>
       </trans-unit>
       <trans-unit id="p1gh8rg" resname="Dans un rucher">
         <source>Dans un rucher</source>
-        <target>in an apiary</target>
+        <target>In an apiary</target>
       </trans-unit>
       <trans-unit id="m3upfPp" resname="Chez un apiculteur">
         <source>Chez un apiculteur</source>
@@ -79,11 +79,11 @@
       </trans-unit>
       <trans-unit id="kaVQXXN" resname="Apiculteur">
         <source>Apiculteur</source>
-        <target>beekeeper</target>
+        <target>Beekeeper</target>
       </trans-unit>
       <trans-unit id="53Az_YO" resname="Administrateur">
         <source>Administrateur</source>
-        <target>manager</target>
+        <target>Manager</target>
       </trans-unit>
       <trans-unit id="XHqA_WZ" resname="Nom pese ruche">
         <source>Nom pese ruche</source>
@@ -103,7 +103,7 @@
       </trans-unit>
       <trans-unit id="RnmzsS3" resname="Aucun">
         <source>Aucun</source>
-        <target>no one</target>
+        <target>No one</target>
       </trans-unit>
       <trans-unit id="T6jfNBx" resname="Visibilité">
         <source>Visibilité</source>
@@ -199,11 +199,11 @@
       </trans-unit>
       <trans-unit id="zExCS1c" resname="Téléphone">
         <source>Téléphone</source>
-        <target>phone</target>
+        <target>Phone</target>
       </trans-unit>
       <trans-unit id="UmZcLre" resname="Adresse postale">
         <source>Adresse postale</source>
-        <target>address</target>
+        <target>Address</target>
       </trans-unit>
       <trans-unit id="vnBxYSs" resname="Code postal">
         <source>Code postal</source>
@@ -303,7 +303,7 @@
       </trans-unit>
       <trans-unit id="hU8QCoF" resname="Nb cadres couvain">
         <source>Nb cadres couvain</source>
-        <target>Nb brood frame</target>
+        <target>No brood frame</target>
       </trans-unit>
       <trans-unit id="IReS5Lj" resname="Opercule du couvain">
         <source>Opercule du couvain</source>
@@ -339,11 +339,11 @@
       </trans-unit>
       <trans-unit id="BwnXKru" resname="Nb cadres miel">
         <source>Nb cadres miel</source>
-        <target>Nb honey frame</target>
+        <target>No honey frame</target>
       </trans-unit>
       <trans-unit id="FvC9oqN" resname="Nb cadres pollen">
         <source>Nb cadres pollen</source>
-        <target>Nb pollen frame</target>
+        <target>No pollen frame</target>
       </trans-unit>
       <trans-unit id="ZeQxxvQ" resname="Date traitement">
         <source>Date traitement</source>
@@ -371,7 +371,7 @@
       </trans-unit>
       <trans-unit id="ZhWKAWf" resname="Nb hausse récoltées">
         <source>Nb hausse récoltées</source>
-        <target>Nb increase harvest</target>
+        <target>No increase harvest</target>
       </trans-unit>
       <trans-unit id="tjqwC3c" resname="Nature miel">
         <source>Nature miel</source>
@@ -523,7 +523,7 @@
       </trans-unit>
       <trans-unit id="7yOllAJ" resname="Retour">
         <source>Retour</source>
-        <target>return</target>
+        <target>Return</target>
       </trans-unit>
       <trans-unit id="SEobKm1" resname="Date d'archivage">
         <source>Date d'archivage</source>

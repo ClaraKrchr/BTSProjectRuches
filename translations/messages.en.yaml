@@ -8,8 +8,8 @@ Pese ruche : Hive scale
 Visibilite : Visibility
 Publique : Public
 Privee : Private
-En attente : pending
-Dans un rucher : in an apiary
+En attente : Pending
+Dans un rucher : In an apiary
 Chez un apiculteur : At a beekeeper's
 Ruche kenyane(KTBH) : Kenayne hive
 Ruche Dadant : Dadant hive
@@ -21,8 +21,8 @@ Ruches en paille : Straw hive
 Nom station : Station name
 
 #EditUser
-Apiculteur : beekeeper
-Administrateur : manager
+Apiculteur : Beekeeper
+Administrateur : Manager
 
 #ajout pese ruche
 Nom pese ruche : Name hive scale
@@ -31,5 +31,5 @@ Nom pese ruche : Name hive scale
 Mot de passe : Password
 Confirmer le mot de passe : Confirm password
 Aucune mesures pour cette station : No measurements for this station
-Aucun : no one
+Aucun : No one
 Type de ruche : Hive type
