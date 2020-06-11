@@ -17,7 +17,7 @@ class AssocierRucheRucher
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\CRuche", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\CRuche", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $ruche;
