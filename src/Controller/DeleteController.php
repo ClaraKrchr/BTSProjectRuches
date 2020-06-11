@@ -82,6 +82,7 @@ class DeleteController extends AbstractController
         $AssosRucheRucher = $this->getDoctrine()->getRepository(AssocierRucheRucher::class)->findOneBy(array('ruche'=>$ruche));
         if ($AssosRucheRucher == NULL){return $this->redirectToRoute('ruches_privees');}
         $ruche->setEtat('0');
+        $ruche->setNbassosrucher(0);
         $em->remove($AssosRucheRucher);
         
         
