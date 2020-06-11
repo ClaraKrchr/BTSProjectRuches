@@ -46,7 +46,10 @@ class MapController extends NouvellepageController{
         //-------------Recherche des ruches dans les ruchers-----------------//
         $RuchesRuchers= $this->getDoctrine()->getRepository(AssocierRucheRucher::class)->findBy(array('rucher'=>$RucherRegion));
         //------------Recherche des ruches appartenant a l'utilisateur connecté-------------//
-        $RuchesApiculteurs = $this->getDoctrine()->getRepository(AssociationRucheApiculteur::class)->findBy(array('ruche'=>$RuchesRuchers,'apiculteur'=>$NomProprietaire));
+        foreach($RuchesRuchers as $RuchesRucher){
+            $stock[]=$RuchesRucher->getRuche();
+        }
+        $RuchesApiculteurs = $this->getDoctrine()->getRepository(AssociationRucheApiculteur::class)->findBy(array('ruche'=>$stock,'apiculteur'=>$NomProprietaire));
         
         return $this->render('Ruches/tableau_donnees.html.twig', ['apiculteurs' => $RuchesApiculteurs,'region'=>$regions, 'assosruchers' => $RuchesRuchers]);
     }

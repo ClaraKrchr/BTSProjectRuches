@@ -36,13 +36,30 @@
                      	       document.getElementById("{{ pagination.nomruche }}").innerHTML='{% trans %}---> Pas de mesures pour cette ruche <---{% endtrans %}<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>';
                      	    }else{
                  		  	Highcharts.stockChart('{{ pagination.nomruche }}', {
-                     		    rangeSelector: {
-                     		      selected: 1
-                     		    },
+                 		  		rangeSelector : {
+                 					selected : 0,
+                 					inputEnabled: false,
+                 					buttons: [{
+                 						type: 'month',
+                 						count: 1,
+                 						text: '1m'
+                 					},
+                 					]
+                 				},
+                 				 navigation: {
+                 			        buttonOptions: {
+                 			            enabled: false
+                 			        }
+                 			    },
 							chart:{
 								zoomKey:'ctrl',
 								zoomType:'x'
 								},
+								exporting: {
+						    	  	enabled:false
+						    	  },
+								
+								credits:{enabled:false},
                  		    series: [{                     				
                      		      	name: 'Poids (en kg)',
                      		      	data: data,
@@ -50,7 +67,21 @@
                      		     	tooltip: {
                      		        	valueDecimals: 2
                      		      }
-                     		    }]
+                     		    }],
+                     		    responsive:{
+                     			      rules:[{
+                     				      condition:{
+                     					      maxHeight:300
+                     					      },
+                     					      chartOptions:{
+                     						      legend:{enabled:false},
+                     						      }
+                     					      },
+                     					  {
+                     					  condition:{
+                     						  }	  }
+                     			      ]
+                     		      },
                      		  });
                      	    }
                      		});
