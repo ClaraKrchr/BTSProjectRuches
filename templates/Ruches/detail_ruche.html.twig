@@ -15,11 +15,11 @@
 <form id="form_ruche_public" >
     <select id="liste_ruche_public" onchange="nom_ruche()">
     {% for ruchepublique in ruchepubliques %}
-            {% if ruchepublique.nomruche == nomruche %}
-    	<option selected value="">{{ ruchepublique.nomruche }}
-    {% else %}
-    	<option value="{{ ruchepublique.nomruche }}">{{ ruchepublique.nomruche }}
-	{% endif %}</option>
+        {% if ruchepublique.nomruche == nomruche %}
+        	<option selected value="">{{ ruchepublique.nomruche }}
+        {% else %}
+        	<option value="{{ ruchepublique.nomruche }}">{{ ruchepublique.nomruche }}
+    	{% endif %}</option>
     {% endfor %}
     </select>
 </form>
@@ -29,11 +29,11 @@
 <form id="form_ruche_privee" >
     <select id="liste_ruche_privee" onchange="nom_ruche()">
     {% for rucheprivee in rucheprivees %}
-	      {% if rucheprivee.ruche.nomruche == nomruche %}
-    	<option selected value="">{{ rucheprivee.ruche.nomruche }}
-    {% else %}
-    	<option value="{{ rucheprivee.ruche.nomruche }}">{{ rucheprivee.ruche.nomruche }}
-	{% endif %}</option>
+	    {% if rucheprivee.ruche.nomruche == nomruche %}
+        	<option selected value="">{{ rucheprivee.ruche.nomruche }}
+        {% else %}
+        	<option value="{{ rucheprivee.ruche.nomruche }}">{{ rucheprivee.ruche.nomruche }}
+    	{% endif %}</option>
     {% endfor %}
     </select>
 </form>
@@ -46,12 +46,13 @@
   	Highcharts.stockChart('test', {
 	    
 	chart:{
+		type: 'line',
 		zoomKey:'ctrl',
 		zoomType:'x'
 		},
     title: {
 	      text: 'Les mesures de la ruche {{ nomruche }}'
-	    },
+	    },				
     series: [{                     				
 	      	name: 'Poids de la ruche (en kg)',
 	      	data: data,
