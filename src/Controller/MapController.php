@@ -111,7 +111,7 @@ class MapController extends NouvellepageController{
                     foreach ($MesuresRuches as $MesuresRuche){
                         
                         $stockage1[] = array(
-                            $MesuresRuche->getDateReleve(),
+                            $MesuresRuche->getDateReleve()->getTimestamp()*1000,
                             $MesuresRuche->getPoids()
                         );
                     }
@@ -125,7 +125,7 @@ class MapController extends NouvellepageController{
                     foreach ($MesuresDeRuches as $MesuresDeRuche){
                         
                         $stockage2[]= array(
-                            $MesuresDeRuche->getDateReleve(),
+                            $MesuresDeRuche->getDateReleve()->getTimestamp()*1000,
                             $MesuresDeRuche->getPoids()
                         );
                     }
@@ -143,29 +143,25 @@ class MapController extends NouvellepageController{
                 foreach ($MesuresRuches as $MesuresRuche){
                     
                     $stock[] = array(
-                        $MesuresRuche->getDateReleve(),
-                        $MesuresRuche->getPoids()
+                        $MesuresRuche->getDateReleve()->getTimestamp()*1000,
+                         $MesuresRuche->getPoids()
                     );
+                }                
+                return new Response(json_encode($stock));
                 }
-                return $this->json($stock, 200);
-                }
-                return $this->json($stock, 200);;
+                return new Response(json_encode($stock));
             }
             
-            return $this->json($stock, 200);
+            return new Response(json_encode($stock));
         }
-        return $this->json($stock, 200);;
+        return new Response(json_encode($stock));
     }
     /**
      * @IsGranted("ROLE_USER")
      * @Route("/ruches_desactivees", name="ruches_desactivees")
      */
     public function ruches_desactivees(EntityManagerInterface $em, Request $request){
-        
-        $NomProprietaire=$this->getUser();
-        
-        $AssosRucheApi = $this->getDoctrine()->getRepository(AssociationRucheApiculteur::class)->findBy(array('apiculteur'=>$NomProprietaire));
-
+                
         $qb = $em->createQueryBuilder();
         $qb->select('w')->from(CRuche::class, 'w')->where('w.etat = 4')->orderBy('w.datearchive', 'ASC');
         $query = $qb->getQuery();
@@ -175,6 +171,7 @@ class MapController extends NouvellepageController{
     }  
     
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/details_ruches/{nomruche}", name="details_ruches")
      */
     public function details_ruches($nomruche,EntityManagerInterface $em, Request $request){
