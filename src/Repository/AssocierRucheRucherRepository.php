@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\AssociationRucheRucher;
+use App\Entity\AssocierRucheRucher;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method AssociationRucheRucher|null find($id, $lockMode = null, $lockVersion = null)
- * @method AssociationRucheRucher|null findOneBy(array $criteria, array $orderBy = null)
- * @method AssociationRucheRucher[]    findAll()
- * @method AssociationRucheRucher[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method AssocierRucheRucher|null find($id, $lockMode = null, $lockVersion = null)
+ * @method AssocierRucheRucher|null findOneBy(array $criteria, array $orderBy = null)
+ * @method AssocierRucheRucher[]    findAll()
+ * @method AssocierRucheRucher[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AssociationRucheRucherRepository extends ServiceEntityRepository
+class AssocierRucheRucherRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, AssociationRucheRucher::class);
+        parent::__construct($registry, AssocierRucheRucher::class);
     }
 
     // /**
-    //  * @return AssociationRucheRucher[] Returns an array of AssociationRucheRucher objects
+    //  * @return AssocierRucheRucher[] Returns an array of AssocierRucheRucher objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class AssociationRucheRucherRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?AssociationRucheRucher
+    public function findOneBySomeField($value): ?AssocierRucheRucher
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.exampleField = :val')
