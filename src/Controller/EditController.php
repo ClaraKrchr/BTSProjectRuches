@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\CRuche;
 use App\Entity\AssociationRuchePeseruche;
-use App\Entity\AssociationRucheRucher;
+use App\Entity\AssocierRucheRucher;
 use App\Entity\AssociationRucheApiculteur;
 use App\Entity\CPeseRuche;
 use App\Entity\CRucher;
@@ -41,19 +41,17 @@ class EditController extends AbstractController
             $ruche->setVisibilite($data['Visibilite']);
             $ruche->setTyperuche($data['Type_ruche']);
             $ruche->setEtat($data['Etat']);
+            $ruche->setNbassosrucher(0);
             
-            $em->persist($ruche);
-            
-            if($data['Rucher'] != NULL){
+            if($data['Rucher'] != 'Aucun'){
                 
-                if ($em->getRepository(AssociationRucheRucher::class)->findOneBy(array('ruche'=>$ruche))){ $em->remove($em->getRepository(AssociationRucheRucher::class)->findOneBy(array('ruche'=>$ruche)));}
+                if ($em->getRepository(AssocierRucheRucher::class)->findOneBy(array('ruche'=>$ruche))){ $em->remove($em->getRepository(AssocierRucheRucher::class)->findOneBy(array('ruche'=>$ruche)));}
                 
-                $AssociationRucheRucher = new AssociationRucheRucher;
-                $AssociationRucheRucher->setRuche($ruche);
-                $AssociationRucheRucher->setRucher($em->getRepository(CRucher::class)->findOneBy(array('id'=>($data['Rucher'])->getId())));
-                $em->persist($AssociationRucheRucher);
-                ($data['Rucher'])->addAssociationRucheRucher($AssociationRucheRucher);
-                $ruche->setAssociationRucheRucher($AssociationRucheRucher);
+                $AssocierRucheRucher = new AssocierRucheRucher;
+                $AssocierRucheRucher->setRuche($ruche);
+                $AssocierRucheRucher->setRucher($em->getRepository(CRucher::class)->findOneBy(array('id'=>($data['Rucher'])->getId())));
+                $em->persist($AssocierRucheRucher);
+                $ruche->setNbassosrucher(1);
                 
             }
             
@@ -71,6 +69,7 @@ class EditController extends AbstractController
 
             }
             
+            $em->persist($ruche);
             $em->flush();
             
             return $this->redirectToRoute('tableau_donnees');

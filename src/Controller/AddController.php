@@ -16,7 +16,7 @@ use App\Entity\CRucher;
 use App\Entity\CStation;
 use App\Entity\AssociationRucheApiculteur;
 use App\Entity\AssociationRuchePeseruche;
-use App\Entity\AssociationRucheRucher;
+use App\Entity\AssocierRucheRucher;
 use App\Entity\AssociationPeserucheStation;
 use App\Entity\AssociationStationRucher;
 use App\Entity\AssociationRucherRegion;
@@ -57,8 +57,7 @@ class AddController extends AbstractController{
             $CRuche->setVisibilite($data['Visibilite']);
             $CRuche->setTyperuche($data['Type_ruche']);
             $CRuche->setEtat($data['Etat']);
-            
-            $em->persist($CRuche);
+            $CRuche->setNbassosrucher(0);
             
             
             $AssociationRucheApiculteur = new AssociationRucheApiculteur();
@@ -70,13 +69,12 @@ class AddController extends AbstractController{
             $CRuche->setAssociationRucheApiculteur($AssociationRucheApiculteur);
             
             if($data['Rucher']->getNom() != 'Aucun'){
-                $AssociationRucheRucher = new AssociationRucheRucher();
+                $AssociationRucheRucher = new AssocierRucheRucher();
                 
                 $AssociationRucheRucher->setRuche($CRuche);
                 $AssociationRucheRucher->setRucher($em->getRepository(CRucher::class)->findOneBy(array('id'=>($data['Rucher'])->getId())));
                 $em->persist($AssociationRucheRucher);
-                ($data['Rucher'])->addAssociationRucheRucher($AssociationRucheRucher);
-                $CRuche->setAssociationRucheRucher($AssociationRucheRucher);
+                $CRuche->setNbassosrucher(1);
             }
             
             if($data['PeseRuche']->getNomPeseRuche() != 'Aucun'){
@@ -91,6 +89,7 @@ class AddController extends AbstractController{
                 $CRuche->setAssociationRuchePeseruche($AssociationRuchePeseruche);
             }
             
+            $em->persist($CRuche);
             $em->flush();
             
             $message=utf8_encode('La ruche a été ajoutée');

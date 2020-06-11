@@ -17,7 +17,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\CRuche;
 use App\Entity\CRucher;
 use App\Entity\AssociationRuchePeseruche;
-use App\Entity\AssociationRucheRucher;
+use App\Entity\AssocierRucheRucher;
 use App\Entity\AssociationRucheApiculteur;
 use App\Entity\AssociationPeserucheStation;
 use App\Entity\MesuresStations;
@@ -44,11 +44,11 @@ class MapController extends NouvellepageController{
         $Regions=$this->getDoctrine()->getRepository(Regions::class)->findBy(array('nomregion'=>$regions));
         $RucherRegion = $this->getDoctrine()->getRepository(AssociationRucherRegion::class)->findBy(array('region'=>$Regions));
         //-------------Recherche des ruches dans les ruchers-----------------//
-        $RuchesRuchers= $this->getDoctrine()->getRepository(AssociationRucheRucher::class)->findBy(array('rucher'=>$RucherRegion));
+        $RuchesRuchers= $this->getDoctrine()->getRepository(AssocierRucheRucher::class)->findBy(array('rucher'=>$RucherRegion));
         //------------Recherche des ruches appartenant a l'utilisateur connecté-------------//
         $RuchesApiculteurs = $this->getDoctrine()->getRepository(AssociationRucheApiculteur::class)->findBy(array('ruche'=>$RuchesRuchers,'apiculteur'=>$NomProprietaire));
         
-        return $this->render('Ruches/tableau_donnees.html.twig', ['apiculteurs' => $RuchesApiculteurs,'region'=>$regions]);
+        return $this->render('Ruches/tableau_donnees.html.twig', ['apiculteurs' => $RuchesApiculteurs,'region'=>$regions, 'assosruchers' => $RuchesRuchers]);
     }
     
     /**

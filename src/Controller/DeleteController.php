@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\CRuche;
 use App\Entity\AssociationRuchePeseruche;
-use App\Entity\AssociationRucheRucher;
+use App\Entity\AssocierRucheRucher;
 use App\Entity\AssociationRucheApiculteur;
 use App\Entity\CPeseRuche;
 use App\Entity\CRucher;
@@ -37,8 +37,11 @@ class DeleteController extends AbstractController
         if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('erreur403');
         //////////////////////////////
         
-        $AssosRucheRucher = $this->getDoctrine()->getRepository(AssociationRucheRucher::class)->findOneBy(array('ruche'=>$ruche));
-        if ($AssosRucheRucher != NULL){$em->remove($AssosRucheRucher);}
+        $AssosRucheRucher = $this->getDoctrine()->getRepository(AssocierRucheRucher::class)->findOneBy(array('ruche'=>$ruche));
+        if ($AssosRucheRucher != NULL){
+            $em->remove($AssosRucheRucher); 
+            $ruche->setNbassosrucher(0);
+        }
         
         $AssosRuchePeseruche = $this->getDoctrine()->getRepository(AssociationRuchePeseruche::class)->findOneBy(array('ruche'=>$ruche));
         if($AssosRuchePeseruche != NULL){$AssosRuchePeseruche->getPeseruche()->setNbAssosRuche(0); $em->remove($AssosRuchePeseruche);}
@@ -76,7 +79,7 @@ class DeleteController extends AbstractController
         if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('erreur403');
         //////////////////////////////
         
-        $AssosRucheRucher = $this->getDoctrine()->getRepository(AssociationRucheRucher::class)->findOneBy(array('ruche'=>$ruche));
+        $AssosRucheRucher = $this->getDoctrine()->getRepository(AssocierRucheRucher::class)->findOneBy(array('ruche'=>$ruche));
         if ($AssosRucheRucher == NULL){return $this->redirectToRoute('ruches_privees');}
         $ruche->setEtat('0');
         $em->remove($AssosRucheRucher);

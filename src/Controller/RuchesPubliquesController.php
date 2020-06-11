@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\CRucher;
 use App\Entity\CRuche;
-use App\Entity\AssociationRucheRucher;
+use App\Entity\AssocierRucheRucher;
 use App\Entity\AssociationRucherRegion;
 use App\Entity\Regions;
 
@@ -26,7 +26,7 @@ class RuchesPubliquesController extends AbstractController{
         
         $region = $this->getDoctrine()->getRepository(Regions::class)->findBy(array('nomregion'=>$regions));
         $RucherRegion = $this->getDoctrine()->getRepository(AssociationRucherRegion::class)->findBy(array('region'=>$region));
-        $AssosRucheRucher = $this->getDoctrine()->getRepository(AssociationRucheRucher::class)->findBy(array('rucher'=>$RucherRegion));
+        $AssosRucheRucher = $this->getDoctrine()->getRepository(AssocierRucheRucher::class)->findBy(array('rucher'=>$RucherRegion));
         $ARRLength = count($AssosRucheRucher);
         $ruches = array();
         for($j = $i = 0; $i < $ARRLength; $i++)

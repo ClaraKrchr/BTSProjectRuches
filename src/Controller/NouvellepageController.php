@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\CRuche;
 use App\Entity\CRucher;
-use App\Entity\AssociationRucheRucher;
+use App\Entity\AssocierRucheRucher;
 use App\Entity\AssociationRucheApiculteur;
 use App\Entity\MesuresStations;
 use App\Entity\MesuresRuches;
@@ -44,7 +44,8 @@ class NouvellepageController extends AbstractController
 
         //------------Recherche des ruches appartenant a l'utilisateur connect�-------------//
         $RuchesApiculteurs = $this->getDoctrine()->getRepository(AssociationRucheApiculteur::class)->findBy(array('apiculteur'=>$NomProprietaire));
-        return $this->render('Ruches/ruches_privees.html.twig', ['apiculteurs' => $RuchesApiculteurs]);
+        $RucheRuchers = $this->getDoctrine()->getRepository(AssocierRucheRucher::class)->findAll();
+        return $this->render('Ruches/ruches_privees.html.twig', ['apiculteurs' => $RuchesApiculteurs, 'assosruchers' => $RucheRuchers]);
     }
 
     /**

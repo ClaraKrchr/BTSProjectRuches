@@ -73,6 +73,11 @@ class CRuche
      */
     private $datearchive;
 
+    /**
+     * @ORM\Column(type="smallint")
+     */
+    private $nbassosrucher;
+
     public function __construct()
     {
         $this->mesuresRuches = new ArrayCollection();
@@ -252,6 +257,18 @@ class CRuche
     public function setDatearchive(?\DateTimeInterface $datearchive): self
     {
         $this->datearchive = $datearchive;
+
+        return $this;
+    }
+
+    public function getNbassosrucher(): ?int
+    {
+        return $this->nbassosrucher;
+    }
+
+    public function setNbassosrucher(int $nbassosrucher): self
+    {
+        $this->nbassosrucher = $nbassosrucher;
 
         return $this;
     }

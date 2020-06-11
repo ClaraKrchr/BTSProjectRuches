@@ -29,13 +29,13 @@
 			
 			<td> {% if apiculteur.ruche.visibilite=='0' %}{% trans %}Publique{% endtrans %}{% elseif apiculteur.ruche.visibilite=='1' %}{% trans %}Privée{% endtrans %}{% endif %}	</td>
 			
-			<td> {% if apiculteur.ruche.associationRucheRucher != NULL %} {{ apiculteur.ruche.associationRucheRucher.rucher }} {% else %} {% trans %} Aucun {% endtrans %} {% endif %}</td>
+			<td> {% if apiculteur.ruche.nbassosrucher == 1 %} {% for assosrucher in assosruchers %} {% if assosrucher.ruche == apiculteur.ruche %} {{ assosrucher.rucher.nom }} {% endif %} {% endfor %} {% else %} {% trans %} Aucun {% endtrans %} {% endif %}</td>
 			
 			<td> {% if apiculteur.ruche.associationRuchePeseruche != NULL %}{{ apiculteur.ruche.associationRuchePeseruche.peseruche.nomPeseruche }}{% else %} {% trans %} Aucun {% endtrans %} {% endif %} </td>
 			
 			<td><a href="{{ path('edit_ruche', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark">{% trans %}Modifier{% endtrans %}</a>
 			<a href="{{ path('delete_ruche', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark">{% if apiculteur.ruche.carnets is empty and apiculteur.ruche.mesuresRuches is empty %} {%trans %} Supprimer {% endtrans %} {% else %}{% trans %}Archiver{% endtrans %} {% endif %}</a>
-			{% if apiculteur.ruche.associationRucheRucher != NULL %}<a href="{{ path('dissociate_ruche_rucher', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark">{% trans %}Dissocier du rucher{% endtrans %}</a>{% else %}<a href="{{ path('dissociate_ruche_rucher', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark disabled">{% trans %}Dissocier du rucher{% endtrans %}</a>{% endif %}
+			{% if apiculteur.ruche.nbassosrucher == 1 %}<a href="{{ path('dissociate_ruche_rucher', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark">{% trans %}Dissocier du rucher{% endtrans %}</a>{% else %}<a href="{{ path('dissociate_ruche_rucher', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark disabled">{% trans %}Dissocier du rucher{% endtrans %}</a>{% endif %}
 			{% if apiculteur.ruche.associationRuchePeseruche != NULL %}<a href="{{ path('dissociate_ruche_peseruche', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark">{% trans %}Dissocier du pèse-ruche{% endtrans %}</a>{% else %}<a href="{{ path('dissociate_ruche_peseruche', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark disabled">{% trans %}Dissocier du pèse-ruche{% endtrans %}</a>{% endif %}</td>
 		</tr>
 		{% endif %}
