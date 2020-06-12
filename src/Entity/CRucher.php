@@ -33,18 +33,7 @@ class CRucher
      * @ORM\Column(type="float")
      */
     private $longitude;
-    
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\AssociationStationRucher", mappedBy="rucher")
-     */
-    private $associationStationRuchers;
-
-
-    public function __construct()
-    {
-        $this->associationStationRuchers = new ArrayCollection();
-    }
 
 #=======================GETTERS========================#
 
@@ -95,36 +84,5 @@ class CRucher
     public function __toString(){
         return $this->getNom();
     }
-
-/**
- * @return Collection|AssociationStationRucher[]
- */
-public function getAssociationStationRuchers(): Collection
-{
-    return $this->associationStationRuchers;
-}
-
-public function addAssociationStationRucher(AssociationStationRucher $associationStationRucher): self
-{
-    if (!$this->associationStationRuchers->contains($associationStationRucher)) {
-        $this->associationStationRuchers[] = $associationStationRucher;
-        $associationStationRucher->setRucher($this);
-    }
-
-    return $this;
-}
-
-public function removeAssociationStationRucher(AssociationStationRucher $associationStationRucher): self
-{
-    if ($this->associationStationRuchers->contains($associationStationRucher)) {
-        $this->associationStationRuchers->removeElement($associationStationRucher);
-        // set the owning side to null (unless already changed)
-        if ($associationStationRucher->getRucher() === $this) {
-            $associationStationRucher->setRucher(null);
-        }
-    }
-
-    return $this;
-}
 
 }

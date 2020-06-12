@@ -5,21 +5,21 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\AssociationStationRucherRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\AssocierStationRucherRepository")
  */
-class AssociationStationRucher
+class AssocierStationRucher
 {
 
     /**
      * @ORM\Id()
-     * @ORM\OneToOne(targetEntity="App\Entity\CStation", inversedBy="associationStationRucher", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\CStation", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $station;
 
     /**
      * @ORM\Id()
-     * @ORM\ManyToOne(targetEntity="App\Entity\CRucher", inversedBy="associationStationRuchers")
+     * @ORM\ManyToOne(targetEntity="App\Entity\CRucher")
      * @ORM\JoinColumn(nullable=false)
      */
     private $rucher;

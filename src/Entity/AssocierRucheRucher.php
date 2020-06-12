@@ -24,11 +24,6 @@ class AssocierRucheRucher
      */
     private $rucher;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
     public function getRuche(): ?CRuche
     {
         return $this->ruche;
