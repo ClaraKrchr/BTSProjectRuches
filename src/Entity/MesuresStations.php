@@ -23,7 +23,7 @@ class MesuresStations
     private $temperature;
 
     /**
-     * @ORM\Column(type="smallint")
+     * @ORM\Column(type="float")
      */
     private $tension;
 
@@ -64,12 +64,12 @@ class MesuresStations
         return $this;
     }
 
-    public function getTension(): ?int
+    public function getTension(): ?float
     {
         return $this->tension;
     }
 
-    public function setTension(int $tension): self
+    public function setTension(float $tension): self
     {
         $this->tension = $tension;
 

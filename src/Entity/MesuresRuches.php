@@ -20,7 +20,7 @@ class MesuresRuches
     private $id;
 
     /**
-     * @ORM\Column(type="smallint", nullable=true)
+     * @ORM\Column(type="float", nullable=true)
      * @Groups("mesure:read")
      * @Assert\NotBlank
      */
@@ -48,12 +48,12 @@ class MesuresRuches
         return $this->id;
     }
 
-    public function getPoids(): ?int
+    public function getPoids(): ?float
     {
         return $this->poids;
     }
 
-    public function setPoids(?int $poids): self
+    public function setPoids(?float $poids): self
     {
         $this->poids = $poids;
 

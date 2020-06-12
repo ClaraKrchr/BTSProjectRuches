@@ -57,13 +57,6 @@ class APIController extends AbstractController
         $data = $request->query->get('sta');
         $array = explode(",", $data);
 
-        /*
-        $list = [];
-        for($i = 0; $i < 5; $i++){
-
-            $list[$i] = $array[$i];
-        }
-        */
         $fileToW = fopen(__DIR__."/log/test.csv","a");
 
         fputcsv($fileToW, $array);
