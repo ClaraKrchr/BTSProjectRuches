@@ -44,11 +44,6 @@ class CRuche
     private $visibilite;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\AssociationRucheApiculteur", mappedBy="ruche", cascade={"persist", "remove"})
-     */
-    private $associationRucheApiculteur;
-
-    /**
      * @ORM\Column(type="smallint")
      */
     private $etat;
@@ -127,23 +122,6 @@ class CRuche
     public function setVisibilite(bool $visibilite): self
     {
         $this->visibilite = $visibilite;
-
-        return $this;
-    }
-
-    public function getAssociationRucheApiculteur(): ?AssociationRucheApiculteur
-    {
-        return $this->associationRucheApiculteur;
-    }
-
-    public function setAssociationRucheApiculteur(AssociationRucheApiculteur $associationRucheApiculteur): self
-    {
-        $this->associationRucheApiculteur = $associationRucheApiculteur;
-
-        // set the owning side of the relation if necessary
-        if ($associationRucheApiculteur->getRuche() !== $this) {
-            $associationRucheApiculteur->setRuche($this);
-        }
 
         return $this;
     }

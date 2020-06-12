@@ -78,11 +78,6 @@ class CApiculteur implements UserInterface
     private $roles = [];
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\AssociationRucheApiculteur", mappedBy="apiculteur")
-     */
-    private $associationRucheApiculteurs;
-
-    /**
      * @ORM\Column(type="string", length=30, unique=true)
      */
     private $pseudo;
@@ -96,11 +91,6 @@ class CApiculteur implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $activationtoken;
-
-    public function __construct()
-    {
-        $this->associationRucheApiculteurs = new ArrayCollection();
-    }
 
 
 #=====================GETTERS==========================#
@@ -254,37 +244,6 @@ class CApiculteur implements UserInterface
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|AssociationRucheApiculteur[]
-     */
-    public function getAssociationRucheApiculteurs(): Collection
-    {
-        return $this->associationRucheApiculteurs;
-    }
-
-    public function addAssociationRucheApiculteur(AssociationRucheApiculteur $associationRucheApiculteur): self
-    {
-        if (!$this->associationRucheApiculteurs->contains($associationRucheApiculteur)) {
-            $this->associationRucheApiculteurs[] = $associationRucheApiculteur;
-            $associationRucheApiculteur->setApiculteur($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAssociationRucheApiculteur(AssociationRucheApiculteur $associationRucheApiculteur): self
-    {
-        if ($this->associationRucheApiculteurs->contains($associationRucheApiculteur)) {
-            $this->associationRucheApiculteurs->removeElement($associationRucheApiculteur);
-            // set the owning side to null (unless already changed)
-            if ($associationRucheApiculteur->getApiculteur() === $this) {
-                $associationRucheApiculteur->setApiculteur(null);
-            }
-        }
 
         return $this;
     }

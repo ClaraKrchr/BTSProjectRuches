@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\AssociationApiculteurCarnet;
+use App\Entity\AssocierRucheApiculteur;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method AssociationApiculteurCarnet|null find($id, $lockMode = null, $lockVersion = null)
- * @method AssociationApiculteurCarnet|null findOneBy(array $criteria, array $orderBy = null)
- * @method AssociationApiculteurCarnet[]    findAll()
- * @method AssociationApiculteurCarnet[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method AssocierRucheApiculteur|null find($id, $lockMode = null, $lockVersion = null)
+ * @method AssocierRucheApiculteur|null findOneBy(array $criteria, array $orderBy = null)
+ * @method AssocierRucheApiculteur[]    findAll()
+ * @method AssocierRucheApiculteur[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AssociationApiculteurCarnetRepository extends ServiceEntityRepository
+class AssocierRucheApiculteurRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, AssociationApiculteurCarnet::class);
+        parent::__construct($registry, AssocierRucheApiculteur::class);
     }
 
     // /**
-    //  * @return AssociationApiculteurCarnet[] Returns an array of AssociationApiculteurCarnet objects
+    //  * @return AssocierRucheApiculteur[] Returns an array of AssocierRucheApiculteur objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class AssociationApiculteurCarnetRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?AssociationApiculteurCarnet
+    public function findOneBySomeField($value): ?AssocierRucheApiculteur
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.exampleField = :val')
