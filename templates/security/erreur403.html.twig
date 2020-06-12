@@ -5,8 +5,8 @@
 <br>
 
 <center><img src="{{ asset('stop.jpg') }}" alt="Stop"><br><br><br>
-<h2>Erreur 403</h2>
-<h3>Bzzz, vous n'avez pas l'autorisation de consulter cette page !</h3>
-<a href="{{ path('home') }}">Cliquez ici pour retourner à l'accueil</a></center>
+<h2>{% trans %}Erreur 403{% endtrans %}</h2>
+<h3>{% trans %}Bzzz, vous n'avez pas l'autorisation de consulter cette page !{% endtrans %}</h3>
+<a href="{{ path('home') }}">{% trans %}Cliquez ici pour retourner à l'accueil{% endtrans %}</a></center>
 	
 {% endblock %}

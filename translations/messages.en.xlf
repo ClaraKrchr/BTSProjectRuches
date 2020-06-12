@@ -625,6 +625,30 @@
         <source>Vous n'avez aucune ruche archivée.</source>
         <target>You have not archived hives.</target>
       </trans-unit>
+      <trans-unit id="U5GtZ9K" resname="Erreur 403">
+        <source>Erreur 403</source>
+        <target>Error 403</target>
+      </trans-unit>
+      <trans-unit id="4JwsqoM" resname="Bzzz, vous n'avez pas l'autorisation de consulter cette page !">
+        <source>Bzzz, vous n'avez pas l'autorisation de consulter cette page !</source>
+        <target>Bzzz, you do not have permission to view this page!</target>
+      </trans-unit>
+      <trans-unit id="edEiMsE" resname="Cliquez ici pour retourner à l'accueil">
+        <source>Cliquez ici pour retourner à l'accueil</source>
+        <target>Click here to return to home</target>
+      </trans-unit>
+      <trans-unit id="RhSOJQ5" resname="Erreur">
+        <source>Erreur</source>
+        <target>Error</target>
+      </trans-unit>
+      <trans-unit id="cw8EcCt" resname="Erreur 404">
+        <source>Erreur 404</source>
+        <target>Error 404</target>
+      </trans-unit>
+      <trans-unit id="QbBzgBl" resname="Bzzz, lien invalide !">
+        <source>Bzzz, lien invalide !</source>
+        <target>Bzzz, invalid link!</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

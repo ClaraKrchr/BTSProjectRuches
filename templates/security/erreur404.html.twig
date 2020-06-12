@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
-{% block title %}Erreur{% endblock %}
+{% block title %}{% trans %}Erreur{% endtrans %}{% endblock %}
 {% block body %}
 <meta charset="UTF-8">
 <br>
 
 <center><img src="{{ asset('stop.jpg') }}" alt="Stop"><br><br><br>
-<h2>Erreur 404</h2>
-<h3>Bzzz, lien invalide !</h3>
-<a href="{{ path('home') }}">Cliquez ici pour retourner à l'accueil</a></center>
+<h2>{% trans %}Erreur 404{% endtrans %}</h2>
+<h3>{% trans %}Bzzz, lien invalide !{% endtrans %}</h3>
+<a href="{{ path('home') }}">{% trans %}Cliquez ici pour retourner à l'accueil{% endtrans %}</a></center>
 	
 {% endblock %}
