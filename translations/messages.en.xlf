@@ -73,6 +73,10 @@
         <source>Ruches en paille</source>
         <target>Straw hive</target>
       </trans-unit>
+      <trans-unit id="XhP91to" resname="ruche">
+        <source>ruche</source>
+        <target>hive</target>
+      </trans-unit>
       <trans-unit id="Y1rbe87" resname="Nom station">
         <source>Nom station</source>
         <target>Station name</target>
@@ -649,7 +653,14 @@
         <source>Bzzz, lien invalide !</source>
         <target>Bzzz, invalid link!</target>
       </trans-unit>
+      <trans-unit id="cz0cdCZ" resname="Rechercher">
+        <source>Rechercher</source>
+        <target>Search</target>
+      </trans-unit>
+      <trans-unit id="tJL0ef0" resname="Vous n'avez pas de ruche archivée.">
+        <source>Vous n'avez pas de ruche archivée.</source>
+        <target>You have not archived hives.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
-
