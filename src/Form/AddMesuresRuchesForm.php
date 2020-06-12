@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\MesuresRuches;
 use App\Entity\CRuche;
-use App\Entity\CPeseRuche;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -38,15 +37,6 @@ class AddMesuresRuchesForm extends AbstractType
                     'min' => 0,
                     'max' => 50
                 ]])
-                ->add('peseruche',EntityType::class, [
-                    'class'=>CPeseRuche::class,
-                    'query_builder' => function(EntityRepository $er){
-                    return $er->createQueryBuilder('u')->select('w')->from(CPeseRuche::class, 'w')->orderBy('w.nompeseruche', 'ASC');
-                    },
-                    'choice_label'=>function(CPeseRuche $CPeseRuche){
-                    return sprintf(' %s',$CPeseRuche->getNomPeseRuche());
-                    }
-                    ])
         ;
     }
 }

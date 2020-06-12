@@ -20,15 +20,6 @@ class AddMesuresStationsForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('station',EntityType::class, [
-            'class'=>CStation::class,
-            'query_builder' => function(EntityRepository $er){
-            return $er->createQueryBuilder('u')->select('w')->from(CStation::class, 'w')->orderBy('w.nom', 'ASC');
-            },
-            'choice_label'=>function(CStation $CStation){
-            return sprintf(' %s',$CStation->getNom());
-            }
-            ])
             ->add('temperature')
             ->add('tension')
             ->add('humidite')
