@@ -43,12 +43,6 @@ class MesuresStations
     private $date_releve;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\CRucher")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $rucher;
-
-    /**
      * @ORM\Column(type="integer")
      */
     private $idrucher;
@@ -114,18 +108,6 @@ class MesuresStations
     public function setDateReleve(\DateTimeInterface $date_releve): self
     {
         $this->date_releve = $date_releve;
-
-        return $this;
-    }
-
-    public function getRucher(): ?CRucher
-    {
-        return $this->rucher;
-    }
-
-    public function setRucher(?CRucher $rucher): self
-    {
-        $this->rucher = $rucher;
 
         return $this;
     }
