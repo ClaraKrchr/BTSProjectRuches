@@ -3,19 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\MesuresRuches;
-use App\Entity\CRuche;
+// use App\Entity\CRuche;
 use App\Entity\CStation;
-use App\Entity\CPeseRuche;
+use App\Entity\AssocierRuchePort;
 use App\Entity\MesuresStations;
-use App\Entity\AssociationRuchePeseRuche;
-use App\Entity\AssociationStationRucher;
+use App\Entity\AssocierStationRucher;
 use App\Repository\MesuresRuchesRepository;
 use App\Repository\MesuresStationsRepository;
-use App\Repository\CRucheRepository;
+use App\Repository\AssocierRuchePortRepository;
 use App\Repository\CStationRepository;
-use App\Repository\AssociationRuchePeseRucheRepository;
-use App\Repository\CPeseRucheRepository;
-use App\Repository\AssociationStationRucherRepository;
+use App\Repository\AssocierStationRucherRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,6 +54,55 @@ class APIController extends AbstractController
      */
     public function post(Request $request, EntityManagerInterface $em, ValidatorInterface $validator)
     {
+        $data = $request->query->get('sta');
+        $array = explode(",", $data);
+
+        /*
+        $list = [];
+        for($i = 0; $i < 5; $i++){
+
+            $list[$i] = $array[$i];
+        }
+        */
+        $fileToW = fopen(__DIR__."/log/test.csv","a");
+
+        fputcsv($fileToW, $array);
+
+        $mesureS = new MesuresStations;
+
+        $mesureS->setDateReleve(new \datetime());
+        $idStation = (int)current($array);
+        $station = $em->getRepository(CStation::class)->findOneBy(array('nom'=>$idStation));
+        $assos = $em->getRepository(AssocierStationRucher::class)->findOneBy(array('station'=>$station));
+        $idRucher = $assos->getRucher()->getId();
+        $mesureS->setIdrucher($idRucher);
+
+        $mesureS->setTemperature((int)next($array));
+        $mesureS->setTension((float)next($array));
+        $mesureS->setHumidite((int)next($array));
+        $mesureS->setPression((int)next($array));
+
+        $errors = $validator->validate($mesureS);
+        if(count($errors)){
+            return $this->json($errors, 400);
+        }
+        // $em->persist($mesureS);
+        // $em->flush();
+        // $data = fgetcsv($request, 1000, ",");
+
+        for($i = 0; $i < 15; $i++){
+            if((float)next($array) != 0){
+                $mesureR = new MesuresRuches;
+                $mesureR->setDateReleve(new \datetime());
+                $mesureR->setPoids((int)current($array));
+                $idStationPort = $idStation + $i + 1;
+                $mesureR->setIdstationport($idStationPort);
+                $assosRuchePort = $em->getRepository(AssocierRuchePort::class)->findOneBy(array('station'=>$station, 'numport'=>($i + 1)));
+                $mesureR->setIdruche($assosRuchePort->getRuche()->getId());
+            }
+        }
+        return $this->json($array, 201, []);
+        /*
         try{
             $contentArray = [];
             if ($jsonContent = $request->getContent()) {
@@ -104,10 +150,6 @@ class APIController extends AbstractController
 
                     $mesureR->setPoids(next($rucheArray));
 
-                    $assos = $em->getRepository(AssociationRuchePeseRuche::class)->findOneBy(array('ruche'=>$ruche));
-                    $peseRuche = $assos->getPeseruche();
-                    $mesureR->setPeseruche($peseRuche);
-
                     $errors = $validator->validate($mesureR);
                     if(count($errors)){
                         return $this->json($errors, 400);
@@ -124,6 +166,6 @@ class APIController extends AbstractController
                 'message' => $e->getMessage()
             ], 400);
         }
-        
+        */
     }
 }
