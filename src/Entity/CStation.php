@@ -25,16 +25,6 @@ class CStation
     private $nom;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\MesuresStations", mappedBy="station", orphanRemoval=true)
-     */
-    private $mesuresStations;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\AssociationPeserucheStation", mappedBy="station")
-     */
-    private $associationPeserucheStations;
-
-    /**
      * @ORM\OneToOne(targetEntity="App\Entity\AssociationStationRucher", mappedBy="station", cascade={"persist", "remove"})
      */
     private $associationStationRucher;
@@ -51,7 +41,6 @@ class CStation
 
     public function __construct()
     {
-        $this->mesuresStations = new ArrayCollection();
         $this->associationPeserucheStations = new ArrayCollection();
     }
 
@@ -68,68 +57,6 @@ class CStation
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|MesuresStations[]
-     */
-    public function getMesuresStations(): Collection
-    {
-        return $this->mesuresStations;
-    }
-
-    public function addMesuresStation(MesuresStations $mesuresStation): self
-    {
-        if (!$this->mesuresStations->contains($mesuresStation)) {
-            $this->mesuresStations[] = $mesuresStation;
-            $mesuresStation->setStation($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMesuresStation(MesuresStations $mesuresStation): self
-    {
-        if ($this->mesuresStations->contains($mesuresStation)) {
-            $this->mesuresStations->removeElement($mesuresStation);
-            // set the owning side to null (unless already changed)
-            if ($mesuresStation->getStation() === $this) {
-                $mesuresStation->setStation(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|AssociationPeserucheStation[]
-     */
-    public function getAssociationPeserucheStations(): Collection
-    {
-        return $this->associationPeserucheStations;
-    }
-
-    public function addAssociationPeserucheStation(AssociationPeserucheStation $associationPeserucheStation): self
-    {
-        if (!$this->associationPeserucheStations->contains($associationPeserucheStation)) {
-            $this->associationPeserucheStations[] = $associationPeserucheStation;
-            $associationPeserucheStation->setStation($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAssociationPeserucheStation(AssociationPeserucheStation $associationPeserucheStation): self
-    {
-        if ($this->associationPeserucheStations->contains($associationPeserucheStation)) {
-            $this->associationPeserucheStations->removeElement($associationPeserucheStation);
-            // set the owning side to null (unless already changed)
-            if ($associationPeserucheStation->getStation() === $this) {
-                $associationPeserucheStation->setStation(null);
-            }
-        }
 
         return $this;
     }

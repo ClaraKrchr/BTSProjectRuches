@@ -40,11 +40,6 @@ class CRucher
      */
     private $associationStationRuchers;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Regions")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $region;
 
     public function __construct()
     {
@@ -131,18 +126,5 @@ public function removeAssociationStationRucher(AssociationStationRucher $associa
 
     return $this;
 }
-
-public function getRegion(): ?Regions
-{
-    return $this->region;
-}
-
-public function setRegion(?Regions $region): self
-{
-    $this->region = $region;
-
-    return $this;
-}
-
 
 }
