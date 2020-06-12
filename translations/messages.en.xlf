@@ -105,6 +105,14 @@
         <source>Aucun</source>
         <target>None</target>
       </trans-unit>
+      <trans-unit id="Xc7Dve4" resname="Type de ruche">
+        <source>Type de ruche</source>
+        <target>Hive type</target>
+      </trans-unit>
+      <trans-unit id="jCtrnck" resname="proprietaire">
+        <source>proprietaire</source>
+        <target>owner</target>
+      </trans-unit>
       <trans-unit id="T6jfNBx" resname="Visibilité">
         <source>Visibilité</source>
         <target>Visibility</target>
@@ -612,6 +620,10 @@
       <trans-unit id="tK1cukl" resname="Modification d'une ruche">
         <source>Modification d'une ruche</source>
         <target>Hive modification</target>
+      </trans-unit>
+      <trans-unit id="kl1E0zN" resname="Vous n'avez aucune ruche archivée.">
+        <source>Vous n'avez aucune ruche archivée.</source>
+        <target>You have not archived hives.</target>
       </trans-unit>
     </body>
   </file>
