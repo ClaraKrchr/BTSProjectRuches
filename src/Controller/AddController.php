@@ -15,8 +15,7 @@ use App\Entity\CRucher;
 use App\Entity\CStation;
 use App\Entity\AssocierRucheApiculteur;
 use App\Entity\AssocierRucheRucher;
-use App\Entity\AssociationStationRucher;
-use App\Entity\AssociationRucherRegion;
+use App\Entity\AssocierStationRucher;
 use App\Entity\AssocierRuchePort;
 use App\Entity\Regions;
 use App\Entity\MesuresRuches;
@@ -117,13 +116,11 @@ class AddController extends AbstractController{
             
             $em->persist($CStation);
             
-            $AssociationStationRucher = new AssociationStationRucher();
+            $StationRucher = new AssocierStationRucher();
             
-            $AssociationStationRucher->setStation($CStation);
-            $AssociationStationRucher->setRucher($em->getRepository(CRucher::class)->findOneBy(array('id'=>($data['Rucher'])->getId())));
-            $em->persist($AssociationStationRucher);
-            ($data['Rucher'])->addAssociationStationRucher($AssociationStationRucher);
-            $CStation->setAssociationStationRucher($AssociationStationRucher);
+            $StationRucher->setStation($CStation);
+            $StationRucher->setRucher($em->getRepository(CRucher::class)->findOneBy(array('id'=>($data['Rucher'])->getId())));
+            $em->persist($StationRucher);
             $em->flush();
             
             $message=utf8_encode('La station a été ajoutée');
