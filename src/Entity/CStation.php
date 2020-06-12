@@ -29,11 +29,6 @@ class CStation
      */
     private $dateinstall;
 
-    public function __construct()
-    {
-        $this->associationPeserucheStations = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
