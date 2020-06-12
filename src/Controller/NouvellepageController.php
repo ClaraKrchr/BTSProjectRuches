@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\CRuche;
 use App\Entity\CRucher;
 use App\Entity\AssocierRucheRucher;
-use App\Entity\AssociationRucheApiculteur;
+use App\Entity\AssocierRucheApiculteur;
 use App\Entity\AssocierRuchePort;
 use App\Entity\MesuresStations;
 use App\Entity\MesuresRuches;
@@ -44,7 +44,7 @@ class NouvellepageController extends AbstractController
         $NomProprietaire=$this->getUser();
 
         //------------Recherche des ruches appartenant a l'utilisateur connect�-------------//
-        $RuchesApiculteurs = $this->getDoctrine()->getRepository(AssociationRucheApiculteur::class)->findBy(array('apiculteur'=>$NomProprietaire));
+        $RuchesApiculteurs = $this->getDoctrine()->getRepository(AssocierRucheApiculteur::class)->findBy(array('apiculteur'=>$NomProprietaire));
         $RucheRuchers = $this->getDoctrine()->getRepository(AssocierRucheRucher::class)->findAll();
         $RuchePort = $this->getDoctrine()->getRepository(AssocierRuchePort::class)->findAll();
         $MesuresRuches = $this->getDoctrine()->getRepository(MesuresRuches::class)->findAll();

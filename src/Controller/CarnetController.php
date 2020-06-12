@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Carnet;
 use App\Entity\CRuche;
-use App\Entity\AssociationRucheApiculteur;
+use App\Entity\AssocierRucheApiculteur;
 use App\Repository\CRucheRepository;
 use App\Repository\CarnetRepository;
 
@@ -48,7 +48,7 @@ class CarnetController extends AbstractController
         
         //Redirection si l'utilisateur n'est pas celui qui possède la ruche
         $Ruche = $em->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$ruche));
-        $assosRucheApi = $em->getRepository(AssociationRucheApiculteur::class)->findOneBy(array('ruche'=>$Ruche));
+        $assosRucheApi = $em->getRepository(AssocierRucheApiculteur::class)->findOneBy(array('ruche'=>$Ruche));
         if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('erreur403');
         //////////////////////////////
         

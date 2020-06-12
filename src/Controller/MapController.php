@@ -18,7 +18,7 @@ use App\Entity\CRuche;
 use App\Entity\CRucher;
 use App\Entity\AssocierRuchePort;
 use App\Entity\AssocierRucheRucher;
-use App\Entity\AssociationRucheApiculteur;
+use App\Entity\AssocierRucheApiculteur;
 use App\Entity\MesuresStations;
 use App\Entity\MesuresRuches;
 use App\Entity\AssociationRucherRegion;
@@ -48,7 +48,7 @@ class MapController extends NouvellepageController{
         foreach($RuchesRuchers as $RuchesRucher){
             $stock[]=$RuchesRucher->getRuche();
         }
-        $RuchesApiculteurs = $this->getDoctrine()->getRepository(AssociationRucheApiculteur::class)->findBy(array('ruche'=>$stock,'apiculteur'=>$NomProprietaire));
+        $RuchesApiculteurs = $this->getDoctrine()->getRepository(AssocierRucheApiculteur::class)->findBy(array('ruche'=>$stock,'apiculteur'=>$NomProprietaire));
         $RuchePort = $this->getDoctrine()->getRepository(AssocierRuchePort::class)->findAll();
         $MesuresRuches = $this->getDoctrine()->getRepository(MesuresRuches::class)->findAll();
         
@@ -174,7 +174,9 @@ class MapController extends NouvellepageController{
         $query = $qb->getQuery();
         $sendRuches = $query->getResult();
         
-        return $this->render('Ruches/ruches_desactivees.html.twig', ['ruches' => $sendRuches]);
+        $RuchesApiculteurs = $this->getDoctrine()->getRepository(AssocierRucheApiculteur::class)->findAll();
+        
+        return $this->render('Ruches/ruches_desactivees.html.twig', ['ruches' => $sendRuches, 'rucheapis' => $RuchesApiculteurs]);
     }  
     
     /**
@@ -183,9 +185,12 @@ class MapController extends NouvellepageController{
      */
     public function details_ruches($nomruche,EntityManagerInterface $em, Request $request){
         
+        $assosRucheApi = $em->getRepository(AssocierRucheApiculteur::class)->findOneBy(array('ruche'=>$nomruche));
+        if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('erreur403');
+        
         $NomProprietaire=$this->getUser();
         
-        $RuchesApiculteurs = $this->getDoctrine()->getRepository(AssociationRucheApiculteur::class)->findBy(array('apiculteur'=>$NomProprietaire));
+        $RuchesApiculteurs = $this->getDoctrine()->getRepository(AssocierRucheApiculteur::class)->findBy(array('apiculteur'=>$NomProprietaire));
         $RuchesPublic =  $this->getDoctrine()->getRepository(CRuche::class)->findBy(array('visibilite'=>'0'));
         
         return $this->render('Ruches/detail_ruche.html.twig',['nomruche'=>$nomruche,'proprietaire'=>$NomProprietaire,'ruchepubliques'=>$RuchesPublic,'rucheprivees'=>$RuchesApiculteurs]);

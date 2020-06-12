@@ -13,7 +13,7 @@ use App\Entity\CApiculteur;
 use App\Entity\CRuche;
 use App\Entity\CRucher;
 use App\Entity\CStation;
-use App\Entity\AssociationRucheApiculteur;
+use App\Entity\AssocierRucheApiculteur;
 use App\Entity\AssocierRucheRucher;
 use App\Entity\AssociationStationRucher;
 use App\Entity\AssociationRucherRegion;
@@ -58,13 +58,11 @@ class AddController extends AbstractController{
             $CRuche->setNbassosport(0);
             
             
-            $AssociationRucheApiculteur = new AssociationRucheApiculteur();
+            $RucheApiculteur = new AssocierRucheApiculteur();
             
-            $AssociationRucheApiculteur->setRuche($CRuche);
-            $AssociationRucheApiculteur->setApiculteur($apiculteur);
-            $em->persist($AssociationRucheApiculteur);
-            $apiculteur->addAssociationRucheApiculteur($AssociationRucheApiculteur);
-            $CRuche->setAssociationRucheApiculteur($AssociationRucheApiculteur);
+            $RucheApiculteur->setRuche($CRuche);
+            $RucheApiculteur->setApiculteur($apiculteur);
+            $em->persist($RucheApiculteur);
             
             if($data['Rucher']->getNom() != 'Aucun'){
                 $AssociationRucheRucher = new AssocierRucheRucher();

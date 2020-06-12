@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\CRuche;
 use App\Entity\AssocierRuchePort;
 use App\Entity\AssocierRucheRucher;
-use App\Entity\AssociationRucheApiculteur;
+use App\Entity\AssocierRucheApiculteur;
 use App\Entity\CRucher;
 use App\Entity\CStation;
 use App\Entity\Carnet;
@@ -33,7 +33,7 @@ class DeleteController extends AbstractController
         //METTRE MESSAGE CARNET
         
         //Redirection si l'utilisateur n'est pas celui qui possède la ruche
-        $assosRucheApi = $em->getRepository(AssociationRucheApiculteur::class)->findOneBy(array('ruche'=>$ruche));
+        $assosRucheApi = $em->getRepository(AssocierRucheApiculteur::class)->findOneBy(array('ruche'=>$ruche));
         if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('erreur403');
         //////////////////////////////
         
@@ -57,6 +57,8 @@ class DeleteController extends AbstractController
             return $this->redirectToRoute('ruches_privees');
         }
         
+        $AssosRucheApiculteur = $this->getDoctrine()->getRepository(AssocierRucheApiculteur::class)->findOneBy(array('ruche'=>$ruche));
+        $em->remove($AssosRucheApiculteur);
         $em->remove($ruche);
 
 
@@ -75,7 +77,7 @@ class DeleteController extends AbstractController
     {
         
         //Redirection si l'utilisateur n'est pas celui qui possède la ruche
-        $assosRucheApi = $em->getRepository(AssociationRucheApiculteur::class)->findOneBy(array('ruche'=>$ruche));
+        $assosRucheApi = $em->getRepository(AssocierRucheApiculteur::class)->findOneBy(array('ruche'=>$ruche));
         if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('erreur403');
         //////////////////////////////
         
@@ -101,7 +103,7 @@ class DeleteController extends AbstractController
     {
         
         //Redirection si l'utilisateur n'est pas celui qui possède la ruche
-        $assosRucheApi = $em->getRepository(AssociationRucheApiculteur::class)->findOneBy(array('ruche'=>$ruche));
+        $assosRucheApi = $em->getRepository(AssocierRucheApiculteur::class)->findOneBy(array('ruche'=>$ruche));
         if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('erreur403');
         //////////////////////////////
         

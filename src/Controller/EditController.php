@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\CRuche;
 use App\Entity\AssociationRuchePort;
 use App\Entity\AssocierRucheRucher;
-use App\Entity\AssociationRucheApiculteur;
+use App\Entity\AssocierRucheApiculteur;
 use App\Entity\CStation;
 use App\Entity\CRucher;
 
@@ -27,7 +27,7 @@ class EditController extends AbstractController
     public function editRuche(Request $request, CRuche $ruche, EntityManagerInterface $em)
     {
         //Redirection si l'utilisateur n'est pas celui qui possède la ruche
-        $assosRucheApi = $em->getRepository(AssociationRucheApiculteur::class)->findOneBy(array('ruche'=>$ruche));
+        $assosRucheApi = $em->getRepository(AssocierRucheApiculteur::class)->findOneBy(array('ruche'=>$ruche));
         if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('erreur403');
         //////////////////////////////
         
