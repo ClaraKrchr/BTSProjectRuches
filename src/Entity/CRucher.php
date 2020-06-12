@@ -41,11 +41,6 @@ class CRucher
     private $associationStationRuchers;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\MesuresStations", mappedBy="rucher", orphanRemoval=true)
-     */
-    private $mesuresStations;
-
-    /**
      * @ORM\OneToOne(targetEntity="App\Entity\AssociationRucherRegion", mappedBy="rucher", cascade={"persist", "remove"})
      */
     private $associationRucherRegion;
@@ -53,7 +48,6 @@ class CRucher
     public function __construct()
     {
         $this->associationStationRuchers = new ArrayCollection();
-        $this->mesuresStations = new ArrayCollection();
     }
 
 #=======================GETTERS========================#
@@ -137,36 +131,6 @@ public function removeAssociationStationRucher(AssociationStationRucher $associa
     return $this;
 }
 
-/**
- * @return Collection|MesuresStations[]
- */
-public function getMesuresStations(): Collection
-{
-    return $this->mesuresStations;
-}
-
-public function addMesuresStation(MesuresStations $mesuresStation): self
-{
-    if (!$this->mesuresStations->contains($mesuresStation)) {
-        $this->mesuresStations[] = $mesuresStation;
-        $mesuresStation->setRucher($this);
-    }
-
-    return $this;
-}
-
-public function removeMesuresStation(MesuresStations $mesuresStation): self
-{
-    if ($this->mesuresStations->contains($mesuresStation)) {
-        $this->mesuresStations->removeElement($mesuresStation);
-        // set the owning side to null (unless already changed)
-        if ($mesuresStation->getRucher() === $this) {
-            $mesuresStation->setRucher(null);
-        }
-    }
-
-    return $this;
-}
 
 public function getAssociationRucherRegion(): ?AssociationRucherRegion
 {

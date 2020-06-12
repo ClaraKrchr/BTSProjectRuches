@@ -18,12 +18,6 @@ class MesuresStations
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\CStation", inversedBy="mesuresStations")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $station;
-
-    /**
      * @ORM\Column(type="smallint")
      */
     private $temperature;
@@ -49,26 +43,19 @@ class MesuresStations
     private $date_releve;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\CRucher", inversedBy="mesuresStations")
+     * @ORM\ManyToOne(targetEntity="App\Entity\CRucher")
      * @ORM\JoinColumn(nullable=false)
      */
     private $rucher;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $idrucher;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getStation(): ?CStation
-    {
-        return $this->station;
-    }
-
-    public function setStation(?CStation $station): self
-    {
-        $this->station = $station;
-
-        return $this;
     }
 
     public function getTemperature(): ?int
@@ -139,6 +126,18 @@ class MesuresStations
     public function setRucher(?CRucher $rucher): self
     {
         $this->rucher = $rucher;
+
+        return $this;
+    }
+
+    public function getIdrucher(): ?int
+    {
+        return $this->idrucher;
+    }
+
+    public function setIdrucher(int $idrucher): self
+    {
+        $this->idrucher = $idrucher;
 
         return $this;
     }
