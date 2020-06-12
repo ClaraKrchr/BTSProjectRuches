@@ -20,13 +20,6 @@ class MesuresRuches
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\CRuche")
-     * @ORM\JoinColumn(nullable=false)
-     * @Groups("mesure:read")
-     */
-    private $ruche;
-
-    /**
      * @ORM\Column(type="smallint", nullable=true)
      * @Groups("mesure:read")
      * @Assert\NotBlank
@@ -53,18 +46,6 @@ class MesuresRuches
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getRuche(): ?CRuche
-    {
-        return $this->ruche;
-    }
-
-    public function setRuche(?CRuche $ruche): self
-    {
-        $this->ruche = $ruche;
-
-        return $this;
     }
 
     public function getPoids(): ?int
