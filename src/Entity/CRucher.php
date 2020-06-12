@@ -41,9 +41,10 @@ class CRucher
     private $associationStationRuchers;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\AssociationRucherRegion", mappedBy="rucher", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Regions")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $associationRucherRegion;
+    private $region;
 
     public function __construct()
     {
@@ -131,22 +132,17 @@ public function removeAssociationStationRucher(AssociationStationRucher $associa
     return $this;
 }
 
-
-public function getAssociationRucherRegion(): ?AssociationRucherRegion
+public function getRegion(): ?Regions
 {
-    return $this->associationRucherRegion;
+    return $this->region;
 }
 
-public function setAssociationRucherRegion(AssociationRucherRegion $associationRucherRegion): self
+public function setRegion(?Regions $region): self
 {
-    $this->associationRucherRegion = $associationRucherRegion;
-
-    // set the owning side of the relation if necessary
-    if ($associationRucherRegion->getRucher() !== $this) {
-        $associationRucherRegion->setRucher($this);
-    }
+    $this->region = $region;
 
     return $this;
 }
+
 
 }
