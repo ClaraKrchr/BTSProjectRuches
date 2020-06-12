@@ -9,20 +9,16 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class AssocierRucheRucher
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
 
     /**
+     * @ORM\Id()
      * @ORM\OneToOne(targetEntity="App\Entity\CRuche", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $ruche;
 
     /**
+     * @ORM\Id()
      * @ORM\ManyToOne(targetEntity="App\Entity\CRucher")
      * @ORM\JoinColumn(nullable=false)
      */
