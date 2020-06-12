@@ -54,7 +54,7 @@ class APIController extends AbstractController
      */
     public function post(Request $request, EntityManagerInterface $em, ValidatorInterface $validator)
     {
-        $data = $request->query->get('sta');
+        $data = $request->query->get('Sta');
         $array = explode(",", $data);
 
         $fileToW = fopen(__DIR__."/log/test.csv","a");
@@ -64,8 +64,8 @@ class APIController extends AbstractController
         $mesureS = new MesuresStations;
 
         $mesureS->setDateReleve(new \datetime());
-        $idStation = (int)current($array);
-        $station = $em->getRepository(CStation::class)->findOneBy(array('nom'=>$idStation));
+        $nomStation = (int)current($array);
+        $station = $em->getRepository(CStation::class)->findOneBy(array('nom'=>$nomStation));
         $assos = $em->getRepository(AssocierStationRucher::class)->findOneBy(array('station'=>$station));
         $idRucher = $assos->getRucher()->getId();
         $mesureS->setIdrucher($idRucher);
@@ -79,8 +79,8 @@ class APIController extends AbstractController
         if(count($errors)){
             return $this->json($errors, 400);
         }
-        // $em->persist($mesureS);
-        // $em->flush();
+        $em->persist($mesureS);
+        $em->flush();
         // $data = fgetcsv($request, 1000, ",");
 
         for($i = 0; $i < 15; $i++){
@@ -92,6 +92,13 @@ class APIController extends AbstractController
                 $mesureR->setIdstationport($idStationPort);
                 $assosRuchePort = $em->getRepository(AssocierRuchePort::class)->findOneBy(array('station'=>$station, 'numport'=>($i + 1)));
                 $mesureR->setIdruche($assosRuchePort->getRuche()->getId());
+
+                $errors = $validator->validate($mesureR);
+                if(count($errors)){
+                    return $this->json($errors, 400);
+                }
+                $em->persist($mesureR);
+                $em->flush();
             }
         }
         return $this->json($array, 201, []);
