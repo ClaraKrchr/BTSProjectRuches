@@ -60,6 +60,10 @@ class MapController extends NouvellepageController{
      */
     public function info_ruche($nomruche,EntityManagerInterface $em, Request $request){
         
+        $Ruche = $em->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche));
+        $assosRucheApi = $em->getRepository(AssociationRucheApiculteur::class)->findOneBy(array('ruche'=>$Ruche));
+        if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('erreur403');
+        
         $NomProprietaire=$this->getUser();
         
         $Ruches=$this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche));
