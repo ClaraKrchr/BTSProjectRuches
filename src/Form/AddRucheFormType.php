@@ -66,7 +66,7 @@ class AddRucheFormType extends AbstractType
                 return sprintf(' %s',$CStation->getNom());
                 }
                 ])
-            ->add('Numéro de port',ChoiceType::class,
+            ->add('Port',ChoiceType::class,
                     array(
                         'choices'=>array(
                             '1'=>'1',

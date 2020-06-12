@@ -16,10 +16,9 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 use App\Entity\CRuche;
 use App\Entity\CRucher;
-use App\Entity\AssociationRuchePeseruche;
+use App\Entity\AssocierRuchePort;
 use App\Entity\AssocierRucheRucher;
 use App\Entity\AssociationRucheApiculteur;
-use App\Entity\AssociationPeserucheStation;
 use App\Entity\MesuresStations;
 use App\Entity\MesuresRuches;
 use App\Entity\AssociationRucherRegion;
@@ -50,8 +49,10 @@ class MapController extends NouvellepageController{
             $stock[]=$RuchesRucher->getRuche();
         }
         $RuchesApiculteurs = $this->getDoctrine()->getRepository(AssociationRucheApiculteur::class)->findBy(array('ruche'=>$stock,'apiculteur'=>$NomProprietaire));
+        $RuchePort = $this->getDoctrine()->getRepository(AssocierRuchePort::class)->findAll();
+        $MesuresRuches = $this->getDoctrine()->getRepository(MesuresRuches::class)->findAll();
         
-        return $this->render('Ruches/tableau_donnees.html.twig', ['apiculteurs' => $RuchesApiculteurs,'region'=>$regions, 'assosruchers' => $RuchesRuchers]);
+        return $this->render('Ruches/tableau_donnees.html.twig', ['apiculteurs' => $RuchesApiculteurs,'region'=>$regions, 'assosruchers' => $RuchesRuchers, 'assosports' => $RuchePort, 'mesuresruches' => $MesuresRuches]);
     }
     
     /**
@@ -68,10 +69,9 @@ class MapController extends NouvellepageController{
         
         $Ruches=$this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche));
         
-        $RuchePeseruche=$this->getDoctrine()->getRepository(AssociationRuchePeseruche::class)->findOneBy(array('ruche'=>$nomruche));
-        if ($RuchePeseruche != NULL){
-            $PeserucheStation = $this->getDoctrine()->getRepository(AssociationPeserucheStation::class)->findOneBy(array('peseruche'=>$RuchePeseruche->getPeseruche()));
-            $Station = $PeserucheStation->getStation();
+        $RuchePort=$this->getDoctrine()->getRepository(AssocierRuchePort::class)->findOneBy(array('ruche'=>$nomruche));
+        if ($RuchePort != NULL){
+            $Station = $RuchePort->getStation();
             $qb = $em->createQueryBuilder();
             $qb->select('w')->from(MesuresStations::class, 'w')->where('w.station = ' . $Station)->orderBy('w.date_releve', 'ASC');
             $query = $qb->getQuery();

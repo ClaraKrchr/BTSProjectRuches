@@ -3,10 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\CRuche;
-use App\Entity\AssociationRuchePeseruche;
+use App\Entity\AssociationRuchePort;
 use App\Entity\AssocierRucheRucher;
 use App\Entity\AssociationRucheApiculteur;
-use App\Entity\CPeseRuche;
+use App\Entity\CStation;
 use App\Entity\CRucher;
 
 use App\Form\EditRucheType;
@@ -42,6 +42,7 @@ class EditController extends AbstractController
             $ruche->setTyperuche($data['Type_ruche']);
             $ruche->setEtat($data['Etat']);
             $ruche->setNbassosrucher(0);
+            $ruche->setNbassosport(0);
             
             if($data['Rucher'] != 'Aucun'){
                 
@@ -55,17 +56,17 @@ class EditController extends AbstractController
                 
             }
             
-            if($data['PeseRuche']->getNomPeseRuche() != 'Aucun'){
+            if($data['Station']->getNom() != 'Aucune'){
                 
-                if ($em->getRepository(AssociationRuchePeseruche::class)->findOneBy(array('ruche'=>$ruche))){ $em->remove($em->getRepository(AssociationRuchePeseruche::class)->findOneBy(array('ruche'=>$ruche)));}
+                if ($em->getRepository(AssocierRuchePort::class)->findOneBy(array('ruche'=>$ruche))){ $em->remove($em->getRepository(AssocierRuchePort::class)->findOneBy(array('ruche'=>$ruche)));}
 
-                $AssociationRuchePeseruche = new AssociationRuchePeseruche();
+                $RuchePort = new AssocierRuchePort();
                 
-                $AssociationRuchePeseruche->setRuche($ruche);
-                $AssociationRuchePeseruche->setPeseruche($em->getRepository(CPeseRuche::class)->findOneBy(array('id'=>($data['PeseRuche'])->getId())));
-                $em->persist($AssociationRuchePeseruche);
-                ($data['PeseRuche'])->setAssociationRuchePeseruche($AssociationRuchePeseruche);
-                $ruche->setAssociationRuchePeseruche($AssociationRuchePeseruche);
+                $RuchePort->setRuche($ruche);
+                $RuchePort->setStation($em->getRepository(CStation::class)->findOneBy(array('id'=>($data['Station'])->getId())));
+                $RuchePort->setNumport($data['Port']);
+                $em->persist($RuchePort);
+                $ruche->setNbassosport(1);
 
             }
             

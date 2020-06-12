@@ -11,15 +11,13 @@ use Doctrine\Persistence\ObjectManager;
 
 use App\Entity\CApiculteur;
 use App\Entity\CRuche;
-use App\Entity\CPeseRuche;
 use App\Entity\CRucher;
 use App\Entity\CStation;
 use App\Entity\AssociationRucheApiculteur;
-use App\Entity\AssociationRuchePeseruche;
 use App\Entity\AssocierRucheRucher;
-use App\Entity\AssociationPeserucheStation;
 use App\Entity\AssociationStationRucher;
 use App\Entity\AssociationRucherRegion;
+use App\Entity\AssocierRuchePort;
 use App\Entity\Regions;
 use App\Entity\MesuresRuches;
 use App\Entity\MesuresStations;
@@ -28,7 +26,6 @@ use App\Entity\Carnet;
 use App\Form\AddMesuresStationsForm;
 use App\Form\AddMesuresRuchesForm;
 use App\Form\AddRucheFormType;
-use App\Form\AddPeseRucheFormType;
 use App\Form\AddStationFormType;
 use App\Form\AddRucherFormType;
 use App\Form\RegionsFormType;
@@ -58,6 +55,7 @@ class AddController extends AbstractController{
             $CRuche->setTyperuche($data['Type_ruche']);
             $CRuche->setEtat($data['Etat']);
             $CRuche->setNbassosrucher(0);
+            $CRuche->setNbassosport(0);
             
             
             $AssociationRucheApiculteur = new AssociationRucheApiculteur();
@@ -77,16 +75,14 @@ class AddController extends AbstractController{
                 $CRuche->setNbassosrucher(1);
             }
             
-            if($data['PeseRuche']->getNomPeseRuche() != 'Aucun'){
-                $AssociationRuchePeseruche = new AssociationRuchePeseruche();
+            if($data['Station']->getNom() != 'Aucune'){
+                $RuchePort = new AssocierRuchePort();
                 
-                $AssociationRuchePeseruche->setRuche($CRuche);
-                $AssociationRuchePeseruche->setPeseruche($em->getRepository(CPeseRuche::class)->findOneBy(array('id'=>($data['PeseRuche'])->getId())));
-                $em->persist($AssociationRuchePeseruche);
-                ($data['PeseRuche'])->setAssociationRuchePeseruche($AssociationRuchePeseruche);
-                ($data['PeseRuche'])->setNbAssosRuche(($data['PeseRuche'])->getNbAssosRuche()+1);
-                $em->persist($data['PeseRuche']);
-                $CRuche->setAssociationRuchePeseruche($AssociationRuchePeseruche);
+                $RuchePort->setRuche($CRuche);
+                $RuchePort->setStation($em->getRepository(CStation::class)->findOneBy(array('id'=>($data['Station'])->getId())));
+                $RuchePort->setNumport($data['Port']);
+                $em->persist($RuchePort);
+                $CRuche->setNbassosport(1);
             }
             
             $em->persist($CRuche);
@@ -105,48 +101,6 @@ class AddController extends AbstractController{
         ]);
     }
     
-    /**
-     * @Route("/add_pese_ruche", name="add_pese_ruche")
-     */
-    public function add_pese_ruche(EntityManagerInterface $em, Request $request)
-    {
-        
-        
-        $form = $this->createForm(AddPeseRucheFormType::class);
-        $form->handleRequest($request);
-        
-        if($form->isSubmitted() && $form->isValid()){
-            $data = $form->getData();
-            
-            $CPeseRuche = new CPeseRuche();
-            $CPeseRuche->setNomPeseRuche($data['nompeseruche']);
-            $CPeseRuche->setDateInstall($data['dateinstall']);
-            $CPeseRuche->setNbAssosRuche(0);
-            
-            $em->persist($CPeseRuche);
-            
-            $associationPeserucheStation = new AssociationPeserucheStation();
-            
-            $associationPeserucheStation->setPeseruche($CPeseRuche);
-            $associationPeserucheStation->setStation($em->getRepository(CStation::class)->findOneBy(array('id'=>($data['nomstation'])->getId())));
-            $em->persist($associationPeserucheStation);
-            ($data['nomstation'])->addAssociationPeserucheStation($associationPeserucheStation);
-            
-            $CPeseRuche->setAssociationPeserucheStation($associationPeserucheStation);
-            $em->flush();
-            
-            $message=utf8_encode('Le pèse ruche a été ajouté');
-            $this->addFlash('message',$message);
-            
-            return $this->redirectToRoute('add_pese_ruche');
-        }
-        
-        
-        return $this->render('Add/add_pese_ruche.html.twig', [
-            'addPeseRucheForm' => $form->createView(),
-        ]);
-    }
-
     /**
      * @IsGranted("ROLE_USER")
      * @Route("/add_station", name="add_station")

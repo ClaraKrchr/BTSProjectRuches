@@ -118,7 +118,8 @@
           	<td>{% trans %}Date d'installation{% endtrans %}</td>
         	<td>{% trans %}Visibilité{% endtrans %}</td>
         	<td>{% trans %}Rucher{% endtrans %}</td>
-        	<td>{% trans %}Pèse-ruche{% endtrans %}</td>
+        	<td>{% trans %}Station{% endtrans %}</td>
+        	<td>{% trans %}Port{% endtrans %}</td>
         	<td>{% trans %}Action{% endtrans %}</td>
         </tr>
         {% for apiculteur in apiculteurs %}
@@ -134,12 +135,14 @@
 			
 			<td> {% if apiculteur.ruche.nbassosrucher == 1 %} {% for assosrucher in assosruchers %} {% if assosrucher.ruche == apiculteur.ruche %} {{ assosrucher.rucher.nom }} {% endif %} {% endfor %} {% else %} {% trans %} Aucun {% endtrans %} {% endif %}</td>
 			
-			<td> {% if apiculteur.ruche.associationRuchePeseruche != NULL %}{{ apiculteur.ruche.associationRuchePeseruche.peseruche.nomPeseruche }}{% else %} {% trans %} Aucun {% endtrans %} {% endif %} </td>
+			<td> {% if apiculteur.ruche.nbassosport == 1 %} {% for assosport in assosports %} {% if assosport.ruche == apiculteur.ruche %} {{ assosport.station.nom }} {% endif %} {% endfor %} {% else %} {% trans %} Aucune {% endtrans %} {% endif %}</td>
 			
+			<td> {% if apiculteur.ruche.nbassosport == 1 %} {% for assosport in assosports %} {% if assosport.ruche == apiculteur.ruche %} {{ assosport.numport }} {% endif %} {% endfor %} {% else %} {% trans %} Aucun {% endtrans %} {% endif %}</td>
+			{% set break = false %}
 			<td><a href="{{ path('edit_ruche', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark">{% trans %}Modifier{% endtrans %}</a>
-			<a href="{{ path('delete_ruche', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark">{% if apiculteur.ruche.carnets is empty and apiculteur.ruche.mesuresRuches is empty %} {%trans %} Supprimer {% endtrans %} {% else %}{% trans %}Archiver{% endtrans %} {% endif %}</a>
+			<a href="{{ path('delete_ruche', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark"> {% for mesureruche in mesuresruches %} {% if not break %} {% if mesureruche.ruche == apiculteur.ruche %} {% set break = true %} {% endif %} {% endif %} {% endfor %} {% if apiculteur.ruche.carnets is not empty or break %} {% trans %}Archiver{% endtrans %} {% else %} {% trans %}Supprimer{% endtrans %} {% endif %}</a>
 			{% if apiculteur.ruche.nbassosrucher == 1 %}<a href="{{ path('dissociate_ruche_rucher', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark">{% trans %}Dissocier du rucher{% endtrans %}</a>{% else %}<a href="{{ path('dissociate_ruche_rucher', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark disabled">{% trans %}Dissocier du rucher{% endtrans %}</a>{% endif %}
-			{% if apiculteur.ruche.associationRuchePeseruche != NULL %}<a href="{{ path('dissociate_ruche_peseruche', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark">{% trans %}Dissocier du pèse-ruche{% endtrans %}</a>{% else %}<a href="{{ path('dissociate_ruche_peseruche', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark disabled">{% trans %}Dissocier du pèse-ruche{% endtrans %}</a>{% endif %}</td>
+			{% if apiculteur.ruche.nbassosport == 1 %}<a href="{{ path('dissociate_ruche_port', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark">{% trans %}Dissocier de la station{% endtrans %}</a>{% else %}<a href="{{ path('dissociate_ruche_port', {'nomruche' : apiculteur.ruche.nomruche}) }}" class="btn btn-dark disabled">{% trans %}Dissocier de la station{% endtrans %}</a>{% endif %}</td>
 		</tr>
 		{% endif %}
         {% endfor %}

@@ -68,6 +68,11 @@ class CRuche
      */
     private $nbassosrucher;
 
+    /**
+     * @ORM\Column(type="smallint")
+     */
+    private $nbassosport;
+
     public function __construct()
     {
         $this->carnets = new ArrayCollection();
@@ -210,6 +215,18 @@ class CRuche
     public function setNbassosrucher(int $nbassosrucher): self
     {
         $this->nbassosrucher = $nbassosrucher;
+
+        return $this;
+    }
+
+    public function getNbassosport(): ?int
+    {
+        return $this->nbassosport;
+    }
+
+    public function setNbassosport(int $nbassosport): self
+    {
+        $this->nbassosport = $nbassosport;
 
         return $this;
     }

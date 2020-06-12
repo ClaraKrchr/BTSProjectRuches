@@ -6,6 +6,7 @@ use App\Entity\CRuche;
 use App\Entity\CRucher;
 use App\Entity\AssocierRucheRucher;
 use App\Entity\AssociationRucheApiculteur;
+use App\Entity\AssocierRuchePort;
 use App\Entity\MesuresStations;
 use App\Entity\MesuresRuches;
 use App\Entity\AssociationRucherRegion;
@@ -45,7 +46,9 @@ class NouvellepageController extends AbstractController
         //------------Recherche des ruches appartenant a l'utilisateur connect�-------------//
         $RuchesApiculteurs = $this->getDoctrine()->getRepository(AssociationRucheApiculteur::class)->findBy(array('apiculteur'=>$NomProprietaire));
         $RucheRuchers = $this->getDoctrine()->getRepository(AssocierRucheRucher::class)->findAll();
-        return $this->render('Ruches/ruches_privees.html.twig', ['apiculteurs' => $RuchesApiculteurs, 'assosruchers' => $RucheRuchers]);
+        $RuchePort = $this->getDoctrine()->getRepository(AssocierRuchePort::class)->findAll();
+        $MesuresRuches = $this->getDoctrine()->getRepository(MesuresRuches::class)->findAll();
+        return $this->render('Ruches/ruches_privees.html.twig', ['apiculteurs' => $RuchesApiculteurs, 'assosruchers' => $RucheRuchers, 'assosports' => $RuchePort, 'mesuresruches' => $MesuresRuches]);
     }
 
     /**

@@ -4,7 +4,7 @@ namespace App\Form;
 
 use App\Entity\CRuche;
 use App\Entity\CRucher;
-use App\Entity\CPeseRuche;
+use App\Entity\CStation;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -57,15 +57,36 @@ class EditRucheType extends AbstractType
                 return sprintf(' %s',$CRucher->getNom());
                 }
                 ])
-            ->add('associationRuchePeseruche',EntityType::class, [
-                'class'=>CPeseRuche::class,
-                'query_builder' => function(EntityRepository $er){
-                return $er->createQueryBuilder('u')->select('w')->from(CPeseRuche::class, 'w')->orderBy('w.nompeseruche', 'ASC');
-                },
-                'choice_label'=>function(CPeseRuche $CPeseRuche){
-                return sprintf(' %s',$CPeseRuche->getNomPeseRuche());
-                }
-                ])
+                ->add('Station',EntityType::class, [
+                    'class'=>CStation::class,
+                    'query_builder' => function(EntityRepository $er){
+                    return $er->createQueryBuilder('u')->select('w')->from(CStation::class, 'w')->orderBy('w.nom', 'ASC');
+                    },
+                    'choice_label'=>function(CStation $CStation){
+                    return sprintf(' %s',$CStation->getNom());
+                    }
+                    ])
+                ->add('Port',ChoiceType::class,
+                    array(
+                        'choices'=>array(
+                            '1'=>'1',
+                            '2'=>'2',
+                            '3'=>'3',
+                            '4'=>'4',
+                            '5'=>'5',
+                            '6'=>'6',
+                            '7'=>'7',
+                            '8'=>'8',
+                            '9'=>'9',
+                            '10'=>'10',
+                            '11'=>'11',
+                            '12'=>'12',
+                            '13'=>'13',
+                            '14'=>'14',
+                            '15'=>'15'
+                        )
+                    )
+                    )
             ->add('Visibilite',ChoiceType::class,
                 array(
                     'choices'=>array(

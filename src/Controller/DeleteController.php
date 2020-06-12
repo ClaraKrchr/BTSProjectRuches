@@ -3,11 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\CRuche;
-use App\Entity\AssociationRuchePeseruche;
+use App\Entity\AssocierRuchePort;
 use App\Entity\AssocierRucheRucher;
 use App\Entity\AssociationRucheApiculteur;
-use App\Entity\CPeseRuche;
 use App\Entity\CRucher;
+use App\Entity\CStation;
 use App\Entity\Carnet;
 use App\Entity\MesuresRuches;
 
@@ -43,8 +43,8 @@ class DeleteController extends AbstractController
             $ruche->setNbassosrucher(0);
         }
         
-        $AssosRuchePeseruche = $this->getDoctrine()->getRepository(AssociationRuchePeseruche::class)->findOneBy(array('ruche'=>$ruche));
-        if($AssosRuchePeseruche != NULL){$AssosRuchePeseruche->getPeseruche()->setNbAssosRuche(0); $em->remove($AssosRuchePeseruche);}
+        $RuchePort = $this->getDoctrine()->getRepository(AssocierRuchePort::class)->findOneBy(array('ruche'=>$ruche));
+        if($RuchePort != NULL){$em->remove($RuchePort);}
         
         $mesuresRuches = $this->getDoctrine()->getRepository(MesuresRuches::class)->findBy(array('ruche'=>$ruche));
         $carnets = $this->getDoctrine()->getRepository(Carnet::class)->findBy(array('ruche'=>$ruche));
@@ -85,7 +85,7 @@ class DeleteController extends AbstractController
         $ruche->setNbassosrucher(0);
         $em->remove($AssosRucheRucher);
         
-        
+        $em->persist($ruche);
         $em->flush();
         
         $message=utf8_encode('La ruche a été dissociée du rucher.');
@@ -95,9 +95,9 @@ class DeleteController extends AbstractController
     
     /**
      * @IsGranted("ROLE_USER")
-     * @Route("/tableau_donnees/dissociate_ruche_peseruche/{nomruche}", name="dissociate_ruche_peseruche")
+     * @Route("/tableau_donnees/dissociate_ruche_port/{nomruche}", name="dissociate_ruche_port")
      */
-    public function dissociate_ruche_peseruche(Request $request, CRuche $ruche, EntityManagerInterface $em)
+    public function dissociate_ruche_port(Request $request, CRuche $ruche, EntityManagerInterface $em)
     {
         
         //Redirection si l'utilisateur n'est pas celui qui possède la ruche
@@ -105,12 +105,12 @@ class DeleteController extends AbstractController
         if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('erreur403');
         //////////////////////////////
         
-        $AssosRuchePeseruche = $this->getDoctrine()->getRepository(AssociationRuchePeseruche::class)->findOneBy(array('ruche'=>$ruche));
-        if ($AssosRuchePeseruche == NULL){return $this->redirectToRoute('ruches_privees');}
-        $AssosRuchePeseruche->getPeseruche()->setNbAssosRuche(0);
-        $em->remove($AssosRuchePeseruche);
+        $RuchePort = $this->getDoctrine()->getRepository(AssocierRuchePort::class)->findOneBy(array('ruche'=>$ruche));
+        if ($RuchePort == NULL){return $this->redirectToRoute('ruches_privees');}
+        $ruche->setNbassosport(0);
+        $em->remove($RuchePort);
         
-        
+        $em->persist($ruche);
         $em->flush();
         
         $message=utf8_encode('La ruche a été dissociée du pèse-ruche.');
