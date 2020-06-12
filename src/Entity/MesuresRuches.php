@@ -20,7 +20,7 @@ class MesuresRuches
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\CRuche", inversedBy="mesuresRuches")
+     * @ORM\ManyToOne(targetEntity="App\Entity\CRuche")
      * @ORM\JoinColumn(nullable=false)
      * @Groups("mesure:read")
      */
@@ -41,11 +41,14 @@ class MesuresRuches
     private $date_releve;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\CPeseRuche", inversedBy="mesuresRuches")
-     * @ORM\JoinColumn(nullable=false)
-     * @Groups("mesure:read")
+     * @ORM\Column(type="integer")
      */
-    private $peseruche;
+    private $idruche;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $idstationport;
 
     public function getId(): ?int
     {
@@ -88,14 +91,26 @@ class MesuresRuches
         return $this;
     }
 
-    public function getPeseruche(): ?CPeseRuche
+    public function getIdruche(): ?int
     {
-        return $this->peseruche;
+        return $this->idruche;
     }
 
-    public function setPeseruche(?CPeseRuche $peseruche): self
+    public function setIdruche(int $idruche): self
     {
-        $this->peseruche = $peseruche;
+        $this->idruche = $idruche;
+
+        return $this;
+    }
+
+    public function getIdstationport(): ?int
+    {
+        return $this->idstationport;
+    }
+
+    public function setIdstationport(int $idstationport): self
+    {
+        $this->idstationport = $idstationport;
 
         return $this;
     }

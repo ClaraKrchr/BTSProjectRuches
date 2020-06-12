@@ -44,11 +44,6 @@ class CRuche
     private $visibilite;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\MesuresRuches", mappedBy="ruche")
-     */
-    private $mesuresRuches;
-
-    /**
      * @ORM\OneToOne(targetEntity="App\Entity\AssociationRuchePeseruche", mappedBy="ruche", cascade={"persist", "remove"})
      */
     private $associationRuchePeseruche;
@@ -80,7 +75,6 @@ class CRuche
 
     public function __construct()
     {
-        $this->mesuresRuches = new ArrayCollection();
         $this->carnets = new ArrayCollection();
     }
 
@@ -133,37 +127,6 @@ class CRuche
     public function setVisibilite(bool $visibilite): self
     {
         $this->visibilite = $visibilite;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|MesuresRuches[]
-     */
-    public function getMesuresRuches(): Collection
-    {
-        return $this->mesuresRuches;
-    }
-
-    public function addMesuresRuch(MesuresRuches $mesuresRuch): self
-    {
-        if (!$this->mesuresRuches->contains($mesuresRuch)) {
-            $this->mesuresRuches[] = $mesuresRuch;
-            $mesuresRuch->setRucheId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMesuresRuch(MesuresRuches $mesuresRuch): self
-    {
-        if ($this->mesuresRuches->contains($mesuresRuch)) {
-            $this->mesuresRuches->removeElement($mesuresRuch);
-            // set the owning side to null (unless already changed)
-            if ($mesuresRuch->getRucheId() === $this) {
-                $mesuresRuch->setRucheId(null);
-            }
-        }
 
         return $this;
     }
