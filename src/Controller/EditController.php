@@ -85,6 +85,7 @@ class EditController extends AbstractController
                 $ruche->setNbassosport(0);
                 $em->remove($assosport);
             }
+            $em->persist($ruche);
             $em->flush();
             
             return $this->redirectToRoute('ruches_privees');
@@ -113,6 +114,7 @@ class EditController extends AbstractController
             $data = $form->getData();
             if ($data->getStation()->getNom() != 'Aucune') $ruche->setNbassosport(1);
             else {$ruche->setNbassosport(0); $em->remove($data);}
+            $em->persist($ruche);
             $em->flush();
             
             return $this->redirectToRoute('ruches_privees');
