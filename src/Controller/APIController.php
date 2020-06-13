@@ -54,54 +54,76 @@ class APIController extends AbstractController
      */
     public function post(Request $request, EntityManagerInterface $em, ValidatorInterface $validator)
     {
-        $data = $request->query->get('Sta');
-        $array = explode(",", $data);
-
-        $fileToW = fopen(__DIR__."/log/test.csv","a");
-
-        fputcsv($fileToW, $array);
-
-        $mesureS = new MesuresStations;
-
-        $mesureS->setDateReleve(new \datetime());
-        $nomStation = (int)current($array);
-        $station = $em->getRepository(CStation::class)->findOneBy(array('nom'=>$nomStation));
-        $assos = $em->getRepository(AssocierStationRucher::class)->findOneBy(array('station'=>$station));
-        $idRucher = $assos->getRucher()->getId();
-        $mesureS->setIdrucher($idRucher);
-
-        $mesureS->setTemperature((int)next($array));
-        $mesureS->setTension((float)next($array));
-        $mesureS->setHumidite((int)next($array));
-        $mesureS->setPression((int)next($array));
-
-        $errors = $validator->validate($mesureS);
-        if(count($errors)){
-            return $this->json($errors, 400);
+        try{
+            $data = $request->query->get('Sta');
+        }catch(NotEncodableValueException $e){
+            return $this->json([
+                'status' => 400,
+                'message' => $e->getMessage()
+            ], 400);
         }
-        $em->persist($mesureS);
-        $em->flush();
-        // $data = fgetcsv($request, 1000, ",");
+        if(!isset($data)){
+            return new Response(
+                'Aucune',
+                400,
+                ['content-type' => 'text/html']
+            );
+        }
+        if(!($array = explode(",", $data) == 20)){
+            return new Response(
+                'Requête érronée: Données manquantes',
+                400,
+                ['content-type' => 'text/html']
+            );
+        }        
+        try{
+            $fileToW = fopen(__DIR__."/log/test.csv","a");
 
-        for($i = 0; $i < 15; $i++){
-            if((float)next($array) != 0){
-                $mesureR = new MesuresRuches;
-                $mesureR->setDateReleve(new \datetime());
-                $mesureR->setPoids((int)current($array));
-                $idStationPort = $idStation + $i + 1;
-                $mesureR->setIdstationport($idStationPort);
-                $assosRuchePort = $em->getRepository(AssocierRuchePort::class)->findOneBy(array('station'=>$station, 'numport'=>($i + 1)));
-                $mesureR->setIdruche($assosRuchePort->getRuche()->getId());
+            fputcsv($fileToW, $array);
 
-                $errors = $validator->validate($mesureR);
-                if(count($errors)){
-                    return $this->json($errors, 400);
-                }
-                $em->persist($mesureR);
-                $em->flush();
+            $mesureS = new MesuresStations;
+
+            $mesureS->setDateReleve(new \datetime());
+            $nomStation = (int)current($array);
+            $station = $em->getRepository(CStation::class)->findOneBy(array('nom'=>$nomStation));
+            $assos = $em->getRepository(AssocierStationRucher::class)->findOneBy(array('station'=>$station));
+            $idRucher = $assos->getRucher()->getId();
+            $mesureS->setIdrucher($idRucher);
+
+            $mesureS->setTemperature((int)next($array));
+            $mesureS->setTension((float)next($array));
+            $mesureS->setHumidite((int)next($array));
+            $mesureS->setPression((int)next($array));
+
+            $errors = $validator->validate($mesureS);
+            if(count($errors)){
+                return $this->json($errors, 400);
             }
+            $em->persist($mesureS);
+            $em->flush();
+            // $data = fgetcsv($request, 1000, ",");
+
+            for($i = 0; $i < 15; $i++){
+                if((float)next($array) != 0){
+                    $mesureR = new MesuresRuches;
+                    $mesureR->setDateReleve(new \datetime());
+                    $mesureR->setPoids((int)current($array));
+                    $idStationPort = $idStation + $i + 1;
+                    $mesureR->setIdstationport($idStationPort);
+                    $assosRuchePort = $em->getRepository(AssocierRuchePort::class)->findOneBy(array('station'=>$station, 'numport'=>($i + 1)));
+                    $mesureR->setIdruche($assosRuchePort->getRuche()->getId());
+                    
+                    $em->persist($mesureR);
+                    $em->flush();
+                }
+            }
+            return $this->json($array, 201, []);
+        }catch(NotEncodableValueException $e){
+            return $this->json([
+                'status' => 400,
+                'message' => $e->getMessage()
+            ], 400);
         }
-        return $this->json($array, 201, []);
         /*
         try{
             $contentArray = [];
