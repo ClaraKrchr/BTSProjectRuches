@@ -48,45 +48,6 @@ class EditRucheType extends AbstractType
                     'Ruche de production'=>'Ruche de production',
                 ],
             ])
-            ->add('associationRucheRucher',EntityType::class, [
-                'class'=>CRucher::class,
-                'query_builder' => function(EntityRepository $er){
-                return $er->createQueryBuilder('u')->select('w')->from(CRucher::class, 'w')->orderBy('w.nom', 'ASC');
-                },
-                'choice_label'=>function(CRucher $CRucher){
-                return sprintf(' %s',$CRucher->getNom());
-                }
-                ])
-                ->add('Station',EntityType::class, [
-                    'class'=>CStation::class,
-                    'query_builder' => function(EntityRepository $er){
-                    return $er->createQueryBuilder('u')->select('w')->from(CStation::class, 'w')->orderBy('w.nom', 'ASC');
-                    },
-                    'choice_label'=>function(CStation $CStation){
-                    return sprintf(' %s',$CStation->getNom());
-                    }
-                    ])
-                ->add('Port',ChoiceType::class,
-                    array(
-                        'choices'=>array(
-                            '1'=>'1',
-                            '2'=>'2',
-                            '3'=>'3',
-                            '4'=>'4',
-                            '5'=>'5',
-                            '6'=>'6',
-                            '7'=>'7',
-                            '8'=>'8',
-                            '9'=>'9',
-                            '10'=>'10',
-                            '11'=>'11',
-                            '12'=>'12',
-                            '13'=>'13',
-                            '14'=>'14',
-                            '15'=>'15'
-                        )
-                    )
-                    )
             ->add('Visibilite',ChoiceType::class,
                 array(
                     'choices'=>array(

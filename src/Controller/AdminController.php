@@ -38,7 +38,8 @@ class AdminController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
             $em->flush();
             
-            return $this->redirectToRoute('gestionnaire');
+            if ($this->isGranted('ROLE_ADMIN')) return $this->redirectToRoute('gestionnaire');
+            else return $this->redirectToRoute('home');
         }
         return $this->render('admin/editUser.html.twig', ['formUser' => $form->createView()]);            
     }

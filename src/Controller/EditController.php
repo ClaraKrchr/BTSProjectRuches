@@ -3,13 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\CRuche;
-use App\Entity\AssociationRuchePort;
+use App\Entity\AssocierRuchePort;
 use App\Entity\AssocierRucheRucher;
 use App\Entity\AssocierRucheApiculteur;
 use App\Entity\CStation;
 use App\Entity\CRucher;
 
 use App\Form\EditRucheType;
+use App\Form\EditAssosRucheRucherType;
+use App\Form\EditAssosRuchePortType;
 use App\Repository\CRucheRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,7 +24,7 @@ class EditController extends AbstractController
 {
     /**
      * @IsGranted("ROLE_USER")
-     * @Route("/tableau_donnees/edit/{nomruche}", name="edit_ruche")
+     * @Route("/edit_ruche/{nomruche}", name="edit_ruche")
      */
     public function editRuche(Request $request, CRuche $ruche, EntityManagerInterface $em)
     {
@@ -36,46 +38,86 @@ class EditController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $data = $form->getData();
-            $ruche->setNomruche($data['Nom_ruche']);
-            $ruche->setDateinstall($data['Date_installation']);
-            $ruche->setVisibilite($data['Visibilite']);
-            $ruche->setTyperuche($data['Type_ruche']);
-            $ruche->setEtat($data['Etat']);
-            $ruche->setNbassosrucher(0);
-            $ruche->setNbassosport(0);
             
-            if($data['Rucher'] != 'Aucun'){
-                
-                if ($em->getRepository(AssocierRucheRucher::class)->findOneBy(array('ruche'=>$ruche))){ $em->remove($em->getRepository(AssocierRucheRucher::class)->findOneBy(array('ruche'=>$ruche)));}
-                
-                $AssocierRucheRucher = new AssocierRucheRucher;
-                $AssocierRucheRucher->setRuche($ruche);
-                $AssocierRucheRucher->setRucher($em->getRepository(CRucher::class)->findOneBy(array('id'=>($data['Rucher'])->getId())));
-                $em->persist($AssocierRucheRucher);
-                $ruche->setNbassosrucher(1);
-                
+            if(($data->getEtat() == 0) || ($data->getEtat() == 2)){
+                $assosrucher = $this->getDoctrine()->getRepository(AssocierRucheRucher::class)->findOneBy(array('ruche'=>$ruche));
+                if ($assosrucher != NULL) $em->remove($assosrucher);
+                $assosport = $this->getDoctrine()->getRepository(AssocierRuchePort::class)->findOneBy(array('ruche'=>$ruche));
+                if ($assosport != NULL) $em->remove($assosport);
+                $ruche->setNbassosrucher(0); $ruche->setNbassosport(0);
+            }
+            if($data->getEtat() == 1){
+                $assosrucher = $this->getDoctrine()->getRepository(AssocierRucheRucher::class)->findOneBy(array('ruche'=>$ruche));
+                if ($assosrucher == NULL) $data->setEtat(0);
             }
             
-            if($data['Station']->getNom() != 'Aucune'){
-                
-                if ($em->getRepository(AssocierRuchePort::class)->findOneBy(array('ruche'=>$ruche))){ $em->remove($em->getRepository(AssocierRuchePort::class)->findOneBy(array('ruche'=>$ruche)));}
-
-                $RuchePort = new AssocierRuchePort();
-                
-                $RuchePort->setRuche($ruche);
-                $RuchePort->setStation($em->getRepository(CStation::class)->findOneBy(array('id'=>($data['Station'])->getId())));
-                $RuchePort->setNumport($data['Port']);
-                $em->persist($RuchePort);
-                $ruche->setNbassosport(1);
-
-            }
-            
-            $em->persist($ruche);
             $em->flush();
             
-            return $this->redirectToRoute('tableau_donnees');
+            return $this->redirectToRoute('ruches_privees');
         }
-        return $this->render('Ruches/editRuche.html.twig', ['formRuche' => $form->createView()]);
+        return $this->render('Edit/editRuche.html.twig', ['formRuche' => $form->createView()]);
+    }
+    
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/edit_assos_ruche_rucher/{nomruche}", name="edit_assos_ruche_rucher")
+     */
+    public function editAssosRucheRucher(Request $request, CRuche $ruche, EntityManagerInterface $em)
+    {
+        //Redirection si l'utilisateur n'est pas celui qui possède la ruche
+        $assosRucheApi = $em->getRepository(AssocierRucheApiculteur::class)->findOneBy(array('ruche'=>$ruche));
+        if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('erreur403');
+        //////////////////////////////
+        
+        $assos = $this->getDoctrine()->getRepository(AssocierRucheRucher::class)->findOneBy(array('ruche'=>$ruche));
+        
+        $form = $this->createForm(EditAssosRucheRucherType::class, $assos);
+        
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $data = $form->getData();
+            if ($data->getRucher()->getNom() != 'Aucun') {$ruche->setEtat(1); $ruche->setNbassosrucher(1);}
+            else {
+                $ruche->setEtat(0); 
+                $ruche->setNbassosrucher(0); 
+                $em->remove($data);
+                $assosport = $this->getDoctrine()->getRepository(AssocierRuchePort::class)->findOneBy(array('ruche'=>$ruche));
+                $ruche->setNbassosport(0);
+                $em->remove($assosport);
+            }
+            $em->flush();
+            
+            return $this->redirectToRoute('ruches_privees');
+        }
+        return $this->render('Edit/editAssosRucheRucher.html.twig', ['formAssosRucheRucher' => $form->createView()]);
+    }
+    
+    
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/edit_assos_ruche_port/{nomruche}", name="edit_assos_ruche_port")
+     */
+    public function editAssosRuchePort(Request $request, CRuche $ruche, EntityManagerInterface $em)
+    {
+        //Redirection si l'utilisateur n'est pas celui qui possède la ruche
+        $assosRucheApi = $em->getRepository(AssocierRucheApiculteur::class)->findOneBy(array('ruche'=>$ruche));
+        if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('erreur403');
+        //////////////////////////////
+        
+        $assos = $this->getDoctrine()->getRepository(AssocierRuchePort::class)->findOneBy(array('ruche'=>$ruche));
+        
+        $form = $this->createForm(EditAssosRuchePortType::class, $assos);
+        
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $data = $form->getData();
+            if ($data->getStation()->getNom() != 'Aucune') $ruche->setNbassosport(1);
+            else {$ruche->setNbassosport(0); $em->remove($data);}
+            $em->flush();
+            
+            return $this->redirectToRoute('ruches_privees');
+        }
+        return $this->render('Edit/editAssosRuchePort.html.twig', ['formAssosRuchePort' => $form->createView()]);
     }
 
 }

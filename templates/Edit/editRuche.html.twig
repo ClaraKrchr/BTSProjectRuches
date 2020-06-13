@@ -20,12 +20,7 @@
   </div>
         {{ form_row(formRuche.Etat, { 'label' : 'Etat' , 'attr' : { 'placeholder':'Etat'}}) }}
         {{ form_row(formRuche.Type_ruche, { 'label': 'Type de ruche', 'attr' : { 'placeholder':'Type de ruche'}}) }}
-        {{ form_row(formRuche.associationRucheRucher, { 'label':'Rucher', 'attr' : { 'placeholder':'Rucher'}}) }}
-        <div class="form-row">
-    <div class="form-group col-md-6">
-        {{ form_row(formRuche.Station, { 'label':'Station', 'attr' : { 'placeholder':'Station'}}) }}
-        {{ form_row(formRuche.Port, { 'label':'Port', 'attr' : { 'placeholder':'Port'}}) }}
-         </div>
+    <div class="form-row">
     <div class="form-group col-md-6">
         {{ form_row(formRuche.Visibilite, { 'attr' : { 'placeholder':'Visibilité'}}) }}
         </div>
@@ -33,7 +28,7 @@
     {{ form_widget(formRuche) }}
     
 	<button type="submit" class="btn btn-success">{% trans %}Modifier{% endtrans %}</button>
-	<a href="{{ path('tableau_donnees', {regions:'Occitanie' }) }}"><button class="btn btn-secondary">{% trans %}Annuler{% endtrans %}</button></a>
+	<a href="{{ path('ruches_privees') }}"><button class="btn btn-secondary">{% trans %}Annuler{% endtrans %}</button></a>
     {{ form_end(formRuche) }}
 </div>
 {% endblock %}

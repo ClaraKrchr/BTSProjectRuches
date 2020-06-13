@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification d'une association ruche-rucher{% endblock %}
+
+{% block body %}
+<meta charset="UTF-8">
+<center><h1>{% trans %}Modification d'une association ruche-rucher{% endtrans %}</h1></center>
+
+<div class="d-flex justify-content-around">
+    {{ form_start(formAssosRucheRucher) }}
+    
+    <form>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <div style="display:none">{{ form_row(formAssosRucheRucher.ruche, { 'attr' : { 'placeholder':'Ruche'}}) }}</div>
+    </div>
+    <div class="form-group col-md-12">
+       {{ form_row(formAssosRucheRucher.rucher, { 'label' : 'Rucher' , 'attr' : { 'placeholder':'Rucher'}}) }}
+    </div>
+  </div>
+    {{ form_widget(formAssosRucheRucher) }}
+    
+	<button type="submit" class="btn btn-success">{% trans %}Modifier{% endtrans %}</button>
+	<a href="{{ path('ruches_privees') }}"><button class="btn btn-secondary">{% trans %}Annuler{% endtrans %}</button></a>
+    {{ form_end(formAssosRucheRucher) }}
+</div>
+{% endblock %}
