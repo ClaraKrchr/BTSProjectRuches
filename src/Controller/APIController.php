@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\MesuresRuches;
-// use App\Entity\CRuche;
 use App\Entity\CStation;
 use App\Entity\AssocierRuchePort;
 use App\Entity\MesuresStations;
@@ -54,6 +53,13 @@ class APIController extends AbstractController
      */
     public function post(Request $request, EntityManagerInterface $em, ValidatorInterface $validator)
     {
+        if($request->query->get('Key') != '7105763710'){
+            return new Response(
+                'Accés RefusÃ©: Clé invalide',
+                403,
+                ['content-type' => 'text/html']
+            );
+        }
         try{
             $data = $request->query->get('Sta');
         }catch(NotEncodableValueException $e){
@@ -69,9 +75,9 @@ class APIController extends AbstractController
                 ['content-type' => 'text/html']
             );
         }
-        if(!($array = explode(",", $data) == 20)){
+        if(!(count($array = explode(",", $data)) == 20)){
             return new Response(
-                'RequÃªte Ã©rronÃ©e: DonnÃ©es manquantes',
+                'Requête erronée: Nombre de données invalide',
                 400,
                 ['content-type' => 'text/html']
             );
@@ -103,14 +109,14 @@ class APIController extends AbstractController
             $em->flush();
             // $data = fgetcsv($request, 1000, ",");
 
-            for($i = 0; $i < 15; $i++){
+            for($i = 1; $i < 16; $i++){
                 if((float)next($array) != 0){
                     $mesureR = new MesuresRuches;
                     $mesureR->setDateReleve(new \datetime());
-                    $mesureR->setPoids((int)current($array));
-                    $idStationPort = $idStation + $i + 1;
+                    $mesureR->setPoids((float)current($array));
+                    $idStationPort = $nomStation .$i;
                     $mesureR->setIdstationport($idStationPort);
-                    $assosRuchePort = $em->getRepository(AssocierRuchePort::class)->findOneBy(array('station'=>$station, 'numport'=>($i + 1)));
+                    $assosRuchePort = $em->getRepository(AssocierRuchePort::class)->findOneBy(array('station'=>$station, 'numport'=>($i)));
                     $mesureR->setIdruche($assosRuchePort->getRuche()->getId());
                     
                     $em->persist($mesureR);
