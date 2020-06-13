@@ -7,12 +7,22 @@
 
 <center><h1>{% trans %}Mon carnet d'apiculteur{% endtrans %}</h1></center>
 <center><p>{% trans %}Recherchez une ruche pour afficher ses informations du carnet{% endtrans %}</p></center>
+<div class="container ">
+	<div class="row">
+		<div class="block1 col-lg-4 col-md-4 col-xl-4">
 <table id="carnet" class="table table-striped">
 
 		{{ form_start(carnetForm) }}
 		{{ form_row(carnetForm.ruche, { 'label' :  'Ruche'}) }}
-		<center><button type="submit" class="btn btn-primary">Rechercher</button></center></center>
-		{{ form_end(carnetForm) }}	
-		<a href="{{ path('add_carnet') }}"><button class="btn btn-primary">{% trans %}Ajouter une info{% endtrans %}</button></a>	
+		<center><button type="submit" class="btn btn-primary">{% trans %}Rechercher{% endtrans %}</button></center></center>
+		{{ form_end(carnetForm) }}
 </table>
+</div>
+<div class="block2 col-lg-4 col-md-4 col-xl-4">
+</div>
+	<div class="block3 col-lg-4 col-md-4 col-xl-4">
+	<a href="{{ path('add_carnet') }}"><button class="btn btn-primary">{% trans %}Ajouter une info{% endtrans %}</button></a>
+	</div>
+	</div>
+</div>
 {% endblock %}
