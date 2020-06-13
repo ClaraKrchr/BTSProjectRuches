@@ -71,6 +71,13 @@ class EditController extends AbstractController
         
         $assos = $this->getDoctrine()->getRepository(AssocierRucheRucher::class)->findOneBy(array('ruche'=>$ruche));
         
+        if ($assos == NULL) {
+            $assos = new AssocierRucheRucher();
+            $rucher = $this->getDoctrine()->getRepository(CRucher::class)->findOneBy(array('nom'=>'Aucun'));
+            $assos->setRuche($ruche);
+            $assos->setRucher($rucher);
+        }
+        
         $form = $this->createForm(EditAssosRucheRucherType::class, $assos);
         
         $form->handleRequest($request);
@@ -83,9 +90,9 @@ class EditController extends AbstractController
                 $em->remove($data);
                 $assosport = $this->getDoctrine()->getRepository(AssocierRuchePort::class)->findOneBy(array('ruche'=>$ruche));
                 $ruche->setNbassosport(0);
-                $em->remove($assosport);
+                if ($assosport != NULL) $em->remove($assosport);
             }
-            $em->persist($ruche);
+            $em->persist($data);
             $em->flush();
             
             return $this->redirectToRoute('ruches_privees');
@@ -106,7 +113,14 @@ class EditController extends AbstractController
         //////////////////////////////
         
         $assos = $this->getDoctrine()->getRepository(AssocierRuchePort::class)->findOneBy(array('ruche'=>$ruche));
-        
+        if ($assos == NULL){
+            $assos = new AssocierRuchePort();
+            $station = $this->getDoctrine()->getRepository(CStation::class)->findOneBy(array('nom'=>'Aucune'));
+            $assos->setRuche($ruche);
+            $assos->setStation($station);
+            $assos->setNumport(1);
+        }
+
         $form = $this->createForm(EditAssosRuchePortType::class, $assos);
         
         $form->handleRequest($request);
@@ -114,7 +128,7 @@ class EditController extends AbstractController
             $data = $form->getData();
             if ($data->getStation()->getNom() != 'Aucune') $ruche->setNbassosport(1);
             else {$ruche->setNbassosport(0); $em->remove($data);}
-            $em->persist($ruche);
+            $em->persist($data);
             $em->flush();
             
             return $this->redirectToRoute('ruches_privees');

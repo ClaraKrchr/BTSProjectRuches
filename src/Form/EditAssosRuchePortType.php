@@ -29,7 +29,7 @@ class EditAssosRuchePortType extends AbstractType
                 }
                 ])
             ->add('station',EntityType::class, [
-                'class'=>CRucher::class,
+                'class'=>CStation::class,
                 'query_builder' => function(EntityRepository $er){
                 return $er->createQueryBuilder('u')->select('w')->from(CStation::class, 'w')->orderBy('w.nom', 'ASC');
                 },

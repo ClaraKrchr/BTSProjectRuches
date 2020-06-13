@@ -86,11 +86,15 @@ class DeleteController extends AbstractController
         $ruche->setEtat('0');
         $ruche->setNbassosrucher(0);
         $em->remove($AssosRucheRucher);
+        $RuchePort = $this->getDoctrine()->getRepository(AssocierRuchePort::class)->findOneBy(array('ruche'=>$ruche));
+        if ($RuchePort == NULL){return $this->redirectToRoute('ruches_privees');}
+        $ruche->setNbassosport(0);
+        $em->remove($RuchePort);
         
         $em->persist($ruche);
         $em->flush();
         
-        $message=utf8_encode('La ruche a été dissociée du rucher.');
+        $message=utf8_encode('La ruche a été dissociée du rucher et de la station.');
         $this->addFlash('message', $message);
         return $this->redirectToRoute('ruches_privees');
     }
@@ -115,7 +119,7 @@ class DeleteController extends AbstractController
         $em->persist($ruche);
         $em->flush();
         
-        $message=utf8_encode('La ruche a été dissociée du pèse-ruche.');
+        $message=utf8_encode('La ruche a été dissociée de la station.');
         $this->addFlash('message', $message);
         return $this->redirectToRoute('ruches_privees');
     }
