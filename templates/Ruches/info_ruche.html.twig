@@ -108,14 +108,12 @@
 	<td>{% trans %}Nom Ruche{% endtrans %}</td>
 	<td>{% trans %}Poids{% endtrans %}</td>
 	<td>{% trans %}Date du relevé{% endtrans %}</td>
-	<td>{% trans %}Nom du Pèse Ruche{% endtrans %}</td>
 </tr>
 {% for mesuresruche in mesuresruches %} 
 <tr>
-	<td>{{ mesuresruche.ruche.nomruche }}</td>
+	<td>{{ nomruche }}</td>
 	<td>{{ mesuresruche.poids }} kg</td>
 	<td>{{ mesuresruche.datereleve|date("m/d/Y")}}</td>
-	<td>{{ mesuresruche.peseruche.nompeseruche }}</td>
 </tr>
 {% endfor %}
 </table>

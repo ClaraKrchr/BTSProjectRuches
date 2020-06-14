@@ -22,6 +22,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Doctrine\ORM\EntityManagerInterface;
 
+
 class NouvellepageController extends AbstractController
 {
 
@@ -101,6 +102,14 @@ class NouvellepageController extends AbstractController
      */
     public function credits(){
         return $this->render('credits.html.twig');
+    }
+    
+    /**
+     * @Route("/phpinfo", name="phpinfo")
+     */
+    public function phpinfoAction()
+    {
+        return new Response('<html><body>'.phpinfo().'</body></html>');
     }
 
 }

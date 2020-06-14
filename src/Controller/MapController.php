@@ -62,7 +62,7 @@ class MapController extends NouvellepageController{
     public function info_ruche($nomruche,EntityManagerInterface $em, Request $request){
         
         $Ruche = $em->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche));
-        $assosRucheApi = $em->getRepository(AssociationRucheApiculteur::class)->findOneBy(array('ruche'=>$Ruche));
+        $assosRucheApi = $em->getRepository(AssocierRucheApiculteur::class)->findOneBy(array('ruche'=>$Ruche));
         if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('erreur403');
         
         $NomProprietaire=$this->getUser();
@@ -82,7 +82,7 @@ class MapController extends NouvellepageController{
         }
         
         $qb = $em->createQueryBuilder();
-        $qb->select('w')->from(MesuresRuches::class, 'w')->where('w.ruche = ' . $Ruches->getId())->orderBy('w.date_releve', 'ASC');
+        $qb->select('w')->from(MesuresRuches::class, 'w')->where('w.idruche = ' . $Ruches->getId())->orderBy('w.date_releve', 'ASC');
         $query = $qb->getQuery();
         $MesuresRuches = $query->getResult();
         
@@ -111,7 +111,7 @@ class MapController extends NouvellepageController{
             if($nomruche2!='NULL'){
                 $Ruches=$this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche));
                 $qb = $em->createQueryBuilder();
-                $qb->select('w')->from(MesuresRuches::class, 'w')->where('w.ruche = ' . $Ruches->getId())->orderBy('w.date_releve', 'ASC');
+                $qb->select('w')->from(MesuresRuches::class, 'w')->where('w.idruche = ' . $Ruches->getId())->orderBy('w.date_releve', 'ASC');
                 $query = $qb->getQuery();
                 $MesuresRuches = $query->getResult();
                 if($MesuresRuches){
@@ -125,7 +125,7 @@ class MapController extends NouvellepageController{
                 }
                 $Ruches2=$this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche2));
                 $qb = $em->createQueryBuilder();
-                $qb->select('w')->from(MesuresRuches::class, 'w')->where('w.ruche = ' . $Ruches2->getId())->orderBy('w.date_releve', 'ASC');
+                $qb->select('w')->from(MesuresRuches::class, 'w')->where('w.idruche = ' . $Ruches2->getId())->orderBy('w.date_releve', 'ASC');
                 $query = $qb->getQuery();
                 $MesuresDeRuches = $query->getResult();
                 if($MesuresDeRuches){
@@ -143,7 +143,7 @@ class MapController extends NouvellepageController{
                 $Ruches=$this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche));
                 if($Ruches){
                 $qb = $em->createQueryBuilder();
-                $qb->select('w')->from(MesuresRuches::class, 'w')->where('w.ruche = ' . $Ruches->getId())->orderBy('w.date_releve', 'ASC');
+                $qb->select('w')->from(MesuresRuches::class, 'w')->where('w.idruche = ' . $Ruches->getId())->orderBy('w.date_releve', 'ASC');
                 $query = $qb->getQuery();
                 $MesuresRuches = $query->getResult();
                 
@@ -184,8 +184,8 @@ class MapController extends NouvellepageController{
      * @Route("/details_ruches/{nomruche}", name="details_ruches")
      */
     public function details_ruches($nomruche,EntityManagerInterface $em, Request $request){
-        
-        $assosRucheApi = $em->getRepository(AssocierRucheApiculteur::class)->findOneBy(array('ruche'=>$nomruche));
+        $Ruches=$this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche));
+        $assosRucheApi = $em->getRepository(AssocierRucheApiculteur::class)->findOneBy(array('ruche'=>$Ruches->getId()));
         if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('erreur403');
         
         $NomProprietaire=$this->getUser();
