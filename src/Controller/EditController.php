@@ -115,6 +115,9 @@ class EditController extends AbstractController
         if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('erreur403');
         //////////////////////////////
         
+        $RucheRucher = $this->getDoctrine()->getRepository(AssocierRucheRucher::class)->findOneBy(array('ruche'=>$ruche));
+        $StationRuchers = $this->getDoctrine()->getRepository(AssocierStationRucher::class)->findBy(array('rucher'=>$RucheRucher->getRucher()));
+        
         $assos = $this->getDoctrine()->getRepository(AssocierRuchePort::class)->findOneBy(array('ruche'=>$ruche));
         if ($assos == NULL){
             $assos = new AssocierRuchePort();
@@ -129,11 +132,17 @@ class EditController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $data = $form->getData();
+            $i = 0;
+            foreach($StationRuchers as $StationRucher){
+                if($data->getStation()->getNom() == $StationRucher->getStation()->getNom()) $i = 1;
+            }
+            if (($i == 0) && $data->getStation()->getNom() != 'Aucune') return $this->redirectToRoute('erreur_station');
+            
             $RuchePort = $this->getDoctrine()->getRepository(AssocierRuchePort::class)->findOneBy(array('numport'=>$data->getNumport(),'station'=>$data->getStation()));
             if ($RuchePort == NULL){
-                if ($data->getStation()->getNom() != 'Aucune') $ruche->setNbassosport(1);
+                if ($data->getStation()->getNom() != 'Aucune') {$ruche->setNbassosport(1); $em->persist($data);}
                 else {$ruche->setNbassosport(0); $em->remove($data);}
-                $em->persist($data);
+                
                 $em->flush();
                 
                 return $this->redirectToRoute('ruches_privees');
