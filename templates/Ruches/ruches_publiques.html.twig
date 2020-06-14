@@ -92,7 +92,7 @@
 					<h6 class="m-o font-weight-bold text-secondary">{%trans %}Localisation: {% endtrans %}{{ region }}</h6>
 				</div>
 				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-					<h6 class="m-o font-weight-bold text-secondary">{% trans %}Propriétaire: {% endtrans %}{{ pagination.associationRucheApiculteur.apiculteur.pseudo }}</h6>
+					<h6 class="m-o font-weight-bold text-secondary">{% trans %}Propriétaire: {% endtrans %}{% for rucheapi in rucheapis %} {% if rucheapi.ruche == pagination %} {{ rucheapi.apiculteur.pseudo }} {% endif %} {% endfor %}</h6>
 				</div>
 				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 					<h6 class="m-o font-weight-bold text-secondary">{% trans %}Type de ruche: {% endtrans %}{{ pagination.typeruche }}</h6>

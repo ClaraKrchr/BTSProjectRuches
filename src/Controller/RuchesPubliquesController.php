@@ -4,8 +4,9 @@ namespace App\Controller;
 
 use App\Entity\CRucher;
 use App\Entity\CRuche;
+use App\Entity\CApiculteur;
 use App\Entity\AssocierRucheRucher;
-use App\Entity\AssociationRucherRegion;
+use App\Entity\AssocierRucheApiculteur;
 use App\Entity\Regions;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,9 +25,9 @@ class RuchesPubliquesController extends AbstractController{
      */
     public function new(EntityManagerInterface $em, $regions, PaginatorInterface $paginator, Request $request, $page, $ruche, $proprietaire, $type)   {
         
-        $region = $this->getDoctrine()->getRepository(Regions::class)->findBy(array('nomregion'=>$regions));
-        $RucherRegion = $this->getDoctrine()->getRepository(AssociationRucherRegion::class)->findBy(array('region'=>$region));
-        $AssosRucheRucher = $this->getDoctrine()->getRepository(AssocierRucheRucher::class)->findBy(array('rucher'=>$RucherRegion));
+        $region = $this->getDoctrine()->getRepository(Regions::class)->findOneBy(array('nomregion' => $regions));
+        $ruchers = $this->getDoctrine()->getRepository(CRucher::class)->findBy(array('region' => $region));
+        $AssosRucheRucher = $this->getDoctrine()->getRepository(AssocierRucheRucher::class)->findBy(array('rucher'=>$ruchers));
         $ARRLength = count($AssosRucheRucher);
         $ruches = array();
         for($j = $i = 0; $i < $ARRLength; $i++)
@@ -47,15 +48,29 @@ class RuchesPubliquesController extends AbstractController{
                     } //Proprio OK
                     else{
                         if ($type == 'NULL'){ //Type X
-                            if ($AssosRucheRucher[$i]->getRuche()->getAssociationRucheApiculteur()->getApiculteur()->getPseudo() == $proprietaire){
-                                $ruches[$j] = $AssosRucheRucher[$i]->getRuche();
-                                $j++;
-                                    //Ruche X proprio OK type X
+                            $rucheapi = $this->getDoctrine()->getRepository(AssocierRucheApiculteur::class)->findOneBy(array('ruche'=>$AssosRucheRucher[$i]->getRuche()));
+                            $api = NULL;
+                            if ($rucheapi != NULL) $api = $rucheapi->getApiculteur();
+                            if ($api != NULL){
+                                if ($api->getPseudo() == $proprietaire){
+                                    $ruches[$j] = $AssosRucheRucher[$i]->getRuche();
+                                    $j++;
+                                        //Ruche X proprio OK type X
+                                }
                             }
                         } //Type OK
-                        else if (($AssosRucheRucher[$i]->getRuche()->getAssociationRucheApiculteur()->getApiculteur()->getPseudo() == $proprietaire) && ($AssosRucheRucher[$i]->getRuche()->getTyperuche() == $type))
-                        $ruches[$j] = $AssosRucheRucher[$i]->getRuche();
-                        $j++;
+                        else {
+                            $rucheapi = $this->getDoctrine()->getRepository(AssocierRucheApiculteur::class)->findOneBy(array('ruche'=>$AssosRucheRucher[$i]->getRuche()));
+                            $api = NULL;
+                            if ($rucheapi != NULL) $api = $rucheapi->getApiculteur();
+                            if ($api != NULL){
+                                if (($api->getPseudo() == $proprietaire) && ($AssosRucheRucher[$i]->getRuche()->getTyperuche() == $type)){
+                                    $ruches[$j] = $AssosRucheRucher[$i]->getRuche();
+                                    $j++;
+                                }
+                            }
+                            
+                        }
                                     //Ruche X proprio OK type OK
                     }
                 } //Ruche OK
@@ -75,16 +90,29 @@ class RuchesPubliquesController extends AbstractController{
                 } //Proprio OK
                 else{
                     if ($type == 'NULL'){ //Type X
-                        if (($AssosRucheRucher[$i]->getRuche()->getNomruche() == $ruche) && ($AssosRucheRucher[$i]->getRuche()->getAssociationRucheApiculteur()->getApiculteur()->getPseudo() == $proprietaire)){
-                            $ruches[$j] = $AssosRucheRucher[$i]->getRuche();
-                            $j++;
-                                    //Ruche OK proprio OK type X
+                        $rucheapi = $this->getDoctrine()->getRepository(AssocierRucheApiculteur::class)->findOneBy(array('ruche'=>$AssosRucheRucher[$i]->getRuche()));
+                        $api = NULL;
+                        if ($rucheapi != NULL) $api = $rucheapi->getApiculteur();
+                        if ($api != NULL){
+                            if (($AssosRucheRucher[$i]->getRuche()->getNomruche() == $ruche) && ($api->getPseudo() == $proprietaire)){
+                                $ruches[$j] = $AssosRucheRucher[$i]->getRuche();
+                                $j++;
+                                        //Ruche OK proprio OK type X
+                            }
                         }
                     } //Type OK
-                    else if (($AssosRucheRucher[$i]->getRuche()->getNomruche() == $ruche) && ($AssosRucheRucher[$i]->getRuche()->getAssociationRucheApiculteur()->getApiculteur()->getPseudo() == $proprietaire) && ($AssosRucheRucher[$i]->getRuche()->getTyperuche() == $type)){
-                        $ruches[$j] = $AssosRucheRucher[$i]->getRuche();
-                        $j++;
-                                    //Ruche OK proprio OK type OK
+                    else {
+                        $rucheapi = $this->getDoctrine()->getRepository(AssocierRucheApiculteur::class)->findOneBy(array('ruche'=>$AssosRucheRucher[$i]->getRuche()));
+                        $api = NULL;
+                        if ($rucheapi != NULL) $api = $rucheapi->getApiculteur();
+                        if ($api != NULL){
+                            if (($AssosRucheRucher[$i]->getRuche()->getNomruche() == $ruche) && ($api->getPseudo() == $proprietaire) && ($AssosRucheRucher[$i]->getRuche()->getTyperuche() == $type)){
+                                $ruches[$j] = $AssosRucheRucher[$i]->getRuche();
+                                $j++;
+                                //Ruche OK proprio OK type OK
+                            }
+                        }
+
                     }
                 }
             }
@@ -132,10 +160,12 @@ class RuchesPubliquesController extends AbstractController{
             $page,
             6
             );
+        $rucheapis = $this->getDoctrine()->getRepository(AssocierRucheApiculteur::class)->findAll();
         return $this->render('Ruches/ruches_publiques.html.twig',
             ['filterForm' => $form->createView(),
                 'paginations' => $paginations,
-                'region' => $regions
+                'region' => $regions,
+                'rucheapis' => $rucheapis
             ]);
     }
 }

@@ -90,6 +90,10 @@ class AddController extends AbstractController{
                     $this->addFlash('message',$message);
                 }
             }
+            else{
+                $message=utf8_encode('La ruche a été ajoutée');
+                $this->addFlash('message',$message);
+            }
             
             $em->persist($CRuche);
             $em->flush();
@@ -141,7 +145,7 @@ class AddController extends AbstractController{
             'addStationForm' => $form->createView(),
         ]);
     }
-
+    
     /**
      * @IsGranted("ROLE_USER")
      * @Route("/add_rucher/{latitude}/{longitude}/{region}", name="add_rucher")
@@ -168,7 +172,7 @@ class AddController extends AbstractController{
             $em->persist($AssociationRucherRegion);
             ($em->getRepository(Regions::class)->findOneBy(array('nomregion'=>$region)))->addAssociationRucherRegion($AssociationRucherRegion);
             $CRucher->setAssociationRucherRegion($AssociationRucherRegion);
-
+            
             $em->flush();
             
             $message=utf8_encode('Le rucher a été ajouté');
@@ -232,7 +236,7 @@ class AddController extends AbstractController{
             $MesuresRuches->setIdstationport(0);
             
             $em->persist($MesuresRuches);
-           
+            
             $em->flush();
             
             $mesuresRuche=utf8_encode('La mesure a été ajouté');
@@ -264,7 +268,7 @@ class AddController extends AbstractController{
             $MesuresStations->setStation($data['station']);
             $MesuresStations->setTemperature($data['temperature']);
             $MesuresStations->setTension($data['tension']);
-            $MesuresStations->setHumidite($data['humidite']); 
+            $MesuresStations->setHumidite($data['humidite']);
             $MesuresStations->setPression($data['pression']);
             $MesuresStations->setDateReleve($data['datereleve']);
             $MesuresStations->setRucher($data['rucher']);
