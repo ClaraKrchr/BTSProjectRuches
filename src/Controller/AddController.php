@@ -226,10 +226,10 @@ class AddController extends AbstractController{
             $data = $form->getData();
             
             $MesuresRuches = new MesuresRuches();
-            $MesuresRuches->setRuche($data['ruche']);
+            $MesuresRuches->setIdruche($data['ruche']);
             $MesuresRuches->setDateReleve($data['datereleve']);
             $MesuresRuches->setPoids($data['poids']);
-            $MesuresRuches->setPeseruche($data['peseruche']);
+            $MesuresRuches->setIdstationport(0);
             
             $em->persist($MesuresRuches);
            
