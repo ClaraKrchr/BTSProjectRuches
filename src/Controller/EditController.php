@@ -6,6 +6,7 @@ use App\Entity\CRuche;
 use App\Entity\AssocierRuchePort;
 use App\Entity\AssocierRucheRucher;
 use App\Entity\AssocierRucheApiculteur;
+use App\Entity\AssocierStationRucher;
 use App\Entity\CStation;
 use App\Entity\CRucher;
 use App\Entity\CApiculteur;
@@ -141,7 +142,16 @@ class EditController extends AbstractController
                 return $this->redirectToRoute('erreur_port');
             }
         }
-        return $this->render('Edit/editAssosRuchePort.html.twig', ['formAssosRuchePort' => $form->createView()]);
+        
+        $RucheRucher = $this->getDoctrine()->getRepository(AssocierRucheRucher::class)->findOneBy(array('ruche'=>$ruche));
+        $StationRuchers = $this->getDoctrine()->getRepository(AssocierStationRucher::class)->findBy(array('rucher'=>$RucheRucher->getRucher()));
+        foreach($StationRuchers as $StationRucher){
+            $stations[]=$StationRucher->getStation();
+        }
+        foreach($stations as $station){
+            $StationPorts[] = $this->getDoctrine()->getRepository(AssocierRuchePort::class)->findBy(array('station'=>$station));
+        }
+        return $this->render('Edit/editAssosRuchePort.html.twig', ['formAssosRuchePort' => $form->createView(), 'stations' => $stations, 'stationPorts' => $StationPorts]);
     }
     
     /**

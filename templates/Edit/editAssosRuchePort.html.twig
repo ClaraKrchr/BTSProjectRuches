@@ -26,5 +26,20 @@
 	<button type="submit" class="btn btn-success">{% trans %}Modifier{% endtrans %}</button>
 	<a href="{{ path('ruches_privees') }}"><button class="btn btn-secondary">{% trans %}Annuler{% endtrans %}</button></a>
     {{ form_end(formAssosRuchePort) }}
+    
+    <br><br><br>
+    <table border bgcolor="white" cellpadding="5px">
+        <tr>
+        	<td>{% trans %}Stations disponibles{% endtrans %}</td>
+        	<td>{% trans %}Ports déjà utilisés{% endtrans %}</td>
+        </tr>
+        {% for station in stations %}
+        <tr>
+        	<td> {{ station.nom }} </td>
+        	<td> {% for stationPort in stationPorts %} {% if stationPort.station.nom == station.nom %} {{ stationPort.numport }}, {% endif %} {% endfor %} </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
 </div>
 {% endblock %}
