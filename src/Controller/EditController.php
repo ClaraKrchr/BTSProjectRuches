@@ -8,7 +8,9 @@ use App\Entity\AssocierRucheRucher;
 use App\Entity\AssocierRucheApiculteur;
 use App\Entity\CStation;
 use App\Entity\CRucher;
+use App\Entity\CApiculteur;
 
+use App\Form\EditAssosRucheApiculteurType;
 use App\Form\EditRucheType;
 use App\Form\EditAssosRucheRucherType;
 use App\Form\EditAssosRuchePortType;
@@ -126,14 +128,48 @@ class EditController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $data = $form->getData();
-            if ($data->getStation()->getNom() != 'Aucune') $ruche->setNbassosport(1);
-            else {$ruche->setNbassosport(0); $em->remove($data);}
+            $RuchePort = $this->getDoctrine()->getRepository(AssocierRuchePort::class)->findOneBy(array('numport'=>$data->getNumport(),'station'=>$data->getStation()));
+            if ($RuchePort == NULL){
+                if ($data->getStation()->getNom() != 'Aucune') $ruche->setNbassosport(1);
+                else {$ruche->setNbassosport(0); $em->remove($data);}
+                $em->persist($data);
+                $em->flush();
+                
+                return $this->redirectToRoute('ruches_privees');
+            }
+            else{
+                return $this->redirectToRoute('erreur_port');
+            }
+        }
+        return $this->render('Edit/editAssosRuchePort.html.twig', ['formAssosRuchePort' => $form->createView()]);
+    }
+    
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/edit_assos_ruche_api/{nomruche}", name="edit_assos_ruche_api")
+     */
+    public function editAssosRucheApiculteur(Request $request, CRuche $ruche, EntityManagerInterface $em)
+    {        
+        $assos = $this->getDoctrine()->getRepository(AssocierRucheApiculteur::class)->findOneBy(array('ruche'=>$ruche));
+        
+        if ($assos == NULL) {
+            $assos = new AssocierRucheApiculteur();
+            $apiculteur = $this->getDoctrine()->getRepository(CApiculteur::class)->findOneBy(array('nom'=>'Lespagnol'));
+            $assos->setRuche($ruche);
+            $assos->setApiculteur($apiculteur);
+        }
+        
+        $form = $this->createForm(EditAssosRucheApiculteurType::class, $assos);
+        
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $data = $form->getData();
             $em->persist($data);
             $em->flush();
             
             return $this->redirectToRoute('ruches_privees');
         }
-        return $this->render('Edit/editAssosRuchePort.html.twig', ['formAssosRuchePort' => $form->createView()]);
+        return $this->render('Edit/editAssosRucheApiculteur.html.twig', ['formAssosRucheApiculteur' => $form->createView()]);
     }
 
 }

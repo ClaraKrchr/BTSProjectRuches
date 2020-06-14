@@ -87,6 +87,14 @@ class NouvellepageController extends AbstractController
     {
         return $this->render('security/erreur404.html.twig');
     }
+    
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/erreur_port", name="erreur_port")
+     */
+    public function erreur_port(){
+        return $this->render('security/erreurStationPort.html.twig');
+    }
 
     /**
      * @Route("/credits", name="credits")
