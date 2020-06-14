@@ -54,33 +54,45 @@ class APIController extends AbstractController
     public function post(Request $request, EntityManagerInterface $em, ValidatorInterface $validator)
     {
         if($request->query->get('Key') != '7105763710'){
+            /*
             return new Response(
-                'Accés RefusÃ©: Clé invalide',
+                'AccÃ©s RefusÃ©: ClÃ© invalide',
                 403,
                 ['content-type' => 'text/html']
             );
+            */
+            return NULL;
         }
         try{
             $data = $request->query->get('Sta');
         }catch(NotEncodableValueException $e){
+            /*
             return $this->json([
                 'status' => 400,
                 'message' => $e->getMessage()
             ], 400);
+            */
+            return NULL;
         }
         if(!isset($data)){
+            /*
             return new Response(
                 'Aucune',
                 400,
                 ['content-type' => 'text/html']
             );
+            */
+            return NULL;
         }
         if(!(count($array = explode(",", $data)) == 20)){
+            /*
             return new Response(
-                'Requête erronée: Nombre de données invalide',
+                'RequÃªte erronÃ©e: Nombre de donnÃ©es invalide',
                 400,
                 ['content-type' => 'text/html']
             );
+            */
+            return NULL;
         }        
         try{
             $fileToW = fopen(__DIR__."/log/test.csv","a");
@@ -103,7 +115,8 @@ class APIController extends AbstractController
 
             $errors = $validator->validate($mesureS);
             if(count($errors)){
-                return $this->json($errors, 400);
+                // return $this->json($errors, 400);
+                return NULL;
             }
             $em->persist($mesureS);
             $em->flush();
@@ -123,14 +136,18 @@ class APIController extends AbstractController
                     $em->flush();
                 }
             }
-            return $this->json($array, 201, []);
+            // return $this->json($array, 201, []);
+            return TRUE;
         }catch(NotEncodableValueException $e){
+            /*
             return $this->json([
                 'status' => 400,
                 'message' => $e->getMessage()
             ], 400);
+            */
+            return NULL;
         }
-        /*
+        /*    //////////////////////    JSON    /////////////////////////
         try{
             $contentArray = [];
             if ($jsonContent = $request->getContent()) {
