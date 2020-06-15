@@ -21,7 +21,6 @@ use App\Entity\AssocierRucheRucher;
 use App\Entity\AssocierRucheApiculteur;
 use App\Entity\MesuresStations;
 use App\Entity\MesuresRuches;
-use App\Entity\AssociationRucherRegion;
 use App\Entity\Regions;
 use function Symfony\Component\DependencyInjection\Exception\__toString;
 use App\Entity\CApiculteur;
@@ -41,7 +40,7 @@ class MapController extends NouvellepageController{
         $NomProprietaire=$this->getUser();
         //-------------Recherche des ruchers dans la region---------------//
         $Regions=$this->getDoctrine()->getRepository(Regions::class)->findBy(array('nomregion'=>$regions));
-        $RucherRegion = $this->getDoctrine()->getRepository(AssociationRucherRegion::class)->findBy(array('region'=>$Regions));
+        $RucherRegion = $this->getDoctrine()->getRepository(CRucher::class)->findBy(array('region'=>$Regions));
         //-------------Recherche des ruches dans les ruchers-----------------//
         $RuchesRuchers= $this->getDoctrine()->getRepository(AssocierRucheRucher::class)->findBy(array('rucher'=>$RucherRegion));
         //------------Recherche des ruches appartenant a l'utilisateur connecté-------------//
