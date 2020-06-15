@@ -2,33 +2,106 @@
 {% block body %}
 <!-- for HTML5 -->
 <meta charset="UTF-8">
-<center><h3>{% trans %}Les données de la station {% endtrans %} {{ nomstation }} {% trans %} qui est associée au rucher {% endtrans %} {{ rucher }} </h3>
+<center>
+<h3>{%  trans %}Les mesures de la station:{% endtrans %} {{ nomstation }}</h3>
 <br></br>
-<figure class="highcharts-figure">
-  <div id="chart" style="width:80%; max-height:80%; height:70%;"></div>
-  </figure>	
-
+<div class="container-fluid">
+    <div class="row ">
+        <div class="col-6">
+            <figure class="highcharts-figure">
+          		<div id="temperature" style="width:100%; max-height:80%; height:70%;"></div>
+          	</figure>	
+      	</div>
+        <div class="col-6">
+      		<figure class="highcharts-figure">
+      			<div id="tension" style="width:100%; max-height:80%; height:70%;"></div>
+      		</figure>	
+      	</div>
+  </div>
+  <div class="row ">
+		<div class="col-6">
+  			<figure class="highcharts-figure">
+  				<div id="humidite" style="width:100%; max-height:80%; height:70%;"></div>
+  			</figure>	
+  		</div>
+		<div class="col-6">
+			<figure class="highcharts-figure">
+				<div id="pression" style="width:100%; max-height:80%; height:70%;"></div>
+			</figure>	
+		</div>
+	</div>
+</div>
+<br></br>
 <script type="text/javascript">
     $(document).ready(function() {
-    	var url ='{{ path('mesures_station_diagramme',{nomstation : nomstation,nomstation2:'NULL'})}}';
-        var options = {
+    	var url ='{{ path('mesures_station_diagramme',{nomstation : nomstation})}}';
+        var optionstemperature = {
             chart: {
-                renderTo: 'chart',
+                renderTo:"temperature",
                 type: 'line'
             },
             title: {
-              text: '{% trans %}Les mesures de la station{% endtrans %} {{nomstation}}'
+              text: '{% trans %}La température (°C){% endtrans %}'
             },
+        	credits:{enabled:false},
+        	exporting: { enabled: false },
             series: []
         };
+        var optionstension = {
+                chart: {
+                    renderTo:"tension",
+                    type: 'line'
+                },
+            	credits:{enabled:false},
+            	exporting: { enabled: false },
+                title: {
+                  text: '{% trans %}La tension (V){% endtrans %}'
+                },
+                series: []
+            };
+        var optionshumidite = {
+                chart: {
+                    renderTo:"humidite",
+                    type: 'line'
+                },
+            	credits:{enabled:false},
+            	exporting: { enabled: false },
+                title: {
+                  text: '{% trans %}L\'humidité (%){% endtrans %}'
+                },
+                series: []
+            };
+        var optionspression = {
+                chart: {
+                    renderTo:"pression",
+                    type: 'line'
+                },
+            	credits:{enabled:false},
+            	exporting: { enabled: false },
+                title: {
+                  text: '{% trans %}La pression (hPa){% endtrans %}'
+                },
+                series: []
+            };
         //$.getJSON('data.json', function(list) {
         $.getJSON(url, function(data) {
-            options.series = data; // <- just assign the data to the series property.
-            var chart = new Highcharts.StockChart(options);
+        	optionstemperature.series = data[0]; // <- just assign the data to the series property.
+            var chart = new Highcharts.StockChart(optionstemperature);
+
+            optionstension.series = data[1]; // <- just assign the data to the series property.
+            var chart = new Highcharts.StockChart(optionstension);
+
+            optionshumidite.series = data[2]; // <- just assign the data to the series property.
+            var chart = new Highcharts.StockChart(optionshumidite);
+
+            optionspression.series = data[3]; // <- just assign the data to the series property.
+            var chart = new Highcharts.StockChart(optionspression);
         }); 
     });
 </script>
 <a href="{{ path('info_ruche', {nomruche:nomruche}) }}"><button>{% trans %}Retour{% endtrans %}</button></a>
+
+<br></br>
 </center>
 
 {% endblock %}

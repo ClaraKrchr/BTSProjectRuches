@@ -79,8 +79,9 @@ class MapController extends NouvellepageController{
         $dateinstall= $this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche))->getDateInstall();
         
         //------------Recherche des ruches appartenant a l'utilisateur connecté-------------//
-        $Station=$this->getDoctrine()->getRepository(AssocierRuchePort::class)->findOneBy(array('ruche'=>$Ruches))->getStation();
+        $Station=$this->getDoctrine()->getRepository(AssocierRuchePort::class)->findOneBy(array('ruche'=>$Ruches));
         if ($Station != NULL){
+            $Station=$Station->getStation();
             $qb = $em->createQueryBuilder();
             $qb->select('w')->from(AssocierStationRucher::class, 'w')->where('w.station = ' . $Station->getId());
             $query = $qb->getQuery();
@@ -216,12 +217,13 @@ class MapController extends NouvellepageController{
      */
     public function details_stations($nomstation,$nomruche,EntityManagerInterface $em, Request $request){
         $Station = $this->getDoctrine()->getRepository(CStation::class)->findOneBy(array('nom'=>$nomstation));
+        $ToutesStations = $this->getDoctrine()->getRepository(CStation::class)->findAll();
         $qb = $em->createQueryBuilder();
         $qb->select('w')->from(AssocierStationRucher::class, 'w')->where('w.station = ' . $Station->getId());
         $query = $qb->getQuery();
         $Rucher=$query->getSingleResult();
         
-        return $this->render('Ruches/detail_station.html.twig',['nomstation'=>$Station->getNom(),'nomruche'=>$nomruche,'rucher'=>$Rucher->getRucher()->getNom(),]);
+        return $this->render('Ruches/detail_station.html.twig',['nomstation'=>$Station->getNom(),'nomruche'=>$nomruche,'rucher'=>$Rucher->getRucher()->getNom()]);
     }
     
     /**
@@ -232,8 +234,9 @@ class MapController extends NouvellepageController{
      */
     public function mesures_station_diagramme($nomstation, EntityManagerInterface $em):Response
     {
-      
-        if($nomstation!='NULL'){                
+      $stock=[];
+        if($nomstation!='NULL'){            
+            
                 $Station = $this->getDoctrine()->getRepository(CStation::class)->findOneBy(array('nom'=>$nomstation));
                 if($Station){
                     $qb = $em->createQueryBuilder();
@@ -264,7 +267,7 @@ class MapController extends NouvellepageController{
                             $MesuresStation->getPression()
                         );
                     }
-                    $stock=array(['name'=>'temperature','data'=>$temperature],['name'=>'tension','data'=>$tension],['name'=>'humidite','data'=>$humidite],['name'=>'pression','data'=>$pression]);
+                    $stock=array([['name'=>'temperature','data'=>$temperature,"color"=>'#1111FF']],[['name'=>'tension','data'=>$tension,"color"=>'#FF11FF']],[['name'=>'humidite','data'=>$humidite,"color"=>'#FF1111']],[['name'=>'pression','data'=>$pression,"color"=>'#11FF11']]);
                 }
                     return new Response(json_encode($stock));
                 }
