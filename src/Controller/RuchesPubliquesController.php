@@ -117,7 +117,8 @@ class RuchesPubliquesController extends AbstractController{
                 }
             }
         }
-        $form = $this->createForm(\App\Form\RuchesPubliquesFormType::class);
+        $region = $this->getDoctrine()->getRepository(Regions::class)->findOneBy(array('nomregion'=>$regions))->getId();
+        $form = $this->createForm(RuchesPubliquesFormType::class, NULL, array('region'=>$region));
         
         $form->handleRequest($request);
         

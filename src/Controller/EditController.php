@@ -127,7 +127,7 @@ class EditController extends AbstractController
             $assos->setNumport(1);
         }
 
-        $form = $this->createForm(EditAssosRuchePortType::class, $assos);
+        $form = $this->createForm(EditAssosRuchePortType::class, $assos, array('rucher'=>$RucheRucher->getRucher()->getId()));
         
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){

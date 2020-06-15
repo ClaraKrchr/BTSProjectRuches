@@ -8,10 +8,13 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
 use App\Entity\CApiculteur;
 use App\Entity\CRuche;
+use App\Entity\CRucher;
+use App\Entity\AssocierRucheRucher;
 
 
 class RuchesPubliquesFormType extends AbstractType 
@@ -22,8 +25,8 @@ class RuchesPubliquesFormType extends AbstractType
         $builder        
         ->add('Nom_ruche',EntityType::class,[
             'class'=>CRuche::class,
-            'query_builder' => function(EntityRepository $er){
-            return $er->createQueryBuilder('u')->select('w')->from(CRuche::class, 'w')->where('w.visibilite = 0')->orderBy('w.nomruche', 'ASC');
+            'query_builder' => function(EntityRepository $er) use($options){
+            return $er->createQueryBuilder('u')->select('w')->from(CRuche::class, 'w')->join(AssocierRucheRucher::class, 'a')->join(CRucher::class, 'r')->where('w.visibilite = 0 AND w.id = a.ruche AND a.rucher = r.id AND r.region = :region')->orderBy('w.nomruche', 'ASC')->setParameter('region', $options['region']);
             },
             'choice_label'=>function(CRuche $CRuche){
             return sprintf(' %s',$CRuche->getNomruche());
@@ -59,5 +62,12 @@ class RuchesPubliquesFormType extends AbstractType
             ],
             'required'=> false
         ]);        
-    }    
+    }   
+    
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'region' => null,
+        ));
+    }
 }

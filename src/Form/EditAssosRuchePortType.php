@@ -6,6 +6,7 @@ use App\Entity\CRuche;
 use App\Entity\CRucher;
 use App\Entity\CStation;
 use App\Entity\AssocierRuchePort;
+use App\Entity\AssocierStationRucher;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -30,8 +31,8 @@ class EditAssosRuchePortType extends AbstractType
                 ])
             ->add('station',EntityType::class, [
                 'class'=>CStation::class,
-                'query_builder' => function(EntityRepository $er){
-                return $er->createQueryBuilder('u')->select('w')->from(CStation::class, 'w')->orderBy('w.nom', 'ASC');
+                'query_builder' => function(EntityRepository $er) use($options){
+                return $er->createQueryBuilder('u')->select('w')->from(CStation::class, 'w')->join(AssocierStationRucher::class, 'a')->where('w.id = a.station AND a.rucher = :rucher')->orderBy('w.nom', 'ASC')->setParameter('rucher', $options['rucher']);
                 },
                 'choice_label'=>function(CStation $CStation){
                 return sprintf(' %s',$CStation->getNom());
@@ -65,6 +66,7 @@ class EditAssosRuchePortType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => AssocierRuchePort::class,
+            'rucher' => NULL,
         ]);
     }
 }
