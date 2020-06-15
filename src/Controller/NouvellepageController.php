@@ -99,6 +99,14 @@ class NouvellepageController extends AbstractController
     
     /**
      * @IsGranted("ROLE_USER")
+     * @Route("/erreur_compte", name="erreur_compte")
+     */
+    public function erreur_compte(){
+        return $this->render('security/erreurCompte.html.twig');
+    }
+    
+    /**
+     * @IsGranted("ROLE_USER")
      * @Route("/erreur_station", name="erreur_station")
      */
     public function erreur_station(){
@@ -110,14 +118,6 @@ class NouvellepageController extends AbstractController
      */
     public function credits(){
         return $this->render('credits.html.twig');
-    }
-    
-    /**
-     * @Route("/phpinfo", name="phpinfo")
-     */
-    public function phpinfoAction()
-    {
-        return new Response('<html><body>'.phpinfo().'</body></html>');
     }
 
 }

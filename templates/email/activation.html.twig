@@ -1,3 +1,4 @@
 <meta charset="UTF-8">
 <h1>Activation d'un compte</h1>
 <p>Un nouveau compte a été crée, cliquez sur le lien ci-dessous pour l'activer.</p>
+<a href="{{ absolute_url(path('activation', {'token':user.activationtoken}))}}">Activer</a>

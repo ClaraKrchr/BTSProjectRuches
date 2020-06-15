@@ -31,7 +31,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/registration", name="registration")
      */
-    public function registration(Request $request, UserPasswordEncoderInterface $encoder, ObjectManager $manager, Mailer $mailer) {
+    public function registration(Request $request, UserPasswordEncoderInterface $encoder, ObjectManager $manager, Mailer $mailer, TokenGeneratorInterface $tokenGenerator, EntityManagerInterface $em) {
         $CApiculteur = new CApiculteur();
         $form = $this->createForm(RegistrationFormType::class, $CApiculteur);
         $form->handleRequest($request);
@@ -43,20 +43,31 @@ class SecurityController extends AbstractController
             $CApiculteur->SetPassword($hash);
             
             //On génère le token d'activation
-            $CApiculteur->setActivationToken(md5(uniqid()));
+            //$CApiculteur->setActivationToken(md5(uniqid()));
+            
+            // on génère un token
+            $token = $tokenGenerator->generateToken();
+            $CApiculteur->setActivationtoken($token);
             
             $manager->persist($CApiculteur); //persiste l’info dans le temps
             $manager->flush(); //envoie les info à la BDD
             
-            $message=utf8_encode('Le compte a été crée');
-            $this->addFlash('creationCompte',$message);
-            return $this->redirectToRoute('registration');
+            // on génère l'url d'activation de compte
+            $url = $this->generateUrl('activation', ['token' => $token],
+                UrlGeneratorInterface::ABSOLUTE_URL);
             
-            $bodyMailer = $mailer->createBodyMail('email/activation.html.twig', [
+            $bodyMail = $mailer->createBodyMail('email/activation.html.twig', [
                 'user' => $CApiculteur
             ]);
             
-            $mailer->sendMessage('noreply.clubapi@gmail.com', 'clara.krchr@gmail.com', 'Activation', $bodyMail);
+            /*$admin = $em->getRepository(CApiculteur::class)->findOneBy(array('roles'=>'ROLE_ADMIN'));
+            $mail = $admin->getMail();*/         
+            
+            $mailer->sendMessage('noreply.clubapi@gmail.com', $mail, 'Activation', $bodyMail);
+            
+            $message=utf8_encode('La demande de création de compte a été envoyée.');
+            $this->addFlash('creationCompte',$message);
+            return $this->redirectToRoute('registration');
         }
         
         return $this->render('security/registration.html.twig', [
@@ -101,8 +112,7 @@ class SecurityController extends AbstractController
         return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error
-        ]);
-        
+        ]);        
     }
     
     /**
