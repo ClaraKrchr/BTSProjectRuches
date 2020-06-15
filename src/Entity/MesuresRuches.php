@@ -39,7 +39,7 @@ class MesuresRuches
     private $idruche;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="bigint")
      */
     private $idstationport;
 
