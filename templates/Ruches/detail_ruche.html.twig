@@ -54,7 +54,7 @@
 	credits:{enabled:false},
 	
     title: {
-	      text: 'Les mesures de la ruche {{ nomruche }}'
+	      text: '{% trans %}Les mesures de la ruche{% endtrans %} {{ nomruche }}'
 	    },				
     series: [{                     				
 	      	name: 'Poids de la ruche (en kg)',
@@ -93,17 +93,17 @@
 					
 					credits:{enabled:false},
 			    title: {
-				      text: 'Les mesures de la ruche {{ nomruche }} comparée à '+nomruchepublic
+				      text: '{% trans %}Les mesures de la ruche{% endtrans %} {{ nomruche }} {% trans %}comparée à{% endtrans %} '+nomruchepublic
 				    },
 			    series: [{                     				
-				      	name: 'Poids Premiere ruche(en kg)',
+				      	name: '{% trans %}Poids Premiere ruche(en kg){% endtrans %}',
 				      	data: data[0],
 				      	type: 'line',
 				     	tooltip: {
 				        	valueDecimals: 2
 				      }
 				    },{                     				
-				      	name: 'Poids Seconde ruche(en kg)',
+				      	name: '{%trans%}Poids Seconde ruche(en kg){% endtrans %}',
 				      	data: data[1],
 				      	type: 'line',
 				     	tooltip: {
@@ -138,17 +138,17 @@
 					
 					credits:{enabled:false},
 			    title: {
-				      text: 'Les mesures de la ruche {{ nomruche }} comparée à '+nomrucheprivee
+				      text: '{% trans %}Les mesures de la ruche{% endtrans %} {{ nomruche }} {% trans %}comparée à{% endtrans %} '+nomrucheprivee
 				    },
 			    series: [{                     				
-				      	name: 'Poids Premiere ruche(en kg)',
+				      	name: '{% trans %}Poids Premiere ruche(en kg){% endtrans %}',
 				      	data: data[0],
 				      	type: 'line',
 				     	tooltip: {
 				        	valueDecimals:0
 				      }
 				    },{                     				
-				      	name: 'Poids Seconde ruche(en kg)',
+				      	name: '{%trans%}Poids Seconde ruche(en kg){% endtrans %}',
 				      	data: data[1],
 				      	type: 'line',
 				     	tooltip: {
@@ -181,6 +181,6 @@
 		}
 	}</script>
 
-  <a href="{{ path('info_ruche', {nomruche:nomruche}) }}"><button>Retour</button></a>
+  <a href="{{ path('info_ruche', {nomruche:nomruche}) }}"><button>{% trans %}Retour{% endtrans %}</button></a>
 
 {% endblock %}

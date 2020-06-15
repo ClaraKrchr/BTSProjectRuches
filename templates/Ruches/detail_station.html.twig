@@ -17,7 +17,7 @@
                 type: 'line'
             },
             title: {
-              text: 'Les mesures de la station {{nomstation}}'
+              text: '{% trans %}Les mesures de la station{% endtrans %} {{nomstation}}'
             },
             series: []
         };
@@ -28,7 +28,7 @@
         }); 
     });
 </script>
-<a href="{{ path('info_ruche', {nomruche:nomruche}) }}"><button>Retour</button></a>
+<a href="{{ path('info_ruche', {nomruche:nomruche}) }}"><button>{% trans %}Retour{% endtrans %}</button></a>
 </center>
 
 {% endblock %}
