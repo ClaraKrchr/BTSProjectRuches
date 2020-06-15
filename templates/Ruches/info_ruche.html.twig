@@ -13,21 +13,21 @@
 
 <table border bgcolor="white" cellpadding="5px">
 <tr>
+	<td>{% trans %}Date du relevé{% endtrans %}</td>
 	<td>{% trans %}Nom Station{% endtrans %}</td>
 	<td>{% trans %}Température{% endtrans %}</td>
 	<td>{% trans %}Tension{% endtrans %}</td>
 	<td>{% trans %}Humidité{% endtrans %}</td>
-	<td>{% trans %}Date du relevé{% endtrans %}</td>
 	<td>{% trans %}Pression{% endtrans %}</td>
 	<td>{% trans %}Nom du Rucher{% endtrans %}</td>
 </tr>
 {% for mesuresstation in mesuresstations %}
 <tr>
+	<td>{{ mesuresstation.datereleve|date("d/m/Y",false) }}</td>
 	<td>{{ station.nom }}</td>
 	<td>{{ mesuresstation.temperature}}°C</td>
 	<td>{{ mesuresstation.tension }} V</td>
 	<td>{{ mesuresstation.humidite }}%</td>
-	<td>{{ mesuresstation.datereleve|date("d/m/Y",false) }}</td>
 	<td>{{ mesuresstation.pression}} hPa</td>
 	<td>{{ rucher }}</td>
 </tr>
@@ -108,15 +108,16 @@
 
 <table border bgcolor="white" cellpadding="5px">
 <tr>
+	<td>{% trans %}Date du relevé{% endtrans %}</td>
 	<td>{% trans %}Nom Ruche{% endtrans %}</td>
 	<td>{% trans %}Poids{% endtrans %}</td>
-	<td>{% trans %}Date du relevé{% endtrans %}</td>
+	
 </tr>
 {% for mesuresruche in mesuresruches %} 
 <tr>
+	<td>{{ mesuresruche.datereleve|date("m/d/Y")}}</td>
 	<td>{{ nomruche }}</td>
 	<td>{{ mesuresruche.poids }} kg</td>
-	<td>{{ mesuresruche.datereleve|date("m/d/Y")}}</td>
 </tr>
 {% endfor %}
 </table>
