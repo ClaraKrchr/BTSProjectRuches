@@ -16,6 +16,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 use App\Entity\CRuche;
 use App\Entity\CRucher;
+use App\Entity\CStation;
 use App\Entity\AssocierRuchePort;
 use App\Entity\AssocierRucheRucher;
 use App\Entity\AssocierRucheApiculteur;
@@ -26,6 +27,7 @@ use function Symfony\Component\DependencyInjection\Exception\__toString;
 use App\Entity\CApiculteur;
 
 use Doctrine\ORM\EntityRepository;
+use App\Entity\AssocierStationRucher;
 
 class MapController extends NouvellepageController{
     
@@ -66,19 +68,8 @@ class MapController extends NouvellepageController{
         
         $NomProprietaire=$this->getUser();
         
-        $Ruches=$this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche));
         
-        $RuchePort=$this->getDoctrine()->getRepository(AssocierRuchePort::class)->findOneBy(array('ruche'=>$nomruche));
-        if ($RuchePort != NULL){
-            $Station = $RuchePort->getStation();
-            $qb = $em->createQueryBuilder();
-            $qb->select('w')->from(MesuresStations::class, 'w')->where('w.station = ' . $Station)->orderBy('w.date_releve', 'ASC');
-            $query = $qb->getQuery();
-            $MesuresStations=$this->getResult();
-        }
-        else{
-            $MesuresStations = NULL;
-        }
+        $Ruches=$this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche));
         
         $qb = $em->createQueryBuilder();
         $qb->select('w')->from(MesuresRuches::class, 'w')->where('w.idruche = ' . $Ruches->getId())->orderBy('w.date_releve', 'ASC');
@@ -88,11 +79,32 @@ class MapController extends NouvellepageController{
         $dateinstall= $this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche))->getDateInstall();
         
         //------------Recherche des ruches appartenant a l'utilisateur connecté-------------//
-       
-        return $this->render('Ruches/info_ruche.html.twig',[
-            'nomruche'=>$nomruche,'proprietaire'=>$NomProprietaire,'dateinstall'=>$dateinstall,
-            'mesuresstations'=>$MesuresStations,'mesuresruches'=>$MesuresRuches,
-        ]);
+        $RuchePort=$this->getDoctrine()->getRepository(AssocierRuchePort::class)->findOneBy(array('ruche'=>$Ruches))->getStation();
+        if ($RuchePort != NULL){
+            $Station = $RuchePort;
+            
+            $qb = $em->createQueryBuilder();
+            $qb->select('w')->from(AssocierStationRucher::class, 'w')->where('w.station = ' . $Station->getId());
+            $query = $qb->getQuery();
+            $Rucher=$query->getSingleResult();
+            
+            $qb = $em->createQueryBuilder();
+            $qb->select('w')->from(MesuresStations::class, 'w')->where('w.idrucher = ' . $Rucher->getRucher()->getId())->orderBy('w.date_releve', 'ASC');
+            $query = $qb->getQuery();
+            $MesuresStations=$query->getResult();
+            return $this->render('Ruches/info_ruche.html.twig',[
+                'nomruche'=>$nomruche,'proprietaire'=>$NomProprietaire,'dateinstall'=>$dateinstall,
+                'mesuresstations'=>$MesuresStations,'station'=>$Station,'rucher'=>$Rucher->getRucher()->getNom(),'mesuresruches'=>$MesuresRuches,
+            ]);
+        }
+        else{
+            $MesuresStations = NULL;
+            return $this->render('Ruches/info_ruche.html.twig',[
+                'nomruche'=>$nomruche,'proprietaire'=>$NomProprietaire,'dateinstall'=>$dateinstall,
+                'mesuresstations'=>$MesuresStations,'mesuresruches'=>$MesuresRuches,
+            ]);
+        }
+        
     }
     
     //---Passe toutes les mesures de la ruche sous format json---//
@@ -109,6 +121,7 @@ class MapController extends NouvellepageController{
         if($nomruche!='NULL'){
             if($nomruche2!='NULL'){
                 $Ruches=$this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche));
+                if($Ruches){
                 $qb = $em->createQueryBuilder();
                 $qb->select('w')->from(MesuresRuches::class, 'w')->where('w.idruche = ' . $Ruches->getId())->orderBy('w.date_releve', 'ASC');
                 $query = $qb->getQuery();
@@ -120,9 +133,11 @@ class MapController extends NouvellepageController{
                             $MesuresRuche->getDateReleve()->getTimestamp()*1000,
                             $MesuresRuche->getPoids()
                         );
-                    }
+                    }$stock[]=$stockage1;
+                }
                 }
                 $Ruches2=$this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche2));
+                if($Ruches2){
                 $qb = $em->createQueryBuilder();
                 $qb->select('w')->from(MesuresRuches::class, 'w')->where('w.idruche = ' . $Ruches2->getId())->orderBy('w.date_releve', 'ASC');
                 $query = $qb->getQuery();
@@ -135,9 +150,11 @@ class MapController extends NouvellepageController{
                             $MesuresDeRuche->getPoids()
                         );
                     }
+                    $stock[]=$stockage2;
                 }
-                $stock[]=$stockage1;
-                $stock[]=$stockage2;
+                }
+                
+                
             }else{
                 $Ruches=$this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche));
                 if($Ruches){
@@ -193,5 +210,67 @@ class MapController extends NouvellepageController{
         $RuchesPublic =  $this->getDoctrine()->getRepository(CRuche::class)->findBy(array('visibilite'=>'0'));
         
         return $this->render('Ruches/detail_ruche.html.twig',['nomruche'=>$nomruche,'proprietaire'=>$NomProprietaire,'ruchepubliques'=>$RuchesPublic,'rucheprivees'=>$RuchesApiculteurs]);
+    }
+    
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/details_stations/{nomstation}", name="details_stations")
+     */
+    public function details_stations($nomstation,EntityManagerInterface $em, Request $request){
+        $Station = $this->getDoctrine()->getRepository(CStation::class)->findOneBy(array('nom'=>$nomstation));
+        $qb = $em->createQueryBuilder();
+        $qb->select('w')->from(AssocierStationRucher::class, 'w')->where('w.station = ' . $Station->getId());
+        $query = $qb->getQuery();
+        $Rucher=$query->getSingleResult();
+        
+        return $this->render('Ruches/detail_station.html.twig',['nomstation'=>$Station->getNom(),'rucher'=>$Rucher->getRucher()->getNom(),]);
+    }
+    
+    /**
+     * @Route("/mesures_station_diagramme/{nomstation}", name="mesures_station_diagramme")
+     *
+     * @param $nomruche
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
+    public function mesures_station_diagramme($nomstation, EntityManagerInterface $em):Response
+    {
+      
+        if($nomstation!='NULL'){                
+                $Station = $this->getDoctrine()->getRepository(CStation::class)->findOneBy(array('nom'=>$nomstation));
+                if($Station){
+                    $qb = $em->createQueryBuilder();
+                    $qb->select('w')->from(AssocierStationRucher::class, 'w')->where('w.station = ' . $Station->getId());
+                    $query = $qb->getQuery();
+                    $Rucher=$query->getSingleResult();
+                    
+                    $qb = $em->createQueryBuilder();
+                    $qb->select('w')->from(MesuresStations::class, 'w')->where('w.idrucher = ' . $Rucher->getRucher()->getId())->orderBy('w.date_releve', 'ASC');
+                    $query = $qb->getQuery();
+                    $MesuresStations=$query->getResult();
+                    foreach ($MesuresStations as $MesuresStation){
+                        
+                        $temperature[] = array(
+                            $MesuresStation->getDateReleve()->getTimestamp()*1000,
+                            $MesuresStation->getTemperature()
+                        );
+                        $tension[]=array(
+                            $MesuresStation->getDateReleve()->getTimestamp()*1000,
+                            $MesuresStation->getTension()
+                        ); 
+                        $humidite[]=array(
+                            $MesuresStation->getDateReleve()->getTimestamp()*1000,
+                            $MesuresStation->getHumidite()
+                        );
+                        $pression[]=array(
+                            $MesuresStation->getDateReleve()->getTimestamp()*1000,
+                            $MesuresStation->getPression()
+                        );
+                    }
+                    $stock=array(['name'=>'temperature','data'=>$temperature],['name'=>'tension','data'=>$tension],['name'=>'humidite','data'=>$humidite],['name'=>'pression','data'=>$pression]);
+                }
+                    return new Response(json_encode($stock));
+                }
+                return new Response(json_encode($stock));
+           
     }
 }

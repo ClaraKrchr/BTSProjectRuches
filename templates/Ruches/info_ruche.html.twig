@@ -23,13 +23,13 @@
 </tr>
 {% for mesuresstation in mesuresstations %}
 <tr>
-	<td>{{ mesuresstation.station.nom }}</td>
+	<td>{{ station.nom }}</td>
 	<td>{{ mesuresstation.temperature}}°C</td>
 	<td>{{ mesuresstation.tension }} V</td>
 	<td>{{ mesuresstation.humidite }}%</td>
 	<td>{{ mesuresstation.datereleve|date("d/m/Y",false) }}</td>
 	<td>{{ mesuresstation.pression}} hPa</td>
-	<td>{{ mesuresstation.rucher.nom }}</td>
+	<td>{{ rucher }}</td>
 </tr>
 {% endfor %}
 </table>
@@ -92,6 +92,9 @@
 
 	    var chart = new Highcharts.Chart('chart',chartOptions);
   </script>
+  <div class="block3 col-lg-6">Pour afficher les mesures de la station détaillées cliquez
+	<a href="{{ path('details_stations',{nomstation:station}) }}" ><button>{% trans %}ICI{% endtrans %}</button></a>
+	</div>
 {% else %}
 	<div>{% trans %}Aucune mesures pour cette station{% endtrans %}</div>
 {% endif %}
@@ -169,8 +172,8 @@
 
 	    var chart = new Highcharts.Chart('chart2',chartOptions);
 	</script>
-	<div class="block3 col-lg-6">
-	<a href="{{ path('details_ruches',{nomruche:nomruche}) }}" ><button>{% trans %}Afficher les détails{% endtrans %}</button></a>
+	<div class="block3 col-lg-6">Pour afficher les mesures de la ruche détaillées cliquez
+	<a href="{{ path('details_ruches',{nomruche:nomruche}) }}" ><button>{% trans %}ICI{% endtrans %}</button></a>
 	</div>
 {% else %}
 	<div>{% trans %}Aucune mesures pour cette ruche{% endtrans %}</div>
