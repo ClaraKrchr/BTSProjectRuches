@@ -79,10 +79,8 @@ class MapController extends NouvellepageController{
         $dateinstall= $this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche))->getDateInstall();
         
         //------------Recherche des ruches appartenant a l'utilisateur connecté-------------//
-        $RuchePort=$this->getDoctrine()->getRepository(AssocierRuchePort::class)->findOneBy(array('ruche'=>$Ruches))->getStation();
-        if ($RuchePort != NULL){
-            $Station = $RuchePort;
-            
+        $Station=$this->getDoctrine()->getRepository(AssocierRuchePort::class)->findOneBy(array('ruche'=>$Ruches))->getStation();
+        if ($Station != NULL){
             $qb = $em->createQueryBuilder();
             $qb->select('w')->from(AssocierStationRucher::class, 'w')->where('w.station = ' . $Station->getId());
             $query = $qb->getQuery();
@@ -214,16 +212,16 @@ class MapController extends NouvellepageController{
     
     /**
      * @IsGranted("ROLE_USER")
-     * @Route("/details_stations/{nomstation}", name="details_stations")
+     * @Route("/details_stations/{nomstation}/{nomruche}", name="details_stations")
      */
-    public function details_stations($nomstation,EntityManagerInterface $em, Request $request){
+    public function details_stations($nomstation,$nomruche,EntityManagerInterface $em, Request $request){
         $Station = $this->getDoctrine()->getRepository(CStation::class)->findOneBy(array('nom'=>$nomstation));
         $qb = $em->createQueryBuilder();
         $qb->select('w')->from(AssocierStationRucher::class, 'w')->where('w.station = ' . $Station->getId());
         $query = $qb->getQuery();
         $Rucher=$query->getSingleResult();
         
-        return $this->render('Ruches/detail_station.html.twig',['nomstation'=>$Station->getNom(),'rucher'=>$Rucher->getRucher()->getNom(),]);
+        return $this->render('Ruches/detail_station.html.twig',['nomstation'=>$Station->getNom(),'nomruche'=>$nomruche,'rucher'=>$Rucher->getRucher()->getNom(),]);
     }
     
     /**

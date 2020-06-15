@@ -49,7 +49,7 @@
 	      },
 	      
 	      title: {
-	        text: '{% trans %} Les mesures de la station {% endtrans %}'
+	        text: '{% trans %} Les mesures de la station{% endtrans %} {{station.nom}}'
 	      },
 	      subtitle:{
 	    	  text: '{% trans %} Utilisez Ctrl+Clic Gauche pour naviguer sur le diagramme {% endtrans %}',
@@ -92,8 +92,8 @@
 
 	    var chart = new Highcharts.Chart('chart',chartOptions);
   </script>
-  <div class="block3 col-lg-6">Pour afficher les mesures de la station détaillées cliquez
-	<a href="{{ path('details_stations',{nomstation:station}) }}" ><button>{% trans %}ICI{% endtrans %}</button></a>
+  <div>Pour afficher les mesures de la station détaillées cliquez
+	<a href="{{ path('details_stations',{nomstation:station.nom,nomruche:nomruche}) }}" ><button>{% trans %}ICI{% endtrans %}</button></a>
 	</div>
 {% else %}
 	<div>{% trans %}Aucune mesures pour cette station{% endtrans %}</div>
