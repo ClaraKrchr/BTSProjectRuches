@@ -74,7 +74,8 @@ class AddController extends AbstractController{
             
             if($data['Station']->getNom() != 'Aucune'){
                 $RuchePort = $this->getDoctrine()->getRepository(AssocierRuchePort::class)->findOneBy(array('numport'=>$data['Port'],'station'=>$data['Station']));
-                if ($RuchePort == NULL){
+                $StationRucher = $this->getDoctrine()->getRepository(AssocierStationRucher::class)->findOneBy(array('station'=>$data['Station'], 'rucher'=>$data['Rucher']));
+                if (($RuchePort == NULL) && ($StationRucher != NULL)){
                     $RuchePort = new AssocierRuchePort();
                     
                     $RuchePort->setRuche($CRuche);
@@ -86,8 +87,14 @@ class AddController extends AbstractController{
                     $this->addFlash('message',$message);
                 }
                 else{
-                    $message=utf8_encode('La ruche a été ajoutée mais le port spécifié est déjà utilisé. Vous pouvez en choisir un autre en consultant vos ruches.');
-                    $this->addFlash('message',$message);
+                    if ($StationRucher == NULL){
+                        $message=utf8_encode('La ruche a été ajoutée mais le station spécifiée n\'est pas dans le rucher associé. Vous pouvez en choisir une autre en consultant vos ruches.');
+                        $this->addFlash('message',$message);
+                    }
+                    else if($RuchePort != NULL){
+                        $message=utf8_encode('La ruche a été ajoutée mais le port spécifié est déjà utilisé. Vous pouvez en choisir un autre en consultant vos ruches.');
+                        $this->addFlash('message',$message);
+                    }
                 }
             }
             else{
