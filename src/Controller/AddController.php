@@ -295,7 +295,7 @@ class AddController extends AbstractController{
      */
     public function addCarnet(Request $request, ObjectManager $manager){
         $Carnet = new Carnet();
-        $form = $this->createForm(AddCarnetFormType::class, $Carnet);
+        $form = $this->createForm(CarnetFormType::class, NULL, array('user' => $this->getUser()->getId()));
         $form->handleRequest($request);
         
         if($form->isSubmitted()){

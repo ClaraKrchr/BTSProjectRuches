@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Carnet;
 use App\Entity\CRuche;
+use App\Entity\AssocierRucheApiculteur;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -12,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Doctrine\ORM\EntityRepository;
 
 class AddCarnetFormType extends AbstractType
 {
@@ -23,6 +25,9 @@ class AddCarnetFormType extends AbstractType
             ->add('commentaire', TextareaType::class, ['required'=>false])
             ->add('ruche',EntityType::class, [
                 'class'=>CRuche::class,
+                'query_builder' => function(EntityRepository $er) use($options){
+                return $er->createQueryBuilder('u')->select('w')->from(CRuche::class, 'w')->join(AssocierRucheApiculteur::class, 'a')->where('w.id = a.ruche AND a.apiculteur = :user')->orderBy('w.nomruche', 'ASC')->setParameter('user', $options['user']);
+                },
                 'choice_label'=>function(CRuche $CRuche){
                 return sprintf(' %s',$CRuche->getNomruche());
                 },
@@ -152,6 +157,7 @@ class AddCarnetFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Carnet::class,
+            'user' => null
         ]);
     }
 }

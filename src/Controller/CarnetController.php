@@ -26,7 +26,8 @@ class CarnetController extends AbstractController
      * @Route("/carnet", name="carnet")
      */
     public function carnet(Request $request){
-        $form = $this->createForm(CarnetFormType::class);
+        $form = $this->createForm(CarnetFormType::class, NULL, array('user' => $this->getUser()->getId()));
+        
         $form->handleRequest($request);
         
         if($form->isSubmitted() && $form->isValid()) {
