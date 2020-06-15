@@ -14,15 +14,15 @@
 					<div style="width:50%; float:left"><center><h4>État des abeilles</h4></center>
 					<center>{% for  etatabeilles in carnet.etatabeilles %}
 						    {% if etatabeilles=="Grandes" %}
-								Grandes
+								{% trans %}Grandes{% endtrans %}
 						    {% elseif etatabeilles=="Petites" %}
-								Petites
+								{% trans %}Petites{% endtrans %}
 							{% elseif etatabeilles=="Ailes atrophiees" %}
-								Ailes atrophiees
+								{% trans %}Ailes atrophiees{% endtrans %}
 							{% elseif etatabeilles=="Agressives" %}
-								Agressives
+								{% trans %}Agressives{% endtrans %}
 							{% elseif etatabeilles=="Douces" %}
-								Douces
+								{% trans %}Douces{% endtrans %}
 						    {% endif %}
 							{% endfor %}</center><br></div>
 					<center><h3>{{ carnet.date|date('d/m/Y') }}</h3></center><br>
@@ -41,9 +41,9 @@
 				<td>{{ carnet.etatruche }}</td>
 				<td>{% for  etatessaim in carnet.etatessaim %}
 						    {% if etatessaim=="Orpheline" %}
-								Orpheline
+								{% trans %}Orpheline{% endtrans %}
 						    {% elseif etatessaim=="Bourdonneuse" %}
-								Bourdonneuse
+								{% trans %}Bourdonneuse{% endtrans %}
 						    {% endif %}
 					{% endfor %}</td>
 					<td>{{ carnet.origineessaim }}</td>
@@ -205,7 +205,7 @@
 	
 </div>
 			{% if paginations.getTotalItemCount =='0' %}
-			<center><h1>Aucune information enregistrée.</h1></center><br>
+			<center><h1>{% trans %}Aucune information enregistrée.{% endtrans %}</h1></center><br>
             {% endif %}
 			<center><a href="{{ path('carnet') }}"><button class="btn btn-primary">{% trans %}Retour{% endtrans %}</button></a></center><br>
 			<ul class="pagination justify-content-end">

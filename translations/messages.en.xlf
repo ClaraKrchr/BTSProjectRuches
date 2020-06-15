@@ -661,6 +661,70 @@
         <source>Vous n'avez pas de ruche archivée.</source>
         <target>You have not archived hives.</target>
       </trans-unit>
+      <trans-unit id="ZB0OCre" resname="Modification d'une association ruche-port">
+        <source>Modification d'une association ruche-port</source>
+        <target>Modification of a hive-port association</target>
+      </trans-unit>
+      <trans-unit id="sC8b1yY" resname="Modification d'une association ruche-rucher">
+        <source>Modification d'une association ruche-rucher</source>
+        <target>Modification of a hive-apiary association</target>
+      </trans-unit>
+      <trans-unit id="w9aLHIj" resname="Grandes">
+        <source>Grandes</source>
+        <target>Large</target>
+      </trans-unit>
+      <trans-unit id="cqvdE7C" resname="Petites">
+        <source>Petites</source>
+        <target>Small</target>
+      </trans-unit>
+      <trans-unit id="y3CNR4Z" resname="Ailes atrophiees">
+        <source>Ailes atrophiees</source>
+        <target>Atrophied wings</target>
+      </trans-unit>
+      <trans-unit id="IodsCm3" resname="Agressives">
+        <source>Agressives</source>
+        <target>Agressive</target>
+      </trans-unit>
+      <trans-unit id="_lg5gng" resname="Douces">
+        <source>Douces</source>
+        <target>Sweet</target>
+      </trans-unit>
+      <trans-unit id="mTmeDGE" resname="Orpheline">
+        <source>Orpheline</source>
+        <target>Orphan</target>
+      </trans-unit>
+      <trans-unit id="HpEZGlv" resname="Bourdonneuse">
+        <source>Bourdonneuse</source>
+        <target>Buzzer</target>
+      </trans-unit>
+      <trans-unit id="mpL3GEP" resname="Aucune information enregistrée.">
+        <source>Aucune information enregistrée.</source>
+        <target>No information recorded.</target>
+      </trans-unit>
+      <trans-unit id="EVzPlhB" resname="Station">
+        <source>Station</source>
+        <target>Station</target>
+      </trans-unit>
+      <trans-unit id="cumln1o" resname="Port">
+        <source>Port</source>
+        <target>Port</target>
+      </trans-unit>
+      <trans-unit id="KQEGyKV" resname="Aucune">
+        <source>Aucune</source>
+        <target>None</target>
+      </trans-unit>
+      <trans-unit id="t5r10_u" resname="Dissocier de la station">
+        <source>Dissocier de la station</source>
+        <target>Ungroup from station</target>
+      </trans-unit>
+      <trans-unit id="UkV89bx" resname="Modifier le rucher associé">
+        <source>Modifier le rucher associé</source>
+        <target>Modify the associated apiary</target>
+      </trans-unit>
+      <trans-unit id="FbctFiy" resname="Modifier le port associé">
+        <source>Modifier le port associé</source>
+        <target>Modify the associated port</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
