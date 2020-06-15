@@ -73,20 +73,30 @@ class AddController extends AbstractController{
             }
             
             if($data['Station']->getNom() != 'Aucune'){
-                $RuchePort = new AssocierRuchePort();
-                
-                $RuchePort->setRuche($CRuche);
-                $RuchePort->setStation($em->getRepository(CStation::class)->findOneBy(array('id'=>($data['Station'])->getId())));
-                $RuchePort->setNumport($data['Port']);
-                $em->persist($RuchePort);
-                $CRuche->setNbassosport(1);
+                $RuchePort = $this->getDoctrine()->getRepository(AssocierRuchePort::class)->findOneBy(array('numport'=>$data['Port'],'station'=>$data['Station']));
+                if ($RuchePort == NULL){
+                    $RuchePort = new AssocierRuchePort();
+                    
+                    $RuchePort->setRuche($CRuche);
+                    $RuchePort->setStation($em->getRepository(CStation::class)->findOneBy(array('id'=>($data['Station'])->getId())));
+                    $RuchePort->setNumport($data['Port']);
+                    $em->persist($RuchePort);
+                    $CRuche->setNbassosport(1);
+                    $message=utf8_encode('La ruche a été ajoutée');
+                    $this->addFlash('message',$message);
+                }
+                else{
+                    $message=utf8_encode('La ruche a été ajoutée mais le port spécifié est déjà utilisé. Vous pouvez en choisir un autre en consultant vos ruches.');
+                    $this->addFlash('message',$message);
+                }
+            }
+            else{
+                $message=utf8_encode('La ruche a été ajoutée');
+                $this->addFlash('message',$message);
             }
             
             $em->persist($CRuche);
             $em->flush();
-            
-            $message=utf8_encode('La ruche a été ajoutée');
-            $this->addFlash('message',$message);
             
             return $this->redirectToRoute('add_ruche');
         }
@@ -135,7 +145,7 @@ class AddController extends AbstractController{
             'addStationForm' => $form->createView(),
         ]);
     }
-
+    
     /**
      * @IsGranted("ROLE_USER")
      * @Route("/add_rucher/{latitude}/{longitude}/{region}", name="add_rucher")
@@ -162,7 +172,7 @@ class AddController extends AbstractController{
             $em->persist($AssociationRucherRegion);
             ($em->getRepository(Regions::class)->findOneBy(array('nomregion'=>$region)))->addAssociationRucherRegion($AssociationRucherRegion);
             $CRucher->setAssociationRucherRegion($AssociationRucherRegion);
-
+            
             $em->flush();
             
             $message=utf8_encode('Le rucher a été ajouté');
@@ -220,13 +230,13 @@ class AddController extends AbstractController{
             $data = $form->getData();
             
             $MesuresRuches = new MesuresRuches();
-            $MesuresRuches->setRuche($data['ruche']);
+            $MesuresRuches->setIdruche($data['ruche']);
             $MesuresRuches->setDateReleve($data['datereleve']);
             $MesuresRuches->setPoids($data['poids']);
-            $MesuresRuches->setPeseruche($data['peseruche']);
+            $MesuresRuches->setIdstationport(0);
             
             $em->persist($MesuresRuches);
-           
+            
             $em->flush();
             
             $mesuresRuche=utf8_encode('La mesure a été ajouté');
@@ -258,7 +268,7 @@ class AddController extends AbstractController{
             $MesuresStations->setStation($data['station']);
             $MesuresStations->setTemperature($data['temperature']);
             $MesuresStations->setTension($data['tension']);
-            $MesuresStations->setHumidite($data['humidite']); 
+            $MesuresStations->setHumidite($data['humidite']);
             $MesuresStations->setPression($data['pression']);
             $MesuresStations->setDateReleve($data['datereleve']);
             $MesuresStations->setRucher($data['rucher']);
@@ -285,7 +295,7 @@ class AddController extends AbstractController{
      */
     public function addCarnet(Request $request, ObjectManager $manager){
         $Carnet = new Carnet();
-        $form = $this->createForm(AddCarnetFormType::class, $Carnet);
+        $form = $this->createForm(CarnetFormType::class, NULL, array('user' => $this->getUser()->getId()));
         $form->handleRequest($request);
         
         if($form->isSubmitted()){

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block title %}{% trans %}Erreur{% endtrans %}{% endblock %}
+{% block body %}
+<meta charset="UTF-8">
+<br>
+
+<center><img src="{{ asset('stop.jpg') }}" alt="Stop"><br><br><br>
+<h2>{% trans %}Erreur{% endtrans %}</h2>
+<h3>{% trans %}Bzzz, le port que vous essayez d'associer est déjà utilisé !{% endtrans %}</h3>
+<a href="{{ path('ruches_privees') }}">{% trans %}Cliquez ici pour retourner à vos ruches{% endtrans %}</a></center>
+
+	
+{% endblock %}

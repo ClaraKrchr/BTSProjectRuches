@@ -6,6 +6,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AssocierRucheRucherRepository")
+ * @ORM\Table(
+ *      name="associer_ruche_rucher",
+ *      uniqueConstraints={@ORM\UniqueConstraint(columns={"ruche_id"})}
+ * )
  */
 class AssocierRucheRucher
 {

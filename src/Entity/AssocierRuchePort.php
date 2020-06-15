@@ -6,6 +6,10 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AssocierRuchePortRepository")
+ * @ORM\Table(
+ *      name="associer_ruche_port",
+ *      uniqueConstraints={@ORM\UniqueConstraint(columns={"station_id", "numport"})}
+ * )
  */
 class AssocierRuchePort
 {

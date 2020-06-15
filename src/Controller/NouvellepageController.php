@@ -22,6 +22,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Doctrine\ORM\EntityManagerInterface;
 
+
 class NouvellepageController extends AbstractController
 {
 
@@ -86,6 +87,30 @@ class NouvellepageController extends AbstractController
     public function erreur404()
     {
         return $this->render('security/erreur404.html.twig');
+    }
+    
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/erreur_port", name="erreur_port")
+     */
+    public function erreur_port(){
+        return $this->render('security/erreurStationPort.html.twig');
+    }
+    
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/erreur_compte", name="erreur_compte")
+     */
+    public function erreur_compte(){
+        return $this->render('security/erreurCompte.html.twig');
+    }
+    
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/erreur_station", name="erreur_station")
+     */
+    public function erreur_station(){
+        return $this->render('security/erreurStation.html.twig');
     }
 
     /**

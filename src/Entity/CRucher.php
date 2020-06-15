@@ -23,7 +23,7 @@ class CRucher
      * @ORM\Column(type="string", length=30)
      */
     private $nom;
-    
+
     /**
      * @ORM\Column(type="float")
      */
@@ -33,6 +33,12 @@ class CRucher
      * @ORM\Column(type="float")
      */
     private $longitude;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Regions")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $region;
 
 
 #=======================GETTERS========================#
@@ -84,5 +90,17 @@ class CRucher
     public function __toString(){
         return $this->getNom();
     }
+
+public function getRegion(): ?Regions
+{
+    return $this->region;
+}
+
+public function setRegion(?Regions $region): self
+{
+    $this->region = $region;
+
+    return $this;
+}
 
 }

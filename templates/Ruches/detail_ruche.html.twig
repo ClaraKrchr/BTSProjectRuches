@@ -6,10 +6,10 @@
 <br></br>
 
 <figure class="highcharts-figure">
-  <div id="test" style="width:400px; max-height:400px;"></div>
+  <div id="test" style="width:80%; max-height:80%; height:70%;"></div>
   </figure>	
 	<figure class="highcharts-figure">
-  <div id="{{ nomruche }}" style="width:400px;"></div>
+  <div id="{{ nomruche }}" style="width:80%; max-height:80%;height:70%;"></div>
   </figure>
 {% if ruchepubliques %}
 <form id="form_ruche_public" >
@@ -47,16 +47,14 @@
 	    
 	chart:{
 		type: 'line',
+		height: 50+ '%',
 		zoomKey:'ctrl',
 		zoomType:'x'
 		},
-		exporting: {
-    	  	enabled:false
-    	  },
 	credits:{enabled:false},
 	
     title: {
-	      text: 'Les mesures de la ruche {{ nomruche }}'
+	      text: '{% trans %}Les mesures de la ruche{% endtrans %} {{ nomruche }}'
 	    },				
     series: [{                     				
 	      	name: 'Poids de la ruche (en kg)',
@@ -89,25 +87,23 @@
 				    
 				chart:{
 					zoomKey:'ctrl',
+					height: 50+ '%',
 					zoomType:'x'
 					},
-					exporting: {
-			    	  	enabled:false
-			    	  },
 					
 					credits:{enabled:false},
 			    title: {
-				      text: 'Les mesures de la ruche {{ nomruche }} comparée à '+nomrucheprivee
+				      text: '{% trans %}Les mesures de la ruche{% endtrans %} {{ nomruche }} {% trans %}comparée à{% endtrans %} '+nomruchepublic
 				    },
 			    series: [{                     				
-				      	name: 'Poids Premiere ruche(en kg)',
+				      	name: '{% trans %}Poids Premiere ruche(en kg){% endtrans %}',
 				      	data: data[0],
 				      	type: 'line',
 				     	tooltip: {
 				        	valueDecimals: 2
 				      }
 				    },{                     				
-				      	name: 'Poids Seconde ruche(en kg)',
+				      	name: '{%trans%}Poids Seconde ruche(en kg){% endtrans %}',
 				      	data: data[1],
 				      	type: 'line',
 				     	tooltip: {
@@ -135,25 +131,24 @@
 				    
 				chart:{
 					zoomKey:'ctrl',
+					height: 50 + '%',
 					zoomType:'x',
 					},
 
-					exporting: {
-			    	  	enabled:false
-			    	  },
+					
 					credits:{enabled:false},
 			    title: {
-				      text: 'Les mesures de la ruche {{ nomruche }} comparée à '+nomrucheprivee
+				      text: '{% trans %}Les mesures de la ruche{% endtrans %} {{ nomruche }} {% trans %}comparée à{% endtrans %} '+nomrucheprivee
 				    },
 			    series: [{                     				
-				      	name: 'Poids Premiere ruche(en kg)',
+				      	name: '{% trans %}Poids Premiere ruche(en kg){% endtrans %}',
 				      	data: data[0],
 				      	type: 'line',
 				     	tooltip: {
 				        	valueDecimals:0
 				      }
 				    },{                     				
-				      	name: 'Poids Seconde ruche(en kg)',
+				      	name: '{%trans%}Poids Seconde ruche(en kg){% endtrans %}',
 				      	data: data[1],
 				      	type: 'line',
 				     	tooltip: {
@@ -186,6 +181,6 @@
 		}
 	}</script>
 
-  
+  <a href="{{ path('info_ruche', {nomruche:nomruche}) }}"><button>{% trans %}Retour{% endtrans %}</button></a>
 
 {% endblock %}

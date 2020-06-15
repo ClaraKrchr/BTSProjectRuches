@@ -19,7 +19,7 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mailer\Bridge\Google\Transport\GmailSmtpTransport;
 use Symfony\Component\Mailer\Bridge\Google\Smtp\GmailTransport;
-
+use App\Services\Mailer;
 
 use App\Entity\CApiculteur;
 use App\Form\RegistrationFormType;
@@ -29,10 +29,9 @@ use App\Form\ResetPasswordFormType;
 class SecurityController extends AbstractController
 {
     /**
-     * 
      * @Route("/registration", name="registration")
      */
-    public function registration(Request $request, UserPasswordEncoderInterface $encoder, ObjectManager $manager, MailerInterface $mailer) {
+    public function registration(Request $request, UserPasswordEncoderInterface $encoder, ObjectManager $manager, Mailer $mailer, TokenGeneratorInterface $tokenGenerator, EntityManagerInterface $em) {
         $CApiculteur = new CApiculteur();
         $form = $this->createForm(RegistrationFormType::class, $CApiculteur);
         $form->handleRequest($request);
@@ -44,40 +43,61 @@ class SecurityController extends AbstractController
             $CApiculteur->SetPassword($hash);
             
             //On génère le token d'activation
-            $CApiculteur->setActivationToken(md5(uniqid()));
+            //$CApiculteur->setActivationToken(md5(uniqid()));
+            
+            // on génère un token
+            $token = $tokenGenerator->generateToken();
+            $CApiculteur->setActivationtoken($token);
             
             $manager->persist($CApiculteur); //persiste l’info dans le temps
             $manager->flush(); //envoie les info à la BDD
             
-            $message=utf8_encode('Le compte a été crée');
+            // on génère l'url d'activation de compte
+            $url = $this->generateUrl('activation', ['token' => $token],
+                UrlGeneratorInterface::ABSOLUTE_URL);
+            
+            $bodyMail = $mailer->createBodyMail('email/activation.html.twig', [
+                'user' => $CApiculteur
+            ]);
+            
+            /*$admin = $em->getRepository(CApiculteur::class)->findOneBy(array('roles'=>'ROLE_ADMIN'));
+            $mail = $admin->getMail();*/         
+            
+            $mailer->sendMessage('noreply.clubapi@gmail.com', $mail, 'Activation', $bodyMail);
+            
+            $message=utf8_encode('La demande de création de compte a été envoyée.');
             $this->addFlash('creationCompte',$message);
             return $this->redirectToRoute('registration');
-            
-            /*$message = (new \Swift_Message('Activation compte'))
-                ->setFrom('no-reply@gmail.com')
-                ->setTo($user->getMail())
-                ->setBody(
-                    $this->renderView(
-                        'email/activation.html.twig', ['token' => $user->getActivationToken()]
-                        ),
-                    'text/html');*/
-            
-            $mail = (new Email())
-                ->from('noreply.clubapi@gmail.com')
-                ->to('clara@gmail.com')
-                ->subject('Yo')
-                ->text('Clara')
-                ->html('<p>Coucou</p>');
-            
-            $transport = new GmailTransport('localhost');
-            $mail = new Mailer($transport);
-            //on envoie le mail
-            $mailer->send($mail);
         }
         
         return $this->render('security/registration.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
+    }
+    
+    /**
+     * @Route("/activation/{token}", name="activation")
+     */
+    public function activation($token, CApiculteurRepository $userRepo)
+    {
+        //on vérifie si un user a ce token
+        $user = $userRepo->findOneBy(['activationtoken' => $token]);
+        
+        //si le token n'existe pas
+        if(!$user){
+            return $this->redirectToRoute('erreur404');
+        }
+        
+        //on supprime le token
+        $user->setActivationtoken(null);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+        
+        //envoi de message compte activé
+        $message=utf8_encode('Le compte a été activé');
+        $this->addFlash('message',$message);
+        return $this->redirectToRoute('home');
     }
     
     /**
@@ -92,8 +112,7 @@ class SecurityController extends AbstractController
         return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error
-        ]);
-        
+        ]);        
     }
     
     /**
@@ -108,7 +127,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/password", name="forgotten_password")
      */
-    public function password(Request $request, CApiculteurRepository $userRepo, \Swift_Mailer $mailer, TokenGeneratorInterface $tokenGenerator)
+    public function password(Request $request, CApiculteurRepository $userRepo, Mailer $mailer, TokenGeneratorInterface $tokenGenerator)
     {
         //on crée le formualire
         $form = $this->createForm(ResetPasswordFormType::class);
@@ -141,20 +160,16 @@ class SecurityController extends AbstractController
             $url = $this->generateUrl('reset_password', ['token' => $token], 
                 UrlGeneratorInterface::ABSOLUTE_URL);
             
-            // envoi du message
-            $mail = (new \Swift_Message('Mot de passe oublié'))
-            ->setFrom('no-reply@clubapi.fr')
-            ->setTo($user->getMail())
-            ->setBody(
-                "<p>Bonjour,</p><p>Une demande de réinitialisation de mot de passe a été effectuée pour le site
-                du club des apiculteurs de Thalès. Veuillez cliquer sur le lien suivant : " . $url . '</p>',
-                'text/html');
+            $bodyMail = $mailer->createBodyMail('email/mdp.html.twig', [
+                'user'=>$user
+            ]);
             
-            // on envoi le mail
-            $mailer->send($mail);
+            $email=utf8_encode('Réinitialisation du mot de passe.');
+            $mailer->sendMessage('noreply.clubapi@gmail.com', $user->getMail(), $email, $bodyMail);
             
-            $message=utf8_encode('Un e-mail pour réinitialiser votre mot de passe a été envoyé.');
+            $message=utf8_encode('Un e-mail vous a été envoyé pour changer votre mot de passe.');
             $this->addFlash('message',$message);
+            
             return $this->redirectToRoute('security_login');
         }
         
@@ -171,7 +186,6 @@ class SecurityController extends AbstractController
         $user = $this->getDoctrine()->getRepository(CApiculteur::class)->findOneBy(['resettoken' => $token]);
         
         if(!$user){
-            //$this->addFlash('danger', 'Lien invalide');
             return $this->redirectToRoute('erreur404');
         }
         
@@ -189,33 +203,6 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('security_login');
         }else {
             return $this->render('security/resetpassword.html.twig', ['token' => $token]);
-        }
-        
+        }     
     }
-    
-    /**
-     * @Route("/activation/{token}", name="activation")
-     */
-    public function activation($token, CApiculteurRepository $userRepo)
-    {        
-        //on vérifie si un user a ce token
-        $user = $userRepo->findOneBy(['activationtoken' => $token]);
-        
-        //si le token n'existe pas 
-        if(!$user){
-            return $this->redirectToRoute('erreur404');
-        }
-        
-        //on supprime le token
-        $user->setActivationtoken(null);
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($user);
-        $entityManager->flush();
-        
-        //envoi de message compte activé      
-        $message=utf8_encode('Le compte a été activé');
-        $this->addFlash('message',$message);
-        return $this->redirectToRoute('home');
-    }
-    
 }

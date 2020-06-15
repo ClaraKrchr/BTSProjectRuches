@@ -1,0 +1,5 @@
+<meta charset="UTF-8">
+<h1>Mot de passe oublié</h1>
+<p>Vous avez signalé un oubli de mot de passe, veuillez cliquer sur ce lien pour le réinitialiser :</p>
+<a href="{{ absolute_url(path('reset_password', {'token':user.resettoken}))}}">Changer le mot de passe</a>
+<p>Si vous n'avez jamais fait cette demande, ne pas tenir compte de ce mail.</p>

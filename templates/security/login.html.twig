@@ -22,8 +22,7 @@
 	 </div></center>
 {% endfor %}
 
-
-
+<meta charset="UTF-8">
 <link rel="stylesheet" href="{{ asset('css/connexion.css') }}">
 
  {% if error %}
@@ -51,6 +50,7 @@
             			<input placeholder="{% trans %}Mot de passe{% endtrans %}..." required name="_password" type="password" class="form-control">
         			</div>
 
+        			<a href="{{ path('forgotten_password') }}">Mot de passe oublié</a><br><br>
         			<button type="submit" class="btn btn-success">{% trans %}Connexion{% endtrans %}</button>
     	</form>
     </div>
