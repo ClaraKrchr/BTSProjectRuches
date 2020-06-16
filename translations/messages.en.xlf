@@ -731,71 +731,71 @@
       </trans-unit>
       <trans-unit id="WRnvYhS" resname="Modification d'une association ruche-apiculteur">
         <source>Modification d'une association ruche-apiculteur</source>
-        <target>__Modification d'une association ruche-apiculteur</target>
+        <target>Modification of a hive-beekeeper association</target>
       </trans-unit>
       <trans-unit id="yMZFGlh" resname="Stations disponibles">
         <source>Stations disponibles</source>
-        <target>__Stations disponibles</target>
+        <target>Available stations</target>
       </trans-unit>
       <trans-unit id=".c_MeC_" resname="Ports déjà utilisés">
         <source>Ports déjà utilisés</source>
-        <target>__Ports déjà utilisés</target>
+        <target>Ports already in use</target>
       </trans-unit>
       <trans-unit id="ztx_U0m" resname="comparée à">
         <source>comparée à</source>
-        <target>__comparée à</target>
+        <target>Compared to</target>
       </trans-unit>
       <trans-unit id="No6CK1d" resname="Poids Premiere ruche(en kg)">
         <source>Poids Premiere ruche(en kg)</source>
-        <target>__Poids Premiere ruche(en kg)</target>
+        <target>First hive weight(en kg)</target>
       </trans-unit>
       <trans-unit id="iKRp7ot" resname="Poids Seconde ruche(en kg)">
         <source>Poids Seconde ruche(en kg)</source>
-        <target>__Poids Seconde ruche(en kg)</target>
+        <target>Weight Second hive(en kg)</target>
       </trans-unit>
       <trans-unit id="56Xwo87" resname="Les mesures de la station:">
         <source>Les mesures de la station:</source>
-        <target>__Les mesures de la station:</target>
+        <target>Measurements of the station:</target>
       </trans-unit>
       <trans-unit id="0Bz_hVJ" resname="La température (°C)">
         <source>La température (°C)</source>
-        <target>__La température (°C)</target>
+        <target>Temperature (°C)</target>
       </trans-unit>
       <trans-unit id="5lNG0kX" resname="La tension (V)">
         <source>La tension (V)</source>
-        <target>__La tension (V)</target>
+        <target>Voltage (V)</target>
       </trans-unit>
       <trans-unit id="88EKTMK" resname="L\'humidité (%)">
         <source>L\'humidité (%)</source>
-        <target>__L\'humidité (%)</target>
+        <target>Humidity (%)</target>
       </trans-unit>
       <trans-unit id="cLlx97k" resname="La pression (hPa)">
         <source>La pression (hPa)</source>
-        <target>__La pression (hPa)</target>
+        <target>Pressure (hPa)</target>
       </trans-unit>
       <trans-unit id="TK7ZWvP" resname="ICI">
         <source>ICI</source>
-        <target>__ICI</target>
+        <target>Here</target>
       </trans-unit>
       <trans-unit id="drh8BRW" resname="Bzzz, votre compte n'a pas encore été approuvé par un administrateur.">
         <source>Bzzz, votre compte n'a pas encore été approuvé par un administrateur.</source>
-        <target>__Bzzz, votre compte n'a pas encore été approuvé par un administrateur.</target>
+        <target>Bzzz, your account has not yet been approved by an administrator.</target>
       </trans-unit>
       <trans-unit id="48VyznI" resname="Bzzz, la station que vous essayez d'associer n'est pas dans le même rucher que votre ruche !">
         <source>Bzzz, la station que vous essayez d'associer n'est pas dans le même rucher que votre ruche !</source>
-        <target>__Bzzz, la station que vous essayez d'associer n'est pas dans le même rucher que votre ruche !</target>
+        <target>Bzzz, the station you are trying to associate is not in the same apiary as your hive!</target>
       </trans-unit>
       <trans-unit id="AEzYfz9" resname="Cliquez ici pour retourner à vos ruches">
         <source>Cliquez ici pour retourner à vos ruches</source>
-        <target>__Cliquez ici pour retourner à vos ruches</target>
+        <target>Click here to return to your hives</target>
       </trans-unit>
       <trans-unit id="z3aIqCN" resname="Bzzz, le port que vous essayez d'associer est déjà utilisé !">
         <source>Bzzz, le port que vous essayez d'associer est déjà utilisé !</source>
-        <target>__Bzzz, le port que vous essayez d'associer est déjà utilisé !</target>
+        <target>Bzzz, the port you are trying to associate is already in use!</target>
       </trans-unit>
       <trans-unit id="RULWH19" resname="Mot de passe oublié">
         <source>Mot de passe oublié</source>
-        <target>__Mot de passe oublié</target>
+        <target>Forgot your password</target>
       </trans-unit>
       <trans-unit id=".sIpuLh" resname="Mot de passe oublié ?">
         <source>Mot de passe oublié ?</source>
