@@ -101,9 +101,9 @@
         <source>Confirmer le mot de passe</source>
         <target>Confirm password</target>
       </trans-unit>
-      <trans-unit id="GudlWrE" resname="Aucune mesures pour cette station">
-        <source>Aucune mesures pour cette station</source>
-        <target>No measurements for this station</target>
+      <trans-unit id="GudlWrE" resname="Aucune mesure pour cette station">
+        <source>Aucune mesure pour cette station</source>
+        <target>No measurement for this station</target>
       </trans-unit>
       <trans-unit id="RnmzsS3" resname="Aucun">
         <source>Aucun</source>
@@ -577,8 +577,8 @@
         <source>Filtrer</source>
         <target>Filter</target>
       </trans-unit>
-      <trans-unit id="KhxX8zX" resname="---&gt; Pas de mesures pour cette ruche &lt;---">
-        <source>---&gt; Pas de mesures pour cette ruche &lt;---</source>
+      <trans-unit id="KhxX8zX" resname="---&gt; Pas de mesure pour cette ruche &lt;---">
+        <source>---&gt; Pas de mesure pour cette ruche &lt;---</source>
         <target> No measures for this hive </target>
       </trans-unit>
       <trans-unit id="lI9Oyk." resname="Localisation:">
