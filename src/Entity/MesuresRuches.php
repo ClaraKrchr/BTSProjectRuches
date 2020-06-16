@@ -84,12 +84,12 @@ class MesuresRuches
         return $this;
     }
 
-    public function getIdstationport(): ?int
+    public function getIdstationport(): ?string
     {
         return $this->idstationport;
     }
 
-    public function setIdstationport(int $idstationport): self
+    public function setIdstationport(string $idstationport): self
     {
         $this->idstationport = $idstationport;
 
