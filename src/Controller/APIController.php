@@ -137,7 +137,7 @@ class APIController extends AbstractController
                 }
             }
             // return $this->json($array, 201, []);
-            return TRUE;
+            return new Response(NULL);
         }catch(NotEncodableValueException $e){
             /*
             return $this->json([
