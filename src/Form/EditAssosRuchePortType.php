@@ -32,7 +32,7 @@ class EditAssosRuchePortType extends AbstractType
             ->add('station',EntityType::class, [
                 'class'=>CStation::class,
                 'query_builder' => function(EntityRepository $er) use($options){
-                return $er->createQueryBuilder('u')->select('w')->from(CStation::class, 'w')->join(AssocierStationRucher::class, 'a')->where('w.id = a.station AND a.rucher = :rucher')->orderBy('w.nom', 'ASC')->setParameter('rucher', $options['rucher']);
+                return $er->createQueryBuilder('u')->select('w')->from(CStation::class, 'w')->join(AssocierStationRucher::class, 'a')->where('w.id = a.station AND a.rucher = :rucher OR w.nom = \'Aucune\'')->orderBy('w.nom', 'ASC')->setParameter('rucher', $options['rucher']);
                 },
                 'choice_label'=>function(CStation $CStation){
                 return sprintf(' %s',$CStation->getNom());

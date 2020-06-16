@@ -170,22 +170,15 @@ class AddController extends AbstractController{
             $CRucher->setLongitude($longitude);
             $CRucher->setNom($data['Nom']);
             
+            $CRucher->setRegion($em->getRepository(Regions::class)->findOneBy(array('nomregion'=>$region)));
             $em->persist($CRucher);
-            
-            $AssociationRucherRegion = new AssociationRucherRegion();
-            
-            $AssociationRucherRegion->setRucher($CRucher);
-            $AssociationRucherRegion->setRegion($em->getRepository(Regions::class)->findOneBy(array('nomregion'=>$region)));
-            $em->persist($AssociationRucherRegion);
-            ($em->getRepository(Regions::class)->findOneBy(array('nomregion'=>$region)))->addAssociationRucherRegion($AssociationRucherRegion);
-            $CRucher->setAssociationRucherRegion($AssociationRucherRegion);
             
             $em->flush();
             
             $message=utf8_encode('Le rucher a été ajouté');
             $this->addFlash('success',$message);
             
-            return ($this->redirectToRoute('googleMap'));( $this->addFlash('Notification','Changement effectué'));
+            return ($this->redirectToRoute('googleMap'));
         }
         
         $ruchers = $this->getDoctrine()->getRepository(CRucher::class)->findAll();
