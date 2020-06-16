@@ -13,6 +13,7 @@ use App\Entity\AssociationRucherRegion;
 use App\Entity\Regions;
 use function Symfony\Component\DependencyInjection\Exception\__toString;
 use App\Entity\CApiculteur;
+use App\Repository\CApiculteurRepository;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -40,7 +41,12 @@ class NouvellepageController extends AbstractController
      * @Route("/ruches_privees", name="ruches_privees")
      */
     public function ruches_privees()
-    {
+    {           
+        $user=$this->getUser();                            
+        if($user->getActivationtoken()!=NULL){
+            return $this->redirectToRoute('erreur_compte');
+        }
+
         //--------Obtention du nom ce l'utilisateur----------------//
         $NomProprietaire=$this->getUser();
 
@@ -50,16 +56,22 @@ class NouvellepageController extends AbstractController
         $RuchePort = $this->getDoctrine()->getRepository(AssocierRuchePort::class)->findAll();
         $MesuresRuches = $this->getDoctrine()->getRepository(MesuresRuches::class)->findAll();
         return $this->render('Ruches/ruches_privees.html.twig', ['apiculteurs' => $RuchesApiculteurs, 'assosruchers' => $RucheRuchers, 'assosports' => $RuchePort, 'mesuresruches' => $MesuresRuches]);
-    }
+
+        }
 
     /**
      * @IsGranted("ROLE_USER")
      * @Route("/googleMap", name="googleMap")
      */
     public function googleMap(){
+        $user=$this->getUser();
+        if($user->getActivationtoken()!=NULL){
+            return $this->redirectToRoute('erreur_compte');
+            
         $ruchers = $this->getDoctrine()->getRepository(CRucher::class)->findAll();
         return $this->render('map/googleMap.html.twig', ['ruchers' => $ruchers,]);
     }
+    
     /**
      * @Route("/change_locale/{locale}", name="change_locale")
      */
