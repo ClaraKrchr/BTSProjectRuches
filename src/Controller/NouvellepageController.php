@@ -67,7 +67,8 @@ class NouvellepageController extends AbstractController
         $user=$this->getUser();
         if($user->getActivationtoken()!=NULL){
             return $this->redirectToRoute('erreur_compte');
-            
+        }
+        
         $ruchers = $this->getDoctrine()->getRepository(CRucher::class)->findAll();
         return $this->render('map/googleMap.html.twig', ['ruchers' => $ruchers,]);
     }
