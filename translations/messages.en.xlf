@@ -73,9 +73,9 @@
         <source>Ruches en paille</source>
         <target>Straw hive</target>
       </trans-unit>
-      <trans-unit id="XhP91to" resname="ruche">
-        <source>ruche</source>
-        <target>hive</target>
+      <trans-unit id="B8uRFp2" resname="Ruche">
+        <source>Ruche</source>
+        <target>Hive</target>
       </trans-unit>
       <trans-unit id="Y1rbe87" resname="Nom station">
         <source>Nom station</source>
@@ -116,6 +116,10 @@
       <trans-unit id="jCtrnck" resname="proprietaire">
         <source>proprietaire</source>
         <target>owner</target>
+      </trans-unit>
+      <trans-unit id="XhP91to" resname="ruche">
+        <source>ruche</source>
+        <target>hive</target>
       </trans-unit>
       <trans-unit id="T6jfNBx" resname="Visibilité">
         <source>Visibilité</source>
@@ -724,6 +728,78 @@
       <trans-unit id="FbctFiy" resname="Modifier le port associé">
         <source>Modifier le port associé</source>
         <target>Modify the associated port</target>
+      </trans-unit>
+      <trans-unit id="WRnvYhS" resname="Modification d'une association ruche-apiculteur">
+        <source>Modification d'une association ruche-apiculteur</source>
+        <target>__Modification d'une association ruche-apiculteur</target>
+      </trans-unit>
+      <trans-unit id="yMZFGlh" resname="Stations disponibles">
+        <source>Stations disponibles</source>
+        <target>__Stations disponibles</target>
+      </trans-unit>
+      <trans-unit id=".c_MeC_" resname="Ports déjà utilisés">
+        <source>Ports déjà utilisés</source>
+        <target>__Ports déjà utilisés</target>
+      </trans-unit>
+      <trans-unit id="ztx_U0m" resname="comparée à">
+        <source>comparée à</source>
+        <target>__comparée à</target>
+      </trans-unit>
+      <trans-unit id="No6CK1d" resname="Poids Premiere ruche(en kg)">
+        <source>Poids Premiere ruche(en kg)</source>
+        <target>__Poids Premiere ruche(en kg)</target>
+      </trans-unit>
+      <trans-unit id="iKRp7ot" resname="Poids Seconde ruche(en kg)">
+        <source>Poids Seconde ruche(en kg)</source>
+        <target>__Poids Seconde ruche(en kg)</target>
+      </trans-unit>
+      <trans-unit id="56Xwo87" resname="Les mesures de la station:">
+        <source>Les mesures de la station:</source>
+        <target>__Les mesures de la station:</target>
+      </trans-unit>
+      <trans-unit id="0Bz_hVJ" resname="La température (°C)">
+        <source>La température (°C)</source>
+        <target>__La température (°C)</target>
+      </trans-unit>
+      <trans-unit id="5lNG0kX" resname="La tension (V)">
+        <source>La tension (V)</source>
+        <target>__La tension (V)</target>
+      </trans-unit>
+      <trans-unit id="88EKTMK" resname="L\'humidité (%)">
+        <source>L\'humidité (%)</source>
+        <target>__L\'humidité (%)</target>
+      </trans-unit>
+      <trans-unit id="cLlx97k" resname="La pression (hPa)">
+        <source>La pression (hPa)</source>
+        <target>__La pression (hPa)</target>
+      </trans-unit>
+      <trans-unit id="TK7ZWvP" resname="ICI">
+        <source>ICI</source>
+        <target>__ICI</target>
+      </trans-unit>
+      <trans-unit id="drh8BRW" resname="Bzzz, votre compte n'a pas encore été approuvé par un administrateur.">
+        <source>Bzzz, votre compte n'a pas encore été approuvé par un administrateur.</source>
+        <target>__Bzzz, votre compte n'a pas encore été approuvé par un administrateur.</target>
+      </trans-unit>
+      <trans-unit id="48VyznI" resname="Bzzz, la station que vous essayez d'associer n'est pas dans le même rucher que votre ruche !">
+        <source>Bzzz, la station que vous essayez d'associer n'est pas dans le même rucher que votre ruche !</source>
+        <target>__Bzzz, la station que vous essayez d'associer n'est pas dans le même rucher que votre ruche !</target>
+      </trans-unit>
+      <trans-unit id="AEzYfz9" resname="Cliquez ici pour retourner à vos ruches">
+        <source>Cliquez ici pour retourner à vos ruches</source>
+        <target>__Cliquez ici pour retourner à vos ruches</target>
+      </trans-unit>
+      <trans-unit id="z3aIqCN" resname="Bzzz, le port que vous essayez d'associer est déjà utilisé !">
+        <source>Bzzz, le port que vous essayez d'associer est déjà utilisé !</source>
+        <target>__Bzzz, le port que vous essayez d'associer est déjà utilisé !</target>
+      </trans-unit>
+      <trans-unit id="RULWH19" resname="Mot de passe oublié">
+        <source>Mot de passe oublié</source>
+        <target>__Mot de passe oublié</target>
+      </trans-unit>
+      <trans-unit id=".sIpuLh" resname="Mot de passe oublié ?">
+        <source>Mot de passe oublié ?</source>
+        <target>Forgot your password ?</target>
       </trans-unit>
     </body>
   </file>

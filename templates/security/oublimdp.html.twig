@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mot de passe oublié{% endblock %}
+{% block title %}{% trans %}Mot de passe oublié{% endtrans %}{% endblock %}
 
 {% block body %}
 <meta charset="UTF-8">
 
 	<br>
-	<center><h1>Mot de passe oublié</h1></center>
+	<center><h1>{% trans %}Mot de passe oublié ?{% endtrans %}</h1></center>
 	<div class="col-12 form-input">
 	    {{ form(mailForm) }}
 	</div>
