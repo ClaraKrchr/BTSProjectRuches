@@ -33,7 +33,7 @@
                      	Highcharts.getJSON(url, function (data) {
                      		if ( data.length == 0 ) {
                      	       console.log("NO DATA!");
-                     	       document.getElementById("{{ pagination.nomruche }}").innerHTML='{% trans %}---> Pas de mesures pour cette ruche <---{% endtrans %}<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>';
+                     	       document.getElementById("{{ pagination.nomruche }}").innerHTML='{% trans %}---> Pas de mesure pour cette ruche <---{% endtrans %}<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>';
                      	    }else{
                  		  	Highcharts.stockChart('{{ pagination.nomruche }}', {
                  		  		rangeSelector : {
