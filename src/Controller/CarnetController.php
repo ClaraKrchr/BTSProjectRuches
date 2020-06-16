@@ -26,6 +26,11 @@ class CarnetController extends AbstractController
      * @Route("/carnet", name="carnet")
      */
     public function carnet(Request $request){
+        $user=$this->getUser();
+        if($user->getActivationtoken()!=NULL){
+            return $this->redirectToRoute('erreur_compte');
+        }
+        
         $form = $this->createForm(CarnetFormType::class, NULL, array('user' => $this->getUser()->getId()));
         
         $form->handleRequest($request);
@@ -46,6 +51,10 @@ class CarnetController extends AbstractController
      * @Route("/carnet/{ruche}/{page}", name="carnet_ruche", defaults={"page"=1})
      */
     public function carnetRuche(Request $request, PaginatorInterface $paginator, $ruche, $page, EntityManagerInterface $em){
+        $user=$this->getUser();
+        if($user->getActivationtoken()!=NULL){
+            return $this->redirectToRoute('erreur_compte');
+        }
         
         //Redirection si l'utilisateur n'est pas celui qui possède la ruche
         $Ruche = $em->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$ruche));

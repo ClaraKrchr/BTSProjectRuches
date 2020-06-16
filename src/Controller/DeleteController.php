@@ -29,8 +29,10 @@ class DeleteController extends AbstractController
      */
     public function deleteRuche(Request $request, CRuche $ruche, EntityManagerInterface $em)
     {
-
-        //METTRE MESSAGE CARNET
+        $user=$this->getUser();
+        if($user->getActivationtoken()!=NULL){
+            return $this->redirectToRoute('erreur_compte');
+        }
         
         //Redirection si l'utilisateur n'est pas celui qui possède la ruche
         $assosRucheApi = $em->getRepository(AssocierRucheApiculteur::class)->findOneBy(array('ruche'=>$ruche));
@@ -75,6 +77,10 @@ class DeleteController extends AbstractController
      */
     public function dissociate_ruche_rucher(Request $request, CRuche $ruche, EntityManagerInterface $em)
     {
+        $user=$this->getUser();
+        if($user->getActivationtoken()!=NULL){
+            return $this->redirectToRoute('erreur_compte');
+        }
         
         //Redirection si l'utilisateur n'est pas celui qui possède la ruche
         $assosRucheApi = $em->getRepository(AssocierRucheApiculteur::class)->findOneBy(array('ruche'=>$ruche));
@@ -105,6 +111,10 @@ class DeleteController extends AbstractController
      */
     public function dissociate_ruche_port(Request $request, CRuche $ruche, EntityManagerInterface $em)
     {
+        $user=$this->getUser();
+        if($user->getActivationtoken()!=NULL){
+            return $this->redirectToRoute('erreur_compte');
+        }
         
         //Redirection si l'utilisateur n'est pas celui qui possède la ruche
         $assosRucheApi = $em->getRepository(AssocierRucheApiculteur::class)->findOneBy(array('ruche'=>$ruche));

@@ -36,6 +36,11 @@ class AddController extends AbstractController{
      * @Route("/add_ruche", name="add_ruche")
      */
     public function add_ruche(EntityManagerInterface $em, Request $request) {
+        $user=$this->getUser();
+        if($user->getActivationtoken()!=NULL){
+            return $this->redirectToRoute('erreur_compte');
+        }
+        
         $form = $this->createForm(AddRucheFormType::class);
         
         $form->handleRequest($request);
@@ -119,7 +124,12 @@ class AddController extends AbstractController{
      * @IsGranted("ROLE_USER")
      * @Route("/add_station", name="add_station")
      */
-    public function add_station(EntityManagerInterface $em, Request $request) {
+    public function add_station(EntityManagerInterface $em, Request $request) {        
+        $user=$this->getUser();
+        if($user->getActivationtoken()!=NULL){
+            return $this->redirectToRoute('erreur_compte');
+        } 
+        
         $form = $this->createForm(AddStationFormType::class);
         
         $form->handleRequest($request);
@@ -158,6 +168,11 @@ class AddController extends AbstractController{
      * @Route("/add_rucher/{latitude}/{longitude}/{region}", name="add_rucher")
      */
     public function add_rucher($latitude, $longitude, $region, EntityManagerInterface $em, Request $request) {
+        $user=$this->getUser();
+        if($user->getActivationtoken()!=NULL){
+            return $this->redirectToRoute('erreur_compte');
+        }
+        
         $form = $this->createForm(AddRucherFormType::class);
         
         $form->handleRequest($request);
@@ -193,7 +208,7 @@ class AddController extends AbstractController{
      * @IsGranted("ROLE_ADMIN")
      * @Route("/add_region", name="add_region")
      */
-    public function addRegion(EntityManagerInterface $em, Request $request){
+    public function addRegion(EntityManagerInterface $em, Request $request){        
         $form = $this->createForm(RegionsFormType::class);
         
         $form->handleRequest($request);
@@ -217,11 +232,15 @@ class AddController extends AbstractController{
     }
     
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/add_mesures_ruches", name="add_mesures_ruches")
      */
     public function add_mesures_ruches(EntityManagerInterface $em, Request $request)
     {
-        
+        $user=$this->getUser();
+        if($user->getActivationtoken()!=NULL){
+            return $this->redirectToRoute('erreur_compte');
+        }
         
         $form = $this->createForm(AddMesuresRuchesForm::class);
         $form->handleRequest($request);
@@ -252,11 +271,15 @@ class AddController extends AbstractController{
     }
     
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/add_mesures_stations", name="add_mesures_stations")
      */
     public function add_mesures_stations(EntityManagerInterface $em, Request $request)
     {
-        
+        $user=$this->getUser();
+        if($user->getActivationtoken()!=NULL){
+            return $this->redirectToRoute('erreur_compte');
+        }
         
         $form = $this->createForm(AddMesuresStationsForm::class);
         $form->handleRequest($request);
@@ -294,6 +317,11 @@ class AddController extends AbstractController{
      * @Route("/add_carnet", name="add_carnet")
      */
     public function addCarnet(Request $request, ObjectManager $manager){
+        $user=$this->getUser();
+        if($user->getActivationtoken()!=NULL){
+            return $this->redirectToRoute('erreur_compte');
+        }
+        
         $Carnet = new Carnet();
         $form = $this->createForm(AddCarnetFormType::class, NULL, array('user' => $this->getUser()->getId()));
         $form->handleRequest($request);

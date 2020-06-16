@@ -31,6 +31,11 @@ class EditController extends AbstractController
      */
     public function editRuche(Request $request, CRuche $ruche, EntityManagerInterface $em)
     {
+        $user=$this->getUser();
+        if($user->getActivationtoken()!=NULL){
+            return $this->redirectToRoute('erreur_compte');
+        }
+        
         //Redirection si l'utilisateur n'est pas celui qui possède la ruche
         $assosRucheApi = $em->getRepository(AssocierRucheApiculteur::class)->findOneBy(array('ruche'=>$ruche));
         if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('erreur403');
@@ -67,6 +72,11 @@ class EditController extends AbstractController
      */
     public function editAssosRucheRucher(Request $request, CRuche $ruche, EntityManagerInterface $em)
     {
+        $user=$this->getUser();
+        if($user->getActivationtoken()!=NULL){
+            return $this->redirectToRoute('erreur_compte');
+        }
+        
         //Redirection si l'utilisateur n'est pas celui qui possède la ruche
         $assosRucheApi = $em->getRepository(AssocierRucheApiculteur::class)->findOneBy(array('ruche'=>$ruche));
         if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('erreur403');
@@ -110,6 +120,11 @@ class EditController extends AbstractController
      */
     public function editAssosRuchePort(Request $request, CRuche $ruche, EntityManagerInterface $em)
     {
+        $user=$this->getUser();
+        if($user->getActivationtoken()!=NULL){
+            return $this->redirectToRoute('erreur_compte');
+        }
+        
         //Redirection si l'utilisateur n'est pas celui qui possède la ruche
         $assosRucheApi = $em->getRepository(AssocierRucheApiculteur::class)->findOneBy(array('ruche'=>$ruche));
         if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('erreur403');
@@ -168,7 +183,12 @@ class EditController extends AbstractController
      * @Route("/edit_assos_ruche_api/{nomruche}", name="edit_assos_ruche_api")
      */
     public function editAssosRucheApiculteur(Request $request, CRuche $ruche, EntityManagerInterface $em)
-    {        
+    {       
+        $user=$this->getUser();
+        if($user->getActivationtoken()!=NULL){
+            return $this->redirectToRoute('erreur_compte');
+        }
+        
         $assos = $this->getDoctrine()->getRepository(AssocierRucheApiculteur::class)->findOneBy(array('ruche'=>$ruche));
         
         if ($assos == NULL) {

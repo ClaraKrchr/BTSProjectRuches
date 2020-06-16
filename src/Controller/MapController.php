@@ -37,6 +37,10 @@ class MapController extends NouvellepageController{
      */
     public function tableau_donnees($regions)
     {
+        $user=$this->getUser();
+        if($user->getActivationtoken()!=NULL){
+            return $this->redirectToRoute('erreur_compte');
+        }
         
         //--------Obtention du nom ce l'utilisateur----------------//
         $NomProprietaire=$this->getUser();
@@ -61,6 +65,10 @@ class MapController extends NouvellepageController{
      * @Route("/info_ruche/{nomruche}", name="info_ruche")
      */
     public function info_ruche($nomruche,EntityManagerInterface $em, Request $request){
+        $user=$this->getUser();
+        if($user->getActivationtoken()!=NULL){
+            return $this->redirectToRoute('erreur_compte');
+        }
         
         $Ruche = $em->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche));
         $assosRucheApi = $em->getRepository(AssocierRucheApiculteur::class)->findOneBy(array('ruche'=>$Ruche));
@@ -178,12 +186,17 @@ class MapController extends NouvellepageController{
         }
         return new Response(json_encode($stock));
     }
+    
     /**
      * @IsGranted("ROLE_USER")
      * @Route("/ruches_desactivees", name="ruches_desactivees")
      */
     public function ruches_desactivees(EntityManagerInterface $em, Request $request){
-                
+        $user=$this->getUser();
+        if($user->getActivationtoken()!=NULL){
+            return $this->redirectToRoute('erreur_compte');
+        }
+        
         $qb = $em->createQueryBuilder();
         $qb->select('w')->from(CRuche::class, 'w')->where('w.etat = 4')->orderBy('w.datearchive', 'ASC');
         $query = $qb->getQuery();
@@ -199,6 +212,11 @@ class MapController extends NouvellepageController{
      * @Route("/details_ruches/{nomruche}", name="details_ruches")
      */
     public function details_ruches($nomruche,EntityManagerInterface $em, Request $request){
+        $user=$this->getUser();
+        if($user->getActivationtoken()!=NULL){
+            return $this->redirectToRoute('erreur_compte');
+        }
+        
         $Ruches=$this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche));
         $assosRucheApi = $em->getRepository(AssocierRucheApiculteur::class)->findOneBy(array('ruche'=>$Ruches->getId()));
         if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('erreur403');
@@ -216,6 +234,11 @@ class MapController extends NouvellepageController{
      * @Route("/details_stations/{nomstation}/{nomruche}", name="details_stations")
      */
     public function details_stations($nomstation,$nomruche,EntityManagerInterface $em, Request $request){
+        $user=$this->getUser();
+        if($user->getActivationtoken()!=NULL){
+            return $this->redirectToRoute('erreur_compte');
+        }
+        
         $Station = $this->getDoctrine()->getRepository(CStation::class)->findOneBy(array('nom'=>$nomstation));
         $ToutesStations = $this->getDoctrine()->getRepository(CStation::class)->findAll();
         $qb = $em->createQueryBuilder();
