@@ -579,7 +579,7 @@
       </trans-unit>
       <trans-unit id="KhxX8zX" resname="---&gt; Pas de mesure pour cette ruche &lt;---">
         <source>---&gt; Pas de mesure pour cette ruche &lt;---</source>
-        <target> No measures for this hive </target>
+        <target> No measure for this hive </target>
       </trans-unit>
       <trans-unit id="lI9Oyk." resname="Localisation:">
         <source>Localisation:</source>
@@ -621,9 +621,9 @@
         <source>Afficher les détails</source>
         <target>Show details</target>
       </trans-unit>
-      <trans-unit id="nRBGoae" resname="Aucune mesures pour cette ruche">
-        <source>Aucune mesures pour cette ruche</source>
-        <target>No measures for this hive</target>
+      <trans-unit id="nRBGoae" resname="Aucune mesure pour cette ruche">
+        <source>Aucune mesure pour cette ruche</source>
+        <target>No measure for this hive</target>
       </trans-unit>
       <trans-unit id="hhTPAFh" resname="Archiver">
         <source>Archiver</source>
@@ -635,7 +635,7 @@
       </trans-unit>
       <trans-unit id="kl1E0zN" resname="Vous n'avez aucune ruche archivée.">
         <source>Vous n'avez aucune ruche archivée.</source>
-        <target>You have not archived hives.</target>
+        <target>You have not archived hive.</target>
       </trans-unit>
       <trans-unit id="U5GtZ9K" resname="Erreur 403">
         <source>Erreur 403</source>
@@ -667,7 +667,7 @@
       </trans-unit>
       <trans-unit id="tJL0ef0" resname="Vous n'avez pas de ruche archivée.">
         <source>Vous n'avez pas de ruche archivée.</source>
-        <target>You have not archived hives.</target>
+        <target>You have not archived hive.</target>
       </trans-unit>
       <trans-unit id="ZB0OCre" resname="Modification d'une association ruche-port">
         <source>Modification d'une association ruche-port</source>
