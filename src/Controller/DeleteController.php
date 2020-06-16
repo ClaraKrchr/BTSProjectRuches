@@ -48,7 +48,7 @@ class DeleteController extends AbstractController
         $RuchePort = $this->getDoctrine()->getRepository(AssocierRuchePort::class)->findOneBy(array('ruche'=>$ruche));
         if($RuchePort != NULL){$em->remove($RuchePort);}
         
-        $mesuresRuches = $this->getDoctrine()->getRepository(MesuresRuches::class)->findBy(array('ruche'=>$ruche));
+        $mesuresRuches = $this->getDoctrine()->getRepository(MesuresRuches::class)->findBy(array('idruche'=>$ruche->getId()));
         $carnets = $this->getDoctrine()->getRepository(Carnet::class)->findBy(array('ruche'=>$ruche));
         if(($carnets != NULL) || ($mesuresRuches != NULL)){
             $ruche->setEtat('4');
