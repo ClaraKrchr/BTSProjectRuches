@@ -42,7 +42,7 @@
                 type: 'line'
             },
             title: {
-              text: '{% trans %}La température (°C){% endtrans %}'
+              text: '{% trans %}Température (°C){% endtrans %}'
             },
         	credits:{enabled:false},
         	exporting: { enabled: false },
@@ -56,7 +56,7 @@
             	credits:{enabled:false},
             	exporting: { enabled: false },
                 title: {
-                  text: '{% trans %}La tension (V){% endtrans %}'
+                  text: '{% trans %}Tension (V){% endtrans %}'
                 },
                 series: []
             };
@@ -68,7 +68,7 @@
             	credits:{enabled:false},
             	exporting: { enabled: false },
                 title: {
-                  text: '{% trans %}L\'humidité (%){% endtrans %}'
+                  text: '{% trans %}Humidité (%){% endtrans %}'
                 },
                 series: []
             };
@@ -80,7 +80,7 @@
             	credits:{enabled:false},
             	exporting: { enabled: false },
                 title: {
-                  text: '{% trans %}La pression (hPa){% endtrans %}'
+                  text: '{% trans %}Pression (hPa){% endtrans %}'
                 },
                 series: []
             };
@@ -99,8 +99,7 @@
             var chart = new Highcharts.StockChart(optionspression);
         }); 
     });
-</script>
-<a href="{{ path('info_ruche', {nomruche:nomruche}) }}"><button>{% trans %}Retour{% endtrans %}</button></a>
+</script><a href="{{ path('info_ruche', {nomruche:nomruche}) }}"><button>{% trans %}Retour{% endtrans %}</button></a>
 
 <br></br>
 </center>

@@ -11,28 +11,42 @@
 {% if mesuresstations %}
 <h4>{% trans %}Les mesures de la station{% endtrans %}</h4>
 
-<table border bgcolor="white" cellpadding="5px">
-<tr>
-	<td>{% trans %}Date du relevé{% endtrans %}</td>
-	<td>{% trans %}Nom Station{% endtrans %}</td>
-	<td>{% trans %}Température{% endtrans %}</td>
-	<td>{% trans %}Tension{% endtrans %}</td>
-	<td>{% trans %}Humidité{% endtrans %}</td>
-	<td>{% trans %}Pression{% endtrans %}</td>
-	<td>{% trans %}Nom du Rucher{% endtrans %}</td>
-</tr>
-{% for mesuresstation in mesuresstations %}
-<tr>
-	<td>{{ mesuresstation.datereleve|date("d/m/Y",false) }}</td>
-	<td>{{ station.nom }}</td>
-	<td>{{ mesuresstation.temperature}}°C</td>
-	<td>{{ mesuresstation.tension }} V</td>
-	<td>{{ mesuresstation.humidite }}%</td>
-	<td>{{ mesuresstation.pression}} hPa</td>
-	<td>{{ rucher }}</td>
-</tr>
-{% endfor %}
-</table>
+<table border cellspacing="0" cellpadding="0" style="border:solid 1px black; font-family:verdana; font-size:12px;"> 
+  <thead> 
+    <tr style="background-color:lightgrey; height:20%;"> 
+     	<td style="width:120px;">{% trans %}Date du relevé{% endtrans %}</td>
+		<td style="width:90px;">{% trans %}Nom Station{% endtrans %}</td>
+		<td style="width:70px;">{% trans %}Température{% endtrans %}</td>
+		<td style="width:60px;">{% trans %}Tension{% endtrans %}</td>
+		<td style="width:50px;">{% trans %}Humidité{% endtrans %}</td>
+		<td style="width:70px;">{% trans %}Pression{% endtrans %}</td>
+    </tr> 
+  </thead>  
+  <tbody> 
+    <tr> 
+      <td colspan="6"> 
+        <div style="height:200px; overflow:auto; border-top:solid 1px black; border-bottom:solid 1px black;"> 
+          <table border cellspacing="0" cellpadding="0" style="color:midnightblue; font-family:verdana; font-size:12px; text-align:center;"> 
+            
+           {% for mesuresstation in mesuresstations %} 
+            <tbody>
+            <tr>
+            	<td style="width:108px;">{{ mesuresstation.datereleve|date("m/d/Y")}}</td>
+            	<td style="width:82px;">{{ station.nom }}</td>
+            	<td style="width:86px;">{{ mesuresstation.temperature }} °C</td>            	
+            	<td style="width:40px;">{{ mesuresstation.tension }} V</td>            	
+            	<td style="width:60px;">{{ mesuresstation.humidite }} %</td>            	
+            	<td style="width:50px;">{{ mesuresstation.pression }} hPa</td>
+            	
+            </tr>
+            </tbody>
+            {% endfor %}
+          </table> 
+        </div> 
+      </td> 
+    </tr> 
+  </tbody> 
+</table> 
 </div>
 <div class="block2 col-lg-2"></div>
 <div class="block3 col-lg-5" >
@@ -106,20 +120,43 @@
 <br></br>
 <h4>{% trans %}Les mesures de la ruche{% endtrans %}</h4>
 
+<table border cellspacing="0" cellpadding="0" style="border:solid 1px black; font-family:verdana; font-size:12px;"> 
+  <thead> 
+    <tr style="background-color:lightgrey; height:20%;"> 
+     	<td style="width:103px;">{% trans %}Date du relevé{% endtrans %}</td>
+		<td style="width:103px;">{% trans %}Nom Ruche{% endtrans %}</td>
+		<td style="width:90px;">{% trans %}Poids{% endtrans %}</td>
+    </tr> 
+  </thead>  
+  <tbody> 
+    <tr> 
+      <td colspan="3"> 
+        <div style="height:200px; overflow:auto; border-top:solid 1px black; border-bottom:solid 1px black;"> 
+          <table border cellspacing="0" cellpadding="0" style="color:midnightblue; font-family:verdana; font-size:12px; text-align:center;"> 
+            
+           {% for mesuresruche in mesuresruches %} 
+            <tbody>
+            <tr>
+            	<td style="width:122px;">{{ mesuresruche.datereleve|date("m/d/Y")}}</td>
+            	<td style="width:124px;">{{ nomruche }}</td>
+            	<td style="width:90px;">{{ mesuresruche.poids }} kg</td>
+            	
+            </tr>
+            </tbody>
+            {% endfor %}
+          </table> 
+        </div> 
+      </td> 
+    </tr> 
+  </tbody> 
+</table> 
 <table border bgcolor="white" cellpadding="5px">
+<thead>
 <tr>
-	<td>{% trans %}Date du relevé{% endtrans %}</td>
-	<td>{% trans %}Nom Ruche{% endtrans %}</td>
-	<td>{% trans %}Poids{% endtrans %}</td>
 	
 </tr>
-{% for mesuresruche in mesuresruches %} 
-<tr>
-	<td>{{ mesuresruche.datereleve|date("m/d/Y")}}</td>
-	<td>{{ nomruche }}</td>
-	<td>{{ mesuresruche.poids }} kg</td>
-</tr>
-{% endfor %}
+</thead>
+
 </table>
 </div>
 <div class="block2 col-lg-6">
