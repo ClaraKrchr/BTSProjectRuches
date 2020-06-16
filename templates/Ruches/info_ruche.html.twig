@@ -92,7 +92,7 @@
 
 	    var chart = new Highcharts.Chart('chart',chartOptions);
   </script>
-  <div>Pour afficher les mesures de la station détaillées cliquez
+  <div>{% trans %}Pour afficher les mesures de la station détaillées cliquez{% endtrans %}
 	<a href="{{ path('details_stations',{nomstation:station.nom,nomruche:nomruche}) }}" ><button>{% trans %}ICI{% endtrans %}</button></a>
 	</div>
 {% else %}

@@ -113,6 +113,14 @@
         <source>Type de ruche</source>
         <target>Hive type</target>
       </trans-unit>
+      <trans-unit id="73HG0Hy" resname="Proprietaire">
+        <source>Proprietaire</source>
+        <target>Owner</target>
+      </trans-unit>
+      <trans-unit id="B_1sz2v" resname="Mail">
+        <source>Mail</source>
+        <target>Mail</target>
+      </trans-unit>
       <trans-unit id="jCtrnck" resname="proprietaire">
         <source>proprietaire</source>
         <target>owner</target>
@@ -240,10 +248,6 @@
       <trans-unit id="QuN2BLY" resname="Modifier">
         <source>Modifier</source>
         <target>Edit</target>
-      </trans-unit>
-      <trans-unit id="B_1sz2v" resname="Mail">
-        <source>Mail</source>
-        <target>Mail</target>
       </trans-unit>
       <trans-unit id="m8noAjF" resname="Modification d'un apiculteur">
         <source>Modification d'un apiculteur</source>
@@ -795,11 +799,15 @@
       </trans-unit>
       <trans-unit id="RULWH19" resname="Mot de passe oublié">
         <source>Mot de passe oublié</source>
-        <target>Forgot your password</target>
+        <target>Forgot password</target>
       </trans-unit>
       <trans-unit id=".sIpuLh" resname="Mot de passe oublié ?">
         <source>Mot de passe oublié ?</source>
         <target>Forgot your password ?</target>
+      </trans-unit>
+      <trans-unit id="DfsgkiA" resname="Pour afficher les mesures de la station détaillées cliquez">
+        <source>Pour afficher les mesures de la station détaillées cliquez</source>
+        <target>To display the detailed station measurements click</target>
       </trans-unit>
     </body>
   </file>
