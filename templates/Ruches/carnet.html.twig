@@ -3,6 +3,11 @@
 {% block title %}Mon carnet d'apiculteur{% endblock %}
 
 {% block body %}
+{% for message in app.flashes('message') %}
+      		 <center><div class="alert alert-success">
+        	    {{ message }}
+			 </div></center>
+     	  {% endfor %}
 <meta charset="UTF-8">
 <br>
 <center><h1>{% trans %}Mon carnet d'apiculteur{% endtrans %}</h1></center>

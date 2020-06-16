@@ -88,12 +88,12 @@ class AddController extends AbstractController{
                     $RuchePort->setNumport($data['Port']);
                     $em->persist($RuchePort);
                     $CRuche->setNbassosport(1);
-                    $message=utf8_encode('La ruche a été ajoutée');
+                    $message=utf8_encode('La ruche a été ajoutée.');
                     $this->addFlash('message',$message);
                 }
                 else{
                     if ($StationRucher == NULL){
-                        $message=utf8_encode('La ruche a été ajoutée mais le station spécifiée n\'est pas dans le rucher associé. Vous pouvez en choisir une autre en consultant vos ruches.');
+                        $message=utf8_encode('La ruche a été ajoutée mais la station spécifiée n\'est pas dans le rucher associé. Vous pouvez en choisir une autre en consultant vos ruches.');
                         $this->addFlash('message',$message);
                     }
                     else if($RuchePort != NULL){
@@ -103,7 +103,7 @@ class AddController extends AbstractController{
                 }
             }
             else{
-                $message=utf8_encode('La ruche a été ajoutée');
+                $message=utf8_encode('La ruche a été ajoutée.');
                 $this->addFlash('message',$message);
             }
             
@@ -150,7 +150,7 @@ class AddController extends AbstractController{
             $em->persist($StationRucher);
             $em->flush();
             
-            $message=utf8_encode('La station a été ajoutée');
+            $message=utf8_encode('La station a été ajoutée.');
             $this->addFlash('station',$message);
             
             return $this->redirectToRoute('add_station');
@@ -190,7 +190,7 @@ class AddController extends AbstractController{
             
             $em->flush();
             
-            $message=utf8_encode('Le rucher a été ajouté');
+            $message=utf8_encode('Le rucher a été ajouté.');
             $this->addFlash('success',$message);
             
             return ($this->redirectToRoute('googleMap'));
@@ -258,7 +258,7 @@ class AddController extends AbstractController{
             
             $em->flush();
             
-            $mesuresRuche=utf8_encode('La mesure a été ajouté');
+            $mesuresRuche=utf8_encode('La mesure a été ajoutée.');
             $this->addFlash('mesuresRuche',$mesuresRuche);
             
             return $this->redirectToRoute('add_mesures_ruches');
@@ -300,7 +300,7 @@ class AddController extends AbstractController{
             
             $em->flush();
             
-            $mesuresStations=utf8_encode('La mesure a été ajouté');
+            $mesuresStations=utf8_encode('La mesure a été ajoutée.');
             $this->addFlash('mesuresStations',$mesuresStations);
             
             return $this->redirectToRoute('add_mesures_stations');
@@ -323,12 +323,15 @@ class AddController extends AbstractController{
         }
         
         $Carnet = new Carnet();
-        $form = $this->createForm(AddCarnetFormType::class, NULL, array('user' => $this->getUser()->getId()));
+        $form = $this->createForm(AddCarnetFormType::class, $Carnet, array('user' => $this->getUser()->getId()));
         $form->handleRequest($request);
         
         if($form->isSubmitted()){
             $manager->persist($Carnet);
             $manager->flush();
+            
+            $message=utf8_encode('Une page a été ajoutée au carnet.');
+            $this->addFlash('message',$message);
             
             return $this->redirectToRoute('carnet');
         }

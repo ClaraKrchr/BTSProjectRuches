@@ -21,6 +21,11 @@ use Symfony\Component\Mailer\Bridge\Google\Transport\GmailSmtpTransport;
 use Symfony\Component\Mailer\Bridge\Google\Smtp\GmailTransport;
 use App\Services\Mailer;
 
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+
 use App\Entity\CApiculteur;
 use App\Form\RegistrationFormType;
 use App\Repository\CApiculteurRepository;
@@ -32,6 +37,12 @@ class SecurityController extends AbstractController
      * @Route("/registration", name="registration")
      */
     public function registration(Request $request, UserPasswordEncoderInterface $encoder, ObjectManager $manager, Mailer $mailer, TokenGeneratorInterface $tokenGenerator, EntityManagerInterface $em) {
+        
+        $encoders = [new XmlEncoder(), new JsonEncoder()];
+        $normalizers = [new ObjectNormalizer()];       
+        $serializer = new Serializer($normalizers, $encoders);
+        $response = new Response();
+        
         $CApiculteur = new CApiculteur();
         $form = $this->createForm(RegistrationFormType::class, $CApiculteur);
         $form->handleRequest($request);
@@ -60,10 +71,26 @@ class SecurityController extends AbstractController
                 'user' => $CApiculteur
             ]);
             
-            /*$admin = $em->getRepository(CApiculteur::class)->findOneBy(array('roles'=>'ROLE_ADMIN'));
-            $mail = $admin->getMail();*/         
+            /*$users = $this->getDoctrine()->getRepository(CApiculteur::class)->findAll();
+            foreach ($users as $user){
+                $response->getRoles(json_decode([
+                    'roles'=>123 ]));
+                if($role=='ROLE_ADMIN'){
+                    $admin = $role->getMail();
+                    break;
+                }
+                return ($admin);
+            }*/
             
-            $mailer->sendMessage('noreply.clubapi@gmail.com', $mail, 'Activation', $bodyMail);
+            /*$admin = $em->getRepository(CApiculteur::class)->findOneBy(array('roles'=>'ROLE_ADMIN'));
+            $email = $serializer->deserialize($admin, CApiculteur::class, 'xml');
+            
+            $mailadmin = $email->getMail();*/
+             
+            /*$admin = $em->getRepository(CApiculteur::class)->findOneBy(array('roles'=>'ROLE_ADMIN'));
+            $mail = $admin->getMail();*/
+            
+            //$mailer->sendMessage('noreply.clubapi@gmail.com', $admin, 'Activation', $bodyMail);
             
             $message=utf8_encode('La demande de création de compte a été envoyée.');
             $this->addFlash('creationCompte',$message);
@@ -95,7 +122,7 @@ class SecurityController extends AbstractController
         $entityManager->flush();
         
         //envoi de message compte activé
-        $message=utf8_encode('Le compte a été activé');
+        $message=utf8_encode('Le compte a été activé.');
         $this->addFlash('message',$message);
         return $this->redirectToRoute('home');
     }
@@ -139,7 +166,7 @@ class SecurityController extends AbstractController
             
             //si l'user n'existe pas
             if(!$user){
-                $this->addFlash('danger', 'Cette adresse n\'existe pas');
+                $this->addFlash('danger', 'Cette adresse n\'existe pas.');
                 return $this->redirectToRoute('security_login');
             }
             
@@ -152,7 +179,7 @@ class SecurityController extends AbstractController
                 $entityManager->persist($user);
                 $entityManager->flush();
             } catch(\Exception $e) {
-                $this->addFlash('warning', 'Une erreur est survenue');
+                $this->addFlash('warning', 'Une erreur est survenue.');
                 return $this->redirectToRoute('security_login');
             }
             
@@ -198,7 +225,7 @@ class SecurityController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
             
-            $message=utf8_encode('Mot de passe modifié avec succès');
+            $message=utf8_encode('Mot de passe modifié avec succès.');
             $this->addFlash('message',$message);
             return $this->redirectToRoute('security_login');
         }else {
