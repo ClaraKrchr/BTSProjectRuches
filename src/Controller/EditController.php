@@ -96,7 +96,16 @@ class EditController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $data = $form->getData();
-            if ($data->getRucher()->getNom() != 'Aucun') {$ruche->setEtat(1); $ruche->setNbassosrucher(1);}
+            if ($data->getRucher()->getNom() != 'Aucun') {
+                $ruche->setEtat(1); 
+                $ruche->setNbassosrucher(1);
+                if ($data->getRucher()->getNom() != $this->getDoctrine()->getRepository(AssocierRucheRucher::class)->findOneBy(array('ruche'=>$ruche, 'rucher'=>$data->getRucher()))){
+                    if ($ruche->getNbassosport(1)){
+                        $ruche->setNbassosport(0);
+                        $em->remove($this->getDoctrine()->getRepository(AssocierRuchePort::class)->findOneBy(array('ruche'=>$ruche)));
+                    }
+                }
+            }
             else {
                 $ruche->setEtat(0); 
                 $ruche->setNbassosrucher(0); 
