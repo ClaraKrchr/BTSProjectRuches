@@ -83,14 +83,6 @@ class SecurityController extends AbstractController
                 
             }
             
-            /*$admin = $em->getRepository(CApiculteur::class)->findOneBy(array('roles'=>'ROLE_ADMIN'));
-            $email = $serializer->deserialize($admin, CApiculteur::class, 'xml');
-            
-            $mailadmin = $email->getMail();*/
-             
-            /*$admin = $em->getRepository(CApiculteur::class)->findOneBy(array('roles'=>'ROLE_ADMIN'));
-            $mail = $admin->getMail();*/
-            
             if ($admin != NULL) {
                 foreach ($admin as $administrateur){
                     $mailer->sendMessage('noreply.clubapi@gmail.com', $administrateur->getMail(), 'Activation', $bodyMail);
