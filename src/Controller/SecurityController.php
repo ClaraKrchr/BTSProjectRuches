@@ -71,16 +71,17 @@ class SecurityController extends AbstractController
                 'user' => $CApiculteur
             ]);
             
-            /*$users = $this->getDoctrine()->getRepository(CApiculteur::class)->findAll();
+            $admin = NULL;
+            $users = $this->getDoctrine()->getRepository(CApiculteur::class)->findAll();
             foreach ($users as $user){
-                $response->getRoles(json_decode([
-                    'roles'=>123 ]));
-                if($role=='ROLE_ADMIN'){
-                    $admin = $role->getMail();
-                    break;
+                foreach ($user->getRoles() as $role){
+                    if($role=="ROLE_ADMIN"){
+                        $admin[] = $user;
+                        break;
+                    }
                 }
-                return ($admin);
-            }*/
+                
+            }
             
             /*$admin = $em->getRepository(CApiculteur::class)->findOneBy(array('roles'=>'ROLE_ADMIN'));
             $email = $serializer->deserialize($admin, CApiculteur::class, 'xml');
@@ -90,7 +91,11 @@ class SecurityController extends AbstractController
             /*$admin = $em->getRepository(CApiculteur::class)->findOneBy(array('roles'=>'ROLE_ADMIN'));
             $mail = $admin->getMail();*/
             
-            //$mailer->sendMessage('noreply.clubapi@gmail.com', $admin, 'Activation', $bodyMail);
+            if ($admin != NULL) {
+                foreach ($admin as $administrateur){
+                    $mailer->sendMessage('noreply.clubapi@gmail.com', $administrateur->getMail(), 'Activation', $bodyMail);
+                }
+            }
             
             $message=utf8_encode('La demande de création de compte a été envoyée.');
             $this->addFlash('creationCompte',$message);
