@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestionnaire des ruchers{% endblock %}
+
+{% block body %}
+
+<meta charset="UTF-8">
+<br>
+<h1><center>{% trans %}Gestionnaire des ruchers{% endtrans %}</center></h1><br>
+	<table id="rucher" class="table table-striped">
+		<thread>
+			<tr>
+				<th>{% trans %}Nom{% endtrans %}</th>
+				<th>{% trans %}Région{% endtrans %}</th>
+				<th>{% trans %}Action{% endtrans %}</th>
+			</tr>
+		</thread>
+		<tbody>
+			{% for rucher in ruchers %}
+				<tr>
+					<td>{{ rucher.nom }}</td>
+					<td>{{ rucher.region.nomregion }}</td>
+					<td>
+					{% set break = false %}
+					{% for assos in assosRuche %} {% for station in assosStation %} {% if not break %} {% if assos.rucher == rucher or station.rucher == rucher or rucher.nom == 'Aucun' %} {% set break = true %} <a href="{{ path('delete_rucher', {'nom' : rucher.nom}) }}" class="btn btn-dark disabled">{% trans %}Supprimer{% endtrans %}</a>{% endif %} {% endif %} {% endfor %} {% endfor %}
+					{% if not break %} <a href="{{ path('delete_rucher', {'nom' : rucher.nom}) }}" class="btn btn-dark">{% trans %}Supprimer{% endtrans %}</a>{% endif %}
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>			
+	</table>
+
+{% endblock %}

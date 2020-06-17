@@ -3,6 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\CApiculteur;
+use App\Entity\CRucher;
+use App\Entity\AssocierRucheRucher;
+use App\Entity\AssocierStationRucher;
+use App\Repository\CRucherRepository;
 use App\Form\EditUserType;
 use App\Repository\CApiculteurRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -43,4 +47,36 @@ class AdminController extends AbstractController
         }
         return $this->render('admin/editUser.html.twig', ['formUser' => $form->createView()]);            
     }
+    
+    /**
+     * @IsGranted("ROLE_ADMIN")
+     * @Route("/ruchers", name="ruchers")
+     */
+    public function ruchersList(CRucherRepository $ruchers)
+    {
+        return $this->render("admin/ruchers.html.twig", [
+            'ruchers' => $ruchers->findAll(),
+            'assosRuche' => $this->getDoctrine()->getRepository(AssocierRucheRucher::class)->findAll(),
+            'assosStation' => $this->getDoctrine()->getRepository(AssocierStationRucher::class)->findAll()
+        ]);
+    }
+    
+    /**
+     * @IsGranted("ROLE_ADMIN")
+     * @Route("/ruchers/delete/{nom}", name="delete_rucher")
+     */
+    public function delete_rucher(Request $request, CRucher $rucher, EntityManagerInterface $em)
+    {        
+        $ruche = $this->getDoctrine()->getRepository(AssocierRucheRucher::class)->findBy(array('rucher'=>$rucher));
+        $station = $this->getDoctrine()->getRepository(AssocierStationRucher::class)->findBy(array('rucher'=>$rucher));
+        if (($ruche == NULL) && ($station == NULL)){
+            $em->remove($rucher);
+        }
+        $em->flush();
+        
+        $message=utf8_encode('Le rucher a été supprimé.');
+        $this->addFlash('message',$message);
+        return $this->redirectToRoute('ruchers');
+    }
+    
 }
