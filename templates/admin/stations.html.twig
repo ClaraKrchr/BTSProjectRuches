@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestionnaire des stations{% endblock %}
+
+{% block body %}
+
+<meta charset="UTF-8">
+<br>
+<h1><center>{% trans %}Gestionnaire des stations{% endtrans %}</center></h1><br>
+	<table id="station" class="table table-striped">
+		<thread>
+			<tr>
+				<th>{% trans %}Nom{% endtrans %}</th>
+				<th>{% trans %}Rucher{% endtrans %}</th>
+				<th>{% trans %}Région{% endtrans %}</th>
+				<th>{% trans %}Action{% endtrans %}</th>
+			</tr>
+		</thread>
+		<tbody>
+			{% for station in stations %}
+				<tr>
+					<td>{{ station.nom }}</td>
+					<td> {% for assosrucher in assosRucher %} {% if assosrucher.station == station %} {{ assosrucher.rucher.nom }} {% endif %} {% endfor %}</td>
+					<td> {% for assosrucher in assosRucher %} {% if assosrucher.station == station %} {{ assosrucher.rucher.region.nomregion }} {% endif %} {% endfor %}</td>
+					<td>
+					{% set break = false %}
+					{% for assosruche in assosRuche %} {% if not break %} {% if assosruche.station == station or station.nom == 'Aucune' %} {% set break = true %} <a href="{{ path('delete_station', {'nom' : station.nom}) }}" class="btn btn-dark disabled">{% trans %}Supprimer{% endtrans %}</a>{% endif %} {% endif %} {% endfor %}
+					{% if not break %} <a href="{{ path('delete_station', {'nom' : station.nom}) }}" class="btn btn-dark">{% trans %}Supprimer{% endtrans %}</a>{% endif %}
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>			
+	</table>
+
+{% endblock %}

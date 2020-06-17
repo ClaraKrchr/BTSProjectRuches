@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestionnaire{% endblock %}
+
+{% block body %}
+
+<meta charset="UTF-8">
+<br>
+<h1><center>{% trans %}Gestionnaire{% endtrans %}</center></h1><br>
+<center>Cliquez sur un bouton pour accéder au gestionnaire correspondant.</center>
+<br><br>
+	<div class="container">
+    <div class="row">
+	    <div class="block1" style="width:40%;"><a class="nav-link" href="{{ path('gestionnaire') }}"><button class="btn btn-secondary">{% trans %}Gestionnaire apiculteurs{% endtrans %}</button></a></div>
+		<div class="block2" style="width:35%;"><a class="nav-link" href="{{ path('ruchers') }}"><button class="btn btn-secondary">{% trans %}Gestionnaire ruchers{% endtrans %}</button></a></div>
+		<div class="block3" style="width:25%;"><a class="nav-link" href="{{ path('stations') }}"><button class="btn btn-secondary">{% trans %}Gestionnaire stations{% endtrans %}</button></a></div>
+	</div>
+</div>
+
+{% endblock %}
