@@ -101,9 +101,9 @@
         <source>Confirmer le mot de passe</source>
         <target>Confirm password</target>
       </trans-unit>
-      <trans-unit id="GudlWrE" resname="Aucune mesure pour cette station">
-        <source>Aucune mesure pour cette station</source>
-        <target>No measurement for this station</target>
+      <trans-unit id="GudlWrE" resname="Aucune mesures pour cette station">
+        <source>Aucune mesures pour cette station</source>
+        <target>No measurements for this station</target>
       </trans-unit>
       <trans-unit id="RnmzsS3" resname="Aucun">
         <source>Aucun</source>
@@ -120,6 +120,10 @@
       <trans-unit id="B_1sz2v" resname="Mail">
         <source>Mail</source>
         <target>Mail</target>
+      </trans-unit>
+      <trans-unit id="wszdpSc" resname="Aucune mesure pour cette station">
+        <source>Aucune mesure pour cette station</source>
+        <target>No measurement for this station</target>
       </trans-unit>
       <trans-unit id="jCtrnck" resname="proprietaire">
         <source>proprietaire</source>
@@ -577,7 +581,7 @@
         <source>Filtrer</source>
         <target>Filter</target>
       </trans-unit>
-      <trans-unit id="KhxX8zX" resname="---&gt; Pas de mesure pour cette ruche &lt;---">
+      <trans-unit id="qorTRZ7" resname="---&gt; Pas de mesure pour cette ruche &lt;---">
         <source>---&gt; Pas de mesure pour cette ruche &lt;---</source>
         <target> No measure for this hive </target>
       </trans-unit>
@@ -621,7 +625,7 @@
         <source>Afficher les détails</source>
         <target>Show details</target>
       </trans-unit>
-      <trans-unit id="nRBGoae" resname="Aucune mesure pour cette ruche">
+      <trans-unit id="h47Y9tH" resname="Aucune mesure pour cette ruche">
         <source>Aucune mesure pour cette ruche</source>
         <target>No measure for this hive</target>
       </trans-unit>
@@ -808,6 +812,54 @@
       <trans-unit id="DfsgkiA" resname="Pour afficher les mesures de la station détaillées cliquez">
         <source>Pour afficher les mesures de la station détaillées cliquez</source>
         <target>To display the detailed station measurements click</target>
+      </trans-unit>
+      <trans-unit id="jzt5vOa" resname="Gestionnaire">
+        <source>Gestionnaire</source>
+        <target>__Gestionnaire</target>
+      </trans-unit>
+      <trans-unit id="BkNbpO_" resname="Gestionnaire ruchers">
+        <source>Gestionnaire ruchers</source>
+        <target>__Gestionnaire ruchers</target>
+      </trans-unit>
+      <trans-unit id="0i0k1X6" resname="Gestionnaire stations">
+        <source>Gestionnaire stations</source>
+        <target>__Gestionnaire stations</target>
+      </trans-unit>
+      <trans-unit id="ehNyNJ8" resname="Gestionnaire des ruchers">
+        <source>Gestionnaire des ruchers</source>
+        <target>__Gestionnaire des ruchers</target>
+      </trans-unit>
+      <trans-unit id="NVP4wDB" resname="Région">
+        <source>Région</source>
+        <target>__Région</target>
+      </trans-unit>
+      <trans-unit id="JFheqYW" resname="Gestionnaire des stations">
+        <source>Gestionnaire des stations</source>
+        <target>__Gestionnaire des stations</target>
+      </trans-unit>
+      <trans-unit id="H4fBQ5S" resname="Gestionnaire de l'administrateur">
+        <source>Gestionnaire de l'administrateur</source>
+        <target>__Gestionnaire de l'administrateur</target>
+      </trans-unit>
+      <trans-unit id="2PQuHK9" resname="Température (°C)">
+        <source>Température (°C)</source>
+        <target>__Température (°C)</target>
+      </trans-unit>
+      <trans-unit id="ULQ8DeD" resname="Tension (V)">
+        <source>Tension (V)</source>
+        <target>__Tension (V)</target>
+      </trans-unit>
+      <trans-unit id="VMsvSCg" resname="Humidité (%)">
+        <source>Humidité (%)</source>
+        <target>__Humidité (%)</target>
+      </trans-unit>
+      <trans-unit id="9rVro6n" resname="Pression (hPa)">
+        <source>Pression (hPa)</source>
+        <target>__Pression (hPa)</target>
+      </trans-unit>
+      <trans-unit id="bIrRFDA" resname="Pour afficher les mesures de la ruche détaillées cliquez">
+        <source>Pour afficher les mesures de la ruche détaillées cliquez</source>
+        <target>To view detailed hive measurements click</target>
       </trans-unit>
     </body>
   </file>

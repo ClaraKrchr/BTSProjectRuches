@@ -210,7 +210,7 @@
 
 	    var chart = new Highcharts.Chart('chart2',chartOptions);
 	</script>
-	<div class="block3 col-lg-6">Pour afficher les mesures de la ruche détaillées cliquez
+	<div class="block3 col-lg-6">{% trans %}Pour afficher les mesures de la ruche détaillées cliquez{% endtrans %}
 	<a href="{{ path('details_ruches',{nomruche:nomruche}) }}" ><button>{% trans %}ICI{% endtrans %}</button></a>
 	</div>
 {% else %}
