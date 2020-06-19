@@ -25,7 +25,7 @@ class DeleteController extends AbstractController
 {
     /**
      * @IsGranted("ROLE_USER")
-     * @Route("/tableau_donnees/delete/{nomruche}", name="delete_ruche")
+     * @Route("/ruches_region/delete/{nomruche}", name="delete_ruche")
      */
     public function deleteRuche(Request $request, CRuche $ruche, EntityManagerInterface $em)
     {
@@ -73,7 +73,7 @@ class DeleteController extends AbstractController
     
     /**
      * @IsGranted("ROLE_USER")
-     * @Route("/tableau_donnees/dissociate_ruche_rucher/{nomruche}", name="dissociate_ruche_rucher")
+     * @Route("/ruches_region/dissociate_ruche_rucher/{nomruche}", name="dissociate_ruche_rucher")
      */
     public function dissociate_ruche_rucher(Request $request, CRuche $ruche, EntityManagerInterface $em)
     {
@@ -107,7 +107,7 @@ class DeleteController extends AbstractController
     
     /**
      * @IsGranted("ROLE_USER")
-     * @Route("/tableau_donnees/dissociate_ruche_port/{nomruche}", name="dissociate_ruche_port")
+     * @Route("/ruches_region/dissociate_ruche_port/{nomruche}", name="dissociate_ruche_port")
      */
     public function dissociate_ruche_port(Request $request, CRuche $ruche, EntityManagerInterface $em)
     {

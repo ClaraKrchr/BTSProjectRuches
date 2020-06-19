@@ -33,9 +33,9 @@ class MapController extends NouvellepageController{
     
     /**
      * @IsGranted("ROLE_USER")
-     * @Route("/tableau_donnees/{regions}",name="tableau_donnees")
+     * @Route("/ruches_region/{regions}",name="ruches_region")
      */
-    public function tableau_donnees($regions)
+    public function ruches_region($regions)
     {
         $user=$this->getUser();
         if($user->getActivationtoken()!=NULL){
@@ -57,7 +57,7 @@ class MapController extends NouvellepageController{
         $RuchePort = $this->getDoctrine()->getRepository(AssocierRuchePort::class)->findAll();
         $MesuresRuches = $this->getDoctrine()->getRepository(MesuresRuches::class)->findAll();
         
-        return $this->render('Ruches/tableau_donnees.html.twig', ['apiculteurs' => $RuchesApiculteurs,'region'=>$regions, 'assosruchers' => $RuchesRuchers, 'assosports' => $RuchePort, 'mesuresruches' => $MesuresRuches]);
+        return $this->render('Ruches/ruches_region.html.twig', ['apiculteurs' => $RuchesApiculteurs,'region'=>$regions, 'assosruchers' => $RuchesRuchers, 'assosports' => $RuchePort, 'mesuresruches' => $MesuresRuches]);
     }
     
     /**
@@ -240,7 +240,6 @@ class MapController extends NouvellepageController{
         }
         
         $Station = $this->getDoctrine()->getRepository(CStation::class)->findOneBy(array('nom'=>$nomstation));
-        $ToutesStations = $this->getDoctrine()->getRepository(CStation::class)->findAll();
         $qb = $em->createQueryBuilder();
         $qb->select('w')->from(AssocierStationRucher::class, 'w')->where('w.station = ' . $Station->getId());
         $query = $qb->getQuery();
