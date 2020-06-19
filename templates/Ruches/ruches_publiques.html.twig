@@ -20,7 +20,7 @@
 		<div class="row" id="Content">
 			{% for pagination in paginations %}
 		<div class="col-xl-4 col-md-6 mb-2">
-			<div class="card shadow mb-4">
+			<div class="card shadow xl-4 mb-4">
 				
 				<div class="card-header">
 					<center><div class="card-header py-3 align-items-center ">{{ pagination.nomruche }}</div>
@@ -100,8 +100,12 @@
 			</div>
 		</div>
 		    {% endfor %}
-
+	</div>
+	</div>
+	
+	<div class="align-self-end">
 				{{ knp_pagination_render(paginations) }}
+			</div>
 			</div>
 		{% if paginations.getTotalItemCount =='0' %}
 		<div class="mx-auto"><center><h1>{% trans %}Aucune ruche publique détectée{% endtrans %}</h1></center></div>
