@@ -765,22 +765,6 @@
         <source>Les mesures de la station:</source>
         <target>Measurements of the station:</target>
       </trans-unit>
-      <trans-unit id="0Bz_hVJ" resname="La température (°C)">
-        <source>La température (°C)</source>
-        <target>Temperature (°C)</target>
-      </trans-unit>
-      <trans-unit id="5lNG0kX" resname="La tension (V)">
-        <source>La tension (V)</source>
-        <target>Voltage (V)</target>
-      </trans-unit>
-      <trans-unit id="88EKTMK" resname="L\'humidité (%)">
-        <source>L\'humidité (%)</source>
-        <target>Humidity (%)</target>
-      </trans-unit>
-      <trans-unit id="cLlx97k" resname="La pression (hPa)">
-        <source>La pression (hPa)</source>
-        <target>Pressure (hPa)</target>
-      </trans-unit>
       <trans-unit id="TK7ZWvP" resname="ICI">
         <source>ICI</source>
         <target>Here</target>
@@ -815,47 +799,47 @@
       </trans-unit>
       <trans-unit id="jzt5vOa" resname="Gestionnaire">
         <source>Gestionnaire</source>
-        <target>__Gestionnaire</target>
+        <target>Manager</target>
       </trans-unit>
       <trans-unit id="BkNbpO_" resname="Gestionnaire ruchers">
         <source>Gestionnaire ruchers</source>
-        <target>__Gestionnaire ruchers</target>
+        <target>Hive scale manager</target>
       </trans-unit>
       <trans-unit id="0i0k1X6" resname="Gestionnaire stations">
         <source>Gestionnaire stations</source>
-        <target>__Gestionnaire stations</target>
+        <target>Station manager</target>
       </trans-unit>
       <trans-unit id="ehNyNJ8" resname="Gestionnaire des ruchers">
         <source>Gestionnaire des ruchers</source>
-        <target>__Gestionnaire des ruchers</target>
+        <target>Hive scale manager</target>
       </trans-unit>
       <trans-unit id="NVP4wDB" resname="Région">
         <source>Région</source>
-        <target>__Région</target>
+        <target>Region</target>
       </trans-unit>
       <trans-unit id="JFheqYW" resname="Gestionnaire des stations">
         <source>Gestionnaire des stations</source>
-        <target>__Gestionnaire des stations</target>
+        <target>Station manager</target>
       </trans-unit>
       <trans-unit id="H4fBQ5S" resname="Gestionnaire de l'administrateur">
         <source>Gestionnaire de l'administrateur</source>
-        <target>__Gestionnaire de l'administrateur</target>
+        <target>Administrator manager</target>
       </trans-unit>
       <trans-unit id="2PQuHK9" resname="Température (°C)">
         <source>Température (°C)</source>
-        <target>__Température (°C)</target>
+        <target>Temperature (°C)</target>
       </trans-unit>
       <trans-unit id="ULQ8DeD" resname="Tension (V)">
         <source>Tension (V)</source>
-        <target>__Tension (V)</target>
+        <target>Voltage (V)</target>
       </trans-unit>
       <trans-unit id="VMsvSCg" resname="Humidité (%)">
         <source>Humidité (%)</source>
-        <target>__Humidité (%)</target>
+        <target>Humidity (%)</target>
       </trans-unit>
       <trans-unit id="9rVro6n" resname="Pression (hPa)">
         <source>Pression (hPa)</source>
-        <target>__Pression (hPa)</target>
+        <target>Pressure (hPa)</target>
       </trans-unit>
       <trans-unit id="bIrRFDA" resname="Pour afficher les mesures de la ruche détaillées cliquez">
         <source>Pour afficher les mesures de la ruche détaillées cliquez</source>
