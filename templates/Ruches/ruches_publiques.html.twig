@@ -17,7 +17,7 @@
     			<button type="submit" class="btn btn-primary shadow">{% trans %}Filtrer{% endtrans %}</button>
     	    {{ form_end(filterForm) }}
 		</div>
-		{% if paginations %}
+		{% if paginations.getTotalItemCount() %}
 		<div class="card-columns" id="Content">
 			{% for pagination in paginations %}
 			<div class="card shadow xl-4 mb-4" style="text-align:center;">
@@ -99,7 +99,7 @@
 			</div>
 		    {% endfor %}
 	</div>{% else %}
-	<div class="mx-auto"><center><h1>{% trans %}Aucune ruche publique détectée{% endtrans %}</h1></center></div>
+	<div class="mx-auto"><center><h1>{% trans %}Aucune ruche publique détectée.{% endtrans %}</h1></center></div>
 	{% endif %}
 	</div>
 	
