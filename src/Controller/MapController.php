@@ -50,6 +50,7 @@ class MapController extends NouvellepageController{
         //-------------Recherche des ruches dans les ruchers-----------------//
         $RuchesRuchers= $this->getDoctrine()->getRepository(AssocierRucheRucher::class)->findBy(array('rucher'=>$RucherRegion));
         //------------Recherche des ruches appartenant a l'utilisateur connecté-------------//
+        if($RuchesRuchers == NULL) $stock[] = NULL;
         foreach($RuchesRuchers as $RuchesRucher){
             $stock[]=$RuchesRucher->getRuche();
         }
