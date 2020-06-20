@@ -127,10 +127,11 @@ class NouvellepageController extends AbstractController
     }
 
     /**
-     * @Route("/credits", name="credits")
+     * @IsGranted("ROLE_USER")
+     * @Route("/erreur_rucher_carte", name="erreur_rucher_carte")
      */
-    public function credits(){
-        return $this->render('credits.html.twig');
+    public function erreur_rucher_carte(){
+        return $this->render('security/erreur_rucher_carte.html.twig');
     }
 
 }

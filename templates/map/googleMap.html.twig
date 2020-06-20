@@ -69,12 +69,17 @@
 	        	region = region.replace(/\\u00f4/, 'o');
 	        	region = region.replace(/\\u00e9/, 'e');
 				infoWindow.close();
+				var erreurLocal = "/erreur_rucher_carte";
+				var erreurDistant = "/ruche/public/index.php/erreur_rucher_carte"
+				if (region == '') window.location.href = erreurLocal;
+				else{
 				infoWindow = new google.maps.InfoWindow({position: mapsMouseEvent.latLng});
 	        	infoWindow.setContent(region);
 	        	infoWindow.open(map);
 	        	var pathLocal = "/add_rucher/"+mapsMouseEvent.latLng.lat()+"/"+mapsMouseEvent.latLng.lng()+"/"+region;
 	        	var pathDistant = "/ruche/public/index.php/add_rucher/"+mapsMouseEvent.latLng.lat()+"/"+mapsMouseEvent.latLng.lng()+"/"+region;
 	        	window.location.href = pathLocal;
+	        	}
 	        });
 
         {% endfor %}
