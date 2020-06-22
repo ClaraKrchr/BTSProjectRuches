@@ -845,6 +845,42 @@
         <source>Pour afficher les mesures de la ruche détaillées cliquez</source>
         <target>To view detailed hive measurements click</target>
       </trans-unit>
+      <trans-unit id="syAifP8" resname="Localisation :">
+        <source>Localisation :</source>
+        <target>Location :</target>
+      </trans-unit>
+      <trans-unit id="0ohZPAb" resname="Propriétaire :">
+        <source>Propriétaire :</source>
+        <target>Owner :</target>
+      </trans-unit>
+      <trans-unit id="cO30jYo" resname="Type de ruche :">
+        <source>Type de ruche :</source>
+        <target>Hive type :</target>
+      </trans-unit>
+      <trans-unit id="RdKnZFB" resname="Aucune ruche publique détectée.">
+        <source>Aucune ruche publique détectée.</source>
+        <target>No public hive detected.</target>
+      </trans-unit>
+      <trans-unit id="ZXKgHV5" resname="Aucune ruche dans la région">
+        <source>Aucune ruche dans la région</source>
+        <target>No hive in the region</target>
+      </trans-unit>
+      <trans-unit id="s2WpG4L" resname="Bzzz, vous devez choisir une adresse valide !">
+        <source>Bzzz, vous devez choisir une adresse valide !</source>
+        <target>Bzzz, you must choose a valid address!</target>
+      </trans-unit>
+      <trans-unit id="6T0clLR" resname="L'emplacement doit être en France, et sur une adresse. (Pas de forêt, parc...)">
+        <source>L'emplacement doit être en France, et sur une adresse. (Pas de forêt, parc...)</source>
+        <target>The location must be in France, and on an address. (No forest, park ...)</target>
+      </trans-unit>
+      <trans-unit id="mqzY93O" resname="Cliquez ici pour retourner à la carte">
+        <source>Cliquez ici pour retourner à la carte</source>
+        <target>Click here to return to the map</target>
+      </trans-unit>
+      <trans-unit id="QBFAk2d" resname="Vous n'avez pas de ruche.">
+        <source>Vous n'avez pas de ruche.</source>
+        <target>You have no hive.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
