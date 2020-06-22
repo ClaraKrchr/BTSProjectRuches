@@ -136,7 +136,12 @@ class AddController extends AbstractController{
         
         if($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-            
+            if ($data['Rucher']->getNom() == 'Aucun'){
+                $message=utf8_encode('La station doit avoir un rucher. Elle n\'a pas été créée.');
+                $this->addFlash('station',$message);
+                
+                return $this->redirectToRoute('add_station');
+            }
             $CStation = new CStation();
             $CStation->setNom($data['Nom_station']);
             $CStation->setDateinstall($data['Date_installation']);
