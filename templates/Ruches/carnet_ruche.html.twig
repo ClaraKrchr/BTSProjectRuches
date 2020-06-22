@@ -10,9 +10,9 @@
  		
 		    {% for carnet in carnets %}
                     <br><center><h2>{{ carnet.ruche }}</h2></center>
-					<div style="width:50%; float:left"><center><h4>Commentaire</h4></center>
+					<div style="width:50%; float:left"><center><h4>{% trans %}Commentaire{% endtrans %}</h4></center>
 					<center>{{ carnet.commentaire }}</center></div>
-					<div style="width:50%; float:left"><center><h4>État des abeilles</h4></center>
+					<div style="width:50%; float:left"><center><h4>{% trans %}État des abeilles{% endtrans %}</h4></center>
 					<center>{% for  etatabeilles in carnet.etatabeilles %}
 						    {% if etatabeilles=="Grandes" %}
 								{% trans %}Grandes{% endtrans %}

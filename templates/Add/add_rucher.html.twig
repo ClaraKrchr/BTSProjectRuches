@@ -11,19 +11,19 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="{{ asset('css/inscription.css') }}">
 	<br>
-	<center><h1>Ajouter un rucher</h1></center>
+	<center><h1>{% trans %}Ajouter un rucher{% endtrans %}</h1></center>
 	<br>
 	<div class="d-flex justify-content-around">
 		
     		{{ form_start(addrucherform) }}
        		{{ form_widget(addrucherform) }}	
            		
-       			<button type="submit" class="btn btn-primary">Valider</button>
+       			<button type="submit" class="btn btn-primary">{% trans %}Valider{% endtrans %}</button>
        		
             {{ form_end(addrucherform) }}
             {% for message in app.flashes('notice') %}
               	<div class="flash-notice">
-                	Chargement effectué
+                	{% trans %}Chargement effectué{% endtrans %}
   	    		</div>
   	    	{% endfor %}
     	
@@ -34,9 +34,9 @@
 			<center>
 				<table class="table table-bordered" >
                 	<tr>
-                		<td>Latitude</td>
-                		<td>Longitude</td>
-                		<td>Région</td>
+                		<td>{% trans %}Latitude{% endtrans %}</td>
+                		<td>{% trans %}Longitude{% endtrans %}</td>
+                		<td>{% trans %}Région{% endtrans %}</td>
                 	</tr>
                 	<tr>
                 	    <td> {{ latitude }}						</td>
@@ -48,6 +48,6 @@
             </center>
 			</div>
 		</div>
-		<a href="{{ path ('googleMap') }}"><button class="btn btn-primary">Afficher la carte </button></a>
+		<a href="{{ path ('googleMap') }}"><button class="btn btn-primary">{% trans %}Afficher la carte {% endtrans %}</button></a>
 	</div>
 {% endblock %}

@@ -11,7 +11,7 @@ Privee : Private
 En attente : Pending
 Dans un rucher : In an apiary
 Chez un apiculteur : At a beekeeper's
-Ruche kenyane(KTBH) : Kenayne hive
+Ruche kenyane(KTBH) : Kenyan hive
 Ruche Dadant : Dadant hive
 Ruche Warre(ruche populaire) : Warre hive
 Ruche Langstroth(standard) : Langstroth hive
@@ -33,7 +33,29 @@ Confirmer le mot de passe : Confirm password
 Aucune mesures pour cette station : No measurements for this station
 Aucun : No one
 Type de ruche : Hive type
-Proprietaire : Owner
-
+Proprietaire : Owner  
 #mot de passe oublie
 Mail : Email
+Adresse mail : Email
+Veuillez renseigner ce champ. : Please complete this field.
+Nature du nourrissement : Nature of feeding
+Lieu Transhumance : Location Transhumance
+Présence Varroa : Varroa presence
+Quantité de nourrissement : Feeding amount
+Date de récolte : Harvest date
+Présence de mâles : Presence of males
+Âge de la reine (en mois) : Queen's age (in months)
+Présence de cellules royales : Presence of royal cells
+Nature du miel : Nature of honey
+Non : No
+Oui : Yes
+Essaimage : Swarming
+Achat : Purchase
+Faible : Weak
+Moyen : Medium
+Forte : Strong
+
+#add flash
+La ruche a été ajoutée. : The hive has been added.
+La station a été ajoutée. : The station has been added.
+Le rucher a été ajoutée. : The apiary has been added.

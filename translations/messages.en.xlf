@@ -121,6 +121,90 @@
         <source>Mail</source>
         <target>Mail</target>
       </trans-unit>
+      <trans-unit id="sB0RYun" resname="Adresse mail">
+        <source>Adresse mail</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="fX0nc_i" resname="Veuillez renseigner ce champ.">
+        <source>Veuillez renseigner ce champ.</source>
+        <target>Please complete this field.</target>
+      </trans-unit>
+      <trans-unit id="R90oy3p" resname="Nature du nourrissement">
+        <source>Nature du nourrissement</source>
+        <target>Nature of feeding</target>
+      </trans-unit>
+      <trans-unit id="wgfzdkm" resname="Lieu Transhumance">
+        <source>Lieu Transhumance</source>
+        <target>Location Transhumance</target>
+      </trans-unit>
+      <trans-unit id="QDrbo71" resname="Présence Varroa">
+        <source>Présence Varroa</source>
+        <target>Varroa presence</target>
+      </trans-unit>
+      <trans-unit id="AniQwD8" resname="Quantité de nourrissement">
+        <source>Quantité de nourrissement</source>
+        <target>Feeding amount</target>
+      </trans-unit>
+      <trans-unit id="prqtzfR" resname="Date de récolte">
+        <source>Date de récolte</source>
+        <target>Harvest date</target>
+      </trans-unit>
+      <trans-unit id="L6yhscp" resname="Présence de mâles">
+        <source>Présence de mâles</source>
+        <target>Presence de males</target>
+      </trans-unit>
+      <trans-unit id="gQnGvnU" resname="Âge de la reine (en mois)">
+        <source>Âge de la reine (en mois)</source>
+        <target>Queen's age (in months)</target>
+      </trans-unit>
+      <trans-unit id="iNzuYju" resname="Présence de cellules royales">
+        <source>Présence de cellules royales</source>
+        <target>Presence of royal cells</target>
+      </trans-unit>
+      <trans-unit id="ZoheiBX" resname="Nature du miel">
+        <source>Nature du miel</source>
+        <target>Nature of honey</target>
+      </trans-unit>
+      <trans-unit id="f2JJawy" resname="Non">
+        <source>Non</source>
+        <target>No</target>
+      </trans-unit>
+      <trans-unit id="CpBAdjn" resname="Oui">
+        <source>Oui</source>
+        <target>Yes</target>
+      </trans-unit>
+      <trans-unit id="hjho.5_" resname="Essaimage">
+        <source>Essaimage</source>
+        <target>Swarming</target>
+      </trans-unit>
+      <trans-unit id="9eUVrem" resname="Achat">
+        <source>Achat</source>
+        <target>Purchase</target>
+      </trans-unit>
+      <trans-unit id="9y1Sh_M" resname="Faible">
+        <source>Faible</source>
+        <target>Weak</target>
+      </trans-unit>
+      <trans-unit id="KOyiwOI" resname="Moyen">
+        <source>Moyen</source>
+        <target>Medium</target>
+      </trans-unit>
+      <trans-unit id="JUE4O4Z" resname="Forte">
+        <source>Forte</source>
+        <target>Strong</target>
+      </trans-unit>
+      <trans-unit id="57Clsjw" resname="La ruche a été ajoutée.">
+        <source>La ruche a été ajoutée.</source>
+        <target>The hive has been added.</target>
+      </trans-unit>
+      <trans-unit id="GcDqS5w" resname="La station a été ajoutée.">
+        <source>La station a été ajoutée.</source>
+        <target>The station has been added.</target>
+      </trans-unit>
+      <trans-unit id="YyeWuuE" resname="Le rucher a été ajoutée.">
+        <source>Le rucher a été ajoutée.</source>
+        <target>The apiary has been added.</target>
+      </trans-unit>
       <trans-unit id="wszdpSc" resname="Aucune mesure pour cette station">
         <source>Aucune mesure pour cette station</source>
         <target>No measurement for this station</target>
@@ -279,7 +363,7 @@
       </trans-unit>
       <trans-unit id="F20b9fw" resname="Ajouter une info">
         <source>Ajouter une info</source>
-        <target>Add news</target>
+        <target>Add information</target>
       </trans-unit>
       <trans-unit id="z7GsDIB" resname="Inscription">
         <source>Inscription</source>
@@ -311,7 +395,7 @@
       </trans-unit>
       <trans-unit id="DY7_2ee" resname="Ajout d'une info">
         <source>Ajout d'une info</source>
-        <target>Add new</target>
+        <target>Add information</target>
       </trans-unit>
       <trans-unit id="beUw_Mz" resname="État ruche">
         <source>État ruche</source>
@@ -339,7 +423,7 @@
       </trans-unit>
       <trans-unit id="pQXHB.x" resname="Larves">
         <source>Larves</source>
-        <target>Larva</target>
+        <target>Larvae</target>
       </trans-unit>
       <trans-unit id="jEpYQuN" resname="Œufs">
         <source>Œufs</source>
@@ -489,13 +573,9 @@
         <source>Recherchez une ruche pour afficher ses informations du carnet</source>
         <target>Find a beehive to view its logbook information</target>
       </trans-unit>
-      <trans-unit id="L6yhscp" resname="Présence de mâles">
-        <source>Présence de mâles</source>
-        <target>Presence de males</target>
-      </trans-unit>
       <trans-unit id="6wd9UfT" resname="Présence de larves">
         <source>Présence de larves</source>
-        <target>Presence of larves</target>
+        <target>Presence of larvae</target>
       </trans-unit>
       <trans-unit id="mVHXgx2" resname="Présence d'œufs">
         <source>Présence d'œufs</source>
@@ -547,7 +627,7 @@
       </trans-unit>
       <trans-unit id="7yOllAJ" resname="Retour">
         <source>Retour</source>
-        <target>Return</target>
+        <target>Back</target>
       </trans-unit>
       <trans-unit id="SEobKm1" resname="Date d'archivage">
         <source>Date d'archivage</source>
@@ -639,7 +719,7 @@
       </trans-unit>
       <trans-unit id="kl1E0zN" resname="Vous n'avez aucune ruche archivée.">
         <source>Vous n'avez aucune ruche archivée.</source>
-        <target>You have not archived hive.</target>
+        <target>You have no archived hives.</target>
       </trans-unit>
       <trans-unit id="U5GtZ9K" resname="Erreur 403">
         <source>Erreur 403</source>
@@ -791,7 +871,7 @@
       </trans-unit>
       <trans-unit id=".sIpuLh" resname="Mot de passe oublié ?">
         <source>Mot de passe oublié ?</source>
-        <target>Forgot your password ?</target>
+        <target>Forgot password ?</target>
       </trans-unit>
       <trans-unit id="DfsgkiA" resname="Pour afficher les mesures de la station détaillées cliquez">
         <source>Pour afficher les mesures de la station détaillées cliquez</source>
@@ -803,7 +883,7 @@
       </trans-unit>
       <trans-unit id="BkNbpO_" resname="Gestionnaire ruchers">
         <source>Gestionnaire ruchers</source>
-        <target>Hive scale manager</target>
+        <target>Apiary manager</target>
       </trans-unit>
       <trans-unit id="0i0k1X6" resname="Gestionnaire stations">
         <source>Gestionnaire stations</source>
@@ -859,7 +939,7 @@
       </trans-unit>
       <trans-unit id="RdKnZFB" resname="Aucune ruche publique détectée.">
         <source>Aucune ruche publique détectée.</source>
-        <target>No public hive detected.</target>
+        <target>No public hives detected.</target>
       </trans-unit>
       <trans-unit id="ZXKgHV5" resname="Aucune ruche dans la région">
         <source>Aucune ruche dans la région</source>
@@ -879,7 +959,35 @@
       </trans-unit>
       <trans-unit id="QBFAk2d" resname="Vous n'avez pas de ruche.">
         <source>Vous n'avez pas de ruche.</source>
-        <target>You have no hive.</target>
+        <target>You have no hives.</target>
+      </trans-unit>
+      <trans-unit id="KfQ6l26" resname="Cliquez sur un bouton pour accéder au gestionnaire correspondant.">
+        <source>Cliquez sur un bouton pour accéder au gestionnaire correspondant.</source>
+        <target>Click on a button to access the corresponding manager.</target>
+      </trans-unit>
+      <trans-unit id="UM.S4iZ" resname="--&gt; Pas de mesure pour cette ruche &lt;--">
+        <source>--&gt; Pas de mesure pour cette ruche &lt;--</source>
+        <target><![CDATA[--> No measurement for this hive <--]]></target>
+      </trans-unit>
+      <trans-unit id="w.TxCYs" resname="Ajouter un rucher">
+        <source>Ajouter un rucher</source>
+        <target>Add an apiary</target>
+      </trans-unit>
+      <trans-unit id="6xoPC9W" resname="Chargement effectué">
+        <source>Chargement effectué</source>
+        <target>Loading completed</target>
+      </trans-unit>
+      <trans-unit id="I4pnbaR" resname="Latitude">
+        <source>Latitude</source>
+        <target>Latitude</target>
+      </trans-unit>
+      <trans-unit id="bYBFj9F" resname="Longitude">
+        <source>Longitude</source>
+        <target>Longitude</target>
+      </trans-unit>
+      <trans-unit id="TEG7Tu7" resname="Afficher la carte">
+        <source>Afficher la carte</source>
+        <target>Show map</target>
       </trans-unit>
     </body>
   </file>
