@@ -6,9 +6,9 @@
 <!-- for HTML5 -->
 <meta charset="UTF-8">
 <link rel="stylesheet" href="{{ asset('css/ruches_publiques.css') }}">
-	<div class="d-flex ">
+	<div class="d-flex" >
 	<!--  justify-content-around -->
-		<div id="FilterSidebar">
+		<div id="FilterSidebar" style="width:20%;">
     		<h1>{% trans %}Filtrer ma recherche{% endtrans %}</h1>
     	
     	    {{ form_start(filterForm) }}
@@ -18,8 +18,11 @@
     	    {{ form_end(filterForm) }}
 		</div>
 		{% if paginations.getTotalItemCount() %}
-		<div class="card-columns" id="Content">
+		<div class="container">
+		<div class="row">
+		
 			{% for pagination in paginations %}
+			<div class="column" style=" float: left; padding: 0 10px;" id="Content">
 			<div class="card shadow xl-4 mb-4" style="text-align:center;">
 				<div class="card-header">
 					<center><div class="card-header shadow">{{ pagination.nomruche }}</div>
@@ -32,7 +35,7 @@
                      	Highcharts.getJSON(url, function (data) {
                      		if ( data.length == 0 ) {
                      	       console.log("NO DATA!");
-                     	       document.getElementById("{{ pagination.nomruche }}").innerHTML='{% trans %}---> Pas de mesure pour cette ruche <---{% endtrans %}<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>';
+                     	       document.getElementById("{{ pagination.nomruche }}").innerHTML='<br><br><br><br><br><br><br><br>{% trans %}--> Pas de mesure pour cette ruche <--{% endtrans %}<br><br><br><br><br><br><br><br><br>';
                      	    }else{
                  		  	Highcharts.stockChart('{{ pagination.nomruche }}', {
                  		  		rangeSelector : {
@@ -97,7 +100,9 @@
 					<h6 class="m-o font-weight-bold text-secondary">{% trans %}Type de ruche : {% endtrans %} {{ pagination.typeruche }}</h6>
 				</div>
 			</div>
-		    {% endfor %}
+			</div>
+		    {% endfor %}</div>
+
 	</div>{% else %}
 	<div class="mx-auto"><center><h1>{% trans %}Aucune ruche publique détectée.{% endtrans %}</h1></center></div>
 	{% endif %}
