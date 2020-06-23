@@ -37,7 +37,7 @@
                      	       console.log("NO DATA!");
                      	       document.getElementById("{{ pagination.nomruche }}").innerHTML='<br><br><br><br><br><br><br><br>{% trans %}--> Pas de mesure pour cette ruche <--{% endtrans %}<br><br><br><br><br><br><br><br><br>';
                      	    }else{
-                 		  	Highcharts.stockChart('{{ pagination.nomruche }}', {
+                 		  	var options={
                  		  		rangeSelector : {
                  					selected : 0,
                  					inputEnabled: false,
@@ -54,23 +54,16 @@
                  			        }
                  			    },
 							chart:{
+								renderTo:"{{ pagination.nomruche }}",
 								zoomKey:'ctrl',
-								zoomType:'x'
+								zoomType:'x',
+					              type: 'line'
 								},
-								exporting: {
-						    	  	enabled:false
-						    	  },
+								exporting: {enabled:false},
 								
 								credits:{enabled:false},
-                 		    series: [{                     				
-                     		      	name: 'Poids (en kg)',
-                     		      	data: data,
-                     		      	type: 'line',
-                     		     	tooltip: {
-                     		        	valueDecimals: 2
-                     		      }
-                     		    }],
-                     		    responsive:{
+                 		    series: [],
+                 		    responsive:{
                      			      rules:[{
                      				      condition:{
                      					      maxHeight:300
@@ -78,13 +71,11 @@
                      					      chartOptions:{
                      						      legend:{enabled:false},
                      						      }
-                     					      },
-                     					  {
-                     					  condition:{
-                     						  }	  }
-                     			      ]
+                     					      },]
                      		      },
-                     		  });
+                     		  };
+                 		  	options.series=data;
+                 		  	var chart=new Highcharts.StockChart(options);
                      	    }
                      		});
                  	                		

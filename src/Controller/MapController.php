@@ -173,7 +173,7 @@ class MapController extends NouvellepageController{
                 $qb->select('w')->from(MesuresRuches::class, 'w')->where('w.idruche = ' . $Ruches->getId())->orderBy('w.date_releve', 'ASC');
                 $query = $qb->getQuery();
                 $MesuresRuches = $query->getResult();
-                
+                if($MesuresRuches){
                 foreach ($MesuresRuches as $MesuresRuche){
                     
                     $stockage[] = array(
@@ -181,7 +181,7 @@ class MapController extends NouvellepageController{
                          $MesuresRuche->getPoids()
                     );
                 } 
-                $stock=array(['name'=>'poids','data'=>$stockage]);
+                $stock=array(['name'=>'poids','data'=>$stockage]);}
                 return new Response(json_encode($stock));
                 }
             }
