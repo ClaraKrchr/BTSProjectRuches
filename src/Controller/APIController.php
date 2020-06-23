@@ -80,6 +80,7 @@ class APIController extends AbstractController
             $mesureS->setDateReleve(new \datetime());
             $nomStation = (int)current($array);
             $station = $em->getRepository(CStation::class)->findOneBy(array('nom'=>$nomStation));
+            if ($station == NULL) return NULL;
             $assos = $em->getRepository(AssocierStationRucher::class)->findOneBy(array('station'=>$station));
             $idRucher = $assos->getRucher()->getId();
             $mesureS->setIdrucher($idRucher);
@@ -106,6 +107,7 @@ class APIController extends AbstractController
                     $idStationPort = $nomStation .$i;
                     $mesureR->setIdstationport($idStationPort);
                     $assosRuchePort = $em->getRepository(AssocierRuchePort::class)->findOneBy(array('station'=>$station, 'numport'=>($i)));
+                    if ($assosRuchePort == NULL) return NULL;
                     $mesureR->setIdruche($assosRuchePort->getRuche()->getId());
                     
                     $em->persist($mesureR);
