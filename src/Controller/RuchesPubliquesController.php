@@ -160,7 +160,7 @@ class RuchesPubliquesController extends AbstractController{
         $paginations = $paginator->paginate(
             $ruches,
             $page,
-            6
+            6        // Nombre d'élément par page 
             );
         $rucheapis = $this->getDoctrine()->getRepository(AssocierRucheApiculteur::class)->findAll();
         return $this->render('Ruches/ruches_publiques.html.twig',

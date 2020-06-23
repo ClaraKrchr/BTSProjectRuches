@@ -41,129 +41,92 @@
 {% endif %}
   <script type="text/javascript">
   var url ='{{ path('mesures_ruche_diagramme',{nomruche : nomruche,nomruche2:'NULL'})}}';
-  Highcharts.getJSON(url, function (data) {
-	  // Create the chart
+	//Crée le diagramme
+  var options={
+          chart: {
+              renderTo:"test",
+              type: 'line'
+          },
+      	credits:{enabled:false},
+      	exporting: { enabled: false },
+          title: {
+            text: '{% trans %}Les mesures de la ruche{% endtrans %} {{ nomruche}}'
+          },
+          series: []
+      };
 	  console.log('mesures_ruche {{nomruche}} ');
-  	Highcharts.stockChart('test', {
-	    
-	chart:{
-		type: 'line',
-		height: 50+ '%',
-		zoomKey:'ctrl',
-		zoomType:'x'
-		},
-	credits:{enabled:false},
-
-	exporting: { enabled: false },
-    title: {
-	      text: '{% trans %}Les mesures de la ruche{% endtrans %} {{ nomruche }}'
-	    },				
-    series: [{                     				
-	      	name: 'Poids de la ruche (en kg)',
-	      	data: data,
-	      	type: 'line',
-	     	tooltip: {
-	        	valueDecimals: 2
-	      }
-	    }]
-	  });
-	});
+	  $.getJSON(url, function(data) {
+			options.series=data;//Introduit les mesures dans le diagramme
+			var chart=new Highcharts.StockChart(options);
+			});
 	</script>
 	<script type="text/javascript">
   function nom_ruche(){
 		var nomruchepublic = document.getElementById("liste_ruche_public").value;
 		var nomrucheprivee = document.getElementById("liste_ruche_privee").value;
+
+		var url =' {{ path('mesures_ruche_diagramme',{nomruche : nomruche , nomruche2 : 'nomruche2'}) }} ';
 		
 		if(nomruchepublic!=''){
+			//Affiche liste_ruche_public, cache liste_ruche_privee, cache le diagramme 'test' et affiche le diagramme nomruche
 			document.getElementById("liste_ruche_public").style.display = 'block';
 			document.getElementById("liste_ruche_privee").style.display = 'none';
 			document.getElementById("{{nomruche}}").style.display = 'block';
 			document.getElementById("test").style.display = 'none';
-
-			var url =' {{ path('mesures_ruche_diagramme',{nomruche : nomruche , nomruche2 : 'nomruche2'}) }} ';
+			
 			url=url.replace("nomruche2",nomruchepublic);
-			Highcharts.getJSON(url, function (data) {
-				  // Create the chart				  
+							  
 				console.log('mesures_ruche {{nomruche}} et '+nomruchepublic);
-			  	Highcharts.stockChart('{{ nomruche }}', {
-				    
-				chart:{
-					zoomKey:'ctrl',
-					height: 50+ '%',
-					zoomType:'x'
-					},
-					
-					credits:{enabled:false},
-			    title: {
-				      text: '{% trans %}Les mesures de la ruche{% endtrans %} {{ nomruche }} {% trans %}comparée à{% endtrans %} '+nomruchepublic
-				    },
-			    series: [{                     				
-				      	name: '{% trans %}Poids Premiere ruche(en kg){% endtrans %}',
-				      	data: data[0],
-				      	type: 'line',
-				     	tooltip: {
-				        	valueDecimals: 2
-				      }
-				    },{                     				
-				      	name: '{%trans%}Poids Seconde ruche(en kg){% endtrans %}',
-				      	data: data[1],
-				      	type: 'line',
-				     	tooltip: {
-				        	valueDecimals: 1
-				      }
-				    }
-				    ]
-				  });
-				});
-
+				//Crée le diagramme
+				var options={
+		                chart: {
+		                    renderTo:"{{nomruche}}",
+		                    type: 'line'
+		                },
+		            	credits: { enabled: false },
+		            	exporting: { enabled: false },
+		                title: {
+		                  text: '{% trans %}Les mesures de la ruche{% endtrans %} {{ nomruche}} {% trans %}comparé à la ruche {% endtrans %}'+nomruchepublic
+		                },
+		                series: []
+		            };
+				$.getJSON(url, function(data) {
+					options.series=data;//Introduit les mesures dans le diagramme
+					var chart=new Highcharts.StockChart(options);
+					});
 			console.log('affiche div test avec la ruche {{nomruche}} et la ruche public : '+nomruchepublic);
 		}else if(nomrucheprivee!=''){
-
+			//Affiche liste_ruche_privee, cache liste_ruche_public, cache le diagramme 'test' et affiche le diagramme nomruche
 			document.getElementById("liste_ruche_privee").style.display = 'block';
 			document.getElementById("liste_ruche_public").style.display = 'none';
 			document.getElementById("{{nomruche}}").style.display = 'block';
 			document.getElementById("test").style.display = 'none';
 
-			var url =' {{ path('mesures_ruche_diagramme',{nomruche : nomruche , nomruche2 : 'nomruche2'}) }} ';
-			url=url.replace("nomruche2",nomrucheprivee);
-			Highcharts.getJSON(url, function (data) {
-				  // Create the chart
-				console.log('mesures_ruche {{nomruche}} et '+nomrucheprivee);
-			  	Highcharts.stockChart('{{ nomruche }}', {
-				    
-				chart:{
-					zoomKey:'ctrl',
-					height: 50 + '%',
-					zoomType:'x',
-					},
-
-					
-					credits:{enabled:false},
-			    title: {
-				      text: '{% trans %}Les mesures de la ruche{% endtrans %} {{ nomruche }} {% trans %}comparée à{% endtrans %} '+nomrucheprivee
-				    },
-			    series: [{                     				
-				      	name: '{% trans %}Poids Premiere ruche(en kg){% endtrans %}',
-				      	data: data[0],
-				      	type: 'line',
-				     	tooltip: {
-				        	valueDecimals:0
-				      }
-				    },{                     				
-				      	name: '{%trans%}Poids Seconde ruche(en kg){% endtrans %}',
-				      	data: data[1],
-				      	type: 'line',
-				     	tooltip: {
-				        	valueDecimals: 0
-				      }
-				    }
-				    ]
-				  });
-				});
 			
+			url=url.replace("nomruche2",nomrucheprivee);
+			
+				console.log('mesures_ruche {{nomruche}} et '+nomrucheprivee);
+				//Crée le diagramme
+				var options={
+		                chart: {
+		                    renderTo:"{{nomruche}}",
+		                    type: 'line'
+		                },
+		            	credits:{enabled:false},
+		            	exporting: { enabled: false },
+		                title: {
+		                  text: '{% trans %}Les mesures de la ruche{% endtrans %} {{ nomruche}} {% trans %}comparé à la ruche {% endtrans %}'+nomrucheprivee
+		                },
+		                series: []
+		            };
+			$.getJSON(url, function(data) {
+			options.series=data;//Introduit les mesures dans le diagramme
+			var chart=new Highcharts.StockChart(options);
+			});
 			console.log('affiche div test avec la ruche {{nomruche}} et la ruche privee : '+nomrucheprivee);
 		}
 		else if(nomruchepublic==''){
+			//Affiche liste_ruche_privee, affiche liste_ruche_public, affiche le diagramme 'test' et cache le diagramme nomruche
 			document.getElementById("liste_ruche_privee").style.display = 'block';
 			document.getElementById("liste_ruche_public").style.display = 'block';
 			document.getElementById("{{nomruche}}").style.display = 'none';
@@ -172,7 +135,7 @@
 			
 			console.log('affiche div nomruche');				
 		}else if(nomrucheprivee==''){
-
+			//Affiche liste_ruche_privee, affiche liste_ruche_public, affiche le diagramme 'test' et cache le diagramme nomruche
 			document.getElementById("liste_ruche_privee").style.display = 'block';
 			document.getElementById("liste_ruche_public").style.display = 'block';
 			document.getElementById("{{nomruche}}").style.display = 'none';

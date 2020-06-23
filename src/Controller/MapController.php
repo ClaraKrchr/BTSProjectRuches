@@ -49,13 +49,15 @@ class MapController extends NouvellepageController{
         $RucherRegion = $this->getDoctrine()->getRepository(CRucher::class)->findBy(array('region'=>$Regions));
         //-------------Recherche des ruches dans les ruchers-----------------//
         $RuchesRuchers= $this->getDoctrine()->getRepository(AssocierRucheRucher::class)->findBy(array('rucher'=>$RucherRegion));
-        //------------Recherche des ruches appartenant a l'utilisateur connecté-------------//
         if($RuchesRuchers == NULL) $stock[] = NULL;
         foreach($RuchesRuchers as $RuchesRucher){
             $stock[]=$RuchesRucher->getRuche();
         }
+        //------------Recherche des ruches appartenant a l'utilisateur connecté-------------//
         $RuchesApiculteurs = $this->getDoctrine()->getRepository(AssocierRucheApiculteur::class)->findBy(array('ruche'=>$stock,'apiculteur'=>$NomProprietaire));
+        //------------Obtention des tous les liens entre les ports et les ruches------------//
         $RuchePort = $this->getDoctrine()->getRepository(AssocierRuchePort::class)->findAll();
+        //------------Obtention de toutes les mesures---------------------------------------//
         $MesuresRuches = $this->getDoctrine()->getRepository(MesuresRuches::class)->findAll();
         
         return $this->render('Ruches/ruches_region.html.twig', ['apiculteurs' => $RuchesApiculteurs,'region'=>$regions, 'assosruchers' => $RuchesRuchers, 'assosports' => $RuchePort, 'mesuresruches' => $MesuresRuches]);
@@ -66,11 +68,12 @@ class MapController extends NouvellepageController{
      * @Route("/info_ruche/{nomruche}", name="info_ruche")
      */
     public function info_ruche($nomruche,EntityManagerInterface $em, Request $request){
+        //------Vérifie que le compte est validé pare un Administrateur----------//
         $user=$this->getUser();
         if($user->getActivationtoken()!=NULL){
             return $this->redirectToRoute('erreur_compte');
         }
-        
+        //-----------Recherche de l'apiculteur possédant la ruche-------//
         $Ruche = $em->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche));
         $assosRucheApi = $em->getRepository(AssocierRucheApiculteur::class)->findOneBy(array('ruche'=>$Ruche));
         if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('erreur403');
@@ -79,15 +82,14 @@ class MapController extends NouvellepageController{
         
         
         $Ruches=$this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche));
-        
+        //-------Récupère les mesures de la ruches----------//
         $qb = $em->createQueryBuilder();
         $qb->select('w')->from(MesuresRuches::class, 'w')->where('w.idruche = ' . $Ruches->getId())->orderBy('w.date_releve', 'ASC');
         $query = $qb->getQuery();
         $MesuresRuches = $query->getResult();
         
         $dateinstall= $this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche))->getDateInstall();
-        
-        //------------Recherche des ruches appartenant a l'utilisateur connecté-------------//
+        //---------------Récupère les mesures de la station si la ruche est associée à un port--------------//
         $Station=$this->getDoctrine()->getRepository(AssocierRuchePort::class)->findOneBy(array('ruche'=>$Ruches));
         if ($Station != NULL){
             $Station=$Station->getStation();
@@ -129,27 +131,29 @@ class MapController extends NouvellepageController{
         if($nomruche!='NULL'){
             if($nomruche2!='NULL'){
                 $Ruches=$this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche));
-                if($Ruches){
+                
+                if($Ruches){//Récupère les mesures de la ruche et les stocke dans la variable $stock
                 $qb = $em->createQueryBuilder();
                 $qb->select('w')->from(MesuresRuches::class, 'w')->where('w.idruche = ' . $Ruches->getId())->orderBy('w.date_releve', 'ASC');
                 $query = $qb->getQuery();
                 $MesuresRuches = $query->getResult();
                 if($MesuresRuches){
                     foreach ($MesuresRuches as $MesuresRuche){
-                        
                         $stockage1[] = array(
                             $MesuresRuche->getDateReleve()->getTimestamp()*1000,
                             $MesuresRuche->getPoids()
                         );
-                    }$stock[]=$stockage1;
+                    }
+                    $stock[]=array('name'=>$nomruche,'data'=>$stockage1);
                 }
                 }
                 $Ruches2=$this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche2));
-                if($Ruches2){
+                if($Ruches2){//Récupère les mesures de la seconde ruche et les stocke dans la variable $stock
                 $qb = $em->createQueryBuilder();
                 $qb->select('w')->from(MesuresRuches::class, 'w')->where('w.idruche = ' . $Ruches2->getId())->orderBy('w.date_releve', 'ASC');
                 $query = $qb->getQuery();
                 $MesuresDeRuches = $query->getResult();
+                
                 if($MesuresDeRuches){
                     foreach ($MesuresDeRuches as $MesuresDeRuche){
                         
@@ -158,14 +162,13 @@ class MapController extends NouvellepageController{
                             $MesuresDeRuche->getPoids()
                         );
                     }
-                    $stock[]=$stockage2;
+                    $stock[]=array('name'=>$nomruche2,'data'=>$stockage2);
                 }
-                }
-                
-                
+                }                
+                return new Response(json_encode($stock));
             }else{
                 $Ruches=$this->getDoctrine()->getRepository(CRuche::class)->findOneBy(array('nomruche'=>$nomruche));
-                if($Ruches){
+                if($Ruches){//Récupère les mesures de la ruche et les stocke dans la variable $stock
                 $qb = $em->createQueryBuilder();
                 $qb->select('w')->from(MesuresRuches::class, 'w')->where('w.idruche = ' . $Ruches->getId())->orderBy('w.date_releve', 'ASC');
                 $query = $qb->getQuery();
@@ -173,17 +176,15 @@ class MapController extends NouvellepageController{
                 
                 foreach ($MesuresRuches as $MesuresRuche){
                     
-                    $stock[] = array(
+                    $stockage[] = array(
                         $MesuresRuche->getDateReleve()->getTimestamp()*1000,
                          $MesuresRuche->getPoids()
                     );
-                }                
+                } 
+                $stock=array(['name'=>'poids','data'=>$stockage]);
                 return new Response(json_encode($stock));
                 }
-                return new Response(json_encode($stock));
             }
-            
-            return new Response(json_encode($stock));
         }
         return new Response(json_encode($stock));
     }
@@ -223,7 +224,7 @@ class MapController extends NouvellepageController{
         if ($assosRucheApi->getApiculteur() != $this->getUser()) return $this->redirectToRoute('erreur403');
         
         $NomProprietaire=$this->getUser();
-        
+        //----------------Récupère les ruches de l'apiculteur et les ruches publiques------------//
         $RuchesApiculteurs = $this->getDoctrine()->getRepository(AssocierRucheApiculteur::class)->findBy(array('apiculteur'=>$NomProprietaire));
         $RuchesPublic =  $this->getDoctrine()->getRepository(CRuche::class)->findBy(array('visibilite'=>'0'));
         
@@ -239,7 +240,7 @@ class MapController extends NouvellepageController{
         if($user->getActivationtoken()!=NULL){
             return $this->redirectToRoute('erreur_compte');
         }
-        
+        //------Récupère le rucher lié à la station-------//
         $Station = $this->getDoctrine()->getRepository(CStation::class)->findOneBy(array('nom'=>$nomstation));
         $qb = $em->createQueryBuilder();
         $qb->select('w')->from(AssocierStationRucher::class, 'w')->where('w.station = ' . $Station->getId());
@@ -261,7 +262,7 @@ class MapController extends NouvellepageController{
         if($nomstation!='NULL'){            
             
                 $Station = $this->getDoctrine()->getRepository(CStation::class)->findOneBy(array('nom'=>$nomstation));
-                if($Station){
+                if($Station){//Récupère les valeurs des mesures de la station et les stocke en fonction du nom de la mesure
                     $qb = $em->createQueryBuilder();
                     $qb->select('w')->from(AssocierStationRucher::class, 'w')->where('w.station = ' . $Station->getId());
                     $query = $qb->getQuery();
@@ -272,7 +273,6 @@ class MapController extends NouvellepageController{
                     $query = $qb->getQuery();
                     $MesuresStations=$query->getResult();
                     foreach ($MesuresStations as $MesuresStation){
-                        
                         $temperature[] = array(
                             $MesuresStation->getDateReleve()->getTimestamp()*1000,
                             $MesuresStation->getTemperature()
